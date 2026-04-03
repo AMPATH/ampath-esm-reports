@@ -6,25 +6,22 @@
   },
   "extensions": [
     {
-      "name": "Red box",
-      "component": "redBox",
-      "slot": "Boxes"
+      "name": "ampath-reports-dashboard-link",
+      "component": "reportsDashboardLink",
+      "slot": "homepage-dashboard-slot",
+      "meta": {
+        "name": "reports",
+        "slot": "ampath-reports-dashboard-slot",
+        "title": "Reports"
+      },
+      "online": true,
+      "offline": true
     },
-    {
-      "name": "Blue box",
-      "component": "blueBox",
-      "slot": "Boxes"
-    },
-        {
-      "name": "Brand box",
-      "component": "blueBox",
-      "slot": "Boxes"
-    }
-  ],
-  "pages": [
     {
       "component": "root",
-      "route": "root"
+      "name": "ampath-reports-dashboard-root",
+      "slot": "ampath-reports-dashboard-slot"
     }
-  ]
+  ],
+  "pages": []
 }
