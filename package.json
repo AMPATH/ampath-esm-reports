@@ -9,6 +9,7 @@
   "scripts": {
     "start": "openmrs develop",
     "serve": "webpack serve --mode=development",
+    "dev": "openmrs develop --backend=https://staging.ampath.or.ke --api-url=/openmrs --config-url=https://ngx.ampath.or.ke/o3-config.json --port=9000",
     "build": "webpack --mode production",
     "analyze": "webpack --mode=production --env analyze=true",
     "lint": "eslint src --ext js,jsx,ts,tsx --max-warnings 0",
