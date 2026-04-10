@@ -1,0 +1,49 @@
+
+
+.filtersContainer {
+    margin: 0 2rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid #ccc;
+    padding: 1rem;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    color: green;
+    text-decoration: underline;
+}
+
+.titleContainer {
+    margin: 2rem;
+}
+
+.dateContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  gap: 8px 16px;
+  align-items: center;
+}
+
+.dateContainer label {
+  font-weight: 500;
+}
+
+.input {
+  width: 100%;
+  padding: 6px 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  outline: none;
+}
+.input:focus {
+  border-color: #999; 
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin: 0 2rem;
+}

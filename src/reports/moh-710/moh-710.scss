@@ -1,0 +1,41 @@
+
+h3 {
+    text-align: center;
+}
+
+.container {
+    border: 1px solid #ccc;
+    margin: 0 2rem;
+    margin-top: 0.5px;
+}
+
+.tableContainer {
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+}
+
+.sectionTitle {
+    margin-left: 1rem ;
+}
+
+.title {
+    text-align: center;
+    font-size: 1rem;
+    margin: 1rem;
+}
+.table {
+  width: auto;
+  border-collapse: collapse;
+  
+}
+
+.tableBordered td,
+.tableBordered th {
+  border: 1px solid #dee2e6;
+  padding: 0.3rem;
+  font-size: small;
+}
+
+.tableStriped tbody tr:nth-of-type(odd) {
+  background-color: #f9f9f9;
+}

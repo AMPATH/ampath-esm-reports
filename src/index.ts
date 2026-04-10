@@ -3,7 +3,7 @@ import { configSchema } from './config-schema';
 import { createDashboardLink } from './createDashboardLink';
 import { reportsDashboardMeta } from './dashboard-meta/reports-dashboard.meta';
 
-const moduleName = '@ampath/esm-reports-app';
+export const moduleName = '@ampath/esm-reports-app';
 
 const options = {
   featureName: 'ampath-esm-reports',
