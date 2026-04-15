@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { TableRow, TableCell } from '@carbon/react';
-import TableWrapper from "../../table-wrapper/table-wrapper.component";
-import styles from '../../table-wrapper/table-wrapper.scss';
+import TableWrapper from "../../../table-wrapper/table-wrapper.component";
+import styles from '../../../table-wrapper/table-wrapper.scss';
 
 const Serology: React.FC = () => {
     const getCell = (key = "", value = "", colSpan = 1, strong = false) => ({
