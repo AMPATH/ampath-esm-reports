@@ -11,6 +11,8 @@ const DrugSusceptibilityTesting: React.FC = () => {
         colSpan
     });
 
+    const cells = Array.from({ length: 25}, (_, i) => getCell());
+
     const tableRows = useMemo(() => {
         return [
             {
@@ -30,118 +32,104 @@ const DrugSusceptibilityTesting: React.FC = () => {
                     getCell("", "i. Cefazolin", 1, true),
                     getCell("", "j. Amoxillin-Clavulanate", 1, true),
                     getCell("", "k. Amikacin", 1, true),
+                    getCell("", "m. Chloramphenicol", 1, true),
+                    getCell("", "n. Cefepime", 1, true),
+                    getCell("", "p. Piperacillin-tazobactam", 1, true),
+                    getCell("", "q. obramycin", 1, true),
+                    getCell("", "r. Ampicillin Sulbactam", 1, true),
+                    getCell("", "s. Trimethoprim Sulfamethoxazole", 1, true),
+                    getCell("", "t. Penicillin", 1, true),
+                    getCell("", "u. Vancomycin", 1, true),
+                    getCell("", "v. Meropenem", 1, true),
+                    getCell("", "w. Clindamycin", 1, true),
+                    getCell("", "x. Doxycycline/tetracyclin", 1, true),
+                    getCell("", "y. Ceftazidime-avibactam", 1, true),
+                    getCell("", "z. Erythromycin", 1, true),
+                    getCell("", "aa. Gentamicin", 1, true),
                 ]
             },
             {
                 tableCells: [
                     getCell("", "9.1 E. coli O157:H7"),
-                    getCell(), getCell(), getCell(), getCell(),
-                    getCell(), getCell(), getCell(), getCell(),
-                    getCell(), getCell(), getCell()
+                    ...cells
                 ]
             },
             {
                 tableCells: [
                     getCell("", "9.2 Proteus spp"),
-                    getCell(), getCell(), getCell(), getCell(),
-                    getCell(), getCell(), getCell(), getCell(),
-                    getCell(), getCell(), getCell()
+                    ...cells
                 ]
             },
             {
                 tableCells: [
                     getCell("", "9.3 Salmonella spp"),
-                    getCell(), getCell(), getCell(), getCell(),
-                    getCell(), getCell(), getCell(), getCell(),
-                    getCell(), getCell(), getCell()
+                    ...cells
                 ]
             },
             {
                 tableCells: [
                     getCell("", "9.4 Shigella spp"),
-                    getCell(), getCell(), getCell(), getCell(),
-                    getCell(), getCell(), getCell(), getCell(),
-                    getCell(), getCell(), getCell()
+                    ...cells
                 ]
             },
             {
                 tableCells: [
                     getCell("", "9.5 Klebsiella pneumoniae"),
-                    getCell(), getCell(), getCell(), getCell(),
-                    getCell(), getCell(), getCell(), getCell(),
-                    getCell(), getCell(), getCell()
+                    ...cells
                 ]
             },
             {
                 tableCells: [
                     getCell("", "9.6 Pseudomonas spp"),
-                    getCell(), getCell(), getCell(), getCell(),
-                    getCell(), getCell(), getCell(), getCell(),
-                    getCell(), getCell(), getCell()
+                    ...cells
                 ]
             },
             {
                 tableCells: [
                     getCell("", "9.7 Staphylococcus aureus"),
-                    getCell(), getCell(), getCell(), getCell(),
-                    getCell(), getCell(), getCell(), getCell(),
-                    getCell(), getCell(), getCell()
+                    ...cells
                 ]
             },
             {
                 tableCells: [
                     getCell("", "9.8 Vibrio cholerae spp"),
-                    getCell(), getCell(), getCell(), getCell(),
-                    getCell(), getCell(), getCell(), getCell(),
-                    getCell(), getCell(), getCell()
+                    ...cells
                 ]
             },
             {
                 tableCells: [
                     getCell("", "9.9 Neisseria meningitidis"),
-                    getCell(), getCell(), getCell(), getCell(),
-                    getCell(), getCell(), getCell(), getCell(),
-                    getCell(), getCell(), getCell()
+                    ...cells
                 ]
             },
             {
                 tableCells: [
                     getCell("", "9.10 Neisseria gonorrhoeae"),
-                    getCell(), getCell(), getCell(), getCell(),
-                    getCell(), getCell(), getCell(), getCell(),
-                    getCell(), getCell(), getCell()
+                    ...cells
                 ]
             },
             {
                 tableCells: [
                     getCell("", "9.11 Streptococcus pneumoniae"),
-                    getCell(), getCell(), getCell(), getCell(),
-                    getCell(), getCell(), getCell(), getCell(),
-                    getCell(), getCell(), getCell()
+                    ...cells
                 ]
             },
             {
                 tableCells: [
                     getCell("", "9.12 Haemophilus influenzae"),
-                    getCell(), getCell(), getCell(), getCell(),
-                    getCell(), getCell(), getCell(), getCell(),
-                    getCell(), getCell(), getCell()
+                    ...cells
                 ]
             },
             {
                 tableCells: [
                     getCell("", "9.13 Haemophilus parainfluenzae"),
-                    getCell(), getCell(), getCell(), getCell(),
-                    getCell(), getCell(), getCell(), getCell(),
-                    getCell(), getCell(), getCell()
+                    ...cells
                 ]
             },
             {
                 tableCells: [
                     getCell("", "9.14 Bacterial vaginosis"),
-                    getCell(), getCell(), getCell(), getCell(),
-                    getCell(), getCell(), getCell(), getCell(),
-                    getCell(), getCell(), getCell()
+                    ...cells
                 ]
             },
         ]

@@ -18,11 +18,12 @@
 }
 
 .dataCell {
-  padding: 0.05rem;
+  padding: 0.01rem;
   border: 1px solid #d0d0d0;
   text-align: center;
-  height: 27px;
+  height: 20px;
   min-width: 50px;
+  font-size: small;
 
   &:hover {
     background-color: #f0f7ff;
