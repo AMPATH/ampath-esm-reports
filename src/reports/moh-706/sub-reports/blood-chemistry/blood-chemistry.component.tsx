@@ -2,20 +2,15 @@ import React, { useMemo } from "react";
 import { TableRow, TableCell } from '@carbon/react';
 import TableWrapper from "../../../table-wrapper/table-wrapper.component";
 import styles from '../../../table-wrapper/table-wrapper.scss';
+import TableRowMapper from "../../../table-wrapper/table-row-mapper.component";
+import { getCell } from "../../../../utils/utils";
 
 const BloodChemistry: React.FC = () => {
-    const getCell = (key = "", value = "", colSpan = 1, strong = false) => ({
-        key,
-        value,
-        strong,
-        colSpan
-    });
-
     const tableRows = useMemo(() => {
         return [
             {
                 tableCells: [
-                    getCell("", "2. BLOOD CHEMISTRY", 4, true),
+                    getCell("", "2. BLOOD CHEMISTRY", 4, 1, true),
                 ]
             },
             {
@@ -25,10 +20,10 @@ const BloodChemistry: React.FC = () => {
             },
             {
                 tableCells: [
-                    getCell("", "Blood Sugar Test", 1, true),
-                    getCell("", "Total Exam", 1, true),
-                    getCell("", "Low", 1, true),
-                    getCell("", "High", 1, true),
+                    getCell("", "Blood Sugar Test", 1, 1, true),
+                    getCell("", "Total Exam", 1, 1, true),
+                    getCell("", "Low", 1, 1, true),
+                    getCell("", "High", 1, 1, true),
                 ]
             },
             {
@@ -49,7 +44,7 @@ const BloodChemistry: React.FC = () => {
             },
             {
                 tableCells: [
-                    getCell("", "2.3 Renal Function Test", 1, true),
+                    getCell("", "2.3 Renal Function Test", 1, 1, true),
                     getCell(),
                     getCell(),
                     getCell(),
@@ -105,7 +100,7 @@ const BloodChemistry: React.FC = () => {
             },
             {
                 tableCells: [
-                    getCell("", "2.8 Liver Function Test", 1, true),
+                    getCell("", "2.8 Liver Function Test", 1, 1, true),
                     getCell(),
                     getCell(),
                     getCell(),
@@ -169,7 +164,7 @@ const BloodChemistry: React.FC = () => {
             },
             {
                 tableCells: [
-                    getCell("", "2.16 Lipid Profile", 1, true),
+                    getCell("", "2.16 Lipid Profile", 1, 1, true),
                     getCell(),
                     getCell(),
                     getCell(),
@@ -201,10 +196,10 @@ const BloodChemistry: React.FC = () => {
             },
             {
                 tableCells: [
-                    getCell("", "Hormonal Test", 1, true),
-                    getCell("", "Total Exam", 1, true),
-                    getCell("", "Low", 1, true),
-                    getCell("", "High", 1, true),
+                    getCell("", "Hormonal Test", 1, 1, true),
+                    getCell("", "Total Exam", 1, 1, true),
+                    getCell("", "Low", 1, 1, true),
+                    getCell("", "High", 1, 1, true),
                 ]
             },
             {
@@ -233,9 +228,9 @@ const BloodChemistry: React.FC = () => {
             },
             {
                 tableCells: [
-                    getCell("", "Tumor Markers", 1, true),
-                    getCell("", "Total Exam", 1, true),
-                    getCell("", "Number Positive", 2, true),
+                    getCell("", "Tumor Markers", 1, 1, true),
+                    getCell("", "Total Exam", 1, 1, true),
+                    getCell("", "Number Positive", 2, 1, true),
                 ]
             },
             {
@@ -282,10 +277,10 @@ const BloodChemistry: React.FC = () => {
             },
             {
                 tableCells: [
-                    getCell("", "CSF Chemistry", 1, true),
-                    getCell("", "Total Exam", 1, true),
-                    getCell("", "Low", 1, true),
-                    getCell("", "High", 1, true),
+                    getCell("", "CSF Chemistry", 1, 1, true),
+                    getCell("", "Total Exam", 1, 1, true),
+                    getCell("", "Low", 1, 1, true),
+                    getCell("", "High", 1, 1, true),
                 ]
             },
             {
@@ -309,15 +304,7 @@ const BloodChemistry: React.FC = () => {
 
 
     return <TableWrapper>
-        {tableRows.map((tR) => (
-            <TableRow>
-                {tR.tableCells.map((tC) => (
-                    <TableCell className={styles.dataCell} colSpan={tC.colSpan}>
-                        {tC.strong ? <strong>{tC.value}</strong> : tC.value}
-                    </TableCell>
-                ))}
-            </TableRow>
-        ))}
+         <TableRowMapper tableRows={tableRows} />
     </TableWrapper>
 }
 

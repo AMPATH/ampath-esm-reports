@@ -1,27 +1,20 @@
 import React, { useMemo } from "react";
-import { TableRow, TableCell } from '@carbon/react';
 import TableWrapper from "../../../table-wrapper/table-wrapper.component";
-import styles from '../../../table-wrapper/table-wrapper.scss';
+import TableRowMapper from "../../../table-wrapper/table-row-mapper.component";
+import { getCell } from "../../../../utils/utils";
 
 const Bacteriology: React.FC = () => {
-    const getCell = (key = "", value = "", colSpan = 1, strong = false) => ({
-        key,
-        value,
-        strong,
-        colSpan
-    });
-
     const tableRows = useMemo(() => {
         return [
             {
-                tableCells: [getCell("", "5 BACTERIOLOGY", 4, true)]
+                tableCells: [getCell("", "5 BACTERIOLOGY", 4, 1, true)]
             },
             {
                 tableCells: [
-                    getCell("", "Bacteriological Sample", 1, true),
-                    getCell("", "Total Exam", 1, true),
-                    getCell("", "Total Cultures", 1, true),
-                    getCell("", "Number Culture Positive", 1, true),
+                    getCell("", "Bacteriological Sample", 1, 1, true),
+                    getCell("", "Total Exam", 1, 1, true),
+                    getCell("", "Total Cultures", 1, 1, true),
+                    getCell("", "Number Culture Positive", 1, 1, true),
                 ]
             },
             { tableCells: [getCell("", "5.1 Urine"), getCell(), getCell(), getCell()] },
@@ -35,9 +28,9 @@ const Bacteriology: React.FC = () => {
             { tableCells: [getCell("", "5.9 Urethral swabs"), getCell(), getCell(), getCell()] },
             {
                 tableCells: [
-                    getCell("", "Bacterial enteric pathogens", 2, true),
-                    getCell("", "Total Exam", 1, true),
-                    getCell("", "Number Positive", 1, true),
+                    getCell("", "Bacterial enteric pathogens", 2, 1, true),
+                    getCell("", "Total Exam", 1, 1, true),
+                    getCell("", "Number Positive", 1, 1, true),
                 ]
             },
             {
@@ -49,8 +42,8 @@ const Bacteriology: React.FC = () => {
             },
             {
                 tableCells: [
-                    getCell("", "Stool Isolates", 3, true),
-                    getCell("", "Number Positive", 1, true),
+                    getCell("", "Stool Isolates", 3, 1, true),
+                    getCell("", "Number Positive", 1, 1, true),
                 ]
             },
             { tableCells: [getCell("", "5.11 Salmonella typhi", 3), getCell()] },
@@ -60,14 +53,14 @@ const Bacteriology: React.FC = () => {
             { tableCells: [getCell("", "5.15 V. cholerae O139", 3), getCell()] },
 
             {
-                tableCells: [getCell("", "Bacterial meningitis", 4, true)]
+                tableCells: [getCell("", "Bacterial meningitis", 4, 1, true)]
             },
             {
                 tableCells: [
-                    getCell("", "Bacterial meningitis", 1, true),
-                    getCell("", "Total Exam", 1, true),
-                    getCell("", "Number Positive", 1, true),
-                    getCell("", "Number Contaminated", 2, true),
+                    getCell("", "Bacterial meningitis", 1, 1, true),
+                    getCell("", "Total Exam", 1, 1, true),
+                    getCell("", "Number Positive", 1, 1, true),
+                    getCell("", "Number Contaminated", 2, 1, true),
                 ]
             },
             {
@@ -80,8 +73,8 @@ const Bacteriology: React.FC = () => {
             },
             {
                 tableCells: [
-                    getCell("", "Bacterial meningitis Serotypes", 1, true),
-                    getCell("", "Number Positive", 3, true),
+                    getCell("", "Bacterial meningitis Serotypes", 1, 1, true),
+                    getCell("", "Number Positive", 3, 1, true),
                 ]
             },
             { tableCells: [getCell("", "5.17 Neisseria meningitidis A"), getCell("", "", 3)] },
@@ -95,16 +88,16 @@ const Bacteriology: React.FC = () => {
             { tableCells: [getCell("", "5.25 Haemophilus influenzae (type b)"), getCell("", "", 3)] },
             { tableCells: [getCell("", "5.26 Cryptococcal Meningitis"), getCell("", "", 3)] },
             {
-                tableCells: [getCell("", "Bacterial Pathogens from other types of specimen", 4, true)]
+                tableCells: [getCell("", "Bacterial Pathogens from other types of specimen", 4, 1, true)]
             },
             { tableCells: [getCell("", "5.27 B. anthracis"), getCell("", "", 3)] },
             { tableCells: [getCell("", "5.28 Y. pestis"), getCell("", "", 3)] },
             { tableCells: [getCell("", "TB SPUTUM", 4)] },
             {
                 tableCells: [
-                    getCell("", "TB SPUTUM", 1, true),
-                    getCell("", "Total Exam", 1, true),
-                    getCell("", "Number Positive", 1, true),
+                    getCell("", "TB SPUTUM", 1, 1, true),
+                    getCell("", "Total Exam", 1, 1, true),
+                    getCell("", "Number Positive", 1, 1, true),
                 ]
             },
             { tableCells: [getCell("", "5.29 Total TB smears"), getCell(), getCell()] },
@@ -117,15 +110,7 @@ const Bacteriology: React.FC = () => {
 
 
     return <TableWrapper>
-        {tableRows.map((tR) => (
-            <TableRow>
-                {tR.tableCells.map((tC) => (
-                    <TableCell className={styles.dataCell} colSpan={tC.colSpan}>
-                        {tC.strong ? <strong>{tC.value}</strong> : tC.value}
-                    </TableCell>
-                ))}
-            </TableRow>
-        ))}
+        <TableRowMapper tableRows={tableRows} />
     </TableWrapper>
 }
 

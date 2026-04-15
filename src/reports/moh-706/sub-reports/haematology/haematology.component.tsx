@@ -1,29 +1,22 @@
 import React, { useMemo } from "react";
-import { TableRow, TableCell } from '@carbon/react';
 import TableWrapper from "../../../table-wrapper/table-wrapper.component";
-import styles from '../../../table-wrapper/table-wrapper.scss';
+import { getCell } from "../../../../utils/utils";
+import TableRowMapper from "../../../table-wrapper/table-row-mapper.component";
 
 const Haematology: React.FC = () => {
-    const getCell = (key = "", value = "", colSpan = 1, strong = false) => ({
-        key,
-        value,
-        strong,
-        colSpan
-    });
-
     const tableRows = useMemo(() => {
         return [
             {
                 tableCells: [
-                    getCell("", "4 HAEMATOLOGY", 4, true)
+                    getCell("", "4 HAEMATOLOGY", 4, 1, true)
                 ]
             },
             {
                 tableCells: [
-                    getCell("", "Haematology tests", 1, true),
-                    getCell("", "Total Exam", 1, true),
-                    getCell("", "HB <5 g/dl", 1, true),
-                    getCell("", "HB between 5 and 10 g/dl", 1, true),
+                    getCell("", "Haematology tests", 1, 1, true),
+                    getCell("", "Total Exam", 1, 1, true),
+                    getCell("", "HB <5 g/dl", 1, 1, true),
+                    getCell("", "HB between 5 and 10 g/dl", 1, 1, true),
                 ]
             },
             {
@@ -45,9 +38,9 @@ const Haematology: React.FC = () => {
             {
                 tableCells: [
                     getCell(),
-                    getCell("", "Total Exam", 1, true),
-                    getCell("", "Pre-diabetes", 1, true),
-                    getCell("", "Diabetes", 1, true),
+                    getCell("", "Total Exam", 1, 1, true),
+                    getCell("", "Pre-diabetes", 1, 1, true),
+                    getCell("", "Diabetes", 1, 1, true),
                 ]
             },
             {
@@ -61,8 +54,8 @@ const Haematology: React.FC = () => {
             {
                 tableCells: [
                     getCell(),
-                    getCell("", "Total Exam", 1, true),
-                    getCell("", "Number <500", 2, true),
+                    getCell("", "Total Exam", 1, 1, true),
+                    getCell("", "Number <500", 2, 1, true),
                 ]
             },
             {
@@ -74,9 +67,9 @@ const Haematology: React.FC = () => {
             },
             {
                 tableCells: [
-                    getCell("", "Other Haematology tests", 1, true),
-                    getCell("", "Total Exam", 1, true),
-                    getCell("", "Number Positive", 2, true),
+                    getCell("", "Other Haematology tests", 1, 1, true),
+                    getCell("", "Total Exam", 1, 1, true),
+                    getCell("", "Number Positive", 2, 1, true),
                 ]
             },
             {
@@ -97,8 +90,8 @@ const Haematology: React.FC = () => {
             {
                 tableCells: [
                     getCell(),
-                    getCell("", "Total Exam", 1, true),
-                    getCell("", "High", 2, true),
+                    getCell("", "Total Exam", 1, 1, true),
+                    getCell("", "High", 2, 1, true),
                 ]
             },
             {
@@ -110,8 +103,8 @@ const Haematology: React.FC = () => {
             },
             {
                 tableCells: [
-                    getCell("", "Blood Grouping", 3, true),
-                    getCell("", "Number", 1, true),
+                    getCell("", "Blood Grouping", 3, 1, true),
+                    getCell("", "Number", 1, 1, true),
                 ]
             },
             {
@@ -128,7 +121,7 @@ const Haematology: React.FC = () => {
             },
             {
                 tableCells: [
-                    getCell("", "Blood Safety", 4, true),
+                    getCell("", "Blood Safety", 4, 1, true),
                 ]
             },
             {
@@ -151,8 +144,8 @@ const Haematology: React.FC = () => {
             },
             {
                 tableCells: [
-                    getCell("", "Blood Screening at facility", 3, true),
-                    getCell("", "Number Positive", 1, true),
+                    getCell("", "Blood Screening at facility", 3, 1, true),
+                    getCell("", "Number Positive", 1, 1, true),
                 ]
             },
             {
@@ -172,15 +165,7 @@ const Haematology: React.FC = () => {
 
 
     return <TableWrapper>
-        {tableRows.map((tR) => (
-            <TableRow>
-                {tR.tableCells.map((tC) => (
-                    <TableCell className={styles.dataCell} colSpan={tC.colSpan}>
-                        {tC.strong ? <strong>{tC.value}</strong> : tC.value}
-                    </TableCell>
-                ))}
-            </TableRow>
-        ))}
+        <TableRowMapper tableRows={tableRows} />
     </TableWrapper>
 }
 

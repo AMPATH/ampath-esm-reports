@@ -1,26 +1,19 @@
 import React, { useMemo } from "react";
-import { TableRow, TableCell } from '@carbon/react';
 import TableWrapper from "../../../table-wrapper/table-wrapper.component";
-import styles from '../../../table-wrapper/table-wrapper.scss';
+import TableRowMapper from "../../../table-wrapper/table-row-mapper.component";
+import { getCell } from "../../../../utils/utils";
 
 const HistologyAndCytology: React.FC = () => {
-    const getCell = (key = "", value = "", colSpan = 1, strong = false) => ({
-        key,
-        value,
-        strong,
-        colSpan
-    });
-
     const tableRows = useMemo(() => {
         return [
             {
-                tableCells: [getCell("", "6 HISTOLOGY AND CYTOLOGY", 4, true)]
+                tableCells: [getCell("", "6 HISTOLOGY AND CYTOLOGY", 4, 1, true)]
             },
             {
                 tableCells: [
-                    getCell("", "Smears", 1, true),
-                    getCell("", "Total Exam", 1, true),
-                    getCell("", "Malignant", 1, true),
+                    getCell("", "Smears", 1, 1, true),
+                    getCell("", "Total Exam", 1, 1, true),
+                    getCell("", "Malignant", 1, 1, true),
                     getCell(),
                 ]
             },
@@ -29,9 +22,9 @@ const HistologyAndCytology: React.FC = () => {
             { tableCells: [getCell("", "6.3 Tissue impressions"), getCell(), getCell(), getCell()] },
             {
                 tableCells: [
-                    getCell("", "Fine Needle Aspirates", 1, true),
-                    getCell("", "Total Exam", 1, true),
-                    getCell("", "Malignant", 1, true),
+                    getCell("", "Fine Needle Aspirates", 1, 1, true),
+                    getCell("", "Total Exam", 1, 1, true),
+                    getCell("", "Malignant", 1, 1, true),
                     getCell()
                 ]
             },
@@ -42,9 +35,9 @@ const HistologyAndCytology: React.FC = () => {
             { tableCells: [getCell("", "6.8 Soft tissue masses"), getCell(), getCell(), getCell()] },
             {
                 tableCells: [
-                    getCell("", "Fluid Cytology", 1, true),
-                    getCell("", "Total Exam", 1, true),
-                    getCell("", "Malignant", 2, true),
+                    getCell("", "Fluid Cytology", 1, 1, true),
+                    getCell("", "Total Exam", 1, 1, true),
+                    getCell("", "Malignant", 2, 1, true),
                     getCell()
                 ]
             },
@@ -54,10 +47,10 @@ const HistologyAndCytology: React.FC = () => {
             { tableCells: [getCell("", "6.12 Urine"), getCell(), getCell(), getCell()] },
             {
                 tableCells: [
-                    getCell("", "Tissue Histology", 1, true),
-                    getCell("", "Total Exam", 1, true),
-                    getCell("", "Malignant", 1, true),
-                    getCell("", "TNM Stage", 1, true),
+                    getCell("", "Tissue Histology", 1, 1, true),
+                    getCell("", "Total Exam", 1, 1, true),
+                    getCell("", "Malignant", 1, 1, true),
+                    getCell("", "TNM Stage", 1, 1, true),
                 ]
             },
             { tableCells: [getCell("", "6.13 Prostate"), getCell(), getCell(), getCell()] },
@@ -75,9 +68,9 @@ const HistologyAndCytology: React.FC = () => {
             { tableCells: [getCell("", "6.25 Lymph nodes tissue"), getCell(), getCell(), getCell()] },
             {
                 tableCells: [
-                    getCell("", "Bone Marrow Studies", 1, true),
-                    getCell("", "Total Exam", 1, true),
-                    getCell("", "Malignant", 1, true),
+                    getCell("", "Bone Marrow Studies", 1, 1, true),
+                    getCell("", "Total Exam", 1, 1, true),
+                    getCell("", "Malignant", 1, 1, true),
                     getCell()
                 ]
             },
@@ -88,15 +81,7 @@ const HistologyAndCytology: React.FC = () => {
 
 
     return <TableWrapper>
-        {tableRows.map((tR) => (
-            <TableRow>
-                {tR.tableCells.map((tC) => (
-                    <TableCell className={styles.dataCell} colSpan={tC.colSpan}>
-                        {tC.strong ? <strong>{tC.value}</strong> : tC.value}
-                    </TableCell>
-                ))}
-            </TableRow>
-        ))}
+        <TableRowMapper tableRows={tableRows} />
     </TableWrapper>
 }
 

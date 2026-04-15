@@ -1,26 +1,19 @@
 import React, { useMemo } from "react";
-import { TableRow, TableCell } from '@carbon/react';
 import TableWrapper from "../../../table-wrapper/table-wrapper.component";
-import styles from '../../../table-wrapper/table-wrapper.scss';
+import TableRowMapper from "../../../table-wrapper/table-row-mapper.component";
+import { getCell } from "../../../../utils/utils";
 
 const Serology: React.FC = () => {
-    const getCell = (key = "", value = "", colSpan = 1, strong = false) => ({
-        key,
-        value,
-        strong,
-        colSpan
-    });
-
     const tableRows = useMemo(() => {
         return [
             {
-                tableCells: [getCell("", "7. SEROLOGY", 3, true)]
+                tableCells: [getCell("", "7. SEROLOGY", 3, 1, true)]
             },
             {
                 tableCells: [
-                    getCell("", "Serological Test", 1, true),
-                    getCell("", "Total Exam", 1, true),
-                    getCell("", "Number Positive", 1, true),
+                    getCell("", "Serological Test", 1, 1, true),
+                    getCell("", "Total Exam", 1, 1, true),
+                    getCell("", "Number Positive", 1, 1, true),
                 ]
             },
             { tableCells: [getCell("", "7.1 VDRL"), getCell(), getCell()] },
@@ -40,15 +33,7 @@ const Serology: React.FC = () => {
 
 
     return <TableWrapper>
-        {tableRows.map((tR) => (
-            <TableRow>
-                {tR.tableCells.map((tC) => (
-                    <TableCell className={styles.dataCell} colSpan={tC.colSpan}>
-                        {tC.strong ? <strong>{tC.value}</strong> : tC.value}
-                    </TableCell>
-                ))}
-            </TableRow>
-        ))}
+         <TableRowMapper tableRows={tableRows} />
     </TableWrapper>
 }
 

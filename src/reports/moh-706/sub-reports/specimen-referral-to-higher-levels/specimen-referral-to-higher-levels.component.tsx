@@ -1,26 +1,19 @@
 import React, { useMemo } from "react";
-import { TableRow, TableCell } from '@carbon/react';
 import TableWrapper from "../../../table-wrapper/table-wrapper.component";
-import styles from '../../../table-wrapper/table-wrapper.scss';
+import TableRowMapper from "../../../table-wrapper/table-row-mapper.component";
+import { getCell } from "../../../../utils/utils";
 
 const SpecimenReferralToHigherLevels: React.FC = () => {
-    const getCell = (key = "", value = "", colSpan = 1, strong = false) => ({
-        key,
-        value,
-        strong,
-        colSpan
-    });
-
     const tableRows = useMemo(() => {
         return [
             {
-                tableCells: [getCell("", "8. SPECIMEN REFERRAL TO HIGHER LEVELS", 3, true)]
+                tableCells: [getCell("", "8. SPECIMEN REFERRAL TO HIGHER LEVELS", 3, 1, true)]
             },
             {
                 tableCells: [
-                    getCell("", "Specimen referral", 1, true),
-                    getCell("", "No. of specimens", 1, true),
-                    getCell("", "No. of results received", 1, true),
+                    getCell("", "Specimen referral", 1, 1, true),
+                    getCell("", "No. of specimens", 1, 1, true),
+                    getCell("", "No. of results received", 1, 1, true),
                 ]
             },
             { tableCells: [getCell("", "8.1 CD4"), getCell(), getCell()] },
@@ -39,15 +32,7 @@ const SpecimenReferralToHigherLevels: React.FC = () => {
 
 
     return <TableWrapper>
-        {tableRows.map((tR) => (
-            <TableRow>
-                {tR.tableCells.map((tC) => (
-                    <TableCell className={styles.dataCell} colSpan={tC.colSpan}>
-                        {tC.strong ? <strong>{tC.value}</strong> : tC.value}
-                    </TableCell>
-                ))}
-            </TableRow>
-        ))}
+         <TableRowMapper tableRows={tableRows} />
     </TableWrapper>
 }
 

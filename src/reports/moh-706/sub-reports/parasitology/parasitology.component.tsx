@@ -1,28 +1,21 @@
 import React, { useMemo } from "react";
-import { TableRow, TableCell } from '@carbon/react';
 import TableWrapper from "../../../table-wrapper/table-wrapper.component";
-import styles from '../../../table-wrapper/table-wrapper.scss';
+import TableRowMapper from "../../../table-wrapper/table-row-mapper.component";
+import { getCell } from "../../../../utils/utils";
 
 const Parasitology: React.FC = () => {
-    const getCell = (key = "", value = "", colSpan = 1, strong = false) => ({
-        key,
-        value,
-        strong,
-        colSpan
-    });
-
     const tableRows = useMemo(() => {
         return [
             {
                 tableCells: [
-                    getCell("", "3 PARASITOLOGY", 3, true)
+                    getCell("", "3 PARASITOLOGY", 3, 1, true)
                 ]
             },
             {
                 tableCells: [
-                    getCell("", "Malaria Test", 1, true),
-                    getCell("", "Total Exam", 1, true),
-                    getCell("", "Number Positive", 1, true)
+                    getCell("", "Malaria Test", 1, 1, true),
+                    getCell("", "Total Exam", 1, 1, true),
+                    getCell("", "Number Positive", 1, 1, true)
                 ]
             },
             {
@@ -55,9 +48,9 @@ const Parasitology: React.FC = () => {
             },
             {
                 tableCells: [
-                    getCell("", "Stool Examination", 1, true),
+                    getCell("", "Stool Examination", 1, 1, true),
                     getCell(),
-                    getCell("", "Number Positive", 1, true),
+                    getCell("", "Number Positive", 1, 1, true),
                 ]
             },
             {
@@ -114,15 +107,7 @@ const Parasitology: React.FC = () => {
 
 
     return <TableWrapper>
-        {tableRows.map((tR) => (
-            <TableRow>
-                {tR.tableCells.map((tC) => (
-                    <TableCell className={styles.dataCell} colSpan={tC.colSpan}>
-                        {tC.strong ? <strong>{tC.value}</strong> : tC.value}
-                    </TableCell>
-                ))}
-            </TableRow>
-        ))}
+         <TableRowMapper tableRows={tableRows} />
     </TableWrapper>
 }
 
