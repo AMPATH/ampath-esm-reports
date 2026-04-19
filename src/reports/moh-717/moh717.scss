@@ -4,9 +4,8 @@ h3 {
 }
 
 .container {
-    border: 1px solid #ccc;
     margin: 0 2rem;
-    margin-top: 0.5px;
+    padding: 1rem;
 }
 
 .tableContainer {
@@ -31,11 +30,121 @@ h3 {
 
 .tableBordered td,
 .tableBordered th {
-  border: 1px solid #dee2e6;
+  border: 1px solid black;
   padding: 0.3rem;
   font-size: small;
 }
 
+.tableBordered th {
+    font-weight: bold;
+} 
+
 .tableStriped tbody tr:nth-of-type(odd) {
   background-color: #f9f9f9;
+}
+.greyBackground {
+    background-color: #ccc;
+}
+
+.totals {
+    font-weight: bold;
+    color: #0437F2;
+}
+
+.alighnLeft {
+    text-align: left;
+}
+
+.rotateUp {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg); 
+  text-align: center;
+  white-space: nowrap;
+}
+
+.sectionContainer {
+   margin: 2rem 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+//   gap: 1rem;
+
+  grid-template-areas:
+    "left right";
+}
+
+.left {
+  grid-area: left;
+}
+
+.right {
+  grid-area: right;
+}
+
+.section{
+      margin: 2rem 0;
+}
+
+.sectionTwoContainer {
+  margin: 2rem 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  padding: 0 2rem;
+  grid-template-areas:
+    "one two three";
+}
+
+.one {
+  grid-area: one;
+}
+
+.two {
+  grid-area: two;
+}
+
+.three {
+  grid-area: three;
+}
+
+
+/* 📱 Stack on small screens */
+@media (max-width: 768px) {
+  .sectionContainer {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "left"
+      "right";
+  }
+}
+
+.preparedByContainer {
+    margin: 2rem 0;
+}
+
+.location {
+  margin: 2rem;
+  display: flex;
+  flex-wrap: nowrap;     
+  align-items: center;
+  gap: 12px;             
+  white-space: nowrap;   
+}
+
+
+.line {
+  display: inline-block;
+  width: 150px;
+  border-bottom: 1px solid #000;
+  margin-left: 4px;
+}
+
+.shortLine {
+  display: inline-block;
+  width: 90px;
+  border-bottom: 1px solid #000;
+  margin-left: 4px;
+}
+
+span {
+    font-weight: bold;
 }

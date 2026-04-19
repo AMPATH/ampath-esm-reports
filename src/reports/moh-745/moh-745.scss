@@ -1,0 +1,67 @@
+
+h3 {
+    text-align: center;
+}
+.tableContainer {
+    margin-left: 2rem;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+}
+
+.sectionTitle {
+    margin-left: 1rem ;
+}
+
+.table {
+  width: auto;
+  border-collapse: collapse;
+  
+}
+
+.tableBordered td,
+.tableBordered th {
+  border: 1px solid #ccc;
+  padding: 0.3rem;
+  font-size: small;
+}
+
+.tableBordered th {
+    font-weight: bold;
+} 
+
+.tableStriped tbody tr:nth-of-type(odd) {
+  background-color: #f9f9f9;
+}
+
+.rotateUp {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg); 
+}
+
+span {
+    font-weight: normal;
+    padding: 2px;
+}
+.location {
+  margin: 2rem;
+  display: flex;
+  flex-wrap: nowrap;     
+  align-items: center;
+  gap: 12px;             
+  white-space: nowrap;   
+}
+
+
+.line {
+  display: inline-block;
+  width: 150px;
+  border-bottom: 1px solid #000;
+  margin-left: 4px;
+}
+
+.shortLine {
+  display: inline-block;
+  width: 90px;
+  border-bottom: 1px solid #000;
+  margin-left: 4px;
+}

@@ -1,17 +1,36 @@
 
-h3 {
+h5 {
     text-align: center;
 }
 
 .container {
-    border: 1px solid #ccc;
-    margin: 0 2rem;
-    margin-top: 0.5px;
+  margin: 2rem 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 0 2rem;
+
+  grid-template-areas:
+    "left right";
 }
 
-.tableContainer {
-    margin-left: 1rem;
-    margin-bottom: 1rem;
+
+.left {
+  grid-area: left;
+}
+
+.right {
+  grid-area: right;
+}
+
+/* 📱 Stack on small screens */
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "left"
+      "right";
+  }
 }
 
 .sectionTitle {
@@ -31,11 +50,22 @@ h3 {
 
 .tableBordered td,
 .tableBordered th {
-  border: 1px solid #dee2e6;
+  border: 1px solid black;
   padding: 0.3rem;
   font-size: small;
 }
 
+.tableBordered th {
+    font-weight: bold;
+} 
+
 .tableStriped tbody tr:nth-of-type(odd) {
   background-color: #f9f9f9;
+}
+
+.greyBackground {
+    background-color: #ccc;
+}
+.compiledBy {
+    width: 10rem
 }

@@ -81,7 +81,6 @@ const Moh710Report: React.FC = () => {
       <h3>KHIS Aggregate</h3>
       <div className={styles.container}>
         <p className={styles.title}>A. Child Immunization</p>
-        <p className={styles.sectionTitle}>&lt; 1 Years&gt; 1 Years</p>
         <div className={styles.tableContainer}>
           <table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
             <thead>
@@ -203,7 +202,6 @@ const Moh710Report: React.FC = () => {
       </div>
       <div className={styles.container}>
         <p className={styles.title}>B. Vitamin A and Measles Rubella</p>
-        <p className={styles.sectionTitle}>default</p>
         <div className={styles.tableContainer}>
           <table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
             <thead>
@@ -231,7 +229,6 @@ const Moh710Report: React.FC = () => {
       </div>
       <div className={styles.container}>
         <p className={styles.title}>C. Tetanus Toxoid</p>
-        <p className={styles.sectionTitle}>default</p>
         <div className={styles.tableContainer}>
           <table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
             <thead>
@@ -248,7 +245,6 @@ const Moh710Report: React.FC = () => {
             </tbody>
           </table>
         </div>
-        <p className={styles.sectionTitle}>1st Dose2nd Dose3rd Dose4th Dose5th Dose</p>
         <div className={styles.tableContainer}>
           <table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
             <thead>
@@ -276,7 +272,6 @@ const Moh710Report: React.FC = () => {
       </div>
       <div className={styles.container}>
         <p className={styles.title}>D. HPV</p>
-        <p className={styles.sectionTitle}>default</p>
         <div className={styles.tableContainer}>
           <table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
             <thead>
@@ -297,7 +292,6 @@ const Moh710Report: React.FC = () => {
             </tbody>
           </table>
         </div>
-        <p className={styles.sectionTitle}>At 10 yearsAbove 10 years</p>
         <div className={styles.tableContainer}>
           <table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
             <thead>
@@ -324,7 +318,6 @@ const Moh710Report: React.FC = () => {
       </div>
       <div className={styles.container}>
         <p className={styles.title}>E. Adverse Events</p>
-        <p className={styles.sectionTitle}>default</p>
         <div className={styles.tableContainer}>
           <table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
             <thead>
@@ -341,7 +334,6 @@ const Moh710Report: React.FC = () => {
             </tbody>
           </table>
         </div>
-        <p className={styles.sectionTitle}>&lt1 Years &gt;1Years</p>
         <div className={styles.tableContainer}>
           <table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
             <thead>
@@ -363,7 +355,6 @@ const Moh710Report: React.FC = () => {
       </div>
       <div className={styles.container}>
         <p className={styles.title}>F. Special Clinics COVID 19</p>
-        <p className={styles.sectionTitle}>12 - 17 Yrs18-59 Years60+ Years</p>
         <div className={styles.tableContainer}>
           <table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
             <thead>
@@ -387,7 +378,6 @@ const Moh710Report: React.FC = () => {
       </div>
       <div className={styles.container}>
         <p className={styles.title}>Section B Logistics Dose Balance</p>
-        <p className={styles.sectionTitle}>default</p>
         <div className={styles.tableContainer}>
           <table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
             <thead>
@@ -641,7 +631,6 @@ const Moh710Report: React.FC = () => {
       </div>
       <div className={styles.container}>
         <p className={styles.title}>Section B: HPV Logistics Dose Balance</p>
-        <p className={styles.sectionTitle}>default</p>
         <div className={styles.tableContainer}>
           <table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
             <thead>

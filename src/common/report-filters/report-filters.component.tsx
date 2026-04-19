@@ -40,6 +40,8 @@ const ReportFiltersComponent: React.FC<ReportFiltersComponentProps> = ({
   const [monthString, setMonthString] = React.useState<string>(getPreviousMonth());
   const [selectedFacility, setSelectedFacility] = React.useState<string>('');
   const [facility, setFacility] = React.useState<string>('Select Facility');
+  const [startDateTime, setStartDateTime] = React.useState<string>('');
+  const [endDateTime, setEndDateTime] = React.useState<string>('');
 
   const generateReport = () => {
     if (onGenerate) {
