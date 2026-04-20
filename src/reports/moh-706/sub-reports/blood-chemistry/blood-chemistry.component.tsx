@@ -241,8 +241,8 @@ const BloodChemistry: React.FC<BloodChemistryProps> = ({ data }) => {
             {
                 tableCells: [
                     getCell("", "2.23 PSA"),
-                    getCell(),
-                    getCell("", "", 2),
+                    getCell("total_psa"),
+                    getCell("positive_psa", "", 2),
                 ]
             },
             {

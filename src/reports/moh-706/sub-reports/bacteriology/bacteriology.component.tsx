@@ -3,7 +3,11 @@ import TableWrapper from "../../../table-wrapper/table-wrapper.component";
 import TableRowMapper from "../../../table-wrapper/table-row-mapper.component";
 import { getCell } from "../../../../utils/utils";
 
-const Bacteriology: React.FC = () => {
+interface BacteriologyProps {
+    data?: any
+}
+
+const Bacteriology: React.FC<BacteriologyProps> = ({ data }) => {
     const tableRows = useMemo(() => {
         return [
             {
@@ -46,7 +50,7 @@ const Bacteriology: React.FC = () => {
                     getCell("", "Number Positive", 1, 1, true),
                 ]
             },
-            { tableCells: [getCell("", "5.11 Salmonella typhi", 3), getCell()] },
+            { tableCells: [getCell("", "5.11 Salmonella typhi", 3), getCell("positive_salmonella")] },
             { tableCells: [getCell("", "5.12 Shigella - dysenteriae type1", 3), getCell()] },
             { tableCells: [getCell("", "5.13 E. coli O157:H7", 3), getCell()] },
             { tableCells: [getCell("", "5.14 V. cholerae O1", 3), getCell()] },
@@ -110,7 +114,7 @@ const Bacteriology: React.FC = () => {
 
 
     return <TableWrapper>
-        <TableRowMapper tableRows={tableRows} />
+        <TableRowMapper tableRows={tableRows} data={data} />
     </TableWrapper>
 }
 

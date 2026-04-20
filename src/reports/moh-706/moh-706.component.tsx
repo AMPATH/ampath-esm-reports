@@ -81,13 +81,13 @@ const MoH706Report: React.FC = () => {
           </p>
         </div>
       )}
-      <UrineAnalysis />
+      <UrineAnalysis data={moh706Data} />
       <BloodChemistry data={moh706Data} />
-      <Parasitology />
-      <Haematology />
-      <Bacteriology />
+      <Parasitology data={moh706Data} />
+      <Haematology data={moh706Data} />
+      <Bacteriology data={moh706Data} />
       <HistologyAndCytology />
-      <Serology />
+      <Serology data={moh706Data} />
       <SpecimenReferralToHigherLevels />
       <DrugSusceptibilityTesting />
     </>
