@@ -10,6 +10,7 @@ import Moh505Report from './reports/moh-505/moh-505.component';
 import Moh705BComponent from './reports/moh-705B/moh-705b.component';
 import Moh705AComponent from './reports/moh-705a/moh-705a.component';
 import Moh745Component from './reports/moh-745/moh-745.component';
+import Moh740Report from './reports/moh-740/moh-740.component';
 
 const RootComponent: React.FC = () => {
   const baseName = window.getOpenmrsSpaBase() + 'home/reports';
@@ -27,6 +28,7 @@ const RootComponent: React.FC = () => {
         <Route path="/moh-705a" element={<Moh705AComponent />} />
         <Route path="/moh-705b" element={<Moh705BComponent />} />
         <Route path="/moh-745" element={<Moh745Component />} />
+        <Route path="/moh-740" element={<Moh740Report />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,0 +1,30 @@
+.reportLayout{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    row-gap: 10px;
+    padding: 15px 15px;
+    .reportHeader{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        row-gap: 15px;
+        .reportTitle{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+        .reportFilters{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            row-gap: 5px;
+        }
+    }
+}
+.reportContent{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 15px 15px;
+}
