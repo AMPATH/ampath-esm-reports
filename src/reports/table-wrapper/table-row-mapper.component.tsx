@@ -13,10 +13,11 @@ interface TableRowMapperProps {
             rowSpan: number;
         }>
     }[],
-    data?: any
+    data?: any,
+    redirectTo?: string
 }
 
-const TableRowMapper: React.FC<TableRowMapperProps> = ({ tableRows, data }) => {
+const TableRowMapper: React.FC<TableRowMapperProps> = ({ tableRows, data, redirectTo = "home/reports/moh-240" }) => {
     return <>
         {tableRows.map((tR) => (
             <TableRow>
@@ -25,7 +26,7 @@ const TableRowMapper: React.FC<TableRowMapperProps> = ({ tableRows, data }) => {
 
                     const onClick = () => {
                         if (!tC.label) {
-                            navigate({ to: "home/reports/moh-240" });
+                            navigate({ to: redirectTo });
                         }
                     };
 

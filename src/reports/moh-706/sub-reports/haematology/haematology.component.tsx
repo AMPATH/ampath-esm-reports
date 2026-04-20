@@ -3,7 +3,11 @@ import TableWrapper from "../../../table-wrapper/table-wrapper.component";
 import { getCell } from "../../../../utils/utils";
 import TableRowMapper from "../../../table-wrapper/table-row-mapper.component";
 
-const Haematology: React.FC = () => {
+interface HaematologyProps {
+    data?: any
+}
+
+const Haematology: React.FC<HaematologyProps> = ({ data }) => {
     const tableRows = useMemo(() => {
         return [
             {
@@ -22,9 +26,9 @@ const Haematology: React.FC = () => {
             {
                 tableCells: [
                     getCell("", "4.1 Full blood count"),
-                    getCell(),
-                    getCell(),
-                    getCell()
+                    getCell("total_fbc"),
+                    getCell("fbc_hb_less_than_5"),
+                    getCell("fbc_hb_5_to_10")
                 ]
             },
             {
@@ -61,8 +65,8 @@ const Haematology: React.FC = () => {
             {
                 tableCells: [
                     getCell("", "4.4 CD4"),
-                    getCell(),
-                    getCell("", "", 2),
+                    getCell("total_cd4"),
+                    getCell("cd4_less_than_500", "", 2),
                 ]
             },
             {
@@ -110,7 +114,7 @@ const Haematology: React.FC = () => {
             {
                 tableCells: [
                     getCell("", "4.11 Total blood group tests", 3),
-                    getCell(),
+                    getCell("total_blood_group"),
                 ]
             },
             {
@@ -149,23 +153,23 @@ const Haematology: React.FC = () => {
                 ]
             },
             {
-                tableCells: [getCell("", "4.19 HIV", 3), getCell()]
+                tableCells: [getCell("", "4.19 HIV", 3), getCell("positive_hiv")]
             },
             {
-                tableCells: [getCell("", "4.20 Hepatitis B", 3), getCell()]
+                tableCells: [getCell("", "4.20 Hepatitis B", 3), getCell("positive_hep_b")]
             },
             {
-                tableCells: [getCell("", "4.21 Hepatitis C", 3), getCell()]
+                tableCells: [getCell("", "4.21 Hepatitis C", 3), getCell("positive_hep_c")]
             },
             {
-                tableCells: [getCell("", "4.22 Syphilis", 3), getCell()]
+                tableCells: [getCell("", "4.22 Syphilis", 3), getCell("positive_syphilis")]
             },
         ]
     }, []);
 
 
     return <TableWrapper>
-        <TableRowMapper tableRows={tableRows} />
+        <TableRowMapper tableRows={tableRows} data={data} />
     </TableWrapper>
 }
 

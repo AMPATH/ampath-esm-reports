@@ -3,7 +3,11 @@ import TableWrapper from "../../../table-wrapper/table-wrapper.component";
 import TableRowMapper from "../../../table-wrapper/table-row-mapper.component";
 import { getCell } from "../../../../utils/utils";
 
-const Parasitology: React.FC = () => {
+interface ParasitologyProps {
+    data?: any
+}
+
+const Parasitology: React.FC<ParasitologyProps> = ({ data }) => {
     const tableRows = useMemo(() => {
         return [
             {
@@ -21,29 +25,29 @@ const Parasitology: React.FC = () => {
             {
                 tableCells: [
                     getCell("", "3.1 Malaria BS (Under five years)"),
-                    getCell(),
-                    getCell()
+                    getCell("total_malaria_bs_under_5"),
+                    getCell("positive_malaria_bs_under_5")
                 ]
             },
             {
                 tableCells: [
                     getCell("", "3.2 Malaria BS (5 years and above)"),
-                    getCell(),
-                    getCell(),
+                    getCell("total_malaria_bs_5_and_above"),
+                    getCell("positive_malaria_bs_5_and_above"),
                 ]
             },
             {
                 tableCells: [
                     getCell("", "3.3 Malaria Rapid Diagnostic Tests (Under five years)"),
-                    getCell(),
-                    getCell(),
+                    getCell("total_malaria_rdt_under_5"),
+                    getCell("positive_malaria_rdt_under_5"),
                 ]
             },
             {
                 tableCells: [
                     getCell("", "3.4 Malaria Rapid Diagnostic Tests (5 years and above)"),
-                    getCell(),
-                    getCell(),
+                    getCell("total_malaria_rdt_5_and_above"),
+                    getCell("positive_malaria_rdt_5_and_above"),
                 ]
             },
             {
@@ -70,15 +74,15 @@ const Parasitology: React.FC = () => {
             {
                 tableCells: [
                     getCell("", "3.7 Hookworm"),
-                    getCell(),
-                    getCell(),
+                    getCell("total_hookworm"),
+                    getCell("positive_hookworm"),
                 ]
             },
             {
                 tableCells: [
                     getCell("", "3.8 Roundworm"),
-                    getCell(),
-                    getCell(),
+                    getCell("total_roundworms"),
+                    getCell("positive_roundworms"),
                 ]
             },
             {
@@ -107,7 +111,7 @@ const Parasitology: React.FC = () => {
 
 
     return <TableWrapper>
-         <TableRowMapper tableRows={tableRows} />
+         <TableRowMapper tableRows={tableRows} data={data} />
     </TableWrapper>
 }
 

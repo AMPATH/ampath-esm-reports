@@ -1,11 +1,14 @@
 import React, { useMemo } from "react";
-import { TableRow, TableCell } from '@carbon/react';
 import TableWrapper from "../../../table-wrapper/table-wrapper.component";
 import styles from '../../../table-wrapper/table-wrapper.scss';
 import TableRowMapper from "../../../table-wrapper/table-row-mapper.component";
 import { getCell } from "../../../../utils/utils";
 
-const BloodChemistry: React.FC = () => {
+interface BloodChemistryProps {
+    data?: any
+}
+
+const BloodChemistry: React.FC<BloodChemistryProps> = ({ data }) => {
     const tableRows = useMemo(() => {
         return [
             {
@@ -29,17 +32,17 @@ const BloodChemistry: React.FC = () => {
             {
                 tableCells: [
                     getCell("", "2.1 Blood sugar"),
-                    getCell(),
-                    getCell(),
-                    getCell(),
+                    getCell("total_exam"),
+                    getCell("min_blood_sugar"),
+                    getCell("max_blood_sugar"),
                 ]
             },
             {
                 tableCells: [
                     getCell("", "2.2 OGTT"),
                     getCell(),
-                    getCell(),
-                    getCell(),
+                    getCell("min_ogtt"),
+                    getCell("max_ogtt"),
                 ]
             },
             {
@@ -54,8 +57,8 @@ const BloodChemistry: React.FC = () => {
                 tableCells: [
                     getCell("", "2.4 Creatinine"),
                     getCell(),
-                    getCell(),
-                    getCell(),
+                    getCell("min_creatinine"),
+                    getCell("max_creatinine"),
                 ]
             },
             {
@@ -70,10 +73,11 @@ const BloodChemistry: React.FC = () => {
                 tableCells: [
                     getCell("", "2.5 Urea"),
                     getCell(),
-                    getCell(),
-                    getCell(),
+                    getCell("min_urea"),
+                    getCell("max_urea"),
                 ]
             },
+
             {
                 tableCells: [
                     getCell("", "2.6 Sodium"),
@@ -110,40 +114,40 @@ const BloodChemistry: React.FC = () => {
                 tableCells: [
                     getCell("", "2.9 Direct bilirubin"),
                     getCell(),
-                    getCell(),
-                    getCell(),
+                    getCell("min_direct_bili"),
+                    getCell("max_direct_bili"),
                 ]
             },
             {
                 tableCells: [
                     getCell("", "2.10 Total bilirubin"),
                     getCell(),
-                    getCell(),
-                    getCell(),
+                    getCell("min_total_bili"),
+                    getCell("max_total_bili"),
                 ]
             },
             {
                 tableCells: [
                     getCell("", "2.11 ASAT (SGOT)"),
                     getCell(),
-                    getCell(),
-                    getCell(),
+                    getCell("min_ast"),
+                    getCell("max_ast"),
                 ]
             },
             {
                 tableCells: [
                     getCell("", "2.12 ALAT (SGPT)"),
                     getCell(),
-                    getCell(),
-                    getCell(),
+                    getCell("min_alt"),
+                    getCell("max_alt"),
                 ]
             },
             {
                 tableCells: [
                     getCell("", "2.13 Serum Protein"),
                     getCell(),
-                    getCell(),
-                    getCell(),
+                    getCell("min_total_protein"),
+                    getCell("max_total_protein"),
                 ]
             },
             {
@@ -158,40 +162,41 @@ const BloodChemistry: React.FC = () => {
                 tableCells: [
                     getCell("", "2.15 Alkaline Phosphatase"),
                     getCell(),
-                    getCell(),
-                    getCell(),
+                    getCell("min_alk_phos"),
+                    getCell("max_alk_phos"),
                 ]
             },
             {
                 tableCells: [
                     getCell("", "2.16 Lipid Profile", 1, 1, true),
                     getCell(),
-                    getCell(),
-                    getCell(),
+                    getCell("min_lipid_profile"),
+                    getCell("max_lipid_profile"),
                 ]
             },
             {
                 tableCells: [
                     getCell("", "2.17 Total cholesterol"),
                     getCell(),
-                    getCell(),
-                    getCell(),
+                    getCell("min_total_cholesterol"),
+                    getCell("max_total_cholesterol"),
                 ]
             },
+
             {
                 tableCells: [
                     getCell("", "2.18 Triglycerides"),
                     getCell(),
-                    getCell(),
-                    getCell(),
+                    getCell("min_triglycerides"),
+                    getCell("max_triglycerides"),
                 ]
             },
             {
                 tableCells: [
                     getCell("", "2.19 LDL"),
                     getCell(),
-                    getCell(),
-                    getCell(),
+                    getCell("min_ldl"),
+                    getCell("max_ldl"),
                 ]
             },
             {
@@ -206,24 +211,24 @@ const BloodChemistry: React.FC = () => {
                 tableCells: [
                     getCell("", "2.20 T3"),
                     getCell(),
-                    getCell(),
-                    getCell(),
+                    getCell("min_t3"),
+                    getCell("max_t3"),
                 ]
             },
             {
                 tableCells: [
                     getCell("", "2.21 T4"),
                     getCell(),
-                    getCell(),
-                    getCell(),
+                    getCell("min_t4"),
+                    getCell("max_t4"),
                 ]
             },
             {
                 tableCells: [
                     getCell("", "2.22 TSH"),
                     getCell(),
-                    getCell(),
-                    getCell(),
+                    getCell("min_tsh"),
+                    getCell("max_tsh"),
                 ]
             },
             {
@@ -236,8 +241,8 @@ const BloodChemistry: React.FC = () => {
             {
                 tableCells: [
                     getCell("", "2.23 PSA"),
-                    getCell(),
-                    getCell("", "", 2),
+                    getCell("total_psa"),
+                    getCell("positive_psa", "", 2),
                 ]
             },
             {
@@ -302,9 +307,8 @@ const BloodChemistry: React.FC = () => {
         ]
     }, []);
 
-
     return <TableWrapper>
-         <TableRowMapper tableRows={tableRows} />
+        <TableRowMapper tableRows={tableRows} data={data} />
     </TableWrapper>
 }
 
