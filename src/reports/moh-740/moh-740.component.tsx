@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DataTable, Table, TableHead, TableRow, TableHeader, TableBody, TableCell, InlineLoading } from '@carbon/react';
+import { InlineLoading } from '@carbon/react';
 import styles from './moh-740.component.scss';
 import ReportFiltersComponent from '../../common/report-filters/report-filters.component';
 import { type Moh740Data, type Moh740Dto, type ReportFilters } from './types';
@@ -59,267 +59,391 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
             <>
               {moh740Data ? (
                 <>
-                  <Table>
-                    <TableHead>
-                      <TableRow>
-                        <TableHeader>Data Element</TableHeader>
-                        <TableHeader>Male</TableHeader>
-                        <TableHeader>Female</TableHeader>
-                        <TableHeader>Total</TableHeader>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      <TableRow>
-                        <TableCell>Cumulative no. of diabetes patients in care</TableCell>
-                        <TableCell>{moh740Data.dc__gender__M__cumulative_diabetes_patients_in_care ?? 0}</TableCell>
-                        <TableCell>{moh740Data.dc__gender__F__cumulative_diabetes_patients_in_care ?? 0}</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>No. of newly diagnosed diabetes cases </TableCell>
-                        <TableCell>{moh740Data.dc__gender__M__newly_diagnosed_diabetes ?? 0}</TableCell>
-                        <TableCell>{moh740Data.dc__gender__F__newly_diagnosed_diabetes ?? 0}</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>Re-visit to clinic Known DM</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>Total no. with Type 1 Diabetes</TableCell>
-                        <TableCell>{moh740Data.dc__gender__M__total_type_1_diabetes ?? 0}</TableCell>
-                        <TableCell>{moh740Data.dc__gender__F__total_type_1_diabetes ?? 0}</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>0-5 years</TableCell>
-                        <TableCell></TableCell>
-                        <TableCell></TableCell>
-                        <TableCell></TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>Total no. with Type 2 Diabetes</TableCell>
-                        <TableCell>{moh740Data.dc__gender__M__total_type_2_diabetes ?? 0}</TableCell>
-                        <TableCell>{moh740Data.dc__gender__M__total_type_2_diabetes ?? 0}</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>No. diagnosed for Gestational Diabetes Mellitus </TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>No. of Diabetes secondary to other causes</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>Cumulative no. of hypertension patients in care</TableCell>
-                        <TableCell>{moh740Data.dc__gender__M__cumulative_htn_patient ?? 0}</TableCell>
-                        <TableCell>{moh740Data.dc__gender__F__cumulative_htn_patient ?? 0}</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>No. of newly diagnosed hypertension cases</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>Re-visit to clinic/Known HTN</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>No. with hypertension</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>Cumulative no. of co-morbid both DM+HTN patients in care</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>Newly diagnosed co-morbid with both DM and HTN cases</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>Revisits to clinic/Known co-morbid DM and HTN</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>No. of patients on insulin</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>No. of patients on OGLAs</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>No. of patients on both (Insulin and OGLAs)</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>No. of patients on diet and exercise only (DM and HTN)</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>No. of patients done HbA1c</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>No. that met HbA1c target (less than 7%)</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>No. of patients on antihypertensives</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>No. with high BP (≥140/90) at clinic visit</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>New Diagnosis of Complications/Comorbidities(Stroke)</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>New Diagnosis of Complications/Comorbidities(Ischemic heart disease)</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>New Diagnosis of Complications/Comorbidities(Heart failure)</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>No. of Patients with neuropathies (new diagnosis)</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>No. of patients screened for diabetic foot</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>No. of patients with diabetic foot (new diagnosis)</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>No. of Amputation due to diabetic foot</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>No. with kidney complications (new diagnosis)</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>No. with diabetic retinopathy (new diagnosis)</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>No. Screened for Tuberculosis</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>No. Screened Positive for Tuberculosis</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>No. enrolled with NHIF</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>Total No. admitted (for only inpatients)</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>No. admitted with DKA</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>No. admitted with Hypoglycemia</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>No. admitted with stroke</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>No. admitted with hypertension urgency/emergency</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>Total deaths due to diabetes complications</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>Total deaths due to hypertension complications</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                      </TableRow>
-                    </TableBody>
-                  </Table>
+                  <div className={styles.headerContainer}>
+                    <div className={styles.mainTitleBox}>
+                      <h2 className={styles.mainTitle}>Ministry of Health</h2>
+                      <h3 className={styles.subTitle}>
+                        Diabetes and Hypertension Comprehensive Care: Monthly Summary Form
+                      </h3>
+                    </div>
+                  </div>
+
+                  <table className={styles.topMeta}>
+                    <tr>
+                      <td>Name of the facility: _________________________</td>
+                      <td>MFL code: __________</td>
+                      <td>County: ______________</td>
+                      <td>Sub County: ____________</td>
+                      <td>Month/Year: _________</td>
+                    </tr>
+                  </table>
+
+                  <table>
+                    <thead>
+                      <tr className={styles.sectionHeader}>
+                        <th className={styles.dataElement}>Data Element</th>
+                        <th className={styles.otherElement}>Male</th>
+                        <th className={styles.otherElement}>Female</th>
+                        <th className={styles.otherElement}>Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className={styles.sectionHeader}>
+                        <td colSpan={4}>DIABETES</td>
+                      </tr>
+                      <tr>
+                        <td>Cumulative no. of diabetes patients in care</td>
+                        <td>{moh740Data.dc__gender__M__cumulative_diabetes_patients_in_care ?? 0}</td>
+                        <td>{moh740Data.dc__gender__F__cumulative_diabetes_patients_in_care ?? 0}</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>No. of newly diagnosed diabetes cases</td>
+                        <td>{moh740Data.dc__gender__M__newly_diagnosed_diabetes ?? 0}</td>
+                        <td>{moh740Data.dc__gender__F__newly_diagnosed_diabetes ?? 0}</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>Revisit to clinic/Known DM</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+
+                      <tr className={styles.subHeader}>
+                        <td colSpan={4}>Total No. with Type 1</td>
+                      </tr>
+                      <tr>
+                        <td className={styles.indent}>0-9 years</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td className={styles.indent}>10-18 years</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td className={styles.indent}>19-35 years</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td className={styles.indent}>{'>'} 35 years</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+
+                      <tr className={styles.subHeader}>
+                        <td colSpan={4}>Total No. with Type 2</td>
+                      </tr>
+                      <tr>
+                        <td className={styles.indent}>0-18 years</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td className={styles.indent}>19-35 years</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td className={styles.indent}>36-60 years</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td className={styles.indent}>{'>'} 60 years</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+
+                      <tr>
+                        <td>No. diagnosed for Gestational Diabetes Mellitus</td>
+                        <td className={styles.bgGrey}>N/A</td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>No. of Diabetes secondary to other causes</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+
+                      <tr className={styles.sectionHeader}>
+                        <td colSpan={4}>HYPERTENSION</td>
+                      </tr>
+                      <tr>
+                        <td>Cumulative no. of hypertension patients in care</td>
+                        <td>{moh740Data.dc__gender__M__cumulative_htn_patient ?? 0}</td>
+                        <td>{moh740Data.dc__gender__F__cumulative_htn_patient ?? 0}</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>No. of newly diagnosed hypertension cases</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>Revisit to clinic/Known HTN</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+
+                      <tr className={styles.subHeader}>
+                        <td colSpan={4}>No. with hypertension</td>
+                      </tr>
+                      <tr>
+                        <td className={styles.indent}>0-18 years</td>
+                        <td>{moh740Data.dc__gender__M__age_range__10_to_19__has_htn ?? 0}</td>
+                        <td>{moh740Data.dc__gender__F__age_range__10_to_19__has_htn ?? 0}</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td className={styles.indent}>19-35 years</td>
+                        <td>{moh740Data.dc__gender__M__age_range__19_to_35__has_htn ?? 0}</td>
+                        <td>{moh740Data.dc__gender__F__age_range__19_to_35__has_htn ?? 0}</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td className={styles.indent}>36-60 years</td>
+                        <td>{moh740Data.dc__gender__M__age_range__36_to_60__has_htn ?? 0}</td>
+                        <td>{moh740Data.dc__gender__F__age_range__36_to_60__has_htn ?? 0}</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td className={styles.indent}>{'>'} 60 years</td>
+                        <td>{moh740Data.dc__gender__M__age_range__60_and_above__has_htn ?? 0}</td>
+                        <td>{moh740Data.dc__gender__F__age_range__60_and_above__has_htn ?? 0}</td>
+                        <td></td>
+                      </tr>
+
+                      <tr className={styles.sectionHeader}>
+                        <td colSpan={4}>CO-MORBID WITH BOTH DIABETES AND HTN PATIENTS</td>
+                      </tr>
+                      <tr>
+                        <td>Cumulative no. of co-morbid both DM+HTN patients in care</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>Newly diagnosed co-morbid with both DM and HTN cases</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>Revisit to clinic/Known co-morbid DM and HTN</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+
+                      <tr className={styles.sectionHeader}>
+                        <td colSpan={4}>DIABETES TREATMENT AND FOLLOW UP</td>
+                      </tr>
+                      <tr>
+                        <td>No. of patients on insulin</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>No. of patients on OGLAs</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>No. of patients on both (Insulin and OGLAs)</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>No. of patients on diet and exercise only (DM and HTN)</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>No. of patients done HbA1c</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>No. that met HbA1c target ({'<'} 7%)</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+
+                      <tr className={styles.sectionHeader}>
+                        <td colSpan={4}>HYPERTENSION TREATMENT</td>
+                      </tr>
+                      <tr>
+                        <td>No. of patients on antihypertensives</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>No. with high BP ({'>='} 140/90) at clinic visit</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+
+                      <tr className={styles.sectionHeader}>
+                        <td colSpan={4}>New Diagnosis of Complications/Comorbidities</td>
+                      </tr>
+                      <tr>
+                        <td className={styles.indent}>Stroke</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td className={styles.indent}>Ischemic heart disease</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td className={styles.indent}>Heart failure</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>No. of Patients with neuropathies (new diagnosis)</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+
+                      <tr className={styles.sectionHeader}>
+                        <td colSpan={4}>DIABETIC FOOT</td>
+                      </tr>
+                      <tr>
+                        <td>No. of patients screened for diabetic foot</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>No. of patients with diabetic foot (new diagnosis)</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>No. of Amputation due to diabetic foot</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+
+                      <tr className={styles.sectionHeader}>
+                        <td colSpan={4}>OTHER INDICATORS</td>
+                      </tr>
+                      <tr>
+                        <td>No. with kidney complications (new diagnosis)</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>No. with diabetic retinopathy (new diagnosis)</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>No. Screened for Tuberculosis</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>No. Screened Positive for Tuberculosis</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>No. enrolled with NHIF</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+
+                      <tr className={styles.subHeader}>
+                        <td>Total No. admitted (for only inpatients)</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td className={styles.indent}>No. admitted with DKA</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td className={styles.indent}>No. admitted with Hypoglycemia</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td className={styles.indent}>No. admitted with Stroke</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td className={styles.indent}>No. admitted with hypertension urgency/emergency</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+
+                      <tr>
+                        <td>Total deaths due to diabetes complications</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>Total deaths due to hypertension complications</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div className={styles.signOff}>
+                    <p>
+                      Compiled by: Name: ___________________________________ Designation:
+                      ___________________________________
+                    </p>
+                    <p>Signature: ___________________________________ Date: ___________________________________</p>
+                  </div>
                 </>
               ) : (
                 <>No Data to display</>

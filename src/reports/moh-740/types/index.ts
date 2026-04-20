@@ -19,6 +19,13 @@ export type Moh740Data = {
   dc__gender__F__cumulative_htn_patient: number;
   dc__gender__M__age_range__10_to_19__diabetes_mellitus_type__diabetes_mellitus_type_1__total: number;
   dc__gender__M__age_range__10_to_19__has_htn: number;
+  dc__gender__F__age_range__10_to_19__has_htn: number;
+  dc__gender__M__age_range__19_to_35__has_htn: number;
+  dc__gender__F__age_range__19_to_35__has_htn: number;
+  dc__gender__M__age_range__36_to_60__has_htn: number;
+  dc__gender__F__age_range__36_to_60__has_htn: number;
+  dc__gender__M__age_range__60_and_above__has_htn: number;
+  dc__gender__F__age_range__60_and_above__has_htn: number;
   dc__gender__M__age_range__10_to_19__total: number;
 };
 

@@ -1,20 +1,23 @@
-.reportLayout{
+.reportLayout {
     display: flex;
     flex-direction: column;
     width: 100%;
     row-gap: 10px;
     padding: 15px 15px;
-    .reportHeader{
+
+    .reportHeader {
         display: flex;
         flex-direction: column;
         width: 100%;
         row-gap: 15px;
-        .reportTitle{
+
+        .reportTitle {
             display: flex;
             flex-direction: column;
             width: 100%;
         }
-        .reportFilters{
+
+        .reportFilters {
             display: flex;
             flex-direction: column;
             width: 100%;
@@ -22,9 +25,105 @@
         }
     }
 }
-.reportContent{
+
+.reportContent {
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 15px 15px;
+    padding: 30px 30px;
+}
+
+
+.sectionHeader {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.mainTitleBox {
+    border: 2px solid #000;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+.formCodeBox {
+    text-align: right;
+    font-size: 9px;
+    width: 25%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+
+th,
+td {
+    border: 1px solid #000;
+    padding: 4px;
+    text-align: left;
+}
+
+.bgGrey {
+    background-color: #e0e0e0;
+}
+
+.sectionHeader {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.subHeader {
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 95%;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+.topMeta td {
+    border: none;
+    padding: 2px;
+}
+
+.signOff {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.indent {
+    padding-left: 20px;
+}
+
+.mainTitle {
+    margin: 0;
+}
+
+.subTitle {
+    margin: 5px 0;
+}
+
+.dataElement {
+    width: 40%;
+}
+
+.otherElement {
+    width: 20%;
+    text-align: center;
 }
