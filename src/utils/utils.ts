@@ -1,3 +1,5 @@
+import { openmrsFetch } from '@openmrs/esm-framework';
+
 export const getCell = (key = "", label = "", colSpan = 1, rowSpan = 1, strong = false) => ({
     key,
     label,
@@ -19,9 +21,7 @@ export async function getJson<T>(url: string, payload: Record<string, unknown> |
     }
   }
 
-  const response = await fetch(requestUrl, {
-    method: 'GET',
-  });
+  const response = await openmrsFetch(requestUrl);
 
   if (!response.ok) {
     const errorText = await response.text();
