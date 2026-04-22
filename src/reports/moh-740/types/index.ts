@@ -62,3 +62,34 @@ export type Moh740Data = {
 export type Moh740Resp = {
   result: [Moh740Data];
 };
+
+export type Moh270Patient = {
+  gender: string;
+  amrs_universal_id: string;
+  encounter_date: string;
+  endDate: string;
+  covered_by_shif: number;
+  patient_uuid: string;
+  birthdate: string;
+  person_name: string;
+  phone_number: string;
+  county: string;
+  sub_county: string;
+  ward: string;
+  landmark: string;
+  patient_no: string;
+  contact_of_the_treatment_supporter_and_relationship: string;
+  diagnosis_at_enrolment: string;
+  year_of_diagnosis: string;
+  complications_at_enrollment: string;
+};
+
+export type Moh740RegisterDto = {
+  endDate: string;
+  locationUuid: string;
+  indicators: string;
+};
+
+export type Moh740RegisterResp = {
+  result: Moh270Patient[];
+};
