@@ -27,6 +27,36 @@ export type Moh740Data = {
   dc__gender__M__age_range__60_and_above__has_htn: number;
   dc__gender__F__age_range__60_and_above__has_htn: number;
   dc__gender__M__age_range__10_to_19__total: number;
+  dc__gender__M__screened_for_tb_this_month: number;
+  dc__gender__F__screened_for_tb_this_month: number;
+  dc__gender__M__screened_postive_for_tb_this_month: number;
+  dc__gender__F__screened_postive_for_tb_this_month: number;
+  dc__gender__M__covered_by_shif: number;
+  dc__gender__F__covered_by_shif: number;
+  dc__gender__M__screened_for_diabetic_foot_this_month: number;
+  dc__gender__F__screened_for_diabetic_foot_this_month: number;
+  dc__gender__M__has_diabetic_foot: number;
+  dc__gender__F__has_diabetic_foot: number;
+  dc__gender__M__age_range__0_to_5__type_1_diabetes_mellitus: number;
+  dc__gender__F__age_range__0_to_5__type_1_diabetes_mellitus: number;
+  dc__gender__M__age_range__6_to_9__type_1_diabetes_mellitus: number;
+  dc__gender__F__age_range__6_to_9__type_1_diabetes_mellitus: number;
+  dc__gender__M__age_range__10_to_19__type_1_diabetes_mellitus: number;
+  dc__gender__F__age_range__10_to_19__type_1_diabetes_mellitus: number;
+  dc__gender__M__age_range__20_to_35__type_1_diabetes_mellitus: number;
+  dc__gender__F__age_range__20_to_35__type_1_diabetes_mellitus: number;
+  dc__gender__M__age_range__35_and_above__type_1_diabetes_mellitus: number;
+  dc__gender__F__age_range__35_and_above__type_1_diabetes_mellitus: number;
+  dc__gender__M__age_range__0_to_5__type_2_diabetes_mellitus: number;
+  dc__gender__F__age_range__0_to_5__type_2_diabetes_mellitus: number;
+  dc__gender__M__age_range__6_to_9__type_2_diabetes_mellitus: number;
+  dc__gender__F__age_range__6_to_9__type_2_diabetes_mellitus: number;
+  dc__gender__M__age_range__10_to_19__type_2_diabetes_mellitus: number;
+  dc__gender__F__age_range__10_to_19__type_2_diabetes_mellitus: number;
+  dc__gender__M__age_range__20_to_35__type_2_diabetes_mellitus: number;
+  dc__gender__F__age_range__20_to_35__type_2_diabetes_mellitus: number;
+  dc__gender__M__age_range__36_and_above__type_2_diabetes_mellitus: number;
+  dc__gender__F__age_range__36_and_above__type_2_diabetes_mellitus: number;
 };
 
 export type Moh740Resp = {

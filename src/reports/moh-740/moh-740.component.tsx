@@ -114,27 +114,33 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                         <td colSpan={4}>Total No. with Type 1</td>
                       </tr>
                       <tr>
-                        <td className={styles.indent}>0-9 years</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td className={styles.indent}>10-18 years</td>
-                        <td></td>
-                        <td></td>
+                        <td className={styles.indent}>0-5 years</td>
+                        <td>{moh740Data.dc__gender__M__age_range__0_to_5__type_1_diabetes_mellitus ?? 0}</td>
+                        <td>{moh740Data.dc__gender__F__age_range__0_to_5__type_1_diabetes_mellitus ?? 0}</td>
                         <td></td>
                       </tr>
                       <tr>
-                        <td className={styles.indent}>19-35 years</td>
+                        <td className={styles.indent}>6-9 years</td>
+                        <td>{moh740Data.dc__gender__M__age_range__6_to_9__type_1_diabetes_mellitus ?? 0}</td>
+                        <td>{moh740Data.dc__gender__F__age_range__6_to_9__type_1_diabetes_mellitus ?? 0}</td>
                         <td></td>
+                      </tr>
+                      <tr>
+                        <td className={styles.indent}>10-19 years</td>
+                        <td>{moh740Data.dc__gender__M__age_range__10_to_19__type_1_diabetes_mellitus ?? 0}</td>
+                        <td>{moh740Data.dc__gender__F__age_range__10_to_19__type_1_diabetes_mellitus ?? 0}</td>
                         <td></td>
+                      </tr>
+                      <tr>
+                        <td className={styles.indent}>20-35 years</td>
+                        <td>{moh740Data.dc__gender__M__age_range__20_to_35__type_1_diabetes_mellitus ?? 0}</td>
+                        <td>{moh740Data.dc__gender__F__age_range__20_to_35__type_1_diabetes_mellitus ?? 0}</td>
                         <td></td>
                       </tr>
                       <tr>
                         <td className={styles.indent}>{'>'} 35 years</td>
-                        <td></td>
-                        <td></td>
+                        <td>{moh740Data.dc__gender__M__age_range__35_and_above__type_1_diabetes_mellitus ?? 0}</td>
+                        <td>{moh740Data.dc__gender__F__age_range__35_and_above__type_1_diabetes_mellitus ?? 0}</td>
                         <td></td>
                       </tr>
 
@@ -340,14 +346,14 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                       </tr>
                       <tr>
                         <td>No. of patients screened for diabetic foot</td>
-                        <td></td>
-                        <td></td>
+                        <td>{moh740Data.dc__gender__M__screened_for_diabetic_foot_this_month ?? 0}</td>
+                        <td>{moh740Data.dc__gender__F__screened_for_diabetic_foot_this_month ?? 0}</td>
                         <td></td>
                       </tr>
                       <tr>
                         <td>No. of patients with diabetic foot (new diagnosis)</td>
-                        <td></td>
-                        <td></td>
+                        <td>{moh740Data.dc__gender__M__has_diabetic_foot ?? 0}</td>
+                        <td>{moh740Data.dc__gender__F__has_diabetic_foot ?? 0}</td>
                         <td></td>
                       </tr>
                       <tr>
@@ -374,20 +380,20 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                       </tr>
                       <tr>
                         <td>No. Screened for Tuberculosis</td>
-                        <td></td>
-                        <td></td>
+                        <td>{moh740Data.dc__gender__M__screened_for_tb_this_month ?? 0}</td>
+                        <td>{moh740Data.dc__gender__F__screened_for_tb_this_month ?? 0}</td>
                         <td></td>
                       </tr>
                       <tr>
                         <td>No. Screened Positive for Tuberculosis</td>
-                        <td></td>
-                        <td></td>
+                        <td>{moh740Data.dc__gender__M__screened_postive_for_tb_this_month ?? 0}</td>
+                        <td>{moh740Data.dc__gender__M__screened_postive_for_tb_this_month ?? 0}</td>
                         <td></td>
                       </tr>
                       <tr>
                         <td>No. enrolled with NHIF</td>
-                        <td></td>
-                        <td></td>
+                        <td>{moh740Data.dc__gender__M__covered_by_shif ?? 0}</td>
+                        <td>{moh740Data.dc__gender__F__covered_by_shif ?? 0}</td>
                         <td></td>
                       </tr>
 
