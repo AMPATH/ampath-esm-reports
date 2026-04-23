@@ -4,10 +4,13 @@ import { getCell } from "../../../../utils/utils";
 import TableRowMapper from "../../../table-wrapper/table-row-mapper.component";
 
 interface HaematologyProps {
-    data?: any
+    data?: any,
+    locationUuids?: string,
+    startDate?: string,
+    endDate?: string
 }
 
-const Haematology: React.FC<HaematologyProps> = ({ data }) => {
+const Haematology: React.FC<HaematologyProps> = ({ data, locationUuids, startDate, endDate }) => {
     const tableRows = useMemo(() => {
         return [
             {
@@ -169,7 +172,7 @@ const Haematology: React.FC<HaematologyProps> = ({ data }) => {
 
 
     return <TableWrapper>
-        <TableRowMapper tableRows={tableRows} data={data} />
+        <TableRowMapper tableRows={tableRows} data={data} locationUuids={locationUuids} startDate={startDate} endDate={endDate} />
     </TableWrapper>
 }
 

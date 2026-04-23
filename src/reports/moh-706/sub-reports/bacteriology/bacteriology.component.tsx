@@ -4,10 +4,13 @@ import TableRowMapper from "../../../table-wrapper/table-row-mapper.component";
 import { getCell } from "../../../../utils/utils";
 
 interface BacteriologyProps {
-    data?: any
+    data?: any,
+    locationUuids?: string,
+    startDate?: string,
+    endDate?: string
 }
 
-const Bacteriology: React.FC<BacteriologyProps> = ({ data }) => {
+const Bacteriology: React.FC<BacteriologyProps> = ({ data, locationUuids, startDate, endDate }) => {
     const tableRows = useMemo(() => {
         return [
             {
@@ -114,7 +117,7 @@ const Bacteriology: React.FC<BacteriologyProps> = ({ data }) => {
 
 
     return <TableWrapper>
-        <TableRowMapper tableRows={tableRows} data={data} />
+        <TableRowMapper tableRows={tableRows} data={data} locationUuids={locationUuids} startDate={startDate} endDate={endDate} />
     </TableWrapper>
 }
 

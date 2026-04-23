@@ -17,6 +17,7 @@ const MoH706Report: React.FC = () => {
   const [moh706Data, setMoh706Data] = useState<any>({});
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>('');
+  const [filters, setFilters] = useState<{ locationUuids?: string; startDate?: string; endDate?: string }>({});
 
   const session = useSession();
   const locationUuids = session?.sessionLocation?.uuid;
@@ -54,6 +55,7 @@ const MoH706Report: React.FC = () => {
       const result = await getMoh706(params);
       const flatData = Object.assign({}, ...result);
       setMoh706Data(flatData);
+      setFilters({ locationUuids: params.locationUuids, startDate, endDate });
     } catch (error: any) {
       setErrorMessage(error instanceof Error ? error.message : String(error));
     } finally {
@@ -81,13 +83,13 @@ const MoH706Report: React.FC = () => {
           </p>
         </div>
       )}
-      <UrineAnalysis data={moh706Data} />
-      <BloodChemistry data={moh706Data} />
-      <Parasitology data={moh706Data} />
-      <Haematology data={moh706Data} />
-      <Bacteriology data={moh706Data} />
+      <UrineAnalysis data={moh706Data} locationUuids={filters.locationUuids} startDate={filters.startDate} endDate={filters.endDate} />
+      <BloodChemistry data={moh706Data} locationUuids={filters.locationUuids} startDate={filters.startDate} endDate={filters.endDate} />
+      <Parasitology data={moh706Data} locationUuids={filters.locationUuids} startDate={filters.startDate} endDate={filters.endDate} />
+      <Haematology data={moh706Data} locationUuids={filters.locationUuids} startDate={filters.startDate} endDate={filters.endDate} />
+      <Bacteriology data={moh706Data} locationUuids={filters.locationUuids} startDate={filters.startDate} endDate={filters.endDate} />
       <HistologyAndCytology />
-      <Serology data={moh706Data} />
+      <Serology data={moh706Data} locationUuids={filters.locationUuids} startDate={filters.startDate} endDate={filters.endDate} />
       <SpecimenReferralToHigherLevels />
       <DrugSusceptibilityTesting />
     </>

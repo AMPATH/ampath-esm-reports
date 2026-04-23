@@ -5,10 +5,13 @@ import TableRowMapper from "../../../table-wrapper/table-row-mapper.component";
 import { getCell } from "../../../../utils/utils";
 
 interface BloodChemistryProps {
-    data?: any
+    data?: any,
+    locationUuids?: string,
+    startDate?: string,
+    endDate?: string
 }
 
-const BloodChemistry: React.FC<BloodChemistryProps> = ({ data }) => {
+const BloodChemistry: React.FC<BloodChemistryProps> = ({ data, locationUuids, startDate, endDate }) => {
     const tableRows = useMemo(() => {
         return [
             {
@@ -308,7 +311,7 @@ const BloodChemistry: React.FC<BloodChemistryProps> = ({ data }) => {
     }, []);
 
     return <TableWrapper>
-        <TableRowMapper tableRows={tableRows} data={data} />
+        <TableRowMapper tableRows={tableRows} data={data} locationUuids={locationUuids} startDate={startDate} endDate={endDate} />
     </TableWrapper>
 }
 

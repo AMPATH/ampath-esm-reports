@@ -14,10 +14,13 @@ interface TableRowMapperProps {
         }>
     }[],
     data?: any,
-    redirectTo?: string
+    redirectTo?: string,
+    locationUuids?: string,
+    startDate?: string,
+    endDate?: string
 }
 
-const TableRowMapper: React.FC<TableRowMapperProps> = ({ tableRows, data, redirectTo = "home/reports/moh-240" }) => {
+const TableRowMapper: React.FC<TableRowMapperProps> = ({ tableRows, data, redirectTo = "home/reports/moh-240", locationUuids, startDate, endDate }) => {
     return <>
         {tableRows.map((tR) => (
             <TableRow>
@@ -25,8 +28,13 @@ const TableRowMapper: React.FC<TableRowMapperProps> = ({ tableRows, data, redire
                     const value = data ? data[tC.key] : "";
 
                     const onClick = () => {
-                        if (!tC.label) {
-                            navigate({ to: redirectTo });
+                        if (!tC.label && tC.key) {
+                            const params = new URLSearchParams();
+                            if (locationUuids) params.append('locationUuids', locationUuids);
+                            if (startDate) params.append('startDate', startDate);
+                            if (endDate) params.append('endDate', endDate);
+                            if (tC.key) params.append('indicators', tC.key);
+                            navigate({ to: `${redirectTo}?${params.toString()}` });
                         }
                     };
 
