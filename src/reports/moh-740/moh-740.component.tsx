@@ -85,11 +85,11 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
 
                       <table className={styles.topMeta}>
                         <tr>
-                          <td>Name of the facility: _________________________</td>
-                          <td>MFL code: __________</td>
-                          <td>County: ______________</td>
-                          <td>Sub County: ____________</td>
-                          <td>Month/Year: _________</td>
+                          <td className={styles.darkBorder}>Name of the facility: _________________________</td>
+                          <td className={styles.darkBorder}>MFL code: __________</td>
+                          <td className={styles.darkBorder}>County: ______________</td>
+                          <td className={styles.darkBorder}>Sub County: ____________</td>
+                          <td className={styles.darkBorder}>Month/Year: _________</td>
                         </tr>
                       </table>
 
@@ -104,740 +104,766 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                         </thead>
                         <tbody>
                           <tr className={styles.sectionHeader}>
-                            <td colSpan={4}>DIABETES</td>
+                            <td className={styles.darkBorder} colSpan={4}>
+                              DIABETES
+                            </td>
                           </tr>
                           <tr>
-                            <td>Cumulative no. of diabetes patients in care</td>
-                            <td>
+                            <td className={styles.darkBorder}>Cumulative no. of diabetes patients in care</td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__cumulative_diabetes_patients_in_care}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__cumulative_diabetes_patients_in_care"
                               />
                             </td>
-                            <td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__F__cumulative_diabetes_patients_in_care}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__F__cumulative_diabetes_patients_in_care"
                               />
                             </td>
-                            <td></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td>No. of newly diagnosed diabetes cases</td>
-                            <td>
+                            <td className={styles.darkBorder}>No. of newly diagnosed diabetes cases</td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__newly_diagnosed_diabetes}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__newly_diagnosed_diabetes"
                               />
                             </td>
-                            <td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__F__newly_diagnosed_diabetes}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__F__newly_diagnosed_diabetes"
                               />
                             </td>
-                            <td></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td>Revisit to clinic/Known DM</td>
-                            <td>
+                            <td className={styles.darkBorder}>Revisit to clinic/Known DM</td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__revisit_to_clinic_known_dm}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__revisit_to_clinic_known_dm"
                               />
                             </td>
-                            <td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__F__revisit_to_clinic_known_dm}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__F__revisit_to_clinic_known_dm"
                               />
                             </td>
-                            <td></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
 
                           <tr className={styles.subHeader}>
-                            <td colSpan={4}>Total No. with Type 1</td>
+                            <td className={styles.darkBorder} colSpan={4}>
+                              Total No. with Type 1
+                            </td>
                           </tr>
                           <tr>
-                            <td className={styles.indent}>0-5 years</td>
-                            <td>
+                            <td className="darkBorder indent">0-5 years</td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__age_range__0_to_5__type_1_diabetes_mellitus}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__age_range__0_to_5__type_1_diabetes_mellitus"
                               />
                             </td>
-                            <td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__F__age_range__0_to_5__type_1_diabetes_mellitus}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__F__age_range__0_to_5__type_1_diabetes_mellitus"
                               />
                             </td>
-                            <td></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td className={styles.indent}>6-9 years</td>
-                            <td>
+                            <td className="darkBorder indent">6-9 years</td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__age_range__6_to_9__type_1_diabetes_mellitus}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__age_range__6_to_9__type_1_diabetes_mellitus"
                               />
                             </td>
-                            <td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__F__age_range__6_to_9__type_1_diabetes_mellitus}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__F__age_range__6_to_9__type_1_diabetes_mellitus"
                               />
                             </td>
-                            <td></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td className={styles.indent}>10-19 years</td>
-                            <td>
+                            <td className="darkBorder indent">10-19 years</td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__age_range__10_to_19__type_1_diabetes_mellitus}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__age_range__10_to_19__type_1_diabetes_mellitus"
                               />
                             </td>
-                            <td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__F__age_range__10_to_19__type_1_diabetes_mellitus}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__F__age_range__10_to_19__type_1_diabetes_mellitus"
                               />
                             </td>
-                            <td></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td className={styles.indent}>20-35 years</td>
-                            <td>
+                            <td className="darkBorder indent">20-35 years</td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__age_range__20_to_35__type_1_diabetes_mellitus}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__age_range__20_to_35__type_1_diabetes_mellitus"
                               />
                             </td>
-                            <td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__F__age_range__20_to_35__type_1_diabetes_mellitus}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__F__age_range__20_to_35__type_1_diabetes_mellitus"
                               />
                             </td>
-                            <td></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td className={styles.indent}>{'>'} 35 years</td>
-                            <td>
+                            <td className="darkBorder indent">{'>'} 35 years</td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__age_range__36_and_above__type_1_diabetes_mellitus}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__age_range__35_and_above__type_1_diabetes_mellitus"
                               />
                             </td>
-                            <td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__F__age_range__36_and_above__type_1_diabetes_mellitus}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__F__age_range__35_and_above__type_1_diabetes_mellitus"
                               />
                             </td>
-                            <td></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
 
                           <tr className={styles.subHeader}>
-                            <td colSpan={4}>Total No. with Type 2</td>
+                            <td className={styles.darkBorder} colSpan={4}>
+                              Total No. with Type 2
+                            </td>
                           </tr>
                           <tr>
-                            <td className={styles.indent}>0-18 years</td>
-                            <td>
+                            <td className="darkBorder indent">0-18 years</td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__age_range__0_to_18__type_2_diabetes_mellitus}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__age_range__0_to_18__type_2_diabetes_mellitus"
                               />
                             </td>
-                            <td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__F__age_range__0_to_18__type_2_diabetes_mellitus}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__F__age_range__0_to_18__type_2_diabetes_mellitus"
                               />
                             </td>
-                            <td></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td className={styles.indent}>19-35 years</td>
-                            <td>
+                            <td className="darkBorder indent">19-35 years</td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__age_range__19_to_35__type_2_diabetes_mellitus}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__age_range__19_to_35__type_2_diabetes_mellitus"
                               />
                             </td>
-                            <td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__F__age_range__19_to_35__type_2_diabetes_mellitus}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__F__age_range__19_to_35__type_2_diabetes_mellitus"
                               />
                             </td>
-                            <td></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td className={styles.indent}>36-60 years</td>
-                            <td>
+                            <td className="darkBorder indent">36-60 years</td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__age_range__36_to_60__type_2_diabetes_mellitus}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__age_range__36_to_60__type_2_diabetes_mellitus"
                               />
                             </td>
-                            <td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__F__age_range__36_to_60__type_2_diabetes_mellitus}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__F__age_range__36_to_60__type_2_diabetes_mellitus"
                               />
                             </td>
-                            <td></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td className={styles.indent}>{'>'} 60 years</td>
-                            <td>
+                            <td className="darkBorder indent">{'>'} 60 years</td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__age_range__61_and_above__type_2_diabetes_mellitus}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__age_range__61_and_above__type_2_diabetes_mellitus"
                               />
                             </td>
-                            <td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__F__age_range__61_and_above__type_2_diabetes_mellitus}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__F__age_range__61_and_above__type_2_diabetes_mellitus"
                               />
                             </td>
-                            <td></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
 
                           <tr>
-                            <td>No. diagnosed for Gestational Diabetes Mellitus</td>
-                            <td className={styles.bgGrey}>N/A</td>
-                            <td></td>
-                            <td></td>
+                            <td className={styles.darkBorder}>No. diagnosed for Gestational Diabetes Mellitus</td>
+                            <td className="darkBorder bgGrey">N/A</td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td>No. of Diabetes secondary to other causes</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td className={styles.darkBorder}>No. of Diabetes secondary to other causes</td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
 
                           <tr className={styles.sectionHeader}>
-                            <td colSpan={4}>HYPERTENSION</td>
+                            <td className={styles.darkBorder} colSpan={4}>
+                              HYPERTENSION
+                            </td>
                           </tr>
                           <tr>
-                            <td>Cumulative no. of hypertension patients in care</td>
-                            <td>
+                            <td className={styles.darkBorder}>Cumulative no. of hypertension patients in care</td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__cumulative_htn_patient}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__cumulative_htn_patient"
                               />
                             </td>
-                            <td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__F__cumulative_htn_patient}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__F__cumulative_htn_patient"
                               />
                             </td>
-                            <td></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td>No. of newly diagnosed hypertension cases</td>
-                            <td>
+                            <td className={styles.darkBorder}>No. of newly diagnosed hypertension cases</td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__newly_diagnosed_htn_this_month}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__newly_diagnosed_htn_this_month"
                               />
                             </td>
-                            <td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__F__newly_diagnosed_htn_this_month}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__F__newly_diagnosed_htn_this_month"
                               />
                             </td>
-                            <td></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td>Revisit to clinic/Known HTN</td>
-                            <td>
+                            <td className={styles.darkBorder}>Revisit to clinic/Known HTN</td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__revisit_known_htn}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__revisit_known_htn"
                               />
                             </td>
-                            <td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__F__revisit_known_htn}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__F__revisit_known_htn"
                               />
                             </td>
-                            <td></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
 
                           <tr className={styles.subHeader}>
-                            <td colSpan={4}>No. with hypertension</td>
+                            <td className={styles.darkBorder} colSpan={4}>
+                              No. with hypertension
+                            </td>
                           </tr>
                           <tr>
-                            <td className={styles.indent}>0-18 years</td>
-                            <td>
+                            <td className="darkBorder indent">0-18 years</td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__age_range__10_to_19__has_htn}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__age_range__10_to_19__has_htn"
                               />
                             </td>
-                            <td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__F__age_range__10_to_19__has_htn}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__F__age_range__10_to_19__has_htn"
                               />
                             </td>
-                            <td></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td className={styles.indent}>19-35 years</td>
-                            <td>
+                            <td className="darkBorder indent">19-35 years</td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__age_range__19_to_35__has_htn}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__age_range__19_to_35__has_htn"
                               />
                             </td>
-                            <td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__F__age_range__19_to_35__has_htn}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__F__age_range__19_to_35__has_htn"
                               />
                             </td>
-                            <td></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td className={styles.indent}>36-60 years</td>
-                            <td>
+                            <td className="darkBorder indent">36-60 years</td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__age_range__36_to_60__has_htn}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__age_range__36_to_60__has_htn"
                               />
                             </td>
-                            <td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__F__age_range__36_to_60__has_htn}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__F__age_range__36_to_60__has_htn"
                               />
                             </td>
-                            <td></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td className={styles.indent}>{'>'} 60 years</td>
-                            <td>
+                            <td className="darkBorder indent">{'>'} 60 years</td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__age_range__60_and_above__has_htn}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__age_range__60_and_above__has_htn"
                               />
                             </td>
-                            <td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__F__age_range__60_and_above__has_htn}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__F__age_range__60_and_above__has_htn"
                               />
                             </td>
-                            <td></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
 
                           <tr className={styles.sectionHeader}>
-                            <td colSpan={4}>CO-MORBID WITH BOTH DIABETES AND HTN PATIENTS</td>
+                            <td className={styles.darkBorder} colSpan={4}>
+                              CO-MORBID WITH BOTH DIABETES AND HTN PATIENTS
+                            </td>
                           </tr>
                           <tr>
-                            <td>Cumulative no. of co-morbid both DM+HTN patients in care</td>
-                            <td>
+                            <td className={styles.darkBorder}>
+                              Cumulative no. of co-morbid both DM+HTN patients in care
+                            </td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__is_co_morbid}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__is_co_morbid"
                               />
                             </td>
-                            <td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__F__is_co_morbid}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__F__is_co_morbid"
                               />
                             </td>
-                            <td></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td>Newly diagnosed co-morbid with both DM and HTN cases</td>
-                            <td>
+                            <td className={styles.darkBorder}>Newly diagnosed co-morbid with both DM and HTN cases</td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__newly_diagnosed_co_morbid_this_month}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__newly_diagnosed_co_morbid_this_month"
                               />
                             </td>
-                            <td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__F__newly_diagnosed_co_morbid_this_month}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__F__newly_diagnosed_co_morbid_this_month"
                               />
                             </td>
-                            <td></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td>Revisit to clinic/Known co-morbid DM and HTN</td>
-                            <td>
+                            <td className={styles.darkBorder}>Revisit to clinic/Known co-morbid DM and HTN</td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__revisit_known_co_morbid}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__revisit_known_co_morbid"
                               />
                             </td>
-                            <td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__F__revisit_known_co_morbid}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__F__revisit_known_co_morbid"
                               />
                             </td>
-                            <td></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
 
                           <tr className={styles.sectionHeader}>
-                            <td colSpan={4}>DIABETES TREATMENT AND FOLLOW UP</td>
+                            <td className={styles.darkBorder} colSpan={4}>
+                              DIABETES TREATMENT AND FOLLOW UP
+                            </td>
                           </tr>
                           <tr>
-                            <td>No. of patients on insulin</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td className={styles.darkBorder}>No. of patients on insulin</td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td>No. of patients on OGLAs</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td className={styles.darkBorder}>No. of patients on OGLAs</td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td>No. of patients on both (Insulin and OGLAs)</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td className={styles.darkBorder}>No. of patients on both (Insulin and OGLAs)</td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td>No. of patients on diet and exercise only (DM and HTN)</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td className={styles.darkBorder}>
+                              No. of patients on diet and exercise only (DM and HTN)
+                            </td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td>No. of patients done HbA1c</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td className={styles.darkBorder}>No. of patients done HbA1c</td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td>No. that met HbA1c target ({'<'} 7%)</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td className={styles.darkBorder}>No. that met HbA1c target ({'<'} 7%)</td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
 
                           <tr className={styles.sectionHeader}>
-                            <td colSpan={4}>HYPERTENSION TREATMENT</td>
+                            <td className={styles.darkBorder} colSpan={4}>
+                              HYPERTENSION TREATMENT
+                            </td>
                           </tr>
                           <tr>
-                            <td>No. of patients on antihypertensives</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td className={styles.darkBorder}>No. of patients on antihypertensives</td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td>No. with high BP ({'>='} 140/90) at clinic visit</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td className={styles.darkBorder}>No. with high BP ({'>='} 140/90) at clinic visit</td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
 
                           <tr className={styles.sectionHeader}>
-                            <td colSpan={4}>New Diagnosis of Complications/Comorbidities</td>
+                            <td className={styles.darkBorder} colSpan={4}>
+                              New Diagnosis of Complications/Comorbidities
+                            </td>
                           </tr>
                           <tr>
-                            <td className={styles.indent}>Stroke</td>
-                            <td>
+                            <td className="darkBorder indent">Stroke</td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__stroke_diagnosis}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__stroke_diagnosis"
                               />
                             </td>
-                            <td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__F__stroke_diagnosis}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__F__stroke_diagnosis"
                               />
                             </td>
-                            <td></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td className={styles.indent}>Ischemic heart disease</td>
-                            <td>
+                            <td className="darkBorder indent">Ischemic heart disease</td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__ischemic_heart_disease_diagnosis}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__ischemic_heart_disease_diagnosis"
                               />
                             </td>
-                            <td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__F__ischemic_heart_disease_diagnosis}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__F__ischemic_heart_disease_diagnosis"
                               />
                             </td>
-                            <td></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td className={styles.indent}>Heart failure</td>
-                            <td>
+                            <td className="darkBorder indent">Heart failure</td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__heart_failure_diagnosis}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__heart_failure_diagnosis"
                               />
                             </td>
-                            <td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__F__heart_failure_diagnosis}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__F__heart_failure_diagnosis"
                               />
                             </td>
-                            <td></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td>No. of Patients with neuropathies (new diagnosis)</td>
-                            <td>
+                            <td className={styles.darkBorder}>No. of Patients with neuropathies (new diagnosis)</td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__has_neuropathies}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__has_neuropathies"
                               />
                             </td>
-                            <td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__F__has_neuropathies}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__F__has_neuropathies"
                               />
                             </td>
-                            <td></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
 
                           <tr className={styles.sectionHeader}>
-                            <td colSpan={4}>DIABETIC FOOT</td>
+                            <td className={styles.darkBorder} colSpan={4}>
+                              DIABETIC FOOT
+                            </td>
                           </tr>
                           <tr>
-                            <td>No. of patients screened for diabetic foot</td>
-                            <td>
+                            <td className={styles.darkBorder}>No. of patients screened for diabetic foot</td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__screened_for_diabetic_foot_this_month}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__screened_for_diabetic_foot_this_month"
                               />
                             </td>
-                            <td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__F__screened_for_diabetic_foot_this_month}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__F__screened_for_diabetic_foot_this_month"
                               />
                             </td>
-                            <td></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td>No. of patients with diabetic foot (new diagnosis)</td>
-                            <td>
+                            <td className={styles.darkBorder}>No. of patients with diabetic foot (new diagnosis)</td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__has_diabetic_foot}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__has_diabetic_foot"
                               />
                             </td>
-                            <td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__F__has_diabetic_foot}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__F__has_diabetic_foot"
                               />
                             </td>
-                            <td></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td>No. of Amputation due to diabetic foot</td>
-                            <td>
+                            <td className={styles.darkBorder}>No. of Amputation due to diabetic foot</td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__amputation_due_to_diabetic_foot}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__amputation_due_to_diabetic_foot"
                               />
                             </td>
-                            <td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__F__amputation_due_to_diabetic_foot}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__F__amputation_due_to_diabetic_foot"
                               />
                             </td>
-                            <td></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
 
                           <tr className={styles.sectionHeader}>
-                            <td colSpan={4}>OTHER INDICATORS</td>
+                            <td className={styles.darkBorder} colSpan={4}>
+                              OTHER INDICATORS
+                            </td>
                           </tr>
                           <tr>
-                            <td>No. with kidney complications (new diagnosis)</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td className={styles.darkBorder}>No. with kidney complications (new diagnosis)</td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td>No. with diabetic retinopathy (new diagnosis)</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td className={styles.darkBorder}>No. with diabetic retinopathy (new diagnosis)</td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td>No. Screened for Tuberculosis</td>
-                            <td>
+                            <td className={styles.darkBorder}>No. Screened for Tuberculosis</td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__screened_for_tb_this_month}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__screened_for_tb_this_month"
                               />
                             </td>
-                            <td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__F__screened_for_tb_this_month}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__F__screened_for_tb_this_month"
                               />
                             </td>
-                            <td></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td>No. Screened Positive for Tuberculosis</td>
-                            <td>
+                            <td className={styles.darkBorder}>No. Screened Positive for Tuberculosis</td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__screened_postive_for_tb_this_month}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__screened_postive_for_tb_this_month"
                               />
                             </td>
-                            <td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__screened_postive_for_tb_this_month}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__screened_postive_for_tb_this_month"
                               />
                             </td>
-                            <td></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td>No. enrolled with NHIF</td>
-                            <td>
+                            <td className={styles.darkBorder}>No. enrolled with NHIF</td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__covered_by_shif}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__covered_by_shif"
                               />
                             </td>
-                            <td>
+                            <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__F__covered_by_shif}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__F__covered_by_shif"
                               />
                             </td>
-                            <td></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
 
                           <tr className={styles.subHeader}>
-                            <td>Total No. admitted (for only inpatients)</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td className={styles.darkBorder}>Total No. admitted (for only inpatients)</td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td className={styles.indent}>No. admitted with DKA</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td className="darkBorder indent">No. admitted with DKA</td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td className={styles.indent}>No. admitted with Hypoglycemia</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td className="darkBorder indent">No. admitted with Hypoglycemia</td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td className={styles.indent}>No. admitted with Stroke</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td className="darkBorder indent">No. admitted with Stroke</td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td className={styles.indent}>No. admitted with hypertension urgency/emergency</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td className="darkBorder indent">No. admitted with hypertension urgency/emergency</td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
 
                           <tr>
-                            <td>Total deaths due to diabetes complications</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td className={styles.darkBorder}>Total deaths due to diabetes complications</td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                           <tr>
-                            <td>Total deaths due to hypertension complications</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td className={styles.darkBorder}>Total deaths due to hypertension complications</td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}></td>
                           </tr>
                         </tbody>
                       </table>

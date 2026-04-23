@@ -61,14 +61,7 @@
     width: 25%;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 10px;
-}
-
-th,
-td {
+.darkBorder{
     border: 1px solid #000;
     padding: 4px;
     text-align: left;
@@ -89,12 +82,10 @@ td {
     font-weight: bold;
 }
 
-input[type="text"],
-input[type="number"] {
-    width: 95%;
-    border: none;
-    outline: none;
-    background: transparent;
+.topMeta{
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
 }
 
 .topMeta td {
