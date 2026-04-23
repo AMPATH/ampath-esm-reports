@@ -144,8 +144,20 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                           </tr>
                           <tr>
                             <td>Revisit to clinic/Known DM</td>
-                            <td></td>
-                            <td></td>
+                            <td>
+                              <DataCell
+                                value={moh740Data.dc__gender__M__revisit_to_clinic_known_dm}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__M__revisit_to_clinic_known_dm"
+                              />
+                            </td>
+                            <td>
+                              <DataCell
+                                value={moh740Data.dc__gender__F__revisit_to_clinic_known_dm}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__F__revisit_to_clinic_known_dm"
+                              />
+                            </td>
                             <td></td>
                           </tr>
 
@@ -228,14 +240,14 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                             <td className={styles.indent}>{'>'} 35 years</td>
                             <td>
                               <DataCell
-                                value={moh740Data.dc__gender__M__age_range__35_and_above__type_1_diabetes_mellitus}
+                                value={moh740Data.dc__gender__M__age_range__36_and_above__type_1_diabetes_mellitus}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__M__age_range__35_and_above__type_1_diabetes_mellitus"
                               />
                             </td>
                             <td>
                               <DataCell
-                                value={moh740Data.dc__gender__F__age_range__35_and_above__type_1_diabetes_mellitus}
+                                value={moh740Data.dc__gender__F__age_range__36_and_above__type_1_diabetes_mellitus}
                                 indicatorSelected={handleIndicatorSelected}
                                 indicator="dc__gender__F__age_range__35_and_above__type_1_diabetes_mellitus"
                               />
@@ -248,26 +260,74 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                           </tr>
                           <tr>
                             <td className={styles.indent}>0-18 years</td>
-                            <td></td>
-                            <td></td>
+                            <td>
+                              <DataCell
+                                value={moh740Data.dc__gender__M__age_range__0_to_18__type_2_diabetes_mellitus}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__M__age_range__0_to_18__type_2_diabetes_mellitus"
+                              />
+                            </td>
+                            <td>
+                              <DataCell
+                                value={moh740Data.dc__gender__F__age_range__0_to_18__type_2_diabetes_mellitus}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__F__age_range__0_to_18__type_2_diabetes_mellitus"
+                              />
+                            </td>
                             <td></td>
                           </tr>
                           <tr>
                             <td className={styles.indent}>19-35 years</td>
-                            <td></td>
-                            <td></td>
+                            <td>
+                              <DataCell
+                                value={moh740Data.dc__gender__M__age_range__19_to_35__type_2_diabetes_mellitus}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__M__age_range__19_to_35__type_2_diabetes_mellitus"
+                              />
+                            </td>
+                            <td>
+                              <DataCell
+                                value={moh740Data.dc__gender__F__age_range__19_to_35__type_2_diabetes_mellitus}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__F__age_range__19_to_35__type_2_diabetes_mellitus"
+                              />
+                            </td>
                             <td></td>
                           </tr>
                           <tr>
                             <td className={styles.indent}>36-60 years</td>
-                            <td></td>
-                            <td></td>
+                            <td>
+                              <DataCell
+                                value={moh740Data.dc__gender__M__age_range__36_to_60__type_2_diabetes_mellitus}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__M__age_range__36_to_60__type_2_diabetes_mellitus"
+                              />
+                            </td>
+                            <td>
+                              <DataCell
+                                value={moh740Data.dc__gender__F__age_range__36_to_60__type_2_diabetes_mellitus}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__F__age_range__36_to_60__type_2_diabetes_mellitus"
+                              />
+                            </td>
                             <td></td>
                           </tr>
                           <tr>
                             <td className={styles.indent}>{'>'} 60 years</td>
-                            <td></td>
-                            <td></td>
+                            <td>
+                              <DataCell
+                                value={moh740Data.dc__gender__M__age_range__61_and_above__type_2_diabetes_mellitus}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__M__age_range__61_and_above__type_2_diabetes_mellitus"
+                              />
+                            </td>
+                            <td>
+                              <DataCell
+                                value={moh740Data.dc__gender__F__age_range__61_and_above__type_2_diabetes_mellitus}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__F__age_range__61_and_above__type_2_diabetes_mellitus"
+                              />
+                            </td>
                             <td></td>
                           </tr>
 
@@ -307,14 +367,38 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                           </tr>
                           <tr>
                             <td>No. of newly diagnosed hypertension cases</td>
-                            <td></td>
-                            <td></td>
+                            <td>
+                              <DataCell
+                                value={moh740Data.dc__gender__M__newly_diagnosed_htn_this_month}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__M__newly_diagnosed_htn_this_month"
+                              />
+                            </td>
+                            <td>
+                              <DataCell
+                                value={moh740Data.dc__gender__F__newly_diagnosed_htn_this_month}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__F__newly_diagnosed_htn_this_month"
+                              />
+                            </td>
                             <td></td>
                           </tr>
                           <tr>
                             <td>Revisit to clinic/Known HTN</td>
-                            <td></td>
-                            <td></td>
+                            <td>
+                              <DataCell
+                                value={moh740Data.dc__gender__M__revisit_known_htn}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__M__revisit_known_htn"
+                              />
+                            </td>
+                            <td>
+                              <DataCell
+                                value={moh740Data.dc__gender__F__revisit_known_htn}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__F__revisit_known_htn"
+                              />
+                            </td>
                             <td></td>
                           </tr>
 
@@ -399,20 +483,56 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                           </tr>
                           <tr>
                             <td>Cumulative no. of co-morbid both DM+HTN patients in care</td>
-                            <td></td>
-                            <td></td>
+                            <td>
+                              <DataCell
+                                value={moh740Data.dc__gender__M__is_co_morbid}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__M__is_co_morbid"
+                              />
+                            </td>
+                            <td>
+                              <DataCell
+                                value={moh740Data.dc__gender__F__is_co_morbid}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__F__is_co_morbid"
+                              />
+                            </td>
                             <td></td>
                           </tr>
                           <tr>
                             <td>Newly diagnosed co-morbid with both DM and HTN cases</td>
-                            <td></td>
-                            <td></td>
+                            <td>
+                              <DataCell
+                                value={moh740Data.dc__gender__M__newly_diagnosed_co_morbid_this_month}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__M__newly_diagnosed_co_morbid_this_month"
+                              />
+                            </td>
+                            <td>
+                              <DataCell
+                                value={moh740Data.dc__gender__F__newly_diagnosed_co_morbid_this_month}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__F__newly_diagnosed_co_morbid_this_month"
+                              />
+                            </td>
                             <td></td>
                           </tr>
                           <tr>
                             <td>Revisit to clinic/Known co-morbid DM and HTN</td>
-                            <td></td>
-                            <td></td>
+                            <td>
+                              <DataCell
+                                value={moh740Data.dc__gender__M__revisit_known_co_morbid}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__M__revisit_known_co_morbid"
+                              />
+                            </td>
+                            <td>
+                              <DataCell
+                                value={moh740Data.dc__gender__F__revisit_known_co_morbid}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__F__revisit_known_co_morbid"
+                              />
+                            </td>
                             <td></td>
                           </tr>
 
@@ -477,26 +597,74 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                           </tr>
                           <tr>
                             <td className={styles.indent}>Stroke</td>
-                            <td></td>
-                            <td></td>
+                            <td>
+                              <DataCell
+                                value={moh740Data.dc__gender__M__stroke_diagnosis}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__M__stroke_diagnosis"
+                              />
+                            </td>
+                            <td>
+                              <DataCell
+                                value={moh740Data.dc__gender__F__stroke_diagnosis}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__F__stroke_diagnosis"
+                              />
+                            </td>
                             <td></td>
                           </tr>
                           <tr>
                             <td className={styles.indent}>Ischemic heart disease</td>
-                            <td></td>
-                            <td></td>
+                            <td>
+                              <DataCell
+                                value={moh740Data.dc__gender__M__ischemic_heart_disease_diagnosis}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__M__ischemic_heart_disease_diagnosis"
+                              />
+                            </td>
+                            <td>
+                              <DataCell
+                                value={moh740Data.dc__gender__F__ischemic_heart_disease_diagnosis}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__F__ischemic_heart_disease_diagnosis"
+                              />
+                            </td>
                             <td></td>
                           </tr>
                           <tr>
                             <td className={styles.indent}>Heart failure</td>
-                            <td></td>
-                            <td></td>
+                            <td>
+                              <DataCell
+                                value={moh740Data.dc__gender__M__heart_failure_diagnosis}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__M__heart_failure_diagnosis"
+                              />
+                            </td>
+                            <td>
+                              <DataCell
+                                value={moh740Data.dc__gender__F__heart_failure_diagnosis}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__F__heart_failure_diagnosis"
+                              />
+                            </td>
                             <td></td>
                           </tr>
                           <tr>
                             <td>No. of Patients with neuropathies (new diagnosis)</td>
-                            <td></td>
-                            <td></td>
+                            <td>
+                              <DataCell
+                                value={moh740Data.dc__gender__M__has_neuropathies}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__M__has_neuropathies"
+                              />
+                            </td>
+                            <td>
+                              <DataCell
+                                value={moh740Data.dc__gender__F__has_neuropathies}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__F__has_neuropathies"
+                              />
+                            </td>
                             <td></td>
                           </tr>
 
@@ -541,8 +709,20 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                           </tr>
                           <tr>
                             <td>No. of Amputation due to diabetic foot</td>
-                            <td></td>
-                            <td></td>
+                            <td>
+                              <DataCell
+                                value={moh740Data.dc__gender__M__amputation_due_to_diabetic_foot}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__M__amputation_due_to_diabetic_foot"
+                              />
+                            </td>
+                            <td>
+                              <DataCell
+                                value={moh740Data.dc__gender__F__amputation_due_to_diabetic_foot}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__F__amputation_due_to_diabetic_foot"
+                              />
+                            </td>
                             <td></td>
                           </tr>
 
