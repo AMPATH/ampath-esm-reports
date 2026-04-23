@@ -11,6 +11,17 @@ interface Moh706Response {
   result: Array<Record<string, unknown>>;
 }
 
+interface Moh706PatientListParams {
+  locationUuids: string;
+  startDate?: string;
+  endDate?: string;
+  indicators: string;
+}
+
+interface Moh706PatientListResponse {
+  result: Array<Record<string, unknown>>;
+}
+
 export async function getMoh706(params: Moh706Params): Promise<Array<Record<string, unknown>>> {
   const etlBaseUrl = await getEtlBaseUrl();
   const url = `${etlBaseUrl}/lab-706`;
@@ -39,5 +50,37 @@ export async function getMoh706(params: Moh706Params): Promise<Array<Record<stri
     return data.result;
   } catch (error: any) {
     throw new Error(`An error occurred while fetching the MOH-706 report: ${error.message}`);
+  }
+}
+
+export async function getMoh706PatientList(params: Moh706PatientListParams): Promise<Array<Record<string, unknown>>> {
+  const etlBaseUrl = await getEtlBaseUrl();
+  const url = `${etlBaseUrl}/lab-706/patient-list`;
+  const queryparams = {
+    locationUuids: params.locationUuids || '',
+    startDate: params.startDate || '',
+    endDate: params.endDate || '',
+    indicators: params.indicators || '',
+  };
+  const queryString = new URLSearchParams(
+    Object.fromEntries(Object.entries(queryparams).filter(([_, v]) => v !== undefined && v !== null)),
+  ).toString();
+  try {
+    const response = await openmrsFetch(`${url}?${queryString}`);
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Failed to fetch MOH-706 patient list: ${response.status} - ${errorText}`);
+    }
+
+    const data = await response.json();
+
+    if (!Array.isArray(data.result)) {
+      throw new Error('Invalid MOH-706 patient list response format: missing result array.');
+    }
+
+    return data.result;
+  } catch (error: any) {
+    throw new Error(`An error occurred while fetching the MOH-706 patient list: ${error.message}`);
   }
 }

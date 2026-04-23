@@ -4,10 +4,13 @@ import TableRowMapper from "../../../table-wrapper/table-row-mapper.component";
 import { getCell } from "../../../../utils/utils";
 
 interface ParasitologyProps {
-    data?: any
+    data?: any,
+    locationUuids?: string,
+    startDate?: string,
+    endDate?: string
 }
 
-const Parasitology: React.FC<ParasitologyProps> = ({ data }) => {
+const Parasitology: React.FC<ParasitologyProps> = ({ data, locationUuids, startDate, endDate }) => {
     const tableRows = useMemo(() => {
         return [
             {
@@ -111,7 +114,7 @@ const Parasitology: React.FC<ParasitologyProps> = ({ data }) => {
 
 
     return <TableWrapper>
-         <TableRowMapper tableRows={tableRows} data={data} />
+         <TableRowMapper tableRows={tableRows} data={data} locationUuids={locationUuids} startDate={startDate} endDate={endDate} />
     </TableWrapper>
 }
 

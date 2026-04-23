@@ -4,10 +4,13 @@ import TableRowMapper from "../../../table-wrapper/table-row-mapper.component";
 import { getCell } from "../../../../utils/utils";
 
 interface UrineAnalysisProps {
-    data?: any
+    data?: any,
+    locationUuids?: string,
+    startDate?: string,
+    endDate?: string
 }
 
-const UrineAnalysis: React.FC<UrineAnalysisProps> = ({ data }) => {
+const UrineAnalysis: React.FC<UrineAnalysisProps> = ({ data, locationUuids, startDate, endDate }) => {
     const tableRows = useMemo(() => {
         return [
             {
@@ -98,7 +101,7 @@ const UrineAnalysis: React.FC<UrineAnalysisProps> = ({ data }) => {
 
 
     return <TableWrapper>
-         <TableRowMapper tableRows={tableRows} data={data} />
+         <TableRowMapper tableRows={tableRows} data={data} locationUuids={locationUuids} startDate={startDate} endDate={endDate} />
     </TableWrapper>
 }
 

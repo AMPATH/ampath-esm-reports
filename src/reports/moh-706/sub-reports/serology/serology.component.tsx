@@ -4,10 +4,13 @@ import TableRowMapper from "../../../table-wrapper/table-row-mapper.component";
 import { getCell } from "../../../../utils/utils";
 
 interface SerologyProps {
-    data?: any
+    data?: any,
+    locationUuids?: string,
+    startDate?: string,
+    endDate?: string
 }
 
-const Serology: React.FC<SerologyProps> = ({ data }) => {
+const Serology: React.FC<SerologyProps> = ({ data, locationUuids, startDate, endDate }) => {
     const tableRows = useMemo(() => {
         return [
             {
@@ -37,7 +40,7 @@ const Serology: React.FC<SerologyProps> = ({ data }) => {
 
 
     return <TableWrapper>
-         <TableRowMapper tableRows={tableRows} data={data} />
+         <TableRowMapper tableRows={tableRows} data={data} locationUuids={locationUuids} startDate={startDate} endDate={endDate} />
     </TableWrapper>
 }
 
