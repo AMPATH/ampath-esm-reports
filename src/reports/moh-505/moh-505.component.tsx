@@ -2,6 +2,8 @@ import React, { useMemo } from "react";
 import TableWrapper from "../table-wrapper/table-wrapper.component";
 import TableRowMapper from "../table-wrapper/table-row-mapper.component";
 import { getCell } from "../../utils/utils";
+import ReportFiltersComponent from "../../common/report-filters/report-filters.component";
+import MOH505Header from "./moh-505-header.component";
 
 const Moh505Report: React.FC = () => {
     const tableRows = useMemo(() => {
@@ -226,9 +228,13 @@ const Moh505Report: React.FC = () => {
     }, []);
 
 
-    return <TableWrapper>
-        <TableRowMapper tableRows={tableRows} />
-    </TableWrapper>
+    return <>
+        <ReportFiltersComponent reportName="MOH-505 Report" mode="monthly" />
+        <MOH505Header />
+        <TableWrapper>
+            <TableRowMapper tableRows={tableRows} />
+        </TableWrapper>
+    </>
 }
 
 export default Moh505Report;

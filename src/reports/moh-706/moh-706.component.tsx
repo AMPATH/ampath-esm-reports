@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSession } from '@openmrs/esm-framework';
-import { Loading } from '@carbon/react';
+import { Column, Grid, Loading } from '@carbon/react';
 import UrineAnalysis from './sub-reports/urine-analysis/urine-analysis.component';
 import BloodChemistry from './sub-reports/blood-chemistry/blood-chemistry.component';
 import Parasitology from './sub-reports/parasitology/parasitology.component';
@@ -12,6 +12,8 @@ import SpecimenReferralToHigherLevels from './sub-reports/specimen-referral-to-h
 import DrugSusceptibilityTesting from './sub-reports/drug-susceptibility-testing/drug-susceptibility-testing.component';
 import ReportFiltersComponent from '../../common/report-filters/report-filters.component';
 import { getMoh706 } from '../../resources/moh-706.resource';
+import styles from './moh-706.scss';
+import MOH706Header from './moh-706-header.component';
 
 const MoH706Report: React.FC = () => {
   const [moh706Data, setMoh706Data] = useState<any>({});
@@ -83,15 +85,18 @@ const MoH706Report: React.FC = () => {
           </p>
         </div>
       )}
-      <UrineAnalysis data={moh706Data} locationUuids={filters.locationUuids} startDate={filters.startDate} endDate={filters.endDate} />
-      <BloodChemistry data={moh706Data} locationUuids={filters.locationUuids} startDate={filters.startDate} endDate={filters.endDate} />
-      <Parasitology data={moh706Data} locationUuids={filters.locationUuids} startDate={filters.startDate} endDate={filters.endDate} />
-      <Haematology data={moh706Data} locationUuids={filters.locationUuids} startDate={filters.startDate} endDate={filters.endDate} />
-      <Bacteriology data={moh706Data} locationUuids={filters.locationUuids} startDate={filters.startDate} endDate={filters.endDate} />
-      <HistologyAndCytology />
-      <Serology data={moh706Data} locationUuids={filters.locationUuids} startDate={filters.startDate} endDate={filters.endDate} />
-      <SpecimenReferralToHigherLevels />
-      <DrugSusceptibilityTesting />
+      <MOH706Header />
+      <div className={styles.reportSections}>
+        <UrineAnalysis data={moh706Data} locationUuids={filters.locationUuids} startDate={filters.startDate} endDate={filters.endDate} />
+        <BloodChemistry data={moh706Data} locationUuids={filters.locationUuids} startDate={filters.startDate} endDate={filters.endDate} />
+        <Parasitology data={moh706Data} locationUuids={filters.locationUuids} startDate={filters.startDate} endDate={filters.endDate} />
+        <Haematology data={moh706Data} locationUuids={filters.locationUuids} startDate={filters.startDate} endDate={filters.endDate} />
+        <Bacteriology data={moh706Data} locationUuids={filters.locationUuids} startDate={filters.startDate} endDate={filters.endDate} />
+        <HistologyAndCytology />
+        <Serology data={moh706Data} locationUuids={filters.locationUuids} startDate={filters.startDate} endDate={filters.endDate} />
+        <SpecimenReferralToHigherLevels />
+        <DrugSusceptibilityTesting />
+      </div>
     </>
   );
 };

@@ -4,6 +4,7 @@ import { Loading } from '@carbon/react';
 import Moh240Register from "./sub-reports/moh-240-register.component";
 import Moh240PageSummary from "./sub-reports/page-summary.component";
 import { getMoh706PatientList } from "../../resources/moh-706.resource";
+import MOH240Header from "./moh-240-header.component";
 
 const Moh240Report: React.FC = () => {
     const [searchParams] = useSearchParams();
@@ -56,6 +57,8 @@ const Moh240Report: React.FC = () => {
                     </p>
                 </div>
             )}
+
+            <MOH240Header />
             <Moh240Register patientList={patientList} indicator={indicator} />
             <Moh240PageSummary />
         </>
