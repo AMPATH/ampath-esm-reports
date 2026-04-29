@@ -85,11 +85,11 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
 
                       <table className={styles.topMeta}>
                         <tr>
-                          <td className={styles.darkBorder}>Name of the facility: _________________________</td>
-                          <td className={styles.darkBorder}>MFL code: __________</td>
-                          <td className={styles.darkBorder}>County: ______________</td>
-                          <td className={styles.darkBorder}>Sub County: ____________</td>
-                          <td className={styles.darkBorder}>Month/Year: {reportingMonth}</td>
+                          <td className={styles.darkBorder}>Name of the facility: {moh740Data.facility}</td>
+                          <td className={styles.darkBorder}>MFL code: {moh740Data.mfl_code}</td>
+                          <td className={styles.darkBorder}>County: {moh740Data.county}</td>
+                          <td className={styles.darkBorder}>Sub County: {moh740Data.sub_county}</td>
+                          <td className={styles.darkBorder}>Month/Year: {moh740Data.reportingMonth}</td>
                         </tr>
                       </table>
 
@@ -506,7 +506,31 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                             </td>
                           </tr>
                           <tr>
-                            <td className="darkBorder indent">0-18 years</td>
+                            <td className="darkBorder indent">0-9 years</td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.dc__gender__M__age_range__0_to_9__has_htn}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__M__age_range__0_to_9__has_htn"
+                              />
+                            </td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.dc__gender__F__age_range__0_to_9__has_htn}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__F__age_range__0_to_9__has_htn"
+                              />
+                            </td>
+                            <td className={styles.darkBorder}>
+                               <DataCell
+                                value={moh740Data.dc__age_range__0_to_9__has_htn}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__age_range__0_to_9__has_htn"
+                              />
+                            </td>
+                          </tr>
+                           <tr>
+                            <td className="darkBorder indent">10-19 years</td>
                             <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__M__age_range__10_to_19__has_htn}
@@ -521,25 +545,37 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                                 indicator="dc__gender__F__age_range__10_to_19__has_htn"
                               />
                             </td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                               <DataCell
+                                value={moh740Data.dc__age_range__10_to_19__has_htn}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__age_range__10_to_19__has_htn"
+                              />
+                            </td>
                           </tr>
                           <tr>
-                            <td className="darkBorder indent">19-35 years</td>
+                            <td className="darkBorder indent">20-35 years</td>
                             <td className={styles.darkBorder}>
                               <DataCell
-                                value={moh740Data.dc__gender__M__age_range__19_to_35__has_htn}
+                                value={moh740Data.dc__gender__M__age_range__20_to_35__has_htn}
                                 indicatorSelected={handleIndicatorSelected}
-                                indicator="dc__gender__M__age_range__19_to_35__has_htn"
+                                indicator="dc__gender__M__age_range__20_to_35__has_htn"
                               />
                             </td>
                             <td className={styles.darkBorder}>
                               <DataCell
-                                value={moh740Data.dc__gender__F__age_range__19_to_35__has_htn}
+                                value={moh740Data.dc__gender__F__age_range__20_to_35__has_htn}
                                 indicatorSelected={handleIndicatorSelected}
-                                indicator="dc__gender__F__age_range__19_to_35__has_htn"
+                                indicator="dc__gender__F__age_range__20_to_35__has_htn"
                               />
                             </td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                               <DataCell
+                                value={moh740Data.dc__age_range__20_to_35__has_htn}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__range__20_to_35__has_htn"
+                              />
+                            </td>
                           </tr>
                           <tr>
                             <td className="darkBorder indent">36-60 years</td>
@@ -557,25 +593,37 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                                 indicator="dc__gender__F__age_range__36_to_60__has_htn"
                               />
                             </td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                               <DataCell
+                                value={moh740Data.dc__age_range__36_to_60__has_htn}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__age_range__36_to_60__has_htn"
+                              />
+                            </td>
                           </tr>
                           <tr>
                             <td className="darkBorder indent">{'>'} 60 years</td>
                             <td className={styles.darkBorder}>
                               <DataCell
-                                value={moh740Data.dc__gender__M__age_range__60_and_above__has_htn}
+                                value={moh740Data.dc__gender__M__age_range__61_and_above__has_htn}
                                 indicatorSelected={handleIndicatorSelected}
-                                indicator="dc__gender__M__age_range__60_and_above__has_htn"
+                                indicator="dc__gender__M__age_range__61_and_above__has_htn"
                               />
                             </td>
                             <td className={styles.darkBorder}>
                               <DataCell
-                                value={moh740Data.dc__gender__F__age_range__60_and_above__has_htn}
+                                value={moh740Data.dc__gender__F__age_range__61_and_above__has_htn}
                                 indicatorSelected={handleIndicatorSelected}
-                                indicator="dc__gender__F__age_range__60_and_above__has_htn"
+                                indicator="dc__gender__F__age_range__61_and_above__has_htn"
                               />
                             </td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                               <DataCell
+                                value={moh740Data.dc__age_range__61_and_above__has_htn}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__age_range__61_and_above__has_htn"
+                              />
+                            </td>
                           </tr>
 
                           <tr className={styles.sectionHeader}>

@@ -7,6 +7,11 @@ export type Moh740Dto = {
 
 export type Moh740Data = {
   location_id: number;
+  facility: string;
+  mfl_code: number,
+  county: string;
+  sub_county: string;
+  reportingMonth: string;
   cumulative_diabetes_patients_in_care: number;
   newly_diagnosed_diabetes: number;
   total_type_1_diabetes: number;
@@ -65,14 +70,16 @@ export type Moh740Data = {
   dc__gender__M__newly_diagnosed_co_morbid_this_month: number;
   dc__gender__F__newly_diagnosed_co_morbid_this_month: number;
   dc__gender__M__age_range__10_to_19__diabetes_mellitus_type__diabetes_mellitus_type_1__total: number;
+  dc__gender__M__age_range__0_to_9__has_htn: number;
+  dc__gender__F__age_range__0_to_9__has_htn: number;
   dc__gender__M__age_range__10_to_19__has_htn: number;
   dc__gender__F__age_range__10_to_19__has_htn: number;
-  dc__gender__M__age_range__19_to_35__has_htn: number;
-  dc__gender__F__age_range__19_to_35__has_htn: number;
+  dc__gender__M__age_range__20_to_35__has_htn: number;
+  dc__gender__F__age_range__20_to_35__has_htn: number;
   dc__gender__M__age_range__36_to_60__has_htn: number;
   dc__gender__F__age_range__36_to_60__has_htn: number;
-  dc__gender__M__age_range__60_and_above__has_htn: number;
-  dc__gender__F__age_range__60_and_above__has_htn: number;
+  dc__gender__M__age_range__61_and_above__has_htn: number;
+  dc__gender__F__age_range__61_and_above__has_htn: number;
   dc__gender__M__age_range__10_to_19__total: number;
   dc__gender__M__screened_for_tb_this_month: number;
   dc__gender__F__screened_for_tb_this_month: number;
@@ -118,6 +125,11 @@ export type Moh740Data = {
   dc__gender__F__on_ogla_meds_this_month: number;
   dc__gender__M__on_both_insulin_and_ogla_meds_this_month: number;
   dc__gender__F__on_both_insulin_and_ogla_meds_this_month: number;
+  dc__age_range__0_to_9__has_htn: number;
+  dc__age_range__10_to_19__has_htn: number;
+  dc__age_range__20_to_35__has_htn: number;
+  dc__age_range__36_to_60__has_htn: number;
+  dc__age_range__61_and_above__has_htn: number;
 };
 
 export type Moh740Resp = {
