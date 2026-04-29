@@ -7,6 +7,41 @@ export type Moh740Dto = {
 
 export type Moh740Data = {
   location_id: number;
+  cumulative_diabetes_patients_in_care: number;
+  newly_diagnosed_diabetes: number;
+  total_type_1_diabetes: number;
+  total_type_2_diabetes: number;
+  cumulative_htn_patient: number;
+  covered_by_shif: number;
+  screened_for_tb_this_month: number;
+  screened_postive_for_tb_this_month: number;
+  screened_for_diabetic_foot_this_month: number;
+  has_diabetic_foot: number;
+  type_1_diabetes_mellitus: number;
+  type_2_diabetes_mellitus: number;
+  revisit_to_clinic_known_dm: number;
+  amputation_due_to_diabetic_foot: number;
+  stroke_diagnosis: number;
+  ischemic_heart_disease_diagnosis: number;
+  heart_failure_diagnosis: number;
+  has_neuropathies: number;
+  newly_diagnosed_htn_this_month: number;
+  revisit_known_htn: number;
+  is_co_morbid: number;
+  revisit_known_co_morbid: number;
+  newly_diagnosed_co_morbid_this_month: number;
+  on_insulin_this_month: number;
+  on_ogla_meds_this_month: number;
+  on_both_insulin_and_ogla_meds_this_month: number;
+  dc__age_range__0_to_5__type_1_diabetes_mellitus: number;
+  dc__age_range__6_to_9__type_1_diabetes_mellitus:number;
+  dc__age_range__10_to_19__type_1_diabetes_mellitus:number;
+  dc__age_range__20_to_35__type_1_diabetes_mellitus:number;
+  dc__age_range__36_and_above__type_1_diabetes_mellitus:number;
+  dc__age_range__0_to_18__type_2_diabetes_mellitus:number;
+  dc__age_range__19_to_35__type_2_diabetes_mellitus:number;
+  dc__age_range__36_to_60__type_2_diabetes_mellitus:number;
+  dc__age_range__61_and_above__type_2_diabetes_mellitus:number;
   dc__gender__M__cumulative_diabetes_patients_in_care: number;
   dc__gender__F__cumulative_diabetes_patients_in_care: number;
   dc__gender__M__newly_diagnosed_diabetes: number;
@@ -77,6 +112,12 @@ export type Moh740Data = {
   dc__gender__F__age_range__36_to_60__type_2_diabetes_mellitus: number;
   dc__gender__M__age_range__61_and_above__type_2_diabetes_mellitus: number;
   dc__gender__F__age_range__61_and_above__type_2_diabetes_mellitus: number;
+  dc__gender__M__on_insulin_this_month: number;
+  dc__gender__F__on_insulin_this_month: number;
+  dc__gender__M__on_ogla_meds_this_month: number;
+  dc__gender__F__on_ogla_meds_this_month: number;
+  dc__gender__M__on_both_insulin_and_ogla_meds_this_month: number;
+  dc__gender__F__on_both_insulin_and_ogla_meds_this_month: number;
 };
 
 export type Moh740Resp = {

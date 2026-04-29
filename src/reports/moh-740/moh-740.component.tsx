@@ -11,12 +11,12 @@ import Moh740PatientList from './registers/moh-740-patient-list';
 interface Moh740ReportProps {}
 const Moh740Report: React.FC<Moh740ReportProps> = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [moh740Data, setMoh740Data] = useState<Moh740Data>();
+  const [moh740Data, setMoh740Data] = useState<Moh740Data| null>(null);
   const [view, setView] = useState<string>('report');
   const [selectedIndicator, setSelectedIndicator] = useState<string>();
   const [reportingMonth, setReportingMonth] = useState<string>();
   const session = useSession();
-  const locationUuid = session.sessionLocation.uuid;
+  const locationUuid = session.sessionLocation?.uuid;
   const getMoh740ReportData = async (filters: ReportFilters) => {
     setIsLoading(true);
     try {
@@ -27,7 +27,7 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
       } else {
         setMoh740Data(null);
       }
-    } catch (error) {
+    } catch (error:any) {
       showSnackbar({
         kind: 'error',
         title: 'Error Fetching MOH-740 Report',
@@ -42,7 +42,7 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
     setReportingMonth(lastDay);
     return {
       endDate: lastDay,
-      locationUuid: locationUuid,
+      locationUuid: locationUuid ?? '',
     };
   };
   const handleIndicatorSelected = (selectedIndicator: string) => {
@@ -89,7 +89,7 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                           <td className={styles.darkBorder}>MFL code: __________</td>
                           <td className={styles.darkBorder}>County: ______________</td>
                           <td className={styles.darkBorder}>Sub County: ____________</td>
-                          <td className={styles.darkBorder}>Month/Year: _________</td>
+                          <td className={styles.darkBorder}>Month/Year: {reportingMonth}</td>
                         </tr>
                       </table>
 
@@ -124,7 +124,13 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                                 indicator="dc__gender__F__cumulative_diabetes_patients_in_care"
                               />
                             </td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.cumulative_diabetes_patients_in_care}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="cumulative_diabetes_patients_in_care"
+                              />
+                            </td>
                           </tr>
                           <tr>
                             <td className={styles.darkBorder}>No. of newly diagnosed diabetes cases</td>
@@ -142,7 +148,13 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                                 indicator="dc__gender__F__newly_diagnosed_diabetes"
                               />
                             </td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.newly_diagnosed_diabetes}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="newly_diagnosed_diabetes"
+                              />
+                            </td>
                           </tr>
                           <tr>
                             <td className={styles.darkBorder}>Revisit to clinic/Known DM</td>
@@ -160,7 +172,13 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                                 indicator="dc__gender__F__revisit_to_clinic_known_dm"
                               />
                             </td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.revisit_to_clinic_known_dm}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="revisit_to_clinic_known_dm"
+                              />
+                            </td>
                           </tr>
 
                           <tr className={styles.subHeader}>
@@ -184,7 +202,13 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                                 indicator="dc__gender__F__age_range__0_to_5__type_1_diabetes_mellitus"
                               />
                             </td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                             <DataCell
+                                value={moh740Data.dc__age_range__0_to_5__type_1_diabetes_mellitus}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__age_range__0_to_5__type_1_diabetes_mellitus"
+                              />
+                            </td>
                           </tr>
                           <tr>
                             <td className="darkBorder indent">6-9 years</td>
@@ -202,7 +226,13 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                                 indicator="dc__gender__F__age_range__6_to_9__type_1_diabetes_mellitus"
                               />
                             </td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.dc__age_range__6_to_9__type_1_diabetes_mellitus}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__age_range__6_to_9__type_1_diabetes_mellitus"
+                              />
+                            </td>
                           </tr>
                           <tr>
                             <td className="darkBorder indent">10-19 years</td>
@@ -220,7 +250,13 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                                 indicator="dc__gender__F__age_range__10_to_19__type_1_diabetes_mellitus"
                               />
                             </td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.dc__age_range__10_to_19__type_1_diabetes_mellitus}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__age_range__10_to_19__type_1_diabetes_mellitus"
+                              />
+                            </td>
                           </tr>
                           <tr>
                             <td className="darkBorder indent">20-35 years</td>
@@ -238,7 +274,13 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                                 indicator="dc__gender__F__age_range__20_to_35__type_1_diabetes_mellitus"
                               />
                             </td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.dc__age_range__20_to_35__type_1_diabetes_mellitus}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__age_range__20_to_35__type_1_diabetes_mellitus"
+                              />
+                            </td>
                           </tr>
                           <tr>
                             <td className="darkBorder indent">{'>'} 35 years</td>
@@ -246,17 +288,23 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                               <DataCell
                                 value={moh740Data.dc__gender__M__age_range__36_and_above__type_1_diabetes_mellitus}
                                 indicatorSelected={handleIndicatorSelected}
-                                indicator="dc__gender__M__age_range__35_and_above__type_1_diabetes_mellitus"
+                                indicator="dc__gender__M__age_range__36_and_above__type_1_diabetes_mellitus"
                               />
                             </td>
                             <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data.dc__gender__F__age_range__36_and_above__type_1_diabetes_mellitus}
                                 indicatorSelected={handleIndicatorSelected}
-                                indicator="dc__gender__F__age_range__35_and_above__type_1_diabetes_mellitus"
+                                indicator="dc__gender__F__age_range__36_and_above__type_1_diabetes_mellitus"
                               />
                             </td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.dc__age_range__36_and_above__type_1_diabetes_mellitus}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__age_range__36_and_above__type_1_diabetes_mellitus"
+                              />
+                            </td>
                           </tr>
 
                           <tr className={styles.subHeader}>
@@ -280,7 +328,13 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                                 indicator="dc__gender__F__age_range__0_to_18__type_2_diabetes_mellitus"
                               />
                             </td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.dc__age_range__0_to_18__type_2_diabetes_mellitus}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__age_range__0_to_18__type_2_diabetes_mellitus"
+                              />
+                            </td>
                           </tr>
                           <tr>
                             <td className="darkBorder indent">19-35 years</td>
@@ -298,7 +352,13 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                                 indicator="dc__gender__F__age_range__19_to_35__type_2_diabetes_mellitus"
                               />
                             </td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                               <DataCell
+                                value={moh740Data.dc__age_range__19_to_35__type_2_diabetes_mellitus}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__age_range__19_to_35__type_2_diabetes_mellitus"
+                              />
+                            </td>
                           </tr>
                           <tr>
                             <td className="darkBorder indent">36-60 years</td>
@@ -316,7 +376,13 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                                 indicator="dc__gender__F__age_range__36_to_60__type_2_diabetes_mellitus"
                               />
                             </td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                               <DataCell
+                                value={moh740Data.dc__age_range__36_to_60__type_2_diabetes_mellitus}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__age_range__36_to_60__type_2_diabetes_mellitus"
+                              />
+                            </td>
                           </tr>
                           <tr>
                             <td className="darkBorder indent">{'>'} 60 years</td>
@@ -334,7 +400,13 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                                 indicator="dc__gender__F__age_range__61_and_above__type_2_diabetes_mellitus"
                               />
                             </td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                               <DataCell
+                                value={moh740Data.dc__age_range__61_and_above__type_2_diabetes_mellitus}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__age_range__61_and_above__type_2_diabetes_mellitus"
+                              />
+                            </td>
                           </tr>
 
                           <tr>
@@ -371,7 +443,13 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                                 indicator="dc__gender__F__cumulative_htn_patient"
                               />
                             </td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.cumulative_htn_patient}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="cumulative_htn_patient"
+                              />
+                            </td>
                           </tr>
                           <tr>
                             <td className={styles.darkBorder}>No. of newly diagnosed hypertension cases</td>
@@ -389,7 +467,13 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                                 indicator="dc__gender__F__newly_diagnosed_htn_this_month"
                               />
                             </td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.newly_diagnosed_htn_this_month}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="newly_diagnosed_htn_this_month"
+                              />
+                            </td>
                           </tr>
                           <tr>
                             <td className={styles.darkBorder}>Revisit to clinic/Known HTN</td>
@@ -407,7 +491,13 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                                 indicator="dc__gender__F__revisit_known_htn"
                               />
                             </td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.revisit_known_htn}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="revisit_known_htn"
+                              />
+                            </td>
                           </tr>
 
                           <tr className={styles.subHeader}>
@@ -511,7 +601,13 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                                 indicator="dc__gender__F__is_co_morbid"
                               />
                             </td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.is_co_morbid}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="is_co_morbid"
+                              />
+                            </td>
                           </tr>
                           <tr>
                             <td className={styles.darkBorder}>Newly diagnosed co-morbid with both DM and HTN cases</td>
@@ -529,7 +625,13 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                                 indicator="dc__gender__F__newly_diagnosed_co_morbid_this_month"
                               />
                             </td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                               <DataCell
+                                value={moh740Data.newly_diagnosed_co_morbid_this_month}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="newly_diagnosed_co_morbid_this_month"
+                              />
+                            </td>
                           </tr>
                           <tr>
                             <td className={styles.darkBorder}>Revisit to clinic/Known co-morbid DM and HTN</td>
@@ -547,7 +649,13 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                                 indicator="dc__gender__F__revisit_known_co_morbid"
                               />
                             </td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                               <DataCell
+                                value={moh740Data.revisit_known_co_morbid}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="revisit_known_co_morbid"
+                              />
+                            </td>
                           </tr>
 
                           <tr className={styles.sectionHeader}>
@@ -557,21 +665,75 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                           </tr>
                           <tr>
                             <td className={styles.darkBorder}>No. of patients on insulin</td>
-                            <td className={styles.darkBorder}></td>
-                            <td className={styles.darkBorder}></td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.dc__gender__M__on_insulin_this_month}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__M__on_insulin_this_month"
+                              />
+                            </td>
+                            <td className={styles.darkBorder}>
+                               <DataCell
+                                value={moh740Data.dc__gender__F__on_insulin_this_month}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__F__on_insulin_this_month"
+                              />
+                            </td>
+                            <td className={styles.darkBorder}>
+                               <DataCell
+                                value={moh740Data.on_insulin_this_month}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="on_insulin_this_month"
+                              />
+                            </td>
                           </tr>
                           <tr>
                             <td className={styles.darkBorder}>No. of patients on OGLAs</td>
-                            <td className={styles.darkBorder}></td>
-                            <td className={styles.darkBorder}></td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.dc__gender__M__on_ogla_meds_this_month}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__M__on_ogla_meds_this_month"
+                              />
+                            </td>
+                            <td className={styles.darkBorder}>
+                               <DataCell
+                                value={moh740Data.dc__gender__F__on_ogla_meds_this_month}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__F__on_ogla_meds_this_month"
+                              />
+                            </td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.on_ogla_meds_this_month}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="on_ogla_meds_this_month"
+                              />
+                            </td>
                           </tr>
                           <tr>
                             <td className={styles.darkBorder}>No. of patients on both (Insulin and OGLAs)</td>
-                            <td className={styles.darkBorder}></td>
-                            <td className={styles.darkBorder}></td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.dc__gender__M__on_both_insulin_and_ogla_meds_this_month}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__M__on_both_insulin_and_ogla_meds_this_month"
+                              />
+                            </td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.dc__gender__F__on_both_insulin_and_ogla_meds_this_month}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__F__on_both_insulin_and_ogla_meds_this_month"
+                              />
+                            </td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.on_both_insulin_and_ogla_meds_this_month}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="on_both_insulin_and_ogla_meds_this_month"
+                              />
+                            </td>
                           </tr>
                           <tr>
                             <td className={styles.darkBorder}>
@@ -633,7 +795,13 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                                 indicator="dc__gender__F__stroke_diagnosis"
                               />
                             </td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.stroke_diagnosis}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="stroke_diagnosis"
+                              />
+                            </td>
                           </tr>
                           <tr>
                             <td className="darkBorder indent">Ischemic heart disease</td>
@@ -651,7 +819,13 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                                 indicator="dc__gender__F__ischemic_heart_disease_diagnosis"
                               />
                             </td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.ischemic_heart_disease_diagnosis}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="ischemic_heart_disease_diagnosis"
+                              />
+                            </td>
                           </tr>
                           <tr>
                             <td className="darkBorder indent">Heart failure</td>
@@ -669,7 +843,13 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                                 indicator="dc__gender__F__heart_failure_diagnosis"
                               />
                             </td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.heart_failure_diagnosis}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="heart_failure_diagnosis"
+                              />
+                            </td>
                           </tr>
                           <tr>
                             <td className={styles.darkBorder}>No. of Patients with neuropathies (new diagnosis)</td>
@@ -687,7 +867,13 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                                 indicator="dc__gender__F__has_neuropathies"
                               />
                             </td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.has_neuropathies}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="has_neuropathies"
+                              />
+                            </td>
                           </tr>
 
                           <tr className={styles.sectionHeader}>
@@ -711,7 +897,13 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                                 indicator="dc__gender__F__screened_for_diabetic_foot_this_month"
                               />
                             </td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.screened_for_diabetic_foot_this_month}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="screened_for_diabetic_foot_this_month"
+                              />
+                            </td>
                           </tr>
                           <tr>
                             <td className={styles.darkBorder}>No. of patients with diabetic foot (new diagnosis)</td>
@@ -729,7 +921,13 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                                 indicator="dc__gender__F__has_diabetic_foot"
                               />
                             </td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.has_diabetic_foot}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="has_diabetic_foot"
+                              />
+                            </td>
                           </tr>
                           <tr>
                             <td className={styles.darkBorder}>No. of Amputation due to diabetic foot</td>
@@ -747,7 +945,13 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                                 indicator="dc__gender__F__amputation_due_to_diabetic_foot"
                               />
                             </td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.amputation_due_to_diabetic_foot}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="amputation_due_to_diabetic_foot"
+                              />
+                            </td>
                           </tr>
 
                           <tr className={styles.sectionHeader}>
@@ -783,7 +987,13 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                                 indicator="dc__gender__F__screened_for_tb_this_month"
                               />
                             </td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.screened_for_tb_this_month}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="screened_for_tb_this_month"
+                              />
+                            </td>
                           </tr>
                           <tr>
                             <td className={styles.darkBorder}>No. Screened Positive for Tuberculosis</td>
@@ -796,12 +1006,18 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                             </td>
                             <td className={styles.darkBorder}>
                               <DataCell
-                                value={moh740Data.dc__gender__M__screened_postive_for_tb_this_month}
+                                value={moh740Data.dc__gender__F__screened_postive_for_tb_this_month}
                                 indicatorSelected={handleIndicatorSelected}
-                                indicator="dc__gender__M__screened_postive_for_tb_this_month"
+                                indicator="dc__gender____screened_postive_for_tb_this_month"
                               />
                             </td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.screened_postive_for_tb_this_month}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="screened_postive_for_tb_this_month"
+                              />
+                            </td>
                           </tr>
                           <tr>
                             <td className={styles.darkBorder}>No. enrolled with NHIF</td>
@@ -819,7 +1035,13 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                                 indicator="dc__gender__F__covered_by_shif"
                               />
                             </td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.covered_by_shif}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="covered_by_shif"
+                              />
+                            </td>
                           </tr>
 
                           <tr className={styles.subHeader}>
@@ -869,11 +1091,7 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                       </table>
 
                       <div className={styles.signOff}>
-                        <p>
-                          Compiled by: Name: ___________________________________ Designation:
-                          ___________________________________
-                        </p>
-                        <p>Signature: ___________________________________ Date: ___________________________________</p>
+                       
                       </div>
                     </>
                   ) : (
