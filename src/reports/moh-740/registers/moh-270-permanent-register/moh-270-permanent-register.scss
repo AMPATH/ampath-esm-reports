@@ -1,0 +1,18 @@
+.registerLayout{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px 10px;
+    row-gap: 10px;
+    .registerHeader{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        row-gap: 10px;
+        .pageTitle{
+            width: 100%;
+            justify-content: center;
+            text-align: center;
+        }
+    }
+}
