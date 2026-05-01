@@ -787,21 +787,75 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                             <td className={styles.darkBorder}>
                               No. of patients on diet and exercise only (DM and HTN)
                             </td>
-                            <td className={styles.darkBorder}></td>
-                            <td className={styles.darkBorder}></td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.dc__gender__M__on_exercise_and_diet}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__M__on_exercise_and_diet"
+                              />
+                            </td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.dc__gender__F__on_exercise_and_diet}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__F__on_exercise_and_diet"
+                              />
+                            </td>
+                            <td className={styles.darkBorder}>
+                               <DataCell
+                                value={moh740Data.on_exercise_and_diet}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="on_exercise_and_diet"
+                              />
+                            </td>
                           </tr>
                           <tr>
                             <td className={styles.darkBorder}>No. of patients done HbA1c</td>
-                            <td className={styles.darkBorder}></td>
-                            <td className={styles.darkBorder}></td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                               <DataCell
+                                value={moh740Data.dc__gender__M__done_hba1c_this_month}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__M__done_hba1c_this_month"
+                              />
+                            </td>
+                            <td className={styles.darkBorder}>
+                               <DataCell
+                                value={moh740Data.dc__gender__F__done_hba1c_this_month}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__F__done_hba1c_this_month"
+                              />
+                            </td>
+                            <td className={styles.darkBorder}>
+                               <DataCell
+                                value={moh740Data.done_hba1c_this_month}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="done_hba1c_this_month"
+                              />
+                            </td>
                           </tr>
                           <tr>
                             <td className={styles.darkBorder}>No. that met HbA1c target ({'<'} 7%)</td>
-                            <td className={styles.darkBorder}></td>
-                            <td className={styles.darkBorder}></td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                               <DataCell
+                                value={moh740Data.dc__gender__M__hba1c_less_than_7_percent_this_month}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__M__hba1c_less_than_7_percent_this_month"
+                              />
+                            </td>
+                            <td className={styles.darkBorder}>
+                               <DataCell
+                                value={moh740Data.dc__gender__F__hba1c_less_than_7_percent_this_month}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__F__hba1c_less_than_7_percent_this_month"
+                              />
+                            </td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.hba1c_less_than_7_percent_this_month}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="hba1c_less_than_7_percent_this_month"
+                              />
+                            </td>
                           </tr>
 
                           <tr className={styles.sectionHeader}>

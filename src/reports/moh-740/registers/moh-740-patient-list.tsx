@@ -37,7 +37,7 @@ const Moh740PatientList: React.FC<Moh740PatientListProps> = ({ locationUuid, rep
   if (loading) {
     return <InlineLoading description="Fetching patient list..." />;
   }
-  return <>{patientList && <Moh270DailyRegister moh270PatientList={patientList} />}</>;
+  return <>{patientList && <Moh270DailyRegister indicator={indicators} moh270PatientList={patientList} />}</>;
 };
 
 export default Moh740PatientList;

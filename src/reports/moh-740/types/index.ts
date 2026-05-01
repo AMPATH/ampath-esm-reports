@@ -130,6 +130,15 @@ export type Moh740Data = {
   dc__age_range__20_to_35__has_htn: number;
   dc__age_range__36_to_60__has_htn: number;
   dc__age_range__61_and_above__has_htn: number;
+  done_hba1c_this_month:number;
+  dc__gender__M__done_hba1c_this_month: number;
+  dc__gender__F__done_hba1c_this_month: number;
+  hba1c_less_than_7_percent_this_month:number;
+  dc__gender__M__hba1c_less_than_7_percent_this_month:number;
+  dc__gender__F__hba1c_less_than_7_percent_this_month:number;
+  dc__gender__M__on_exercise_and_diet:number;
+  dc__gender__F__on_exercise_and_diet:number;
+  on_exercise_and_diet:number;
 };
 
 export type Moh740Resp = {
