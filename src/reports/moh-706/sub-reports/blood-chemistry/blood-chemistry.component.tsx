@@ -35,7 +35,7 @@ const BloodChemistry: React.FC<BloodChemistryProps> = ({ data, locationUuids, st
             {
                 tableCells: [
                     getCell("", "2.1 Blood sugar"),
-                    getCell("total_exam"),
+                    getCell("total_blood_sugar"),
                     getCell("min_blood_sugar"),
                     getCell("max_blood_sugar"),
                 ]
