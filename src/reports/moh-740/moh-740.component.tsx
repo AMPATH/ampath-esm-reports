@@ -865,15 +865,51 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                           </tr>
                           <tr>
                             <td className={styles.darkBorder}>No. of patients on antihypertensives</td>
-                            <td className={styles.darkBorder}></td>
-                            <td className={styles.darkBorder}></td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.dc__gender__M__on_antihypertensives_this_month}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__M__on_antihypertensives_this_month"
+                              />
+                            </td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.dc__gender__F__on_antihypertensives_this_month}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__F__on_antihypertensives_this_month"
+                              />
+                            </td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.on_antihypertensives_this_month}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="on_antihypertensives_this_month"
+                              />
+                            </td>
                           </tr>
                           <tr>
                             <td className={styles.darkBorder}>No. with high BP ({'>='} 140/90) at clinic visit</td>
-                            <td className={styles.darkBorder}></td>
-                            <td className={styles.darkBorder}></td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data.dc__gender__M__high_bp}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__M__high_bp"
+                              />
+                            </td>
+                            <td className={styles.darkBorder}>
+                               <DataCell
+                                value={moh740Data.dc__gender__F__high_bp}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__F__high_bp"
+                              />
+                            </td>
+                            <td className={styles.darkBorder}>
+                               <DataCell
+                                value={moh740Data.high_bp}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="high_bp"
+                              />
+                            </td>
                           </tr>
 
                           <tr className={styles.sectionHeader}>
