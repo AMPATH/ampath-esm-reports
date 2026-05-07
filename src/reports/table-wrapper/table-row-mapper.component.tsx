@@ -18,9 +18,10 @@ interface TableRowMapperProps {
     locationUuids?: string,
     startDate?: string,
     endDate?: string
+    report?: string,
 }
 
-const TableRowMapper: React.FC<TableRowMapperProps> = ({ tableRows, data, redirectTo = "home/reports/moh-240", locationUuids, startDate, endDate }) => {
+const TableRowMapper: React.FC<TableRowMapperProps> = ({ tableRows, data, redirectTo = "home/reports/moh-240", locationUuids, startDate, endDate, report = "moh-706" }) => {
     return <>
         {tableRows.map((tR) => (
             <TableRow>
@@ -34,6 +35,7 @@ const TableRowMapper: React.FC<TableRowMapperProps> = ({ tableRows, data, redire
                             if (startDate) params.append('startDate', startDate);
                             if (endDate) params.append('endDate', endDate);
                             if (tC.key) params.append('indicators', tC.key);
+                            params.append('report', report);
                             navigate({ to: `${redirectTo}?${params.toString()}` });
                         }
                     };

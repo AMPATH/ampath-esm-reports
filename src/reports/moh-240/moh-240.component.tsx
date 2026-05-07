@@ -4,6 +4,7 @@ import { Loading } from '@carbon/react';
 import Moh240Register from "./sub-reports/moh-240-register.component";
 import Moh240PageSummary from "./sub-reports/page-summary.component";
 import { getMoh706PatientList } from "../../resources/moh-706.resource";
+import { getMoh505PatientList } from "../../resources/moh-505.resource";
 import MOH240Header from "./moh-240-header.component";
 
 const Moh240Report: React.FC = () => {
@@ -18,18 +19,24 @@ const Moh240Report: React.FC = () => {
         const startDate = searchParams.get('startDate');
         const endDate = searchParams.get('endDate');
         const indicators = searchParams.get('indicators');
+        const report = searchParams.get('report');
 
         if (locationUuids && startDate && endDate && indicators) {
             setIndicator(indicators);
-            fetchPatientList({ locationUuids, startDate, endDate, indicators });
+            fetchPatientList({ locationUuids, startDate, endDate, indicators, report: report || 'moh-706' });
         }
     }, [searchParams]);
 
-    const fetchPatientList = async (params: { locationUuids: string; startDate: string; endDate: string; indicators: string }) => {
+    const fetchPatientList = async (params: { locationUuids: string; startDate: string; endDate: string; indicators: string; report: string }) => {
         setIsLoading(true);
         setErrorMessage('');
         try {
-            const result = await getMoh706PatientList(params);
+            let result;
+            if (params.report === 'moh-505') {
+                result = await getMoh505PatientList(params);
+            } else {
+                result = await getMoh706PatientList(params);
+            }
             setPatientList(result);
         } catch (error: any) {
             setErrorMessage(error instanceof Error ? error.message : String(error));
