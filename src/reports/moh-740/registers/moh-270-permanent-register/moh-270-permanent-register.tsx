@@ -9,8 +9,7 @@ interface Moh270DailyRegisterProps {
 }
 const Moh270DailyRegister: React.FC<Moh270DailyRegisterProps> = ({ moh270PatientList, indicator }) => {
   const pageTitle = useMemo(() => formatIndicatorName(indicator ?? ''), [indicator]);
-
-  ;
+  const reportTitle = 'Permanent Register - MOH 270';
   if (!moh270PatientList) {
     return <>No Data to display</>;
   }
@@ -18,7 +17,8 @@ const Moh270DailyRegister: React.FC<Moh270DailyRegisterProps> = ({ moh270Patient
     <>
       <div className={styles.registerLayout}>
         <div className={styles.registerHeader}>
-          <h4 className={styles.pageTitle}>{pageTitle}</h4>
+          <h4 className={styles.pageTitle}>{reportTitle}</h4>
+          <h6 className={styles.pageTitle}>{pageTitle}</h6>
         </div>
         <div className={styles.content}>
 
@@ -61,7 +61,7 @@ const Moh270DailyRegister: React.FC<Moh270DailyRegisterProps> = ({ moh270Patient
                   <TableCell>{p.landmark}</TableCell>
                   <TableCell>{p.contact_of_the_treatment_supporter_and_relationship ?? ''}</TableCell>
                   <TableCell>{p.diagnosis_at_enrolment ?? ''}</TableCell>
-                  <TableCell>{p.year_of_diagnosis ?? ''}</TableCell>
+                  <TableCell>{p.diagnosis_year ?? ''}</TableCell>
                   <TableCell>{p.complications_at_enrollment ?? ''}</TableCell>
                   <TableCell>{p.covered_by_shif ? 'Y' : 'N'}</TableCell>
                 </TableRow>

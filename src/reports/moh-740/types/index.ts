@@ -168,8 +168,41 @@ export type Moh270Patient = {
   patient_no: string;
   contact_of_the_treatment_supporter_and_relationship: string;
   diagnosis_at_enrolment: string;
-  year_of_diagnosis: string;
+  diagnosis_year: string;
   complications_at_enrollment: string;
+};
+
+export type Moh222Patient = {
+  amrs_universal_id: string;
+  patient_no: string;
+  person_name: string;
+  age:number;
+  birthdate: string;
+  gender: string;
+  visit_for_the_month: string;
+  weight: number;
+  height:number;
+  bmi:number;
+  waist_circumference:number;
+  bp: string;
+  htn: string;
+  diabetes: string;
+  both_htn_and_diabetic: string;
+  rbs:number;
+  fbs:number;
+  hba1c:number;
+  complications_at_enrollment: string;
+  treatment: string;
+  diabetic_foot_screening: string;
+  diabetic_foot: string;
+  foot_risk_assessment: string;
+  footcare_outcome: string;
+  screened_for_tb: string;
+  tbs_status: string;
+  covered_by_shif: string;
+  encounter_date: string;
+  endDate: string;
+  patient_uuid: string;
 };
 
 export type Moh740RegisterDto = {

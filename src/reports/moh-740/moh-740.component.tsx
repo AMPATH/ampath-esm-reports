@@ -8,6 +8,7 @@ import { fetchMoh740Report } from './moh-740.resource';
 import dayjs from 'dayjs';
 import DataCell from './shared/data-cell/data-cell';
 import Moh740PatientList from './registers/moh-740-patient-list';
+import { getRegisterByIndicator, Moh740Rgisters } from './shared/utils/indicator-register-map';
 interface Moh740ReportProps {}
 const Moh740Report: React.FC<Moh740ReportProps> = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -15,6 +16,7 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
   const [view, setView] = useState<string>('report');
   const [selectedIndicator, setSelectedIndicator] = useState<string>();
   const [reportingMonth, setReportingMonth] = useState<string>();
+  const [registerType,setRegisterType] = useState<string>('');
   const session = useSession();
   const locationUuid = session.sessionLocation?.uuid;
   const getMoh740ReportData = async (filters: ReportFilters) => {
@@ -47,6 +49,8 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
   };
   const handleIndicatorSelected = (selectedIndicator: string) => {
     setSelectedIndicator(selectedIndicator);
+    const selectedRegister = getRegisterByIndicator(selectedIndicator as any);
+    setRegisterType(selectedRegister);
     setView('register');
   };
   const handleBackToReport = () => {
@@ -1242,16 +1246,20 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
         ) : (
           <></>
         )}
-        {view === 'register' ? (
+        {view === 'register'  && locationUuid && reportingMonth && selectedIndicator && registerType ? (
           <>
             <Button kind="primary" onClick={handleBackToReport}>
               Back to report
             </Button>
-            <Moh740PatientList
+
+               <Moh740PatientList
               locationUuid={locationUuid}
               reportingMonth={reportingMonth}
               indicators={selectedIndicator}
+              register={registerType}
             />
+            
+            
           </>
         ) : (
           <></>
