@@ -9,6 +9,7 @@
       "name": "ampath-reports-dashboard-link",
       "component": "reportsDashboardLink",
       "slot": "homepage-dashboard-slot",
+      "privileges": ["O3 View Reports Dashboard"],
       "meta": {
         "name": "reports",
         "slot": "ampath-reports-dashboard-slot",
@@ -20,7 +21,8 @@
     {
       "component": "root",
       "name": "ampath-reports-dashboard-root",
-      "slot": "ampath-reports-dashboard-slot"
+      "slot": "ampath-reports-dashboard-slot",
+      "privileges": ["O3 View Reports Dashboard"]
     }
   ],
   "pages": []
