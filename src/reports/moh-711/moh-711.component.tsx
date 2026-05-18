@@ -104,9 +104,30 @@ const Moh711Report: React.FC = () => {
           </p>
         </div>
       )}
-      <h5>
-        INTEGRATED PROGRAM SUMMARY REPORT FORM: REPRODUCTIVE AND CHILD HEALTH, MEDICAL AND REHABILITATION SERVICES
-      </h5>
+      <div className={styles.headerContainer}>
+        <div className={styles.mainTitleBox}>
+          <h5>
+            INTEGRATED PROGRAM SUMMARY REPORT FORM: REPRODUCTIVE AND CHILD HEALTH, MEDICAL AND REHABILITATION SERVICES
+          </h5>
+          <div className={styles.locationContainer}>
+            <span>
+              Facility Name: <span className={styles.line}></span>
+            </span>
+            <span>
+              County: <span className={styles.line}></span>
+            </span>
+            <span>
+              Sub County: <span className={styles.line}></span>
+            </span>
+            <span>
+              Month: <span className={styles.shortLine}></span>
+            </span>
+            <span>
+              Year: <span className={styles.shortLine}></span>
+            </span>
+          </div>
+        </div>
+      </div>
       <div className={styles.container}>
         <div className={styles.left}>
           <ANCComponent moh711Data={moh711Data} startDate={startDate} endDate={endDate} locationUuids={locationUuid!} />
