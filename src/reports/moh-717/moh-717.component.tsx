@@ -101,28 +101,33 @@ const Moh717Report: React.FC = () => {
           </p>
         </div>
       )}
-      <h3>Monthly Service Workload Report for Health Facilities</h3>
-      <div className={styles.location}>
-        <span>
-          County: <span className={styles.shortLine}></span>
-        </span>
-        <span>
-          Sub-County: <span className={styles.shortLine}></span>
-        </span>
-        <span>
-          Health Facility: <span className={styles.shortLine}></span>
-        </span>
-      </div>
-      <div className={styles.location}>
-        <span>
-          Month: <span className={styles.shortLine}></span>
-        </span>
-        <span>
-          Year: <span className={styles.shortLine}></span>
-        </span>
-        <span>
-          KMHFL Code: <span className={styles.shortLine}></span>
-        </span>
+      <div className={styles.headerContainer}>
+        <div className={styles.mainTitleBox}>
+          <h2 className={styles.mainTitle}>Ministry of Health</h2>
+          <h3 className={styles.subTitle}>Monthly Service Workload Report for Health Facilities</h3>
+          <div className={styles.locationContainer}>
+            <span>
+              County: <span className={styles.shortLine}></span>
+            </span>
+            <span>
+              Sub-County: <span className={styles.shortLine}></span>
+            </span>
+            <span>
+              Health Facility: <span className={styles.shortLine}></span>
+            </span>
+          </div>
+          <div className={styles.locationContainer}>
+            <span>
+              Month: <span className={styles.shortLine}></span>
+            </span>
+            <span>
+              Year: <span className={styles.shortLine}></span>
+            </span>
+            <span>
+              KMHFL Code: <span className={styles.shortLine}></span>
+            </span>
+          </div>
+        </div>
       </div>
       <div className={styles.container}>
         <div className={styles.section}>

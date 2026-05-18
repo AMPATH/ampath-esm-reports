@@ -1,0 +1,45 @@
+
+.table {
+  border: 2px solid #000;
+  margin: 2rem;
+}
+
+.tableBordered td,
+.tableBordered th {
+  border: 2px solid black;
+  padding: 1rem;
+  font-size: small;
+}
+
+.verticalText {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.center {
+  vertical-align: middle;
+  font-weight: bold;
+  text-align: center;
+}
+.textCentre {
+    text-align: center;
+}
+
+.container {
+  display: flex;
+  font-weight: bold;
+  justify-content: space-between;
+  margin: 2rem;
+}
+
+.bold {
+  font-weight: bolder;
+}
+
+.right {
+  text-align: right;
+}
+
+.buttonContainer {
+  margin: 2rem;
+}

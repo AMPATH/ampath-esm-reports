@@ -19,9 +19,15 @@ const HivTestingandPreExposusreProphylaxis: React.FC<HivTestingandPreExposusrePr
 }) => {
   const navigate = useNavigate();
 
-  const navigateToRegister = (indicator: string) => {
+  const navigateToRegister = (indicator: string, gender: string) => {
     navigate(
-      `/moh-366-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}`,
+      `/moh-366-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}&gender=${gender}`,
+    );
+  };
+
+  const navigateToPrepRegister = (indicator: string, gender: string) => {
+    navigate(
+      `/prep-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}&gender=${gender}`,
     );
   };
   return (
@@ -45,14 +51,14 @@ const HivTestingandPreExposusreProphylaxis: React.FC<HivTestingandPreExposusrePr
               <td>Tests</td>
               <td className={styles.textBox}>
                 <span>HV01-01</span>
-                <div onClick={() => navigateToRegister('hiv_male')} className={styles.rectangle}>
+                <div onClick={() => navigateToRegister('hiv_male', 'M')} className={styles.rectangle}>
                   {MOH731Data.hiv_male}
                 </div>
               </td>
               <td>
                 <div className={classNames(styles.textBox, styles.textBox2)}>
                   <span>HV01-02</span>
-                  <div onClick={() => navigateToRegister('hiv_female')} className={styles.rectangle}>
+                  <div onClick={() => navigateToRegister('hiv_female', 'F')} className={styles.rectangle}>
                     {MOH731Data.hiv_female}
                   </div>
                 </div>
@@ -62,7 +68,7 @@ const HivTestingandPreExposusreProphylaxis: React.FC<HivTestingandPreExposusrePr
               <td>Tests_Facility</td>
               <td className={styles.textBox}>
                 <span>HV01-03</span>
-                <div onClick={() => navigateToRegister('hiv_setting_facility')} className={styles.rectangle}>
+                <div onClick={() => navigateToRegister('hiv_setting_facility', '')} className={styles.rectangle}>
                   {MOH731Data.hiv_setting_facility}
                 </div>
               </td>
@@ -71,7 +77,7 @@ const HivTestingandPreExposusreProphylaxis: React.FC<HivTestingandPreExposusrePr
               <td>Tests_Community</td>
               <td className={styles.textBox}>
                 <span>HV01-04</span>
-                <div onClick={() => navigateToRegister('hiv_setting_community')} className={styles.rectangle}>
+                <div onClick={() => navigateToRegister('hiv_setting_community', '')} className={styles.rectangle}>
                   {MOH731Data.hiv_setting_community}
                 </div>
               </td>
@@ -80,7 +86,7 @@ const HivTestingandPreExposusreProphylaxis: React.FC<HivTestingandPreExposusrePr
               <td>Tested KVP</td>
               <td className={styles.textBox}>
                 <span>HV01-05</span>
-                <div onClick={() => navigateToRegister('hiv_setting_kvp')} className={styles.rectangle}>
+                <div onClick={() => navigateToRegister('hiv_setting_kvp', '')} className={styles.rectangle}>
                   {MOH731Data.hiv_setting_kvp}
                 </div>
               </td>
@@ -102,14 +108,20 @@ const HivTestingandPreExposusreProphylaxis: React.FC<HivTestingandPreExposusrePr
               <td>General popn</td>
               <td className={styles.textBox}>
                 <span>HV01-19</span>
-                <div onClick={() => navigateToRegister('prep_new_male_general_pop')} className={styles.rectangle}>
+                <div
+                  onClick={() => navigateToPrepRegister('prep_new_male_general_pop', 'M')}
+                  className={styles.rectangle}
+                >
                   {MOH731Data.prep_new_male_general_pop}
                 </div>
               </td>
               <td>
                 <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                   <span>HV01-20</span>
-                  <div onClick={() => navigateToRegister('prep_new_female_general_pop')} className={styles.rectangle}>
+                  <div
+                    onClick={() => navigateToPrepRegister('prep_new_female_general_pop', 'F')}
+                    className={styles.rectangle}
+                  >
                     {MOH731Data.prep_new_female_general_pop}
                   </div>
                 </div>
@@ -119,7 +131,7 @@ const HivTestingandPreExposusreProphylaxis: React.FC<HivTestingandPreExposusrePr
               <td>MSM/MSW</td>
               <td className={styles.textBox}>
                 <span>HV01-21</span>
-                <div onClick={() => navigateToRegister('prep_new_msm')} className={styles.rectangle}>
+                <div onClick={() => navigateToPrepRegister('prep_new_msm', 'M')} className={styles.rectangle}>
                   {MOH731Data.prep_new_msm}
                 </div>
               </td>
@@ -131,7 +143,7 @@ const HivTestingandPreExposusreProphylaxis: React.FC<HivTestingandPreExposusrePr
               <td>
                 <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                   <span>HV01-22</span>
-                  <div onClick={() => navigateToRegister('prep_new_fsw')} className={styles.rectangle}>
+                  <div onClick={() => navigateToPrepRegister('prep_new_fsw', 'F')} className={styles.rectangle}>
                     {MOH731Data.prep_new_fsw}
                   </div>
                 </div>
@@ -141,14 +153,14 @@ const HivTestingandPreExposusreProphylaxis: React.FC<HivTestingandPreExposusrePr
               <td>PWID/PWUD</td>
               <td className={styles.textBox}>
                 <span>HV01-23</span>
-                <div onClick={() => navigateToRegister('prep_new_pwud_male')} className={styles.rectangle}>
+                <div onClick={() => navigateToPrepRegister('prep_new_pwud_male', 'M')} className={styles.rectangle}>
                   {MOH731Data.prep_new_pwud_male}
                 </div>
               </td>
               <td>
                 <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                   <span>HV01-24</span>
-                  <div onClick={() => navigateToRegister('prep_new_pwud_female')} className={styles.rectangle}>
+                  <div onClick={() => navigateToPrepRegister('prep_new_pwud_female', 'F')} className={styles.rectangle}>
                     {MOH731Data.prep_new_pwud_female}
                   </div>
                 </div>
@@ -158,14 +170,20 @@ const HivTestingandPreExposusreProphylaxis: React.FC<HivTestingandPreExposusrePr
               <td>Discordant Couple</td>
               <td className={styles.textBox}>
                 <span>HV01-25</span>
-                <div onClick={() => navigateToRegister('prep_new_discordant_male')} className={styles.rectangle}>
+                <div
+                  onClick={() => navigateToPrepRegister('prep_new_discordant_male', 'M')}
+                  className={styles.rectangle}
+                >
                   {MOH731Data.prep_new_discordant_male}
                 </div>
               </td>
               <td>
                 <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                   <span>HV01-26</span>
-                  <div onClick={() => navigateToRegister('prep_new_discordant_female')} className={styles.rectangle}>
+                  <div
+                    onClick={() => navigateToPrepRegister('prep_new_discordant_female', 'F')}
+                    className={styles.rectangle}
+                  >
                     {MOH731Data.prep_new_discordant_female}
                   </div>
                 </div>
@@ -175,14 +193,20 @@ const HivTestingandPreExposusreProphylaxis: React.FC<HivTestingandPreExposusrePr
               <td>Vulnerable Pop.</td>
               <td className={styles.textBox}>
                 <span>HV01-27</span>
-                <div onClick={() => navigateToRegister('prep_new_vulnerable_male')} className={styles.rectangle}>
+                <div
+                  onClick={() => navigateToPrepRegister('prep_new_vulnerable_male', 'M')}
+                  className={styles.rectangle}
+                >
                   {MOH731Data.prep_new_vulnerable_male}
                 </div>
               </td>
               <td>
                 <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                   <span>HV01-28</span>
-                  <div onClick={() => navigateToRegister('prep_new_vulnerable_female')} className={styles.rectangle}>
+                  <div
+                    onClick={() => navigateToPrepRegister('prep_new_vulnerable_female', 'F')}
+                    className={styles.rectangle}
+                  >
                     {MOH731Data.prep_new_vulnerable_female}
                   </div>
                 </div>
@@ -192,14 +216,14 @@ const HivTestingandPreExposusreProphylaxis: React.FC<HivTestingandPreExposusrePr
               <td>AYP (10-24yrs)</td>
               <td className={styles.textBox}>
                 <span>HV01-29</span>
-                <div onClick={() => navigateToRegister('prep_new_ayp')} className={styles.rectangle}>
+                <div onClick={() => navigateToPrepRegister('prep_new_ayp', 'F')} className={styles.rectangle}>
                   {MOH731Data.prep_new_ayp}
                 </div>
               </td>
               <td>
                 <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                   <span>HV01-30</span>
-                  <div onClick={() => navigateToRegister('prep_new_ayp')} className={styles.rectangle}>
+                  <div onClick={() => navigateToPrepRegister('prep_new_ayp', 'F')} className={styles.rectangle}>
                     {MOH731Data.prep_new_ayp}
                   </div>
                 </div>
@@ -211,7 +235,10 @@ const HivTestingandPreExposusreProphylaxis: React.FC<HivTestingandPreExposusrePr
               <td>
                 <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                   <span>HV01-31</span>
-                  <div onClick={() => navigateToRegister('prep_new_preg_breastfeeding')} className={styles.rectangle}>
+                  <div
+                    onClick={() => navigateToPrepRegister('prep_new_preg_breastfeeding', 'F')}
+                    className={styles.rectangle}
+                  >
                     {MOH731Data.prep_new_preg_breastfeeding}
                   </div>
                 </div>
@@ -234,14 +261,14 @@ const HivTestingandPreExposusreProphylaxis: React.FC<HivTestingandPreExposusrePr
               <td>HIV Positive</td>
               <td className={styles.textBox}>
                 <span>HV01-45</span>
-                <div onClick={() => navigateToRegister('seroconverted_male')} className={styles.rectangle}>
+                <div onClick={() => navigateToPrepRegister('seroconverted_male', 'M')} className={styles.rectangle}>
                   {MOH731Data.seroconverted_male}
                 </div>
               </td>
               <td>
                 <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                   <span>HV01-46</span>
-                  <div onClick={() => navigateToRegister('seroconverted_female')} className={styles.rectangle}>
+                  <div onClick={() => navigateToPrepRegister('seroconverted_female', 'F')} className={styles.rectangle}>
                     {MOH731Data.seroconverted_female}
                   </div>
                 </div>
@@ -266,14 +293,14 @@ const HivTestingandPreExposusreProphylaxis: React.FC<HivTestingandPreExposusrePr
               <td>Positive_2-9</td>
               <td className={styles.textBox}>
                 <span>HV01-06</span>
-                <div onClick={() => navigateToRegister('male_2_9')} className={styles.rectangle}>
+                <div onClick={() => navigateToRegister('male_2_9', 'M')} className={styles.rectangle}>
                   {MOH731Data.male_2_9}
                 </div>
               </td>
               <td>
                 <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                   <span>HV01-07</span>
-                  <div onClick={() => navigateToRegister('female_2_9')} className={styles.rectangle}>
+                  <div onClick={() => navigateToRegister('female_2_9', 'F')} className={styles.rectangle}>
                     {MOH731Data.female_2_9}
                   </div>
                 </div>
@@ -283,14 +310,14 @@ const HivTestingandPreExposusreProphylaxis: React.FC<HivTestingandPreExposusrePr
               <td>Positive_10-14</td>
               <td className={styles.textBox}>
                 <span>HV01-08</span>
-                <div onClick={() => navigateToRegister('male_10_14')} className={styles.rectangle}>
+                <div onClick={() => navigateToRegister('male_10_14', 'M')} className={styles.rectangle}>
                   {MOH731Data.male_10_14}
                 </div>
               </td>
               <td>
                 <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                   <span>HV01-09</span>
-                  <div onClick={() => navigateToRegister('female_10_14')} className={styles.rectangle}>
+                  <div onClick={() => navigateToRegister('female_10_14', 'F')} className={styles.rectangle}>
                     {MOH731Data.female_10_14}
                   </div>
                 </div>
@@ -300,14 +327,14 @@ const HivTestingandPreExposusreProphylaxis: React.FC<HivTestingandPreExposusrePr
               <td>Positive_15-19</td>
               <td className={styles.textBox}>
                 <span>HV01-10</span>
-                <div onClick={() => navigateToRegister('male_15_19')} className={styles.rectangle}>
+                <div onClick={() => navigateToRegister('male_15_19', 'M')} className={styles.rectangle}>
                   {MOH731Data.male_15_19}
                 </div>
               </td>
               <td>
                 <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                   <span>HV01-11</span>
-                  <div onClick={() => navigateToRegister('female_15_19')} className={styles.rectangle}>
+                  <div onClick={() => navigateToRegister('female_15_19', 'F')} className={styles.rectangle}>
                     {MOH731Data.female_15_19}
                   </div>
                 </div>
@@ -317,14 +344,14 @@ const HivTestingandPreExposusreProphylaxis: React.FC<HivTestingandPreExposusrePr
               <td>Positive_20-24</td>
               <td className={styles.textBox}>
                 <span>HV01-12</span>
-                <div onClick={() => navigateToRegister('male_20_24')} className={styles.rectangle}>
+                <div onClick={() => navigateToRegister('male_20_24', 'M')} className={styles.rectangle}>
                   {MOH731Data.male_20_24}
                 </div>
               </td>
               <td>
                 <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                   <span>HV01-13</span>
-                  <div onClick={() => navigateToRegister('female_20_24')} className={styles.rectangle}>
+                  <div onClick={() => navigateToRegister('female_20_24', 'F')} className={styles.rectangle}>
                     {MOH731Data.female_20_24}
                   </div>
                 </div>
@@ -334,14 +361,14 @@ const HivTestingandPreExposusreProphylaxis: React.FC<HivTestingandPreExposusrePr
               <td>Positive_25+</td>
               <td className={styles.textBox}>
                 <span>HV01-14</span>
-                <div onClick={() => navigateToRegister('male_25_above')} className={styles.rectangle}>
+                <div onClick={() => navigateToRegister('male_25_above', 'M')} className={styles.rectangle}>
                   {MOH731Data.male_25_above}
                 </div>
               </td>
               <td>
                 <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                   <span>HV01-15</span>
-                  <div onClick={() => navigateToRegister('female_25_above')} className={styles.rectangle}>
+                  <div onClick={() => navigateToRegister('female_25_above', 'F')} className={styles.rectangle}>
                     {MOH731Data.female_25_above}
                   </div>
                 </div>
@@ -397,14 +424,20 @@ const HivTestingandPreExposusreProphylaxis: React.FC<HivTestingandPreExposusrePr
               <td>General popn</td>
               <td className={styles.textBox}>
                 <span>HV01-32</span>
-                <div onClick={() => navigateToRegister('prep_sti_male_general_pop')} className={styles.rectangle}>
+                <div
+                  onClick={() => navigateToPrepRegister('prep_sti_male_general_pop', 'M')}
+                  className={styles.rectangle}
+                >
                   {MOH731Data.prep_sti_male_general_pop}
                 </div>
               </td>
               <td>
                 <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                   <span>HV01-33</span>
-                  <div onClick={() => navigateToRegister('prep_sti_female_general_pop')} className={styles.rectangle}>
+                  <div
+                    onClick={() => navigateToPrepRegister('prep_sti_female_general_pop', 'F')}
+                    className={styles.rectangle}
+                  >
                     {MOH731Data.prep_sti_female_general_pop}
                   </div>
                 </div>
@@ -414,7 +447,7 @@ const HivTestingandPreExposusreProphylaxis: React.FC<HivTestingandPreExposusrePr
               <td>MSM/MSW</td>
               <td className={styles.textBox}>
                 <span>HV01-34</span>
-                <div onClick={() => navigateToRegister('prep_sti_msm')} className={styles.rectangle}>
+                <div onClick={() => navigateToPrepRegister('prep_sti_msm', 'M')} className={styles.rectangle}>
                   {MOH731Data.prep_sti_msm}
                 </div>
               </td>
@@ -424,7 +457,7 @@ const HivTestingandPreExposusreProphylaxis: React.FC<HivTestingandPreExposusrePr
               <td>FSW</td>
               <td className={styles.textBox}>
                 <span>HV01-35</span>
-                <div onClick={() => navigateToRegister('prep_sti_fsw')} className={styles.rectangle}>
+                <div onClick={() => navigateToPrepRegister('prep_sti_fsw', 'F')} className={styles.rectangle}>
                   {MOH731Data.prep_sti_fsw}
                 </div>
               </td>
@@ -434,14 +467,14 @@ const HivTestingandPreExposusreProphylaxis: React.FC<HivTestingandPreExposusrePr
               <td>PWID/PWUD</td>
               <td className={styles.textBox}>
                 <span>HV01-36</span>
-                <div onClick={() => navigateToRegister('prep_sti_pwud_male')} className={styles.rectangle}>
+                <div onClick={() => navigateToPrepRegister('prep_sti_pwud_male', 'M')} className={styles.rectangle}>
                   {MOH731Data.prep_sti_pwud_male}
                 </div>
               </td>
               <td>
                 <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                   <span>HV01-37</span>
-                  <div onClick={() => navigateToRegister('prep_sti_pwud_female')} className={styles.rectangle}>
+                  <div onClick={() => navigateToPrepRegister('prep_sti_pwud_female', 'F')} className={styles.rectangle}>
                     {MOH731Data.prep_sti_pwud_female}
                   </div>
                 </div>
@@ -451,14 +484,20 @@ const HivTestingandPreExposusreProphylaxis: React.FC<HivTestingandPreExposusrePr
               <td>Discordant Couple</td>
               <td className={styles.textBox}>
                 <span>HV01-38</span>
-                <div onClick={() => navigateToRegister('prep_sti_discordant_male')} className={styles.rectangle}>
+                <div
+                  onClick={() => navigateToPrepRegister('prep_sti_discordant_male', 'M')}
+                  className={styles.rectangle}
+                >
                   {MOH731Data.prep_sti_discordant_male}
                 </div>
               </td>
               <td>
                 <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                   <span>HV01-39</span>
-                  <div onClick={() => navigateToRegister('prep_sti_discordant_female')} className={styles.rectangle}>
+                  <div
+                    onClick={() => navigateToPrepRegister('prep_sti_discordant_female', 'F')}
+                    className={styles.rectangle}
+                  >
                     {MOH731Data.prep_sti_discordant_female}
                   </div>
                 </div>
@@ -468,14 +507,20 @@ const HivTestingandPreExposusreProphylaxis: React.FC<HivTestingandPreExposusrePr
               <td>Vulnerable Pop.</td>
               <td className={styles.textBox}>
                 <span>HV01-40</span>
-                <div onClick={() => navigateToRegister('prep_sti_vulnerable_male')} className={styles.rectangle}>
+                <div
+                  onClick={() => navigateToPrepRegister('prep_sti_vulnerable_male', 'M')}
+                  className={styles.rectangle}
+                >
                   {MOH731Data.prep_sti_vulnerable_male}
                 </div>
               </td>
               <td>
                 <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                   <span>HV01-41</span>
-                  <div onClick={() => navigateToRegister('prep_sti_vulnerable_female')} className={styles.rectangle}>
+                  <div
+                    onClick={() => navigateToPrepRegister('prep_sti_vulnerable_female', 'F')}
+                    className={styles.rectangle}
+                  >
                     {MOH731Data.prep_sti_vulnerable_female}
                   </div>
                 </div>
@@ -485,14 +530,14 @@ const HivTestingandPreExposusreProphylaxis: React.FC<HivTestingandPreExposusrePr
               <td>AYP(10-24 yrs)</td>
               <td className={styles.textBox}>
                 <span>HV01-42</span>
-                <div onClick={() => navigateToRegister('prep_sti_ayp')} className={styles.rectangle}>
+                <div onClick={() => navigateToPrepRegister('prep_sti_ayp', 'F')} className={styles.rectangle}>
                   {MOH731Data.prep_sti_ayp}
                 </div>
               </td>
               <td>
                 <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                   <span>HV01-43</span>
-                  <div onClick={() => navigateToRegister('prep_sti_ayp')} className={styles.rectangle}>
+                  <div onClick={() => navigateToPrepRegister('prep_sti_ayp', 'F')} className={styles.rectangle}>
                     {MOH731Data.prep_sti_ayp}
                   </div>
                 </div>
@@ -504,7 +549,10 @@ const HivTestingandPreExposusreProphylaxis: React.FC<HivTestingandPreExposusrePr
               <td>
                 <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                   <span>HV01-44</span>
-                  <div onClick={() => navigateToRegister('prep_sti_preg_breastfeeding')} className={styles.rectangle}>
+                  <div
+                    onClick={() => navigateToPrepRegister('prep_sti_preg_breastfeeding', 'F')}
+                    className={styles.rectangle}
+                  >
                     {MOH731Data.prep_sti_preg_breastfeeding}
                   </div>
                 </div>

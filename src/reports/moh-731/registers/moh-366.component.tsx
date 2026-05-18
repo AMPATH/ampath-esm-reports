@@ -18,10 +18,11 @@ const Moh366Register: React.FC<Moh366RegisterProps> = () => {
   const endDate = searchParams.get('endDate');
   const locationUuids = searchParams.get('locationUuids');
   const indicator = searchParams.get('indicator');
+  const gender = searchParams.get('gender');
 
   useEffect(() => {
     const fetchData = async () => {
-      if (!startDate || !endDate || !locationUuids || !indicator) return;
+      if (!startDate || !endDate || !locationUuids || !indicator || gender === null) return;
 
       setIsLoading(true);
 
@@ -31,6 +32,7 @@ const Moh366Register: React.FC<Moh366RegisterProps> = () => {
           endDate,
           locationUuids,
           indicator,
+          gender,
         };
 
         const data = await getMoh366PatientList(params);
@@ -44,7 +46,7 @@ const Moh366Register: React.FC<Moh366RegisterProps> = () => {
     };
 
     fetchData();
-  }, [startDate, endDate, locationUuids, indicator]);
+  }, [startDate, endDate, locationUuids, indicator, gender]);
 
   function navigateBack() {
     navigate('/moh-731');
