@@ -42,8 +42,8 @@ const PmtctComponent: React.FC<PmtctComponentProps> = ({ MOH731Data, startDate, 
               </tr>
               <tr>
                 <td></td>
-                <td>Initial</td>
-                <td style={{ paddingLeft: '60px' }}>Retest</td>
+                <td style={{ fontWeight: 'bold' }}>Initial</td>
+                <td style={{ paddingLeft: '60px', fontWeight: 'bold' }}>Retest</td>
               </tr>
               <tr>
                 <td>Tested at ANC</td>

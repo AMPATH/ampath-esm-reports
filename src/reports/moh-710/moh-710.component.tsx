@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ReportFiltersComponent from '../../common/report-filters/report-filters.component';
 
@@ -11,12 +11,31 @@ import { type ReportFilters } from '../moh-705a/type';
 
 const Moh710Report: React.FC = () => {
   let errorMessage: string = '';
-  const [moh710Data, setMoh710Data] = useState<any>([]);
+  const [moh710Data, setMoh710Data] = useState<any>(() => {
+    const saved = sessionStorage.getItem('moh710Data');
+    return saved ? JSON.parse(saved) : [];
+  });
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  const [startDate, setStartDate] = useState<string>('');
-  const [endDate, setEndDate] = useState<string>('');
+  const [startDate, setStartDate] = useState<string>(() => {
+    return sessionStorage.getItem('moh710StartDate') || '';
+  });
+
+  const [endDate, setEndDate] = useState<string>(() => {
+    return sessionStorage.getItem('moh710EndDate') || '';
+  });
+  useEffect(() => {
+    sessionStorage.setItem('moh710Data', JSON.stringify(moh710Data));
+  }, [moh710Data]);
+
+  useEffect(() => {
+    sessionStorage.setItem('moh710StartDate', startDate);
+  }, [startDate]);
+
+  useEffect(() => {
+    sessionStorage.setItem('moh710EndDate', endDate);
+  }, [endDate]);
 
   const session = useSession();
   const locationUuids = session?.sessionLocation?.uuid;

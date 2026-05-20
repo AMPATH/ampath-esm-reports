@@ -236,7 +236,7 @@ const Moh366Register: React.FC<Moh366RegisterProps> = () => {
                 <td rowSpan={2}>{a + 1}</td>
 
                 <td colSpan={2} rowSpan={2}>
-                  {data.date}
+                  {new Date(data.date).toLocaleDateString('en-GB')}
                 </td>
 
                 <td colSpan={2} rowSpan={2}>
