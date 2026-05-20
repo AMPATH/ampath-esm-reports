@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import styles from './moh-731.scss';
 import ReportFiltersComponent from '../../common/report-filters/report-filters.component';
@@ -15,10 +15,29 @@ import { Loading } from '@carbon/react';
 interface Moh731Props {}
 
 const Moh731Report: React.FC<Moh731Props> = () => {
-  const [moh731Data, setMoh731Data] = useState<any>([]);
+  const [moh731Data, setMoh731Data] = useState<any>(() => {
+    const saved = sessionStorage.getItem('moh731Data');
+    return saved ? JSON.parse(saved) : [];
+  });
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [startDate, setStartDate] = useState<string>('');
-  const [endDate, setEndDate] = useState<string>('');
+  const [startDate, setStartDate] = useState<string>(() => {
+    return sessionStorage.getItem('moh731StartDate') || '';
+  });
+
+  const [endDate, setEndDate] = useState<string>(() => {
+    return sessionStorage.getItem('moh731EndDate') || '';
+  });
+  useEffect(() => {
+    sessionStorage.setItem('moh731Data', JSON.stringify(moh731Data));
+  }, [moh731Data]);
+
+  useEffect(() => {
+    sessionStorage.setItem('moh731StartDate', startDate);
+  }, [startDate]);
+
+  useEffect(() => {
+    sessionStorage.setItem('moh731EndDate', endDate);
+  }, [endDate]);
   const [errorMessage, setErrorMessage] = useState<any>();
 
   const session = useSession();

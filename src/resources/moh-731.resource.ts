@@ -67,7 +67,7 @@ export async function getMoh366PatientList(params: Moh745Params): Promise<any> {
 
 export async function getPrepPatientList(params: Moh745Params): Promise<any> {
   const etlBaseUrl = await getEtlBaseUrl();
-  const url = `http://localhost:8002/prep-patient-list`;
+  const url = `${etlBaseUrl}/prep-patient-list`;
   const queryparams = {
     locationUuids: params.locationUuids || '',
     startDate: params.startDate || '',

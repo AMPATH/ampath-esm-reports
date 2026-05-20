@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReportFiltersComponent from '../../common/report-filters/report-filters.component';
 
 import styles from './moh711.scss';
@@ -24,10 +24,29 @@ import { type ReportFilters } from '../moh-705a/type';
 
 const Moh711Report: React.FC = () => {
   let errorMessage: string = '';
-  const [moh711Data, setMoh711Data] = useState<any>([]);
+  const [moh711Data, setMoh711Data] = useState<any>(() => {
+    const saved = sessionStorage.getItem('moh711Data');
+    return saved ? JSON.parse(saved) : [];
+  });
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [startDate, setStartDate] = useState<string>('');
-  const [endDate, setEndDate] = useState<string>('');
+  const [startDate, setStartDate] = useState<string>(() => {
+    return sessionStorage.getItem('moh711StartDate') || '';
+  });
+
+  const [endDate, setEndDate] = useState<string>(() => {
+    return sessionStorage.getItem('moh711EndDate') || '';
+  });
+  useEffect(() => {
+    sessionStorage.setItem('moh711Data', JSON.stringify(moh711Data));
+  }, [moh711Data]);
+
+  useEffect(() => {
+    sessionStorage.setItem('moh711StartDate', startDate);
+  }, [startDate]);
+
+  useEffect(() => {
+    sessionStorage.setItem('moh711EndDate', endDate);
+  }, [endDate]);
 
   const session = useSession();
   const locationUuid = session?.sessionLocation?.uuid;
