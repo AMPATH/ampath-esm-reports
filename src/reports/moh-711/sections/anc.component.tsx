@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from '../moh711.scss';
 import classNames from 'classnames';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface ANCComponentProps {
   moh711Data: any;
@@ -13,10 +13,16 @@ interface ANCComponentProps {
 
 const ANCComponent: React.FC<ANCComponentProps> = ({ moh711Data, startDate, endDate, locationUuids }) => {
   const navigate = useNavigate();
-
+  const location = useLocation();
   const navigateToRegister = (indicator: string) => {
     navigate(
       `/moh-405-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}`,
+      {
+        state: {
+          from: location.pathname,
+          reportName: 'moh711Report',
+        },
+      },
     );
   };
   return (

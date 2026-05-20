@@ -55,9 +55,9 @@ export const moh511Columns = [
   'county_sub_county',
   'village_estate_landmark',
   'phone_number',
-  'height',
   'weight_kg',
   'weight_category',
+  'height',
   'height_category',
   'muac',
   'exclusive_breastfeeding_less_6_months',
@@ -72,6 +72,7 @@ export const moh511Columns = [
   'follow_up',
   'referred_from',
   'referred_to',
+  'reason_for_referral',
   'remarks',
 ];
 export const moh405Columns = [

@@ -1,6 +1,6 @@
 import { Button, Loading } from '@carbon/react';
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 
 import styles from '../moh711.scss';
 import classNames from 'classnames';
@@ -13,15 +13,17 @@ const Moh333Register: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const [searchParams] = useSearchParams();
+  const location = useLocation();
 
   const startDate = searchParams.get('startDate');
   const endDate = searchParams.get('endDate');
   const locationUuids = searchParams.get('locationUuids');
   const indicator = searchParams.get('indicator');
+  const reportName = location.state?.reportName || '';
 
   useEffect(() => {
     const fetchData = async () => {
-      if (!startDate || !endDate || !locationUuids || !indicator) return;
+      if (!startDate || !endDate || !locationUuids || !indicator || !reportName) return;
 
       setIsLoading(true);
 
@@ -31,6 +33,7 @@ const Moh333Register: React.FC = () => {
           endDate,
           locationUuids,
           indicator,
+          reportName,
         };
 
         const data = await getMoh333PatientList(params);
@@ -44,10 +47,10 @@ const Moh333Register: React.FC = () => {
     };
 
     fetchData();
-  }, [startDate, endDate, locationUuids, indicator]);
+  }, [startDate, endDate, locationUuids, indicator, reportName]);
 
   function navigateBack() {
-    navigate('/moh-711');
+    navigate(location.state?.from || '//moh-711');
   }
   return (
     <>
