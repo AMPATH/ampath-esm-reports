@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from '../moh717.scss';
 import classNames from 'classnames';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface MaternityComponentProps {
   moh717ReportData: any;
@@ -18,9 +18,16 @@ const MaternityComponent: React.FC<MaternityComponentProps> = ({
   locationUuids,
 }) => {
   const navigate = useNavigate();
-  const navigateToRegister = (indicator?: string) => {
+  const location = useLocation();
+  const navigateToRegister = (indicator: string | string[]) => {
     navigate(
       `/moh-333-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}`,
+      {
+        state: {
+          from: location.pathname,
+          reportName: 'moh717Report',
+        },
+      },
     );
   };
   return (

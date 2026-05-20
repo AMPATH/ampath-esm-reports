@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from '../moh717.scss';
 import classNames from 'classnames';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface OutpatientComponentProps {
   moh717ReportData: any;
@@ -18,6 +18,7 @@ const OutpatientComponent: React.FC<OutpatientComponentProps> = ({
   locationUuids,
 }) => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const navigateTo204ARegister = (indicator: string | string[]) => {
     navigate(
@@ -27,6 +28,39 @@ const OutpatientComponent: React.FC<OutpatientComponentProps> = ({
   const navigateTo204BRegister = (indicator: string | string[]) => {
     navigate(
       `/moh-204b-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}`,
+    );
+  };
+  const navigateToMoh405Register = (indicator: string | string[]) => {
+    navigate(
+      `/moh-405-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}`,
+      {
+        state: {
+          from: location.pathname,
+          reportName: 'moh717Report',
+        },
+      },
+    );
+  };
+  const navigateToMoh406Register = (indicator: string | string[]) => {
+    navigate(
+      `/moh-406-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}`,
+      {
+        state: {
+          from: location.pathname,
+          reportName: 'moh717Report',
+        },
+      },
+    );
+  };
+  const navigateTo511Register = (indicator: string | string[]) => {
+    navigate(
+      `/moh-511-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}`,
+      {
+        state: {
+          from: location.pathname,
+          reportName: 'moh717Report',
+        },
+      },
     );
   };
   return (
@@ -407,23 +441,31 @@ const OutpatientComponent: React.FC<OutpatientComponentProps> = ({
           <tr>
             <td>A.4.1</td>
             <td>CWC Attendances</td>
-            <td>{moh717ReportData.cwc_attendance_new}</td>
-            <td>{moh717ReportData.cwc_attendance_revisit}</td>
-            <td>{(moh717ReportData.cwc_attendance_new || 0) + (moh717ReportData.cwc_attendance_revisit || 0)}</td>
+            <td onClick={() => navigateTo511Register('cwc_attendance_new')}>{moh717ReportData.cwc_attendance_new}</td>
+            <td onClick={() => navigateTo511Register('cwc_attendance_revisit')}>
+              {moh717ReportData.cwc_attendance_revisit}
+            </td>
+            <td onClick={() => navigateTo511Register(['cwc_attendance_new', 'cwc_attendance_revisit'])}>
+              {(moh717ReportData.cwc_attendance_new || 0) + (moh717ReportData.cwc_attendance_revisit || 0)}
+            </td>
           </tr>
           <tr>
             <td>A.4.2</td>
             <td>ANC Attendances</td>
-            <td>{moh717ReportData.anc_new}</td>
-            <td>{moh717ReportData.anc_revisit}</td>
-            <td>{(moh717ReportData.anc_new || 0) + (moh717ReportData.anc_revisit || 0)}</td>
+            <td onClick={() => navigateToMoh405Register('anc_new')}>{moh717ReportData.anc_new}</td>
+            <td onClick={() => navigateToMoh405Register('anc_revisit')}>{moh717ReportData.anc_revisit}</td>
+            <td onClick={() => navigateToMoh405Register(['anc_new', 'anc_revisit'])}>
+              {(moh717ReportData.anc_new || 0) + (moh717ReportData.anc_revisit || 0)}
+            </td>
           </tr>
           <tr>
             <td>A.4.3</td>
             <td>PNC Attendances</td>
-            <td>{moh717ReportData.pnc_new}</td>
-            <td>{moh717ReportData.pnc_revisit}</td>
-            <td>{(moh717ReportData.pnc_new || 0) + (moh717ReportData.pnc_revisit || 0)}</td>
+            <td onClick={() => navigateToMoh406Register('pnc_new')}>{moh717ReportData.pnc_new}</td>
+            <td onClick={() => navigateToMoh406Register('pnc_revisit')}>{moh717ReportData.pnc_revisit}</td>
+            <td onClick={() => navigateToMoh406Register(['pnc_new', 'pnc_revisit'])}>
+              {(moh717ReportData.pnc_new || 0) + (moh717ReportData.pnc_revisit || 0)}
+            </td>
           </tr>
           <tr>
             <td>A.4.4</td>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import ReportFiltersComponent from '../../common/report-filters/report-filters.component';
 
 import styles from './moh-710.scss';
@@ -39,6 +39,7 @@ const Moh710Report: React.FC = () => {
 
   const session = useSession();
   const locationUuids = session?.sessionLocation?.uuid;
+  const location = useLocation();
 
   const getReportParams = (filters: ReportFilters) => {
     let { startDate: sDate, endDate: eDate } = filters;
@@ -90,7 +91,13 @@ const Moh710Report: React.FC = () => {
 
   const navigateToRegister = (indicator: string) => {
     navigate(
-      `/moh-405-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}`,
+      `/moh-511-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}`,
+      {
+        state: {
+          from: location.pathname,
+          reportName: 'moh710Report',
+        },
+      },
     );
   };
   return (
@@ -133,103 +140,183 @@ const Moh710Report: React.FC = () => {
             <tbody>
               <tr>
                 <td>BCG doses Administered</td>
-                <td onClick={() => navigate('/moh-710-patient-list')}>{moh710Data.bcg_vaccine_age_less_than_1yr}</td>
-                <td>{moh710Data.bcg_vaccine_age_greater_than_1yr}</td>
+                <td onClick={() => navigateToRegister('bcg_vaccine_age_less_than_1yr')}>
+                  {moh710Data.bcg_vaccine_age_less_than_1yr}
+                </td>
+                <td onClick={() => navigateToRegister('bcg_vaccine_age_greater_than_1yr')}>
+                  {moh710Data.bcg_vaccine_age_greater_than_1yr}
+                </td>
               </tr>
               <tr>
                 <td>OPV Birth doses Administered</td>
-                <td>{moh710Data.opv_vaccine_age_less_than_1yr}</td>
-                <td>{moh710Data.opv_vaccine_age_greater_than_1yr}</td>
+                <td onClick={() => navigateToRegister('opv_vaccine_age_less_than_1yr')}>
+                  {moh710Data.opv_vaccine_age_less_than_1yr}
+                </td>
+                <td onClick={() => navigateToRegister('opv_vaccine_age_greater_than_1yr')}>
+                  {moh710Data.opv_vaccine_age_greater_than_1yr}
+                </td>
               </tr>
               <tr>
                 <td>OPV1 doses Administered</td>
-                <td>{moh710Data.opv1_vaccine_age_less_than_1yr}</td>
-                <td>{moh710Data.opv1_vaccine_age_greater_than_1yr}</td>
+                <td onClick={() => navigateToRegister('opv1_vaccine_age_less_than_1yr')}>
+                  {moh710Data.opv1_vaccine_age_less_than_1yr}
+                </td>
+                <td onClick={() => navigateToRegister('opv1_vaccine_age_greater_than_1yr')}>
+                  {moh710Data.opv1_vaccine_age_greater_than_1yr}
+                </td>
               </tr>
               <tr>
                 <td>OPV2 doses Administered</td>
-                <td>{moh710Data.opv2_vaccine_age_less_than_1yr}</td>
-                <td>{moh710Data.opv2_vaccine_age_greater_than_1yr}</td>
+                <td onClick={() => navigateToRegister('opv2_vaccine_age_less_than_1yr')}>
+                  {moh710Data.opv2_vaccine_age_less_than_1yr}
+                </td>
+                <td onClick={() => navigateToRegister('opv2_vaccine_age_greater_than_1yr')}>
+                  {moh710Data.opv2_vaccine_age_greater_than_1yr}
+                </td>
               </tr>
               <tr>
                 <td>OPV3 doses Administered</td>
-                <td>{moh710Data.opv3_vaccine_age_less_than_1yr}</td>
-                <td>{moh710Data.opv3_vaccine_age_greater_than_1yr}</td>
+                <td onClick={() => navigateToRegister('opv3_vaccine_age_less_than_1yr')}>
+                  {moh710Data.opv3_vaccine_age_less_than_1yr}
+                </td>
+                <td onClick={() => navigateToRegister('opv3_vaccine_age_greater_than_1yr')}>
+                  {moh710Data.opv3_vaccine_age_greater_than_1yr}
+                </td>
               </tr>
               <tr>
                 <td>IPV 1 doses Administered</td>
-                <td>{moh710Data.ipv1_vaccine_age_less_than_1yr}</td>
-                <td>{moh710Data.ipv1_vaccine_age_greater_than_1yr}</td>
+                <td onClick={() => navigateToRegister('ipv1_vaccine_age_less_than_1yr')}>
+                  {moh710Data.ipv1_vaccine_age_less_than_1yr}
+                </td>
+                <td onClick={() => navigateToRegister('ipv1_vaccine_age_greater_than_1yr')}>
+                  {moh710Data.ipv1_vaccine_age_greater_than_1yr}
+                </td>
               </tr>
               <tr>
                 <td>IPV 2 doses Administered</td>
-                <td>{moh710Data.ipv2_vaccine_age_less_than_1yr}</td>
-                <td>{moh710Data.ipv2_vaccine_age_greater_than_1yr}</td>
+                <td onClick={() => navigateToRegister('ipv2_vaccine_age_less_than_1yr')}>
+                  {moh710Data.ipv2_vaccine_age_less_than_1yr}
+                </td>
+                <td onClick={() => navigateToRegister('ipv2_vaccine_age_greater_than_1yr')}>
+                  {moh710Data.ipv2_vaccine_age_greater_than_1yr}
+                </td>
               </tr>
               <tr>
                 <td>DPT/Hep+HiB 1 doses Administered</td>
-                <td>{moh710Data.dpt_hep_vaccine1_age_less_than_1yr}</td>
-                <td>{moh710Data.dpt_hep_vaccine1_age_greater_than_1yr}</td>
+                <td onClick={() => navigateToRegister('dpt_hep_vaccine1_age_less_than_1yr')}>
+                  {moh710Data.dpt_hep_vaccine1_age_less_than_1yr}
+                </td>
+                <td onClick={() => navigateToRegister('dpt_hep_vaccine1_age_greater_than_1yr')}>
+                  {moh710Data.dpt_hep_vaccine1_age_greater_than_1yr}
+                </td>
               </tr>
               <tr>
                 <td>DPT/Hep+HiB2 doses Administered</td>
-                <td>{moh710Data.dpt_hep_vaccine2_age_less_than_1yr}</td>
-                <td>{moh710Data.dpt_hep_vaccine2_age_greater_than_1yr}</td>
+                <td onClick={() => navigateToRegister('dpt_hep_vaccine2_age_less_than_1yr')}>
+                  {moh710Data.dpt_hep_vaccine2_age_less_than_1yr}
+                </td>
+                <td onClick={() => navigateToRegister('dpt_hep_vaccine2_age_greater_than_1yr')}>
+                  {moh710Data.dpt_hep_vaccine2_age_greater_than_1yr}
+                </td>
               </tr>
               <tr>
                 <td>DPT/Hep+HiB3 doses Administered</td>
-                <td>{moh710Data.dpt_hep_vaccine3_age_less_than_1yr}</td>
-                <td>{moh710Data.dpt_hep_vaccine3_age_greater_than_1yr}</td>
+                <td onClick={() => navigateToRegister('dpt_hep_vaccine3_age_less_than_1yr')}>
+                  {moh710Data.dpt_hep_vaccine3_age_less_than_1yr}
+                </td>
+                <td onClick={() => navigateToRegister('dpt_hep_vaccine3_age_greater_than_1yr')}>
+                  {moh710Data.dpt_hep_vaccine3_age_greater_than_1yr}
+                </td>
               </tr>
               <tr>
                 <td>Pneumococal 1 doses Administered</td>
-                <td>{moh710Data.pneumococal_vaccine1_age_less_than_1yr}</td>
-                <td>{moh710Data.pneumococal_vaccine1_age_greater_than_1yr}</td>
+                <td onClick={() => navigateToRegister('pneumococal_vaccine1_age_less_than_1yr')}>
+                  {moh710Data.pneumococal_vaccine1_age_less_than_1yr}
+                </td>
+                <td onClick={() => navigateToRegister('pneumococal_vaccine1_age_greater_than_1yr')}>
+                  {moh710Data.pneumococal_vaccine1_age_greater_than_1yr}
+                </td>
               </tr>
               <tr>
                 <td>Pneumococal 2 doses Administered</td>
-                <td>{moh710Data.pneumococal_vaccine2_age_less_than_1yr}</td>
-                <td>{moh710Data.pneumococal_vaccine2_age_greater_than_1yr}</td>
+                <td onClick={() => navigateToRegister('pneumococal_vaccine2_age_less_than_1yr')}>
+                  {moh710Data.pneumococal_vaccine2_age_less_than_1yr}
+                </td>
+                <td onClick={() => navigateToRegister('pneumococal_vaccine2_age_greater_than_1yr')}>
+                  {moh710Data.pneumococal_vaccine2_age_greater_than_1yr}
+                </td>
               </tr>
               <tr>
                 <td>Pneumococal 3 doses Administered</td>
-                <td>{moh710Data.pneumococal_vaccine3_age_less_than_1yr}</td>
-                <td>{moh710Data.pneumococal_vaccine3_age_greater_than_1yr}</td>
+                <td onClick={() => navigateToRegister('pneumococal_vaccine3_age_less_than_1yr')}>
+                  {moh710Data.pneumococal_vaccine3_age_less_than_1yr}
+                </td>
+                <td onClick={() => navigateToRegister('pneumococal_vaccine3_age_greater_than_1yr')}>
+                  {moh710Data.pneumococal_vaccine3_age_greater_than_1yr}
+                </td>
               </tr>
               <tr>
                 <td>Rotavirus 1 doses Administered</td>
-                <td>{moh710Data.rotavirus_vaccine1_age_less_than_1yr}</td>
-                <td>{moh710Data.rotavirus_vaccine1_age_greater_than_1yr}</td>
+                <td onClick={() => navigateToRegister('rotavirus_vaccine1_age_less_than_1yr')}>
+                  {moh710Data.rotavirus_vaccine1_age_less_than_1yr}
+                </td>
+                <td onClick={() => navigateToRegister('rotavirus_vaccine1_age_greater_than_1yr')}>
+                  {moh710Data.rotavirus_vaccine1_age_greater_than_1yr}
+                </td>
               </tr>
               <tr>
                 <td>Rotavirus 2 doses Administered</td>
-                <td>{moh710Data.rotavirus_vaccine2_age_less_than_1yr}</td>
-                <td>{moh710Data.rotavirus_vaccine2_age_greater_than_1yr}</td>
+                <td onClick={() => navigateToRegister('rotavirus_vaccine2_age_less_than_1yr')}>
+                  {moh710Data.rotavirus_vaccine2_age_less_than_1yr}
+                </td>
+                <td onClick={() => navigateToRegister('rotavirus_vaccine2_age_greater_than_1yr')}>
+                  {moh710Data.rotavirus_vaccine2_age_greater_than_1yr}
+                </td>
               </tr>
               <tr>
                 <td>Rotavirus 3 doses Administered</td>
-                <td>{moh710Data.rotavirus_vaccine3_age_less_than_1yr}</td>
-                <td>{moh710Data.rotavirus_vaccine3_age_greater_than_1yr}</td>
+                <td onClick={() => navigateToRegister('rotavirus_vaccine3_age_less_than_1yr')}>
+                  {moh710Data.rotavirus_vaccine3_age_less_than_1yr}
+                </td>
+                <td onClick={() => navigateToRegister('rotavirus_vaccine3_age_greater_than_1yr')}>
+                  {moh710Data.rotavirus_vaccine3_age_greater_than_1yr}
+                </td>
               </tr>
               <tr>
                 <td>Vitamin A at 6 - 11 months(100, 000 IU)</td>
-                <td>{moh710Data.vitaminA_vaccine_age_less_than_1yr}</td>
-                <td>{moh710Data.vitaminA_vaccine_age_greater_than_1yr}</td>
+                <td onClick={() => navigateToRegister('vitaminA_vaccine_age_less_than_1yr')}>
+                  {moh710Data.vitaminA_vaccine_age_less_than_1yr}
+                </td>
+                <td onClick={() => navigateToRegister('vitaminA_vaccine_age_greater_than_1yr')}>
+                  {moh710Data.vitaminA_vaccine_age_greater_than_1yr}
+                </td>
               </tr>
               <tr>
                 <td>Yellow fever doses Administered</td>
-                <td>{moh710Data.yellow_fever_vaccine_age_greater_than_1yr}</td>
-                <td>{moh710Data.yellow_fever_vaccine_age_less_than_1yr}</td>
+                <td onClick={() => navigateToRegister('yellow_fever_vaccine_age_greater_than_1yr')}>
+                  {moh710Data.yellow_fever_vaccine_age_greater_than_1yr}
+                </td>
+                <td onClick={() => navigateToRegister('yellow_fever_vaccine_age_less_than_1yr')}>
+                  {moh710Data.yellow_fever_vaccine_age_less_than_1yr}
+                </td>
               </tr>
               <tr>
                 <td>Measles-Rubella 1 doses Administered</td>
-                <td>{moh710Data.measles_vaccine_age_greater_than_1yr}</td>
-                <td>{moh710Data.measles_vaccine_age_less_than_1yr}</td>
+                <td onClick={() => navigateToRegister('measles_vaccine_age_greater_than_1yr')}>
+                  {moh710Data.measles_vaccine_age_greater_than_1yr}
+                </td>
+                <td onClick={() => navigateToRegister('measles_vaccine_age_less_than_1yr')}>
+                  {moh710Data.measles_vaccine_age_less_than_1yr}
+                </td>
               </tr>
               <tr>
                 <td>Typhoid Conjugate Vaccine (TCV) doses Administered</td>
-                <td>{moh710Data.typhoid_conjugate_vaccine_age_greater_than_1yr}</td>
-                <td>{moh710Data.typhoid_conjugate_vaccine_age_less_than_1yr}</td>
+                <td onClick={() => navigateToRegister('typhoid_conjugate_vaccine_age_greater_than_1yr')}>
+                  {moh710Data.typhoid_conjugate_vaccine_age_greater_than_1yr}
+                </td>
+                <td onClick={() => navigateToRegister('typhoid_conjugate_vaccine_age_less_than_1yr')}>
+                  {moh710Data.typhoid_conjugate_vaccine_age_less_than_1yr}
+                </td>
               </tr>
               <tr>
                 <td>Fully Immunized Children(FIC) under 1 year</td>
@@ -253,15 +340,19 @@ const Moh710Report: React.FC = () => {
             <tbody>
               <tr>
                 <td>Vitamin A at 12 to 59 months (200, 000 IU)</td>
-                <td>{moh710Data.vitaminA_12_59_months}</td>
+                <td onClick={() => navigateToRegister('vitaminA_12_59_months')}>{moh710Data.vitaminA_12_59_months}</td>
               </tr>
               <tr>
                 <td>Measles-Rubella 2 DoseAdm (at 1 1/2-2years)</td>
-                <td>{moh710Data.measles_rubella_1_2_years}</td>
+                <td onClick={() => navigateToRegister('measles_rubella_1_2_years')}>
+                  {moh710Data.measles_rubella_1_2_years}
+                </td>
               </tr>
               <tr>
                 <td>Measles-Rubella 2 Dose Administered &gt;2 yrs</td>
-                <td>{moh710Data.measles_rubella_greater_2_years}</td>
+                <td onClick={() => navigateToRegister('measles_rubella_greater_2_years')}>
+                  {moh710Data.measles_rubella_greater_2_years}
+                </td>
               </tr>
             </tbody>
           </table>
@@ -300,11 +391,11 @@ const Moh710Report: React.FC = () => {
             <tbody>
               <tr>
                 <td>Tetanus Toxoid for Pregnant women</td>
-                <td>{moh710Data.tetanus_toxoid1}</td>
-                <td>{moh710Data.tetanus_toxoid2}</td>
-                <td>{moh710Data.tetanus_toxoid3}</td>
-                <td>{moh710Data.tetanus_toxoid4}</td>
-                <td>{moh710Data.tetanus_toxoid5}</td>
+                <td onClick={() => navigateToRegister('tetanus_toxoid1')}>{moh710Data.tetanus_toxoid1}</td>
+                <td onClick={() => navigateToRegister('tetanus_toxoid2')}>{moh710Data.tetanus_toxoid2}</td>
+                <td onClick={() => navigateToRegister('tetanus_toxoid3')}>{moh710Data.tetanus_toxoid3}</td>
+                <td onClick={() => navigateToRegister('tetanus_toxoid4')}>{moh710Data.tetanus_toxoid4}</td>
+                <td onClick={() => navigateToRegister('tetanus_toxoid5')}>{moh710Data.tetanus_toxoid5}</td>
               </tr>
             </tbody>
           </table>
@@ -323,11 +414,13 @@ const Moh710Report: React.FC = () => {
             <tbody>
               <tr>
                 <td>HPV Vaccine Dose1(10-14years)</td>
-                <td>{moh710Data.hpv_vaccine1_10_14_years}</td>
+                <td onClick={() => navigateToRegister('hpv_vaccine1_10_14_years')}>
+                  {moh710Data.hpv_vaccine1_10_14_years}
+                </td>
               </tr>
               <tr>
                 <td>HPV Vaccine Dose 2</td>
-                <td>{moh710Data.hpv_vaccine2}</td>
+                <td onClick={() => navigateToRegister('hpv_vaccine2')}>{moh710Data.hpv_vaccine2}</td>
               </tr>
             </tbody>
           </table>
@@ -344,13 +437,17 @@ const Moh710Report: React.FC = () => {
             <tbody>
               <tr>
                 <td>HPV Vaccine 1</td>
-                <td>{moh710Data.hpv_vaccine1_10_years}</td>
-                <td>{moh710Data.hpv_vaccine1_greater_10_years}</td>
+                <td onClick={() => navigateToRegister('hpv_vaccine1_10_years')}>{moh710Data.hpv_vaccine1_10_years}</td>
+                <td onClick={() => navigateToRegister('hpv_vaccine1_greater_10_years')}>
+                  {moh710Data.hpv_vaccine1_greater_10_years}
+                </td>
               </tr>
               <tr>
                 <td>HPV Vaccine 2</td>
-                <td>{moh710Data.hpv_vaccine2_10_years}</td>
-                <td>{moh710Data.hpv_vaccine2_greater_10_years}</td>
+                <td onClick={() => navigateToRegister('hpv_vaccine2_10_years')}>{moh710Data.hpv_vaccine2_10_years}</td>
+                <td onClick={() => navigateToRegister('hpv_vaccine2_greater_10_years')}>
+                  {moh710Data.hpv_vaccine2_greater_10_years}
+                </td>
               </tr>
             </tbody>
           </table>
@@ -408,9 +505,15 @@ const Moh710Report: React.FC = () => {
             <tbody>
               <tr>
                 <td>COVID 19 Reporting</td>
-                <td>{moh710Data.covid_19_vaccine_12_17}</td>
-                <td>{moh710Data.covid_19_vaccine_18_59}</td>
-                <td>{moh710Data.covid_19_vaccine_60_above}</td>
+                <td onClick={() => navigateToRegister('covid_19_vaccine_12_17')}>
+                  {moh710Data.covid_19_vaccine_12_17}
+                </td>
+                <td onClick={() => navigateToRegister('covid_19_vaccine_18_59')}>
+                  {moh710Data.covid_19_vaccine_18_59}
+                </td>
+                <td onClick={() => navigateToRegister('covid_19_vaccine_60_above')}>
+                  {moh710Data.covid_19_vaccine_60_above}
+                </td>
               </tr>
             </tbody>
           </table>

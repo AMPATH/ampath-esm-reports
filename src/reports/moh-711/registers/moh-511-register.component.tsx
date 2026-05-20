@@ -1,10 +1,11 @@
 import { Button, Loading, Table, TableBody, TableHead, TableHeader, TableRow } from '@carbon/react';
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 
 import styles from '../moh711.scss';
 import { getMoh511PatientList } from '../../../resources/moh-711.resource';
 import { moh511Columns } from './type';
+import classNames from 'classnames';
 
 const Moh511Register: React.FC = () => {
   const navigate = useNavigate();
@@ -12,15 +13,17 @@ const Moh511Register: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const [searchParams] = useSearchParams();
+  const location = useLocation();
 
   const startDate = searchParams.get('startDate');
   const endDate = searchParams.get('endDate');
   const locationUuids = searchParams.get('locationUuids');
   const indicator = searchParams.get('indicator');
+  const reportName = location.state?.reportName || '';
 
   useEffect(() => {
     const fetchData = async () => {
-      if (!startDate || !endDate || !locationUuids || !indicator) return;
+      if (!startDate || !endDate || !locationUuids || !indicator || !reportName) return;
 
       setIsLoading(true);
 
@@ -30,6 +33,7 @@ const Moh511Register: React.FC = () => {
           endDate,
           locationUuids,
           indicator,
+          reportName,
         };
 
         const data = await getMoh511PatientList(params);
@@ -43,10 +47,10 @@ const Moh511Register: React.FC = () => {
     };
 
     fetchData();
-  }, [startDate, endDate, locationUuids, indicator]);
+  }, [startDate, endDate, locationUuids, indicator, reportName]);
 
   function navigateBack() {
-    navigate('/moh-711');
+    navigate(location.state?.from || '/moh-711');
   }
   return (
     <>
@@ -54,7 +58,7 @@ const Moh511Register: React.FC = () => {
         <Button onClick={navigateBack}>Back</Button>
       </div>
       <div>{isLoading && <Loading />}</div>
-      <Table>
+      <Table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
         <TableHead>
           <TableRow>
             <TableHeader>Serial No.</TableHeader>
@@ -94,8 +98,6 @@ const Moh511Register: React.FC = () => {
               <br />
               number
             </TableHeader>
-            <TableHeader>Weight</TableHeader>
-            <TableHeader>Height</TableHeader>
             <TableHeader>Weight in Kgs</TableHeader>
             <TableHeader>
               Weight
@@ -245,7 +247,13 @@ const Moh511Register: React.FC = () => {
             patientlist.map((patient, index) => (
               <TableRow key={index}>
                 {moh511Columns.map((col) => (
-                  <td key={col}>{col === 'serial_no' ? index + 1 : (patient?.[col] ?? '')}</td>
+                  <td key={col}>
+                    {col === 'serial_no'
+                      ? index + 1
+                      : col === 'visit_date'
+                        ? new Date(patient?.[col]).toLocaleDateString('en-GB')
+                        : (patient?.[col] ?? '')}
+                  </td>
                 ))}
               </TableRow>
             ))

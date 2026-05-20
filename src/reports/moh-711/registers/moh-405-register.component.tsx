@@ -1,6 +1,6 @@
 import { Button, Loading, TableCell, TableRow } from '@carbon/react';
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 
 import styles from '../moh711.scss';
 import classNames from 'classnames';
@@ -13,11 +13,13 @@ const Moh405Register: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const [searchParams] = useSearchParams();
+  const location = useLocation();
 
   const startDate = searchParams.get('startDate');
   const endDate = searchParams.get('endDate');
   const locationUuids = searchParams.get('locationUuids');
   const indicator = searchParams.get('indicator');
+  const reportName = location.state?.reportName || '';
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,6 +33,7 @@ const Moh405Register: React.FC = () => {
           endDate,
           locationUuids,
           indicator,
+          reportName,
         };
 
         const data = await getMoh405PatientList(params);
@@ -44,7 +47,7 @@ const Moh405Register: React.FC = () => {
     };
 
     fetchData();
-  }, [startDate, endDate, locationUuids, indicator]);
+  }, [startDate, endDate, locationUuids, indicator, reportName]);
   function navigateBack() {
     navigate('/moh-711');
   }
