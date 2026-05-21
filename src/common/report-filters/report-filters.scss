@@ -47,3 +47,45 @@
     gap: 10px;
     margin: 0 2rem;
 }
+
+.tabsContainer {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  align-items: center;
+}
+
+.tab,
+.activeTab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 2.5rem;
+
+  background: transparent;
+  color: green;
+
+  border: 1px solid black; 
+  cursor: pointer;
+}
+
+.activeTab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 2.5rem;
+
+  background: green;
+  color: white;
+
+  border: 1px solid black;
+}
