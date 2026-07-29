@@ -1,125 +1,156 @@
 
-h5 {
-    text-align: center;
+/* Smaller than the section headings beneath it: at 9pt the form title was
+   heavier than the lettered sections it introduces. */
+
+.mainTitleBox h5 {
+  font-size: 7.5pt;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
 }
 
 .container {
-  margin: 2rem 2rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  padding: 0 2rem;
+  gap: 4mm;
+  align-items: start;
+  margin: 0 0 4mm;
 
-  grid-template-areas:
-    "left right";
+  grid-template-areas: 'left right';
 }
-
 
 .left {
   grid-area: left;
+  min-width: 0;
 }
 
 .right {
   grid-area: right;
+  min-width: 0;
 }
 
-/* 📱 Stack on small screens */
+/* Stack on small screens */
 @media (max-width: 768px) {
   .container {
     grid-template-columns: 1fr;
     grid-template-areas:
-      "left"
-      "right";
+      'left'
+      'right';
   }
 }
 
-.sectionTitle {
-    margin-left: 1rem ;
+/* A lettered section. Maternity carries three tables and Family Planning two,
+   so the gap inside a section is smaller than the gap between them -- given the
+   same margin, a multi-table section reads as several separate ones.
+
+   Kept off a page break so a section is never split from its heading; at about
+   116 rows in the taller column this runs to roughly two A4 pages. */
+
+.section {
+  margin-bottom: 4mm;
+  break-inside: avoid;
+  page-break-inside: avoid;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
-.title {
-    text-align: center;
-    font-size: 1rem;
-    margin: 1rem;
-}
+/* Full width, so both columns fill their half of the grid and line up with the
+   header box above -- sized to content they came out ragged and short of it. */
+
 .table {
-  width: auto;
+  width: 100%;
+  margin-bottom: 2mm;
+  table-layout: auto;
   border-collapse: collapse;
-  
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .tableBordered td,
 .tableBordered th {
-  border: 1px solid black;
-  padding: 0.3rem;
-  font-size: small;
+  padding: 1mm 1.5mm;
+  font-size: 7pt;
+  border: 1px solid #000;
 }
 
 .tableBordered th {
-    font-weight: bold;
-} 
+  font-weight: 600;
+  background-color: #f4f4f4;
+}
 
 .tableStriped tbody tr:nth-of-type(odd) {
   background-color: #f9f9f9;
 }
 
+/* Sub-heading rows inside a section table */
+
 .greyBackground {
-    background-color: #ccc;
+  font-weight: 600;
+  background-color: #e0e0e0;
 }
+
 .compiledBy {
-    width: 10rem
+  width: 10rem;
 }
 
-.buttonContainer {
-    margin: 1rem;
-}
-
-.textCenter {
-  text-align: center;
-}
-.tableContainer {
-  margin: 1rem;
-}
+/* Spans the same width as the two columns beneath it */
 
 .headerContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 10px;
-    margin: 2rem;
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  margin: 0 0 4mm;
 }
 
 .mainTitleBox {
-    border: 2px solid #000;
-    padding: 10px;
-    text-align: center;
-    width: 100%;
-}
-
-.mainTitle {
-    margin: 0;
-}
-
-.subTitle {
-    margin: 5px 0;
+  width: 100%;
+  padding: 3mm;
+  text-align: center;
+  border: 1px solid #000;
 }
 
 .locationContainer {
   display: flex;
-  margin: 1rem;
-  justify-content: space-evenly;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 3mm;
+  margin-top: 3mm;
+  font-size: 6.5pt;
+  white-space: nowrap;
+}
+
+/* These carry the facility and period once a report is generated, so they need
+   to hold text on the rule rather than only draw it. */
+
+.line,
+.shortLine {
+  display: inline-block;
+  padding: 0 0.5mm;
+  margin-left: 1mm;
+  overflow: hidden;
+  font-weight: 600;
+  text-align: center;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
+  border-bottom: 1px solid #000;
 }
 
 .line {
-  display: inline-block;
-  width: 150px;
-  border-bottom: 1px solid #000;
-  margin-left: 4px;
+  width: 26mm;
 }
 
 .shortLine {
-  display: inline-block;
-  width: 90px;
-  border-bottom: 1px solid #000;
-  margin-left: 4px;
+  width: 14mm;
+}
+/* On paper the striping is screen affordance that prints as grey noise */
+
+@media print {
+  .tableStriped tbody tr:nth-of-type(odd) {
+    background-color: transparent;
+  }
 }

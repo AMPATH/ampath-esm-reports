@@ -9,7 +9,7 @@ interface MedicalSocialWorkComponentProps {
 
 const MedicalSocialWorkComponent: React.FC<MedicalSocialWorkComponentProps> = ({ moh711Data }) => {
   return (
-    <>
+    <div className={styles.section}>
       <table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
         <thead>
           <tr>
@@ -64,19 +64,9 @@ const MedicalSocialWorkComponent: React.FC<MedicalSocialWorkComponentProps> = ({
             <td>Referrals</td>
             <td>{moh711Data.mental_health_referral}</td>
           </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
         </tbody>
       </table>
-    </>
+    </div>
   );
 };
 

@@ -21,7 +21,7 @@ const MaternityComponent: React.FC<MaternityComponentProps> = ({
   const location = useLocation();
   const navigateToRegister = (indicator: string | string[]) => {
     navigate(
-      `/moh-333-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}`,
+      `/moh-333-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}&from=moh-717`,
       {
         state: {
           from: location.pathname,

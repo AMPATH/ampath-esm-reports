@@ -1,0 +1,140 @@
+@use '@carbon/layout';
+@use '@carbon/type';
+@use '@openmrs/esm-styleguide/src/vars' as *;
+
+.register {
+  padding: layout.$spacing-05 0 layout.$spacing-07;
+}
+
+.breadcrumb {
+  margin-bottom: layout.$spacing-05;
+
+  :global(.cds--breadcrumb-item) {
+    display: inline-flex;
+    align-items: baseline;
+  }
+}
+
+/* The register name doubles as the page heading, so it stays an `h3` rather
+   than being repeated in a title row of its own. */
+
+.title {
+  @include type.type-style('productive-heading-03');
+  display: inline;
+  color: $color-gray-100;
+}
+
+/* Registers run to dozens of columns, so the table scrolls inside the page
+   instead of pushing the whole layout sideways. */
+
+.tableScroll {
+  overflow-x: auto;
+  padding: layout.$spacing-05;
+  background-color: $ui-02;
+  border: 1px solid $ui-03;
+  border-top: none;
+
+  /* Each register carries its own table margins -- 1rem here, 0.5rem there,
+     0.75rem elsewhere -- which land inside this frame and give every register a
+     different gap to the border. The padding above is the spacing now, so those
+     are levelled out. */
+
+  table,
+  > div {
+    margin: 0;
+  }
+}
+
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: layout.$spacing-03;
+  padding: layout.$spacing-07 layout.$spacing-05;
+  text-align: center;
+  background-color: $ui-02;
+  border: 1px solid $ui-03;
+  border-top: none;
+
+  h4 {
+    @include type.type-style('productive-heading-02');
+    color: $color-gray-100;
+  }
+
+  p {
+    @include type.type-style('body-long-01');
+    color: $text-02;
+  }
+}
+
+.emptyIcon {
+  fill: $ui-04;
+}
+
+/* The caption and the table below it are one card: the bar carries the register
+   name, the period it covers and the export, and sits flush on whatever follows
+   -- skeleton, empty state or table -- so the page reads as a single object
+   rather than three stacked fragments. */
+
+.context {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: layout.$spacing-03 layout.$spacing-05;
+  padding: layout.$spacing-04 layout.$spacing-05;
+  background-color: $ui-02;
+  border: 1px solid $ui-03;
+  border-bottom: none;
+}
+
+/* Register name over the period it covers: side by side they made one long
+   line that crowded the action; stacked, the name leads and the period reads
+   as its caption. */
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: layout.$spacing-02;
+  min-width: 0;
+}
+
+.summaryTitle {
+  @include type.type-style('body-short-01');
+  font-weight: 600;
+  color: $color-gray-100;
+}
+
+.period {
+  @include type.type-style('label-01');
+  display: inline-flex;
+  align-items: center;
+  gap: layout.$spacing-02;
+  color: $text-02;
+
+  svg {
+    fill: var(--brand-01);
+    transform: translateY(0.125rem);
+  }
+}
+
+.export {
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+/* Sits directly under the table, completing the card */
+
+.pagination {
+  border: 1px solid $ui-03;
+  border-top: none;
+}
+
+/* A register rendered as a view on its report's own route has nowhere to
+   navigate, so the trail is a button and the register name beside it. */
+
+.back {
+  padding-inline: 0.25rem;
+  min-block-size: auto;
+}

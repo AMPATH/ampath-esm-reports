@@ -1,5 +1,5 @@
 import { openmrsFetch } from '@openmrs/esm-framework';
-import { getEtlBaseUrl } from '../utils/get-base-url';
+import { buildEtlUrl } from '../utils/get-base-url';
 
 interface Moh717Params {
   locationUuids: string;
@@ -8,19 +8,14 @@ interface Moh717Params {
 }
 
 export async function getMoh717(params: Moh717Params): Promise<any> {
-  const etlBaseUrl = await getEtlBaseUrl();
-  const url = `${etlBaseUrl}/moh-717`;
-  const queryparams = {
+  const url = await buildEtlUrl('moh-717', {
     locationUuids: params.locationUuids || '',
     startDate: params.startDate || '',
     endDate: params.endDate || '',
-  };
-  const queryString = new URLSearchParams(
-    Object.fromEntries(Object.entries(queryparams).filter(([_, v]) => v !== undefined && v !== null)),
-  ).toString();
+  });
 
   try {
-    const response = await openmrsFetch(`${url}?${queryString}`);
+    const response = await openmrsFetch(url);
 
     if (!response.ok) {
       const errorText = await response.text();
@@ -35,19 +30,14 @@ export async function getMoh717(params: Moh717Params): Promise<any> {
 }
 
 export async function getNutritionRegister(params: Moh717Params): Promise<any> {
-  const etlBaseUrl = await getEtlBaseUrl();
-  const url = `${etlBaseUrl}/moh-717`;
-  const queryparams = {
+  const url = await buildEtlUrl('moh-717', {
     locationUuids: params.locationUuids || '',
     startDate: params.startDate || '',
     endDate: params.endDate || '',
-  };
-  const queryString = new URLSearchParams(
-    Object.fromEntries(Object.entries(queryparams).filter(([_, v]) => v !== undefined && v !== null)),
-  ).toString();
+  });
 
   try {
-    const response = await openmrsFetch(`${url}?${queryString}`);
+    const response = await openmrsFetch(url);
 
     if (!response.ok) {
       const errorText = await response.text();

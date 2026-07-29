@@ -1,45 +1,130 @@
+@use '@openmrs/esm-styleguide/src/vars' as *;
 
-h3 {
-    text-align: center;
+/* MOH-705A laid out for A4, on the same scale as the other reports. Its 76 rows
+   are a single diagnoses table, so the sheet is one continuous form: masthead,
+   facility strip, table and sign-off share their edges. */
+
+$ink: #000;
+$rule: 1px solid $ink;
+
+$text: 7pt;
+$title: 7.5pt;
+$meta: 6.5pt;
+
+$pad: 3mm;
+
+.mainTitleBox {
+  padding: $pad;
+  text-align: center;
+  border: $rule;
+}
+
+.ministry {
+  font-size: $meta;
+}
+
+.reportTitle {
+  font-size: $title;
+  font-weight: 700;
+  color: $ink;
+}
+
+.location {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2.5mm;
+  padding: 2mm $pad;
+  font-size: $meta;
+  white-space: nowrap;
+  border: $rule;
+  border-top: none;
+}
+
+.line,
+.shortLine {
+  display: inline-block;
+  padding: 0 0.5mm;
+  margin-left: 1mm;
+  overflow: hidden;
+  font-weight: 600;
+  text-align: center;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
+  border-bottom: $rule;
+}
+
+.line {
+  width: 26mm;
+}
+
+.shortLine {
+  width: 14mm;
 }
 
 .container {
-    margin: 0 2rem;
-    margin-top: 0.5px;
+  overflow-x: auto;
+  margin: 0;
 }
 
-.tableContainer {
-    margin-left: 1rem;
-    margin-bottom: 1rem;
-    font-weight: bold;
-}
-
-.sectionTitle {
-    margin-left: 1rem ;
-}
-
-.title {
-    text-align: center;
-    font-size: 1rem;
-    margin: 1rem;
-}
 .table {
-  width: auto;
+  width: 100%;
   border-collapse: collapse;
-  
 }
 
 .tableBordered td,
 .tableBordered th {
-  border: 1px solid black;
-  padding: 1rem;
-  font-size: small;
+  padding: 1mm 1.5mm;
+  font-size: $text;
+  text-align: left;
+  border: $rule;
+}
+
+.tableBordered th {
+  font-weight: 700;
+  color: $ink;
+  background-color: #f0f0f0;
 }
 
 .tableStriped tbody tr:nth-of-type(odd) {
-  background-color: #f9f9f9;
+  background-color: #fafafa;
 }
 
-.buttonContainer {
-    margin: 1rem;
+@media screen {
+  .tableStriped tbody tr:hover {
+    background-color: $brand-primary-10;
+  }
+}
+
+/* Sign-off, enclosed by the form. Three fields across the sheet, so its rules
+   are wider than the header strip's five. */
+
+.signOff {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2.5mm;
+  padding: $pad;
+  font-size: $meta;
+  white-space: nowrap;
+  border: $rule;
+  border-top: none;
+
+  .line {
+    width: 45mm;
+  }
+
+  .shortLine {
+    width: 25mm;
+  }
+}
+
+/* On paper the striping is screen affordance that prints as grey noise */
+
+@media print {
+  .tableStriped tbody tr:nth-of-type(odd) {
+    background-color: transparent;
+  }
 }

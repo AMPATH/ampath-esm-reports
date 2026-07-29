@@ -1,17 +1,15 @@
-import { Button, Loading, Table, TableBody, TableHead, TableHeader, TableRow } from '@carbon/react';
-import React, { useEffect, useState } from 'react';
+import { Table, TableBody, TableHead, TableHeader, TableRow } from '@carbon/react';
+import React from 'react';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 
-import styles from '../moh711.scss';
+import styles from '../../../common/report-register/register-table.scss';
 import { getMoh511PatientList } from '../../../resources/moh-711.resource';
 import { moh511Columns } from './type';
 import classNames from 'classnames';
+import { moh511ExportColumns } from './moh-511.columns';
+import { RegisterLayout, usePatientList } from '../../../common/report-register';
 
 const Moh511Register: React.FC = () => {
-  const navigate = useNavigate();
-  const [patientlist, setPatientList] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-
   const [searchParams] = useSearchParams();
   const location = useLocation();
 
@@ -21,43 +19,44 @@ const Moh511Register: React.FC = () => {
   const indicator = searchParams.get('indicator');
   const reportName = location.state?.reportName || '';
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (!startDate || !endDate || !locationUuids || !indicator || !reportName) return;
+  const {
+    rows: patientlist,
+    total,
+    isTotalExact,
+    isLoading,
+    page,
+    pageSize,
+    onPageChange,
+    fetchAll,
+  } = usePatientList(
+    ({ startIndex, limit }) =>
+      getMoh511PatientList({
+        startDate,
+        endDate,
+        locationUuids,
+        indicator,
+        reportName,
+        startIndex,
+        limit,
+      }),
+    [startDate, endDate, locationUuids, indicator, reportName],
+  );
 
-      setIsLoading(true);
-
-      try {
-        const params = {
-          startDate,
-          endDate,
-          locationUuids,
-          indicator,
-          reportName,
-        };
-
-        const data = await getMoh511PatientList(params);
-
-        setPatientList(data?.results.results || []);
-      } catch (error) {
-        console.error('Failed to fetch register data', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [startDate, endDate, locationUuids, indicator, reportName]);
-
-  function navigateBack() {
-    navigate(location.state?.from || '/moh-711');
-  }
   return (
-    <>
-      <div className={styles.buttonContainer}>
-        <Button onClick={navigateBack}>Back</Button>
-      </div>
-      <div>{isLoading && <Loading />}</div>
+    <RegisterLayout
+      parentLabel="MOH-711 Report"
+      parentPath="/moh-711"
+      title="MOH 511 Register"
+      isLoading={isLoading}
+      isEmpty={patientlist.length === 0}
+      page={page}
+      pageSize={pageSize}
+      total={total}
+      isTotalExact={isTotalExact}
+      onPageChange={onPageChange}
+      fetchAll={fetchAll}
+      columns={moh511ExportColumns}
+    >
       <Table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
         <TableHead>
           <TableRow>
@@ -264,7 +263,7 @@ const Moh511Register: React.FC = () => {
           )}
         </TableBody>
       </Table>
-    </>
+    </RegisterLayout>
   );
 };
 

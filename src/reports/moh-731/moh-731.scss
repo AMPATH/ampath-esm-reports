@@ -1,118 +1,446 @@
-.table {
-  border: 2px solid #000;
-  margin: 2rem;
-  table-layout: fixed;
+@use '@openmrs/esm-styleguide/src/vars' as *;
 
-  td:nth-child(1) {
-  width: 40%;
+/* A replica of the printed MOH 731 (Ver. July 2023) facility summary sheet,
+   laid out as a real A4 portrait page.
+
+   Everything is expressed in the units the document is drawn in -- millimetres
+   for geometry, points for type -- so the sheet occupies exactly one A4 page on
+   screen and prints at 1:1. */
+
+$page-w: 210mm; // A4 portrait
+$page-h: 297mm;
+$page-margin: 8mm;
+
+$ink: #000; // rules, borders and body text
+$bar: #d9d9d9; // grey fill behind the numbered section bars
+$rule: 1px solid $ink;
+$dotted: 1px dotted $ink; // sub-block and column separators inside a section
+
+/* Sized so the whole return fits one A4 page. The binding constraint is
+   height, not width: stacking the tallest column of each section plus the
+   masthead comes to 271mm of the 281mm available at a 2.7mm row. */
+
+$text: 5.5pt; // body size for labels and codes
+$title: 8pt; // masthead only
+$caption: 4.5pt; // "Male" / "Female" column captions
+
+$box-w: 8.5mm; // every value box
+$box-h: 2.5mm; // a little taller than the label line, as on the form
+$row-h: 2.7mm; // one indicator row: the box plus hairline clearance
+
+$pad: 1.5mm; // padding inside columns and the sheet's bands
+$gap: 0.8mm; // between a code and its box
+$block-gap: 1mm; // above a sub-block heading
+$label-gap: 4mm; // between a row label and its first code
+
+/* Width of the label column. Fixed rather than content-sized so that every
+   block within a column lines its codes and boxes up at the same offset, as
+   the form does -- the blocks are separate tables, so left to size themselves
+   each one lands somewhere slightly different. Overridden per column in
+   section 3, whose columns are narrower. */
+$label-w: 36mm;
+$section-gap: 0.8mm; // around a divider
+
+/* Holds the fixed-width page without making the app scroll sideways.
+
+   No padding of its own: vertical padding here is dead space, and horizontal
+   padding would eat into the width the page needs and bring on a scrollbar that
+   is not otherwise required. The left and right gutter comes from `.page` in
+   root.scss, which every route already sits inside. */
+
+.viewport {
+  overflow-x: auto;
 }
 
-td:nth-child(2) {
-  width: 25%;
+.form {
+  box-sizing: border-box;
+  width: $page-w;
+  min-height: $page-h;
+  padding: $page-margin;
+  margin: 0 auto;
+  color: $ink;
+  font-size: $text;
+  line-height: 1.15;
+  background-color: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+  /* Set by `usePageScale` from the measured container width, floored at 1 so
+     the sheet is never drawn smaller than the paper. Reset to 1 for print. */
+  zoom: var(--page-zoom, 1);
 }
 
-td:nth-child(3) {
-  width: 27.5%;
-}
+/* Ministry line, above the ruled sheet */
 
-tr {
+.ministryLine {
   display: flex;
   justify-content: space-between;
+  margin-bottom: $pad;
+  font-weight: 700;
+  font-size: $text;
 }
 
-span {
-  font-weight: normal;
+/* The ruled sheet itself */
+
+.sheet {
+  border: $rule;
 }
 
+/* Masthead */
 
+/* The title is centred on the full width of the sheet, not on the space left
+   over beside the version box. The version box is taken out of flow so it
+   cannot push the title off centre. */
+
+.formHeader {
+  position: relative;
+  padding: $pad;
+  border-bottom: $rule;
 }
 
+.formTitle {
+  text-align: center;
+
+  strong {
+    display: block;
+    font-size: $title;
+    font-weight: 700;
+  }
+}
+
+.formVersion {
+  position: absolute;
+  top: $pad;
+  right: $pad;
+  padding: 0.5mm 1mm;
+  font-size: $text;
+  border: $dotted;
+  white-space: nowrap;
+}
+
+/* County / Sub County / Facility fill-in line */
 
 .locationContainer {
-  border: 2px solid #000;
-  width: 100%;
-  text-align: center;
-  margin: 2rem;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 2.5mm;
+  padding: $pad;
+  font-size: $text;
+  white-space: nowrap;
+  border-bottom: $rule;
 }
 
-.border {
-  background-color: #f2f2f2;
-  border-bottom: 2px solid #000;
-  width: 100%;
-  font-weight: bold;
-}
-.border2 {
-  background-color: #f2f2f2;
-  border-top: 2px solid #000;
-  border-bottom: 2px solid #000;
-  width: 100%;
-  font-weight: bold;
-}
+/* These carry the facility and period once a report is generated, so they need
+   to hold text on the rule rather than just draw it. */
 
-.border3 {
-  border-top: 2px solid #000;
-  border-right: 2px dotted #000;
-  width: 78.5%;
-}
-
-.flexColumn {
+.line,
+.shortLine {
   display: inline-block;
-  flex-direction: column;
-  margin: 2rem;
+  padding: 0 1mm;
+  margin-left: 1mm;
+  overflow: hidden;
+  font-weight: 600;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: bottom;
+  border-bottom: $rule;
 }
+
+.line {
+  width: 27mm;
+}
+
+.shortLine {
+  width: 12mm;
+}
+
+/* Numbered section bar, full width of the sheet. `text-align` is stated rather
+   than left to inherit: CSS Modules does not scope bare element selectors, and
+   other report stylesheets ship a global `h5 { text-align: center }`. */
+
+.sectionHeader {
+  padding: 0.8mm $pad;
+  text-align: left;
+  font-size: $text;
+  font-weight: 700;
+  background-color: $bar;
+  border-bottom: $rule;
+}
+
+/* The same bar, but scoped to one column -- sections 4 and 5 sit inside the
+   right-hand column of section 3 on the printed form. */
+
+.columnHeader {
+  padding: 0.8mm $pad;
+  text-align: left;
+  margin: $block-gap (-$pad) $pad;
+  font-size: $text;
+  font-weight: 700;
+  background-color: $bar;
+  border-top: $rule;
+  border-bottom: $rule;
+}
+
+/* Column grid inside a section */
 
 .flexRow {
   display: flex;
-  justify-content: space-between;
+  align-items: stretch;
+  border-bottom: $rule;
 }
-.rectangle {
-  width: 50px;
-  height: 20px;
-  border: 2px solid #000;
-  display: inline-block;
-  margin-left: 5px;
+
+.flexColumn {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: $pad;
 }
-.textBox {
-  display: inline-block;
+
+/* No rule between columns by default: on the form only section 3 divides its
+   columns, and it does so with a dotted line (see `.borderRight` below). */
+
+/* Section 3 only: columns 1 and 2 are grouped so the sign-off can run along
+   their foot while section 5 continues in column 3 beside it. */
+
+/* Section 3's columns are not equal thirds on the form. Column 1 carries a
+   male and a female value on every row, so it takes 45% of the width, against
+   26% and 29% for the single-value columns beside it. Splitting evenly left
+   column 1 about 21mm short, which forced its labels to wrap. */
+
+.colGroup {
+  display: flex;
+  flex: 71 1 0; // columns 1 and 2 together
+  flex-direction: column;
+  min-width: 0;
+}
+
+.colPair > .borderRight {
+  flex: 63 1 0; // column 1, of the pair
+  --label-w: 24mm;
+}
+
+.colPair > .flexColumn:last-child {
+  flex: 37 1 0; // column 2
+  --label-w: 25mm;
+}
+
+.flexRow > .borderLeft {
+  flex: 29 1 0; // column 3
+  --label-w: 30mm;
+}
+
+.colPair {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: stretch;
+  min-width: 0;
+  /* clearance between the last indicator rows and the sign-off rule below */
+  padding-bottom: 1.5mm;
+}
+
+
+
+/* Section 3's column separators, dotted as on the form */
+
+.borderRight {
+  padding: $pad;
+  border-right: $dotted;
+}
+
+.borderLeft {
+  padding: $pad;
+  border-left: $dotted;
+}
+
+/* Indicator rows.
+
+   Measured off the form: each section splits into two equal 90mm halves, and a
+   block occupies only about 70mm of its half, left aligned, leaving ~15mm of
+   trailing slack. That slack is what reads as the gap between column 1 and
+   column 2 -- there is no gutter between them. So the table is sized to its
+   content rather than stretched: stretching pushed the value boxes onto the
+   column boundary and closed the gap up.
+
+   Auto layout, not fixed: `.textBox` is `nowrap` (a code must never be split
+   from its box) so it has a hard minimum width, and a fixed layout would hand
+   out narrower columns and push the pair outside the section rule. */
+
+.block {
+  width: auto;
+  max-width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+
+  td {
+    height: $row-h;
+    padding: 0.1mm 0.8mm 0.1mm 0;
+    font-size: $text;
+    vertical-align: middle;
+  }
+
+  /* Fixed width so codes and boxes align across every block in the column */
+  td:first-child:not([colspan]) {
+    box-sizing: border-box;
+    width: var(--label-w, #{$label-w});
+    padding-right: $label-gap;
+    overflow-wrap: anywhere;
+  }
+}
+
+/* Sub-block heading, e.g. "1.1 HIV Tests". Flush with the column's left edge,
+   in line with the row labels beneath it. */
+
+.blockTitle {
+  padding-top: $block-gap;
+  padding-bottom: 0.6mm;
+  padding-left: 0;
+  font-size: $text;
+  font-weight: 700;
+}
+
+/* A heading within a block, e.g. "Below 6 months" */
+
+.groupTitle {
+  padding-top: 1mm;
+  padding-left: 0;
+  font-size: $text;
+  font-weight: 700;
+}
+
+/* "Male" / "Female (including PMTCT)" column captions */
+
+.subTitle {
+  padding-bottom: 0.5mm;
+  font-size: $caption;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: bottom;
+}
+
+/* The separator between sub-blocks: one dotted rule across the column, so every
+   separator in a section is the same length. */
+
+.divider {
+  height: 0;
+  margin: $section-gap 0;
+  border: none;
+  border-top: $dotted;
+}
+
+.spaceAfter {
+  padding-right: 2mm;
+}
+
+.emptyColumn {
+  width: auto;
+}
+
+/* Code plus its value box */
+
+.textBox,
+.textBox2 {
+  display: flex;
   align-items: center;
-  justify-content: start;
-  gap: 8px;
+  justify-content: flex-end;
+  gap: $gap;
   white-space: nowrap;
+}
+
+.textBox span {
+  font-size: $text;
+  font-variant-numeric: tabular-nums;
+}
+
+.rectangle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  width: $box-w;
+  height: $box-h;
+  font-size: $text;
+  font-variant-numeric: tabular-nums;
+  background-color: #fff;
+  border: $rule;
+}
+
+/* Only the boxes wired to a register drill-down carry the hover text, so the
+   attribute doubles as the selector: a box with no linelist behind it must not
+   offer a pointer cursor it cannot honour. */
+
+.rectangle[title]:hover {
+  background-color: $brand-primary-10;
+  border-color: var(--brand-01);
   cursor: pointer;
 }
-.textBox2 {
-  margin-left: 10px;
-}
-.spaceAfter {
-  padding-right: 6vw;
-}
-.borderRight {
-  border-right: 2px dotted #000;
-  padding-right: 4vw;
-}
-.borderLeft {
-  border-left: 2px dotted #000;
-  padding-left: 1vw;
-}
+
+/* Sign-off strip along the foot of the sheet */
 
 .reviewSection {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  column-gap: 20px;
+  grid-template-columns: 22mm repeat(4, 1fr);
+  align-items: end;
+  column-gap: 4mm;
+  /* the form leaves about 1.7mm clear between a label and its rule */
+  row-gap: 1.5mm;
+  /* pushed to the foot of the grouped columns, clear of the rows above */
+  margin-top: auto;
+  padding: 1.5mm $pad 1mm;
+  font-size: $text;
+  /* full-width rule across columns 1 and 2, as on the form */
+  border-top: $rule;
+
+  span {
+    text-align: center;
+  }
+}
+
+.reviewLabel {
+  text-align: left;
+}
+
+/* A fixed height keeps the prefilled cells (name, date) on the same baseline as
+   the blank ones (designation, signature), which have no content to give them
+   height. */
+
+.reviewRule {
+  min-height: $row-h;
+  padding-bottom: 0.3mm;
   text-align: center;
-  font-size: 14px;
-  margin-top: 10px;
-  font-weight: bold;
+  border-bottom: $rule;
 }
 
-.subTitle {
-  font-weight: bold;
+/* No responsive reflow: this is a replica of a fixed A4 sheet, so on a narrow
+   screen the page keeps its proportions and scrolls inside `.viewport` rather
+   than restacking into something the printed form does not do. */
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: $page-margin;
+  }
+
+  /* The app chrome is hidden by `.page` in root.scss; this only needs to undo
+     the on-screen scroll container. */
+
+  .viewport {
+    overflow: visible;
+  }
+
+  .form {
+    width: auto;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    /* paper geometry stands on its own; magnification is for screens */
+    zoom: 1;
+  }
+
+  .flexRow,
+  .reviewSection {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
 }
-
-
-.emptyColumn {
-  min-width: 10rem;
-}
-
-
-

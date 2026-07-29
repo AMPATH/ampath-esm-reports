@@ -1,74 +1,132 @@
+/* MOH-745 laid out for A4, matching MOH-711 and MOH-740: geometry in
+   millimetres, type in points, one rule weight. Its 33 rows fit one page. */
 
-h3 {
-    text-align: center;
+$ink: #000;
+$rule: 1px solid $ink;
+
+$text: 7pt;
+$title: 7.5pt;
+$meta: 6.5pt;
+
+/* The blocks below stack flush and share their edges, so the sheet reads as one
+   continuous form rather than a title, two loose tables and a footer. */
+
+.reportTitle {
+  padding: 3mm;
+  font-size: $title;
+  font-weight: 700;
+  text-align: center;
+  border: $rule;
 }
+
+/* Facility / county / period strip, and the sign-off at the foot: both are one
+   line of fields separated by spacing, with rules to write on. */
+
+.location {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  justify-content: space-between;
+  /* Six fields rather than the five the other reports carry, so the rules are
+     a little shorter to keep the row on one line. */
+  gap: 2.5mm;
+  padding: 2mm 3mm;
+  font-size: $meta;
+  white-space: nowrap;
+  border: $rule;
+  border-top: none;
+}
+
+.line,
+.shortLine {
+  display: inline-block;
+  padding: 0 0.5mm;
+  margin-left: 1mm;
+  overflow: hidden;
+  font-weight: 600;
+  text-align: center;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
+  border-bottom: $rule;
+}
+
+.line {
+  width: 24mm;
+}
+
+.shortLine {
+  width: 12mm;
+}
+
 .tableContainer {
-    margin-left: 2rem;
-    margin-bottom: 2rem;
-    margin-top: 1rem;
-}
+  width: 100%;
+  overflow-x: auto;
 
-.sectionTitle {
-    margin-left: 1rem ;
+  /* pulls the second table onto the first one's edge instead of doubling it */
+  & + & {
+    margin-top: -1px;
+  }
 }
 
 .table {
-  width: auto;
+  width: 100%;
   border-collapse: collapse;
-  
 }
-
-
 
 .tableBordered td,
 .tableBordered th {
-  border: 1px solid #ccc;
-  padding: 0.3rem;
-  font-size: small;
+  padding: 1mm 1.5mm;
+  font-size: $text;
+  text-align: center;
+  border: $rule;
 }
 
 .tableBordered th {
-    font-weight: bold;
-} 
+  font-weight: 700;
+  background-color: #f4f4f4;
+}
 
 .tableStriped tbody tr:nth-of-type(odd) {
-  background-color: #f9f9f9;
+  background-color: #fafafa;
+}
+
+/* Sign-off, enclosed by the form rather than floating beneath it.
+
+   Its rules are wider than the header strip's: four fields across the sheet
+   leave about 133mm for them, where the header has to fit six. At the shared
+   12mm a date like "29-Jul-2026" needs 13.6mm and was being ellipsised. Sized
+   to leave headroom rather than to fill the row exactly. */
+
+.signOff .line {
+  width: 36mm;
+}
+
+.signOff .shortLine {
+  width: 22mm;
+}
+
+.signOff {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2.5mm;
+  padding: 3mm;
+  font-size: $meta;
+  white-space: nowrap;
+  border: $rule;
+  border-top: none;
 }
 
 .rotateUp {
   writing-mode: vertical-rl;
-  transform: rotate(180deg); 
+  transform: rotate(180deg);
 }
 
-/*
-span {
-    font-weight: normal;
-    padding: 2px;
-}
-*/
-.location {
-  margin: 2rem;
-  display: flex;
-  flex-wrap: nowrap;     
-  align-items: center;
-  gap: 12px;             
-  white-space: nowrap;   
-}
+/* On paper the striping is screen affordance that prints as grey noise */
 
-
-.line {
-  display: inline-block;
-  width: 150px;
-  border-bottom: 1px solid #000;
-  margin-left: 4px;
-}
-
-.shortLine {
-  display: inline-block;
-  width: 90px;
-  border-bottom: 1px solid #000;
-  margin-left: 4px;
-}
-.buttonContainer {
-    margin: 2rem;
+@media print {
+  .tableStriped tbody tr:nth-of-type(odd) {
+    background-color: transparent;
+  }
 }

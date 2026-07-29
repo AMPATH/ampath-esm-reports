@@ -13,7 +13,7 @@ const SpecialServicesComponent: React.FC<SpecialServicesComponentProps> = ({ moh
       <table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
         <thead>
           <tr>
-            <th colSpan={6} className={classNames(`${styles.totals} ${styles.alighnLeft}`)}>
+            <th colSpan={6} className={classNames(`${styles.totals} ${styles.alignLeft}`)}>
               C.SPECIAL SERVICES (includes both inpatients and outpatients)
             </th>
           </tr>

@@ -1,176 +1,237 @@
+/* MOH-717 laid out for A4, on the same scale as the other reports.
 
-h3 {
-    text-align: center;
+   Unlike the single-table reports this one is a mosaic: a full-width outpatient
+   block, then a two-column and a three-column band. The grids are kept; only the
+   scale changes, so the sheet still reads as one form rather than a stack of
+   unrelated tables. */
+
+$ink: #000;
+$rule: 1px solid $ink;
+
+$text: 7pt;
+$title: 7.5pt;
+$meta: 6.5pt;
+
+$gap: 3mm;
+
+/* Masthead. The location fields sit inside the box, as they do on the printed
+   form, rather than on a strip below it. */
+
+.headerContainer {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  margin: 0 0 $gap;
+}
+
+.mainTitleBox {
+  width: 100%;
+  padding: $gap;
+  text-align: center;
+  border: $rule;
+}
+
+.mainTitle {
+  margin: 0;
+  font-size: $meta;
+  font-weight: 400;
+}
+
+.subTitle {
+  margin: 1mm 0 0;
+  font-size: $title;
+  font-weight: 700;
+  color: $ink;
+}
+
+/* One line of fields. Each field is itself a flex box so its label and rule
+   cannot be split apart, and the rules carry the flex so the row compresses to
+   whatever width is left instead of overflowing and breaking. */
+
+.locationContainer {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2.5mm;
+  margin-top: 2.5mm;
+  font-size: $meta;
+  white-space: nowrap;
+
+  > span {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: baseline;
+    min-width: 0;
+    white-space: nowrap;
+  }
+}
+
+/* These carry the facility and period once a report is generated, so they need
+   to hold text on the rule rather than only draw it. */
+
+.line,
+.shortLine {
+  padding: 0 0.5mm;
+  margin-left: 1mm;
+  overflow: hidden;
+  font-weight: 600;
+  text-align: center;
+  text-overflow: ellipsis;
+  border-bottom: $rule;
+}
+
+.line {
+  flex: 1 1 30mm;
+  min-width: 12mm;
+}
+
+.shortLine {
+  flex: 1 1 18mm;
+  min-width: 10mm;
 }
 
 .container {
-    margin: 0 2rem;
-    padding: 1rem;
+  margin: 0;
+  padding: 0;
 }
 
-.tableContainer {
-    margin-left: 1rem;
-    margin-bottom: 1rem;
+/* A block of the form. Kept off a page break so a table is never split from the
+   heading row that names its columns. */
+
+.section {
+  margin: 0 0 $gap;
+  break-inside: avoid;
+  page-break-inside: avoid;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
-.sectionTitle {
-    margin-left: 1rem ;
-}
-
-.title {
-    text-align: center;
-    font-size: 1rem;
-    margin: 1rem;
-}
 .table {
-  width: auto;
+  width: 100%;
+  table-layout: auto;
   border-collapse: collapse;
-  
 }
 
 .tableBordered td,
 .tableBordered th {
-  border: 1px solid black;
-  padding: 0.3rem;
-  font-size: small;
+  padding: 1mm 1.5mm;
+  font-size: $text;
+  border: $rule;
 }
 
 .tableBordered th {
-    font-weight: bold;
-} 
+  font-weight: 700;
+  background-color: #f4f4f4;
+}
 
 .tableStriped tbody tr:nth-of-type(odd) {
   background-color: #f9f9f9;
 }
-.greyBackground {
-    background-color: #ccc;
-}
 
 .totals {
-    font-weight: bold;
-    color: #0437F2;
+  font-weight: 700;
+  color: $ink;
+  background-color: #e8e8e8;
 }
 
-.alighnLeft {
-    text-align: left;
+.alignLeft {
+  text-align: left;
 }
+
+/* The inpatient block turns its column headings on their side to fit */
 
 .rotateUp {
-  writing-mode: vertical-rl;
-  transform: rotate(180deg); 
-  text-align: center;
   white-space: nowrap;
+  text-align: center;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+/* Two- and three-column bands. Their gap matches the gap between sections, so
+   the whole sheet is on one rhythm. */
+
+.sectionContainer,
+.sectionTwoContainer {
+  display: grid;
+  gap: $gap;
+  align-items: start;
+  margin: 0 0 $gap;
 }
 
 .sectionContainer {
-   margin: 2rem 0;
-  display: grid;
   grid-template-columns: 1fr 1fr;
-//   gap: 1rem;
+  grid-template-areas: 'left right';
+}
 
-  grid-template-areas:
-    "left right";
+.sectionTwoContainer {
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: 'one two three';
 }
 
 .left {
   grid-area: left;
+  min-width: 0;
 }
 
 .right {
   grid-area: right;
-}
-
-.section{
-      margin: 2rem 0;
-}
-
-.sectionTwoContainer {
-  margin: 2rem 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 1rem;
-  padding: 0 2rem;
-  grid-template-areas:
-    "one two three";
+  min-width: 0;
 }
 
 .one {
   grid-area: one;
+  min-width: 0;
 }
 
 .two {
   grid-area: two;
+  min-width: 0;
 }
 
 .three {
   grid-area: three;
+  min-width: 0;
 }
 
+/* Stack on small screens */
 
-/* 📱 Stack on small screens */
 @media (max-width: 768px) {
   .sectionContainer {
     grid-template-columns: 1fr;
     grid-template-areas:
-      "left"
-      "right";
+      'left'
+      'right';
+  }
+
+  .sectionTwoContainer {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'one'
+      'two'
+      'three';
   }
 }
 
 .preparedByContainer {
-    margin: 2rem 0;
+  margin: 0;
+  break-inside: avoid;
+  page-break-inside: avoid;
 }
 
+/* Scoped: as a bare selector this bolded every span in the application,
+   including other reports' indicator codes and the filter bar. */
 
-
-
-.line {
-  display: inline-block;
-  width: 150px;
-  border-bottom: 1px solid #000;
-  margin-left: 4px;
+.locationContainer > span {
+  font-weight: 700;
 }
 
-.shortLine {
-  display: inline-block;
-  width: 90px;
-  border-bottom: 1px solid #000;
-  margin-left: 4px;
-}
+/* On paper the striping is screen affordance that prints as grey noise */
 
-span {
-    font-weight: bold;
-}
-
-.buttonContainer {
-    margin: 1rem;
-}
-
-.headerContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 10px;
-    margin: 2rem;
-}
-
-.mainTitleBox {
-    border: 2px solid #000;
-    padding: 10px;
-    text-align: center;
-    width: 100%;
-}
-
-.mainTitle {
-    margin: 0;
-}
-
-.subTitle {
-    margin: 5px 0;
-}
-
-.locationContainer {
-  display: flex;
-  margin: 1rem;
-  justify-content: space-evenly;
+@media print {
+  .tableStriped tbody tr:nth-of-type(odd) {
+    background-color: transparent;
+  }
 }

@@ -9,7 +9,7 @@ interface RehabilitationComponentProps {
 
 const RehabilitationComponent: React.FC<RehabilitationComponentProps> = ({ moh711Data }) => {
   return (
-    <>
+    <div className={styles.section}>
       <table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
         <thead>
           <tr>
@@ -50,7 +50,7 @@ const RehabilitationComponent: React.FC<RehabilitationComponentProps> = ({ moh71
           </tr>
         </tbody>
       </table>
-    </>
+    </div>
   );
 };
 

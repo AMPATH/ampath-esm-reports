@@ -1,91 +1,216 @@
+@use '@carbon/layout';
+@use '@carbon/type';
+@use '@openmrs/esm-styleguide/src/vars' as *;
 
+.filters {
+  padding: layout.$spacing-05 0 0;
+}
+
+/* Breadcrumb trail. The trailing crumb is the page heading, so the items are
+   baseline-aligned rather than centred on differing font sizes. */
+
+.breadcrumb {
+  margin-bottom: layout.$spacing-04;
+
+  :global(.cds--breadcrumb-item) {
+    display: inline-flex;
+    align-items: baseline;
+  }
+}
+
+/* An `h3` inside the trailing crumb, so it keeps heading semantics without
+   repeating the report name in a separate title row. */
+.title {
+  @include type.type-style('productive-heading-03');
+  display: inline;
+  color: $color-gray-100;
+}
+
+/* Filter card */
 
 .filtersContainer {
-    margin: 0 2rem;
-    margin-bottom: 0.5rem;
-    border: 1px solid #ccc;
-    padding: 1rem;
+  padding: layout.$spacing-04 layout.$spacing-05;
+  background-color: $ui-02;
+  border: 1px solid $ui-03;
+  border-left: layout.$spacing-02 solid var(--brand-01);
 }
 
-.title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-top: 1rem;
-    color: green;
-    text-decoration: underline;
+.fields {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: layout.$spacing-05;
+  margin-bottom: layout.$spacing-04;
 }
 
-.titleContainer {
-    margin: 2rem;
+/* Nested so it beats the `flex: 0 1 auto` that Carbon puts on `.cds--form-item`.
+
+   Fields grow into the row but stop at a width suited to what they hold. Left
+   to share the row unbounded, a monthly report -- which shows only Year and
+   Month -- gave a four-digit year a 434px box and the month 650px. The cap
+   keeps every control a sensible size and leaves the slack at the end of the
+   row rather than inside the inputs. */
+
+.fields .field {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
-.dateContainer {
-  display: grid;
-  grid-template-columns: 1fr 1fr; 
-  gap: 8px 16px;
-  align-items: center;
+.fields .periodField {
+  min-width: 14rem;
+  max-width: 16rem;
 }
 
-.dateContainer label {
-  font-weight: 500;
+/* Wide enough for the validation message, not just the value. Carbon renders
+   `invalidText` under the input at the field's own width, so a field sized to
+   "2026" or "September" makes "That month has not started yet." wrap onto a
+   second line and jog the row below it. */
+
+.fields .yearField {
+  min-width: 7rem;
+  max-width: 9rem;
 }
 
-.input {
+.fields .monthField {
+  min-width: 9rem;
+  max-width: 13rem;
+}
+
+/* The range picker holds two inputs, so it is allowed roughly twice the width */
+.fields .rangeField {
+  min-width: 16rem;
+  max-width: 24rem;
+}
+
+/* Matches Carbon's `.cds--label` so the switcher's label sits on the same
+   baseline as the labels Carbon renders for the selects. */
+.fieldLabel {
+  @include type.type-style('label-01');
+  display: inline-block;
+  color: $text-02;
+  line-height: 1rem;
+  margin-bottom: layout.$spacing-03;
+  vertical-align: baseline;
+}
+
+/* Carbon sizes these to their content, so they need telling to fill the field */
+
+.switcher,
+.fields .field :global(.cds--select-input) {
   width: 100%;
-  padding: 6px 8px;
-  box-sizing: border-box;
-  border: 1px solid #ccc;
-  outline: none;
-}
-.input:focus {
-  border-color: #999; 
 }
 
-.buttonContainer {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    margin: 0 2rem;
-}
-
-.tabsContainer {
+.datePicker {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
-  align-items: center;
+  gap: layout.$spacing-05;
+  width: 100%;
 }
 
-.tab,
-.activeTab {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 2.5rem;
+/* Carbon pins `inline-size: 143.5px` on both the container and the input in
+   range mode. Overridden through the range class so this wins on specificity
+   rather than on stylesheet order. */
+.fields .datePicker:global(.cds--date-picker--range) {
+  :global(.cds--date-picker-container) {
+    flex: 1 1 0;
+    inline-size: auto;
+    min-inline-size: 0;
+  }
+
+  :global(.cds--date-picker__input) {
+    inline-size: 100%;
+    min-inline-size: 0;
+  }
 }
 
-.tab {
+/* Action row */
+
+.actions {
   display: flex;
   align-items: center;
-  justify-content: center;
-
-  min-height: 2.5rem;
-
-  background: transparent;
-  color: green;
-
-  border: 1px solid black; 
-  cursor: pointer;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: layout.$spacing-04;
+  padding-top: layout.$spacing-04;
+  border-top: 1px solid $ui-03;
 }
 
-.activeTab {
+.summary {
+  @include type.type-style('body-short-01');
+  display: inline-flex;
+  align-items: center;
+  gap: layout.$spacing-03;
+  color: $text-02;
+
+  svg {
+    fill: var(--brand-01);
+  }
+
+  strong {
+    color: $color-gray-100;
+    font-weight: 600;
+  }
+}
+
+.actionButtons {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: layout.$spacing-03;
+  margin-left: auto;
+}
 
-  min-height: 2.5rem;
+/* The filter bar is application chrome, not part of the report */
 
-  background: green;
-  color: white;
+@media print {
+  .filters {
+    display: none;
+  }
+}
 
-  border: 1px solid black;
+@media (max-width: $breakpoint-tablet-max) {
+  .filters {
+    padding: layout.$spacing-05 0 0;
+  }
+
+  .fields,
+  .datePicker {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .fields .field,
+  .switcher {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .actionButtons {
+    margin-left: 0;
+    width: 100%;
+
+    button {
+      flex: 1 1 0;
+    }
+  }
+}
+
+/* The summary doubles as the blocking reason when the period is not valid */
+.summaryInvalid {
+  color: $danger;
+
+  svg {
+    fill: $danger;
+  }
+}
+
+/* The filters no longer match the report on screen. Warning-toned rather than
+   error-toned: nothing is wrong, the figures are simply for another period. */
+
+.summaryStale {
+  padding: layout.$spacing-02 layout.$spacing-03;
+  color: $color-gray-100;
+  background-color: $warning-background;
+
+  svg {
+    fill: $color-gray-70;
+  }
 }

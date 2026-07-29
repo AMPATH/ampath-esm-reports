@@ -14,19 +14,19 @@ interface PmtctComponentProps {
 const PmtctComponent: React.FC<PmtctComponentProps> = ({ MOH731Data, startDate, endDate, locationUuids }) => {
   const navigate = useNavigate();
 
-  const navigateToRegister = (indicator: string, gender: string) => {
+  const navigateToRegister = (indicator: string, gender: string, label: string) => {
     navigate(
-      `/moh-366-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}&gender=${gender}`,
+      `/moh-366-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}&gender=${gender}&label=${encodeURIComponent(label)}&from=moh-731`,
     );
   };
   return (
     <>
-      <table>
-        <tbody>
-          <div className={styles.flexRow}>
-            <div className={styles.flexColumn}>
+      <div className={styles.flexRow}>
+        <div className={styles.flexColumn}>
+          <table className={styles.block}>
+            <tbody>
               <tr>
-                <td className={styles.spaceAfter} style={{ fontWeight: 'bold' }}>
+                <td className={styles.blockTitle} colSpan={3}>
                   2.1 Maternal HIV Testing
                 </td>
               </tr>
@@ -34,7 +34,11 @@ const PmtctComponent: React.FC<PmtctComponentProps> = ({ MOH731Data, startDate, 
                 <td>Known Positive at 1st ANC</td>
                 <td className={styles.textBox}>
                   <span>HV02-01</span>
-                  <div onClick={() => navigateToRegister('known_positive_1st_anc', 'F')} className={styles.rectangle}>
+                  <div
+                    onClick={() => navigateToRegister('known_positive_1st_anc', 'F', 'Known Positive at 1st ANC')}
+                    className={styles.rectangle}
+                    title="Click to open linelist"
+                  >
                     {MOH731Data.known_positive_1st_anc}
                   </div>
                 </td>
@@ -42,21 +46,29 @@ const PmtctComponent: React.FC<PmtctComponentProps> = ({ MOH731Data, startDate, 
               </tr>
               <tr>
                 <td></td>
-                <td style={{ fontWeight: 'bold' }}>Initial</td>
-                <td style={{ paddingLeft: '60px', fontWeight: 'bold' }}>Retest</td>
+                <td className={styles.subTitle}>Initial</td>
+                <td className={styles.subTitle}>Retest</td>
               </tr>
               <tr>
                 <td>Tested at ANC</td>
                 <td className={styles.textBox}>
                   <span>HV02-02</span>
-                  <div onClick={() => navigateToRegister('initial_test_anc', 'F')} className={styles.rectangle}>
+                  <div
+                    onClick={() => navigateToRegister('initial_test_anc', 'F', 'Tested at ANC')}
+                    className={styles.rectangle}
+                    title="Click to open linelist"
+                  >
                     {MOH731Data.initial_test_anc}
                   </div>
                 </td>
                 <td>
                   <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                     <span>HV02-03</span>
-                    <div onClick={() => navigateToRegister('retest_anc', 'F')} className={styles.rectangle}>
+                    <div
+                      onClick={() => navigateToRegister('retest_anc', 'F', 'Tested at ANC')}
+                      className={styles.rectangle}
+                      title="Click to open linelist"
+                    >
                       {MOH731Data.retest_anc}
                     </div>
                   </div>
@@ -66,14 +78,22 @@ const PmtctComponent: React.FC<PmtctComponentProps> = ({ MOH731Data, startDate, 
                 <td>Tested at L&D</td>
                 <td className={styles.textBox}>
                   <span>HV02-04</span>
-                  <div onClick={() => navigateToRegister('initial_test_LD', 'F')} className={styles.rectangle}>
+                  <div
+                    onClick={() => navigateToRegister('initial_test_LD', 'F', 'Tested at L&D')}
+                    className={styles.rectangle}
+                    title="Click to open linelist"
+                  >
                     {MOH731Data.initial_test_LD}
                   </div>
                 </td>
                 <td>
                   <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                     <span>HV02-05</span>
-                    <div onClick={() => navigateToRegister('retest_LD', 'F')} className={styles.rectangle}>
+                    <div
+                      onClick={() => navigateToRegister('retest_LD', 'F', 'Tested at L&D')}
+                      className={styles.rectangle}
+                      title="Click to open linelist"
+                    >
                       {MOH731Data.retest_LD}
                     </div>
                   </div>
@@ -84,8 +104,9 @@ const PmtctComponent: React.FC<PmtctComponentProps> = ({ MOH731Data, startDate, 
                 <td className={styles.textBox}>
                   <span>HV02-06</span>
                   <div
-                    onClick={() => navigateToRegister('initial_test_pnc_less_6_weeks', 'F')}
+                    onClick={() => navigateToRegister('initial_test_pnc_less_6_weeks', 'F', 'Tested at PNC_≤6weeks')}
                     className={styles.rectangle}
+                    title="Click to open linelist"
                   >
                     {MOH731Data.initial_test_pnc_less_6_weeks}
                   </div>
@@ -94,8 +115,9 @@ const PmtctComponent: React.FC<PmtctComponentProps> = ({ MOH731Data, startDate, 
                   <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                     <span>HV02-07</span>
                     <div
-                      onClick={() => navigateToRegister('retest_pnc_less_6_weeks', 'F')}
+                      onClick={() => navigateToRegister('retest_pnc_less_6_weeks', 'F', 'Tested at PNC_≤6weeks')}
                       className={styles.rectangle}
+                      title="Click to open linelist"
                     >
                       {MOH731Data.retest_pnc_less_6_weeks}
                     </div>
@@ -107,8 +129,9 @@ const PmtctComponent: React.FC<PmtctComponentProps> = ({ MOH731Data, startDate, 
                 <td className={styles.textBox}>
                   <span>HV02-08</span>
                   <div
-                    onClick={() => navigateToRegister('initial_test_pnc_greater_6_weeks', 'F')}
+                    onClick={() => navigateToRegister('initial_test_pnc_greater_6_weeks', 'F', 'Tested at PNC_>6weeks')}
                     className={styles.rectangle}
+                    title="Click to open linelist"
                   >
                     {MOH731Data.initial_test_pnc_greater_6_weeks}
                   </div>
@@ -117,17 +140,22 @@ const PmtctComponent: React.FC<PmtctComponentProps> = ({ MOH731Data, startDate, 
                   <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                     <span>HV02-09</span>
                     <div
-                      onClick={() => navigateToRegister('retest_pnc_greater_6_weeks', 'F')}
+                      onClick={() => navigateToRegister('retest_pnc_greater_6_weeks', 'F', 'Tested at PNC_>6weeks')}
                       className={styles.rectangle}
+                      title="Click to open linelist"
                     >
                       {MOH731Data.retest_pnc_greater_6_weeks}
                     </div>
                   </div>
                 </td>
               </tr>
-              ____________________________________________________________________
+            </tbody>
+          </table>
+          <hr className={styles.divider} />
+          <table className={styles.block}>
+            <tbody>
               <tr>
-                <td className={styles.spaceAfter} style={{ fontWeight: 'bold' }}>
+                <td className={styles.blockTitle} colSpan={3}>
                   2.2 HIV Positive Results
                 </td>
               </tr>
@@ -135,7 +163,11 @@ const PmtctComponent: React.FC<PmtctComponentProps> = ({ MOH731Data, startDate, 
                 <td>Tested at ANC</td>
                 <td className={styles.textBox}>
                   <span>HV02-10</span>
-                  <div onClick={() => navigateToRegister('positive_anc', 'F')} className={styles.rectangle}>
+                  <div
+                    onClick={() => navigateToRegister('positive_anc', 'F', 'Tested at ANC')}
+                    className={styles.rectangle}
+                    title="Click to open linelist"
+                  >
                     {MOH731Data.positive_anc}
                   </div>
                 </td>
@@ -145,7 +177,11 @@ const PmtctComponent: React.FC<PmtctComponentProps> = ({ MOH731Data, startDate, 
                 <td>Tested at L&D</td>
                 <td className={styles.textBox}>
                   <span>HV02-11</span>
-                  <div onClick={() => navigateToRegister('positive_LD', 'F')} className={styles.rectangle}>
+                  <div
+                    onClick={() => navigateToRegister('positive_LD', 'F', 'Tested at L&D')}
+                    className={styles.rectangle}
+                    title="Click to open linelist"
+                  >
                     {MOH731Data.positive_LD}
                   </div>
                 </td>
@@ -156,8 +192,9 @@ const PmtctComponent: React.FC<PmtctComponentProps> = ({ MOH731Data, startDate, 
                 <td className={styles.textBox}>
                   <span>HV02-12</span>
                   <div
-                    onClick={() => navigateToRegister('positive_pnc_less_6_weeks', 'F')}
+                    onClick={() => navigateToRegister('positive_pnc_less_6_weeks', 'F', 'Tested at PNC_≤6weeks')}
                     className={styles.rectangle}
+                    title="Click to open linelist"
                   >
                     {MOH731Data.positive_pnc_less_6_weeks}
                   </div>
@@ -169,17 +206,22 @@ const PmtctComponent: React.FC<PmtctComponentProps> = ({ MOH731Data, startDate, 
                 <td className={styles.textBox}>
                   <span>HV02-13</span>
                   <div
-                    onClick={() => navigateToRegister('positive_pnc_greater_6_weeks', 'F')}
+                    onClick={() => navigateToRegister('positive_pnc_greater_6_weeks', 'F', 'Tested at PNC_>6weeks')}
                     className={styles.rectangle}
+                    title="Click to open linelist"
                   >
                     {MOH731Data.positive_pnc_greater_6_weeks}
                   </div>
                 </td>
                 <td></td>
               </tr>
-              ____________________________________________________________________
+            </tbody>
+          </table>
+          <hr className={styles.divider} />
+          <table className={styles.block}>
+            <tbody>
               <tr>
-                <td className={styles.spaceAfter} style={{ fontWeight: 'bold' }}>
+                <td className={styles.blockTitle} colSpan={3}>
                   2.3 Maternal HAART
                 </td>
               </tr>
@@ -187,7 +229,11 @@ const PmtctComponent: React.FC<PmtctComponentProps> = ({ MOH731Data, startDate, 
                 <td>On HAART at 1st ANC</td>
                 <td className={styles.textBox}>
                   <span>HV02-14</span>
-                  <div onClick={() => navigateToRegister('maternal_haart_1st_anc', 'F')} className={styles.rectangle}>
+                  <div
+                    onClick={() => navigateToRegister('maternal_haart_1st_anc', 'F', 'On HAART at 1st ANC')}
+                    className={styles.rectangle}
+                    title="Click to open linelist"
+                  >
                     {MOH731Data.maternal_haart_1st_anc}
                   </div>
                 </td>
@@ -198,8 +244,9 @@ const PmtctComponent: React.FC<PmtctComponentProps> = ({ MOH731Data, startDate, 
                 <td className={styles.textBox}>
                   <span>HV02-15</span>
                   <div
-                    onClick={() => navigateToRegister('start_maternal_haart_1st_anc', 'F')}
+                    onClick={() => navigateToRegister('start_maternal_haart_1st_anc', 'F', 'Start HAART_ANC')}
                     className={styles.rectangle}
+                    title="Click to open linelist"
                   >
                     {MOH731Data.start_maternal_haart_1st_anc}
                   </div>
@@ -210,7 +257,11 @@ const PmtctComponent: React.FC<PmtctComponentProps> = ({ MOH731Data, startDate, 
                 <td>Start HAART_L&D</td>
                 <td className={styles.textBox}>
                   <span>HV02-16</span>
-                  <div onClick={() => navigateToRegister('start_maternal_haart_LD', 'F')} className={styles.rectangle}>
+                  <div
+                    onClick={() => navigateToRegister('start_maternal_haart_LD', 'F', 'Start HAART_L&D')}
+                    className={styles.rectangle}
+                    title="Click to open linelist"
+                  >
                     {MOH731Data.start_maternal_haart_LD}
                   </div>
                 </td>
@@ -221,8 +272,9 @@ const PmtctComponent: React.FC<PmtctComponentProps> = ({ MOH731Data, startDate, 
                 <td className={styles.textBox}>
                   <span>HV02-17</span>
                   <div
-                    onClick={() => navigateToRegister('maternal_haart_less_6_weeks', 'F')}
+                    onClick={() => navigateToRegister('maternal_haart_less_6_weeks', 'F', 'Start HAART_PNC_≤6weeks')}
                     className={styles.rectangle}
+                    title="Click to open linelist"
                   >
                     {MOH731Data.maternal_haart_less_6_weeks}
                   </div>
@@ -234,19 +286,24 @@ const PmtctComponent: React.FC<PmtctComponentProps> = ({ MOH731Data, startDate, 
                 <td className={styles.textBox}>
                   <span>HV02-18</span>
                   <div
-                    onClick={() => navigateToRegister('maternal_haart_more_6_weeks', 'F')}
+                    onClick={() => navigateToRegister('maternal_haart_more_6_weeks', 'F', 'Start HAART_PNC_>6weeks')}
                     className={styles.rectangle}
+                    title="Click to open linelist"
                   >
                     {MOH731Data.maternal_haart_more_6_weeks}
                   </div>
                 </td>
                 <td></td>
               </tr>
-              ____________________________________________________________________
-            </div>
-            <div className={styles.flexColumn}>
+            </tbody>
+          </table>
+          <hr className={styles.divider} />
+        </div>
+        <div className={styles.flexColumn}>
+          <table className={styles.block}>
+            <tbody>
               <tr>
-                <td className={styles.spaceAfter} style={{ fontWeight: 'bold' }}>
+                <td className={styles.blockTitle} colSpan={3}>
                   2.4 HBV Screening at ANC
                 </td>
               </tr>
@@ -263,17 +320,22 @@ const PmtctComponent: React.FC<PmtctComponentProps> = ({ MOH731Data, startDate, 
                 <td className={styles.textBox}>
                   <span>HV02-20</span>
                   <div
-                    onClick={() => navigateToRegister('hbv_screened_positive_anc', 'F')}
+                    onClick={() => navigateToRegister('hbv_screened_positive_anc', 'F', 'HBV Screened_Positive')}
                     className={styles.rectangle}
+                    title="Click to open linelist"
                   >
                     {MOH731Data.hbv_screened_positive_anc}
                   </div>
                 </td>
                 <td></td>
               </tr>
-              ____________________________________________________________________
+            </tbody>
+          </table>
+          <hr className={styles.divider} />
+          <table className={styles.block}>
+            <tbody>
               <tr>
-                <td style={{ fontWeight: 'bold' }}>
+                <td className={styles.blockTitle} colSpan={3}>
                   2.5 Adolescents girls & Young Women (10-24 Yrs)
                   <br />
                   testing & results
@@ -282,13 +344,17 @@ const PmtctComponent: React.FC<PmtctComponentProps> = ({ MOH731Data, startDate, 
               <tr>
                 <td></td>
                 <td>10-19yrs</td>
-                <td style={{ paddingLeft: '60px' }}>20-24yrs</td>
+                <td>20-24yrs</td>
               </tr>
               <tr>
                 <td>1st ANC KP</td>
                 <td className={styles.textBox}>
                   <span>HV02-21</span>
-                  <div onClick={() => navigateToRegister('known_positive_anc_10_19', 'F')} className={styles.rectangle}>
+                  <div
+                    onClick={() => navigateToRegister('known_positive_anc_10_19', 'F', '1st ANC KP')}
+                    className={styles.rectangle}
+                    title="Click to open linelist"
+                  >
                     {MOH731Data.known_positive_anc_10_19}
                   </div>
                 </td>
@@ -296,8 +362,9 @@ const PmtctComponent: React.FC<PmtctComponentProps> = ({ MOH731Data, startDate, 
                   <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                     <span>HV02-22</span>
                     <div
-                      onClick={() => navigateToRegister('known_positive_anc_20_24', 'F')}
+                      onClick={() => navigateToRegister('known_positive_anc_20_24', 'F', '1st ANC KP')}
                       className={styles.rectangle}
+                      title="Click to open linelist"
                     >
                       {MOH731Data.known_positive_anc_20_24}
                     </div>
@@ -309,8 +376,9 @@ const PmtctComponent: React.FC<PmtctComponentProps> = ({ MOH731Data, startDate, 
                 <td className={styles.textBox}>
                   <span>HV02-23</span>
                   <div
-                    onClick={() => navigateToRegister('positive_anc_ld_pnc_10_19', 'F')}
+                    onClick={() => navigateToRegister('positive_anc_ld_pnc_10_19', 'F', 'New HIV Positive')}
                     className={styles.rectangle}
+                    title="Click to open linelist"
                   >
                     {MOH731Data.positive_anc_ld_pnc_10_19}
                   </div>
@@ -319,8 +387,9 @@ const PmtctComponent: React.FC<PmtctComponentProps> = ({ MOH731Data, startDate, 
                   <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                     <span>HV02-24</span>
                     <div
-                      onClick={() => navigateToRegister('positive_anc_ld_pnc_20_24', 'F')}
+                      onClick={() => navigateToRegister('positive_anc_ld_pnc_20_24', 'F', 'New HIV Positive')}
                       className={styles.rectangle}
+                      title="Click to open linelist"
                     >
                       {MOH731Data.positive_anc_ld_pnc_20_24}
                     </div>
@@ -331,14 +400,22 @@ const PmtctComponent: React.FC<PmtctComponentProps> = ({ MOH731Data, startDate, 
                 <td>On HAART 1st ANC KP</td>
                 <td className={styles.textBox}>
                   <span>HV02-25</span>
-                  <div onClick={() => navigateToRegister('on_art_anc_10_19', 'F')} className={styles.rectangle}>
+                  <div
+                    onClick={() => navigateToRegister('on_art_anc_10_19', 'F', 'On HAART 1st ANC KP')}
+                    className={styles.rectangle}
+                    title="Click to open linelist"
+                  >
                     {MOH731Data.on_art_anc_10_19}
                   </div>
                 </td>
                 <td>
                   <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                     <span>HV02-26</span>
-                    <div onClick={() => navigateToRegister('on_art_anc_20_24', 'F')} className={styles.rectangle}>
+                    <div
+                      onClick={() => navigateToRegister('on_art_anc_20_24', 'F', 'On HAART 1st ANC KP')}
+                      className={styles.rectangle}
+                      title="Click to open linelist"
+                    >
                       {MOH731Data.on_art_anc_20_24}
                     </div>
                   </div>
@@ -348,22 +425,34 @@ const PmtctComponent: React.FC<PmtctComponentProps> = ({ MOH731Data, startDate, 
                 <td>Started HAART New</td>
                 <td className={styles.textBox}>
                   <span>HV02-27</span>
-                  <div onClick={() => navigateToRegister('start_art_10_19', 'F')} className={styles.rectangle}>
+                  <div
+                    onClick={() => navigateToRegister('start_art_10_19', 'F', 'Started HAART New')}
+                    className={styles.rectangle}
+                    title="Click to open linelist"
+                  >
                     {MOH731Data.start_art_10_19}
                   </div>
                 </td>
                 <td>
                   <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                     <span>HV02-28</span>
-                    <div onClick={() => navigateToRegister('start_art_20_24', 'F')} className={styles.rectangle}>
+                    <div
+                      onClick={() => navigateToRegister('start_art_20_24', 'F', 'Started HAART New')}
+                      className={styles.rectangle}
+                      title="Click to open linelist"
+                    >
                       {MOH731Data.start_art_20_24}
                     </div>
                   </div>
                 </td>
               </tr>
-              ____________________________________________________________________
+            </tbody>
+          </table>
+          <hr className={styles.divider} />
+          <table className={styles.block}>
+            <tbody>
               <tr>
-                <td className={styles.spaceAfter} style={{ fontWeight: 'bold' }}>
+                <td className={styles.blockTitle} colSpan={3}>
                   2.6 Infant Prophylaxis
                 </td>
               </tr>
@@ -371,7 +460,11 @@ const PmtctComponent: React.FC<PmtctComponentProps> = ({ MOH731Data, startDate, 
                 <td>Infant ARV Prophylaxis_ANC</td>
                 <td className={styles.textBox}>
                   <span>HV02-29</span>
-                  <div onClick={() => navigateToRegister('infant_arv_anc', 'F')} className={styles.rectangle}>
+                  <div
+                    onClick={() => navigateToRegister('infant_arv_anc', 'F', 'Infant ARV Prophylaxis_ANC')}
+                    className={styles.rectangle}
+                    title="Click to open linelist"
+                  >
                     {MOH731Data.infant_arv_anc}
                   </div>
                 </td>
@@ -381,7 +474,11 @@ const PmtctComponent: React.FC<PmtctComponentProps> = ({ MOH731Data, startDate, 
                 <td>Infant ARV Prophylaxis_L&D</td>
                 <td className={styles.textBox}>
                   <span>HV02-30</span>
-                  <div onClick={() => navigateToRegister('infant_arv_ld', 'F')} className={styles.rectangle}>
+                  <div
+                    onClick={() => navigateToRegister('infant_arv_ld', 'F', 'Infant ARV Prophylaxis_L&D')}
+                    className={styles.rectangle}
+                    title="Click to open linelist"
+                  >
                     {MOH731Data.infant_arv_ld}
                   </div>
                 </td>
@@ -391,39 +488,59 @@ const PmtctComponent: React.FC<PmtctComponentProps> = ({ MOH731Data, startDate, 
                 <td>Infant ARV Prophylaxis_L&PNC</td>
                 <td className={styles.textBox}>
                   <span>HV02-31</span>
-                  <div onClick={() => navigateToRegister('infant_arv_pnc', 'F')} className={styles.rectangle}>
+                  <div
+                    onClick={() => navigateToRegister('infant_arv_pnc', 'F', 'Infant ARV Prophylaxis_L&PNC')}
+                    className={styles.rectangle}
+                    title="Click to open linelist"
+                  >
                     {MOH731Data.infant_arv_pnc}
                   </div>
                 </td>
                 <td></td>
               </tr>
-              ____________________________________________________________________
+            </tbody>
+          </table>
+          <hr className={styles.divider} />
+          <table className={styles.block}>
+            <tbody>
               <tr>
-                <td className={styles.spaceAfter} style={{ fontWeight: 'bold' }}>
+                <td className={styles.blockTitle} colSpan={3}>
                   2.7 Infant Feeding
                 </td>
               </tr>
               <tr>
-                <td style={{ fontWeight: 'bold' }}>Below 6 months</td>
+                <td className={styles.groupTitle} colSpan={3}>
+                  Below 6 months
+                </td>
               </tr>
               <tr>
                 <td>Exclusive Breastfeeding (EBF)</td>
                 <td className={styles.textBox}>
                   <span>HV02-32</span>
-                  <div onClick={() => navigateToRegister('exclusive_bf', 'F')} className={styles.rectangle}>
+                  <div
+                    onClick={() => navigateToRegister('exclusive_bf', 'F', 'Exclusive Breastfeeding (EBF)')}
+                    className={styles.rectangle}
+                    title="Click to open linelist"
+                  >
                     {MOH731Data.exclusive_bf}
                   </div>
                 </td>
                 <td></td>
               </tr>
               <tr>
-                <td style={{ fontWeight: 'bold' }}>6 to 24 months</td>
+                <td className={styles.groupTitle} colSpan={3}>
+                  6 to 24 months
+                </td>
               </tr>
               <tr>
                 <td>Breastfeeding (BF)</td>
                 <td className={styles.textBox}>
                   <span>HV02-33</span>
-                  <div onClick={() => navigateToRegister('bf', 'F')} className={styles.rectangle}>
+                  <div
+                    onClick={() => navigateToRegister('bf', 'F', 'Breastfeeding (BF)')}
+                    className={styles.rectangle}
+                    title="Click to open linelist"
+                  >
                     {MOH731Data.bf}
                   </div>
                 </td>
@@ -433,17 +550,21 @@ const PmtctComponent: React.FC<PmtctComponentProps> = ({ MOH731Data, startDate, 
                 <td className={styles.spaceAfter}>Not Breastfeeding (NBF)</td>
                 <td className={styles.textBox}>
                   <span>HV02-34</span>
-                  <div onClick={() => navigateToRegister('weaning', 'F')} className={styles.rectangle}>
+                  <div
+                    onClick={() => navigateToRegister('weaning', 'F', 'Not Breastfeeding (NBF)')}
+                    className={styles.rectangle}
+                    title="Click to open linelist"
+                  >
                     {MOH731Data.weaning}
                   </div>
                 </td>
                 <td></td>
               </tr>
-              ____________________________________________________________________
-            </div>
-          </div>
-        </tbody>
-      </table>
+            </tbody>
+          </table>
+          <hr className={styles.divider} />
+        </div>
+      </div>
     </>
   );
 };

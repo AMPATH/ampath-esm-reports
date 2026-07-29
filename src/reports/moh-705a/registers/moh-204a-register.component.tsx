@@ -1,60 +1,59 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Loading, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@carbon/react';
+import React from 'react';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@carbon/react';
 
-import styles from '../moh-705a.scss';
+import styles from '../../../common/report-register/register-table.scss';
 import classNames from 'classnames';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { getMoh705aPatientList } from '../../../resources/moh-705.resource';
+import { moh204aExportColumns } from './moh-204a.columns';
+import { RegisterLayout, usePatientList } from '../../../common/report-register';
 
 interface Moh204ARegisterComponentProps {}
 
 const Moh204ARegisterComponent: React.FC<Moh204ARegisterComponentProps> = () => {
-  const [patientlist, setPatientList] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
-  const location = useLocation();
   const startDate = searchParams.get('startDate');
   const endDate = searchParams.get('endDate');
   const locationUuids = searchParams.get('locationUuids');
   const indicator = searchParams.get('indicator');
 
-  function navigateBack() {
-    navigate(location.state?.from || '/moh-705b');
-  }
-
-  useEffect(() => {
-    const fetchData = async () => {
-      if (!startDate || !endDate || !locationUuids || !indicator) return;
-
-      setIsLoading(true);
-
-      try {
-        const params = {
-          startDate,
-          endDate,
-          locationUuids,
-          indicator,
-        };
-
-        const data = await getMoh705aPatientList(params);
-        setPatientList(data?.results.results || []);
-      } catch (error) {
-        console.error('Failed to fetch register data', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [startDate, endDate, locationUuids, indicator]);
+  const {
+    rows: patientlist,
+    total,
+    isTotalExact,
+    isLoading,
+    page,
+    pageSize,
+    onPageChange,
+    fetchAll,
+  } = usePatientList(
+    ({ startIndex, limit }) =>
+      getMoh705aPatientList({
+        startDate: startDate!,
+        endDate: endDate!,
+        locationUuids: locationUuids!,
+        indicator: indicator!,
+        startIndex,
+        limit,
+      }),
+    [startDate, endDate, locationUuids, indicator],
+  );
 
   return (
-    <>
-      <div className={styles.buttonContainer}>
-        <Button onClick={navigateBack}>Back</Button>
-      </div>
-      <div>{isLoading && <Loading />}</div>
+    <RegisterLayout
+      parentLabel="MOH-705A Report"
+      parentPath="/moh-705a"
+      title="MOH 204A Under-5 Outpatient Register"
+      isLoading={isLoading}
+      isEmpty={patientlist.length === 0}
+      page={page}
+      pageSize={pageSize}
+      total={total}
+      isTotalExact={isTotalExact}
+      onPageChange={onPageChange}
+      fetchAll={fetchAll}
+      columns={moh204aExportColumns}
+    >
       <div className={styles.tableContainer}>
         <Table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
           <TableHead>
@@ -314,7 +313,7 @@ const Moh204ARegisterComponent: React.FC<Moh204ARegisterComponentProps> = () => 
           </TableBody>
         </Table>
       </div>
-    </>
+    </RegisterLayout>
   );
 };
 

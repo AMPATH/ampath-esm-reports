@@ -16,7 +16,7 @@ const PNCComponent: React.FC<PNCComponentProps> = ({ moh711Data, startDate, endD
   const location = useLocation();
   const navigateToRegister = (indicator: string) => {
     navigate(
-      `/moh-406-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}`,
+      `/moh-406-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}&from=moh-711`,
       {
         state: {
           from: location.pathname,
@@ -26,7 +26,7 @@ const PNCComponent: React.FC<PNCComponentProps> = ({ moh711Data, startDate, endD
     );
   };
   return (
-    <>
+    <div className={styles.section}>
       <table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
         <thead>
           <tr>
@@ -109,16 +109,18 @@ const PNCComponent: React.FC<PNCComponentProps> = ({ moh711Data, startDate, endD
           <tr>
             <td>7</td>
             <td colSpan={2}>Number of Cases of Fistula</td>
-            <td onClick={() => navigateToRegister('pnc_new_clients')}>{moh711Data.fistula_cases}</td>
+            <td onClick={() => navigateToRegister('fistula_cases')}>{moh711Data.fistula_cases}</td>
           </tr>
           <tr>
             <td>8</td>
             <td colSpan={2}>No referred from the Community unit to PNC</td>
-            <td onClick={() => navigateToRegister('pnc_new_clients')}>{moh711Data.referrals_from_community}</td>
+            <td onClick={() => navigateToRegister('referrals_from_community')}>
+              {moh711Data.referrals_from_community}
+            </td>
           </tr>
         </tbody>
       </table>
-    </>
+    </div>
   );
 };
 

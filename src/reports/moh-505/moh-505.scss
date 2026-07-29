@@ -1,3 +1,117 @@
+/* MOH-505 laid out for A4, on the same scale as the other reports.
+
+   This one renders through the shared TableWrapper, so its cells are styled
+   from `table-wrapper.scss` rather than here. Those rules are all single-class,
+   so scoping these under `.sheet` (a class plus an element, one step more
+   specific) wins deterministically -- no reliance on which module loads first.
+   The wrapper is asked for a plain table so Carbon's data-table rules, which
+   are far more specific, never apply at all. */
+
+$ink: #000;
+$rule: 1px solid $ink;
+
+$text: 7pt;
+$title: 7.5pt;
+$meta: 6.5pt;
+
+$pad: 3mm;
+
+.mainTitleBox {
+  padding: 2mm $pad;
+  text-align: center;
+  border: $rule;
+}
+
+.ministry {
+  font-size: $meta;
+}
+
+.reportTitle {
+  font-size: $title;
+  font-weight: 700;
+  color: $ink;
+}
+
+.subTitle {
+  font-size: $meta;
+  font-weight: 600;
+}
+
 .headerSection {
-  padding: 15px;
+  padding: 0;
+}
+
+.sheet {
+  font-size: $text;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  td,
+  th {
+    height: auto;
+    min-width: 0;
+    padding: 0.7mm 1mm;
+    overflow-wrap: anywhere;
+    font-size: $text;
+    line-height: 1.25;
+    text-align: center;
+    border: $rule;
+  }
+
+  /* Row labels read as text, not as data */
+  td:first-child {
+    text-align: left;
+  }
+
+  /* The facility block's labels sit against their values rather than centred */
+
+  .headerTable td {
+    text-align: left;
+  }
+}
+
+/* Sign-off, enclosed by the form */
+
+.signOff {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2.5mm;
+  padding: $pad;
+  font-size: $meta;
+  white-space: nowrap;
+  border: $rule;
+  border-top: none;
+
+  > span {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: baseline;
+    min-width: 0;
+  }
+}
+
+.line,
+.shortLine {
+  padding: 0 0.5mm;
+  margin-left: 1mm;
+  overflow: hidden;
+  font-weight: 600;
+  text-align: center;
+  text-overflow: ellipsis;
+  border-bottom: $rule;
+}
+
+.line {
+  flex: 1 1 45mm;
+  min-width: 15mm;
+}
+
+.shortLine {
+  flex: 1 1 25mm;
+  min-width: 12mm;
 }

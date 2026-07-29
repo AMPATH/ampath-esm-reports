@@ -16,7 +16,7 @@ const MaternityComponent: React.FC<MaternityComponentProps> = ({ moh711Data, sta
   const location = useLocation();
   const navigateToRegister = (indicator: string) => {
     navigate(
-      `/moh-333-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}`,
+      `/moh-333-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}&from=moh-711`,
       {
         state: {
           from: location.pathname,
@@ -27,7 +27,7 @@ const MaternityComponent: React.FC<MaternityComponentProps> = ({ moh711Data, sta
   };
 
   return (
-    <>
+    <div className={styles.section}>
       <table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
         <thead>
           <tr>
@@ -57,11 +57,6 @@ const MaternityComponent: React.FC<MaternityComponentProps> = ({ moh711Data, sta
             <td onClick={() => navigateToRegister('assisted_vaginal_delivery')}>
               {moh711Data.assisted_vaginal_delivery}
             </td>
-          </tr>
-          <tr>
-            <td></td>
-            <td colSpan={2}></td>
-            <td></td>
           </tr>
           <tr>
             <th colSpan={3}>Total Deliveries</th>
@@ -319,7 +314,7 @@ const MaternityComponent: React.FC<MaternityComponentProps> = ({ moh711Data, sta
           </tr>
         </tbody>
       </table>
-    </>
+    </div>
   );
 };
 

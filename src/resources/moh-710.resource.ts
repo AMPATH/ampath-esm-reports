@@ -1,5 +1,5 @@
 import { openmrsFetch } from '@openmrs/esm-framework';
-import { getEtlBaseUrl } from '../utils/get-base-url';
+import { buildEtlUrl } from '../utils/get-base-url';
 
 interface Moh710Params {
   locationUuids: string;
@@ -9,18 +9,13 @@ interface Moh710Params {
 }
 
 export async function getMoh710(params: Moh710Params): Promise<any> {
-  const etlBaseUrl = await getEtlBaseUrl();
-  const url = `${etlBaseUrl}/moh-710`;
-  const queryparams = {
+  const url = await buildEtlUrl('moh-710', {
     locationUuids: params.locationUuids || '',
     startDate: params.startDate || '',
     endDate: params.endDate || '',
-  };
-  const queryString = new URLSearchParams(
-    Object.fromEntries(Object.entries(queryparams).filter(([_, v]) => v !== undefined && v !== null)),
-  ).toString();
+  });
   try {
-    const response = await openmrsFetch(`${url}?${queryString}`);
+    const response = await openmrsFetch(url);
 
     if (!response.ok) {
       const errorText = await response.text();
@@ -35,19 +30,14 @@ export async function getMoh710(params: Moh710Params): Promise<any> {
 }
 
 export async function getMoh710PatientList(params: Moh710Params): Promise<any> {
-  const etlBaseUrl = await getEtlBaseUrl();
-  const url = `${etlBaseUrl}/moh-710-patient-list`;
-  const queryparams = {
+  const url = await buildEtlUrl('moh-710-patient-list', {
     locationUuids: params.locationUuids || '',
     startDate: params.startDate || '',
     endDate: params.endDate || '',
     indicator: Array.isArray(params.indicator) ? params.indicator.join(',') : params.indicator || '',
-  };
-  const queryString = new URLSearchParams(
-    Object.fromEntries(Object.entries(queryparams).filter(([_, v]) => v !== undefined && v !== null)),
-  ).toString();
+  });
   try {
-    const response = await openmrsFetch(`${url}?${queryString}`);
+    const response = await openmrsFetch(url);
 
     if (!response.ok) {
       const errorText = await response.text();

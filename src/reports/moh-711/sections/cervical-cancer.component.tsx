@@ -21,11 +21,11 @@ const CervicalCancerComponent: React.FC<CervicalCancerComponentProps> = ({
 
   const navigateToRegister = (indicator: string) => {
     navigate(
-      `/moh-412-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}`,
+      `/moh-412-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}&from=moh-711`,
     );
   };
   return (
-    <>
+    <div className={styles.section}>
       <table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
         <thead>
           <tr>
@@ -141,7 +141,7 @@ const CervicalCancerComponent: React.FC<CervicalCancerComponentProps> = ({
           </tr>
         </tbody>
       </table>
-    </>
+    </div>
   );
 };
 

@@ -1,0 +1,52 @@
+import { type RegisterColumn } from '../../../common/report-register';
+
+/** MOH 222, in the order the register prints its columns */
+export const MOH_222_COLUMNS: RegisterColumn[] = [
+  { header: 'No', value: (_row, index) => index + 1 },
+  { header: 'Date', value: (r) => r.encounter_date ?? '' },
+  { header: 'Patient No', value: (r) => r.amrs_universal_id ?? '' },
+  { header: 'Patient Name', value: (r) => r.person_name ?? '' },
+  { header: 'Age', value: (r) => r.age ?? '' },
+  { header: 'D.O.B', value: (r) => r.birthdate ?? '' },
+  { header: 'Sex(M/F)', value: (r) => r.gender ?? '' },
+  { header: 'Visit for the month', value: (r) => r.visit_for_the_month ?? '' },
+  { header: 'Weight(Kg)', value: (r) => r.weight ?? '' },
+  { header: 'Height(cm)', value: (r) => r.height ?? '' },
+  { header: 'BMI', value: (r) => r.bmi ?? '' },
+  { header: 'Waist Circumference', value: (r) => r.waist_circumference ?? '' },
+  { header: 'BP(mmHg)', value: (r) => r.bp ?? '' },
+  { header: 'HTN', value: (r) => r.htn ?? '' },
+  { header: 'Diabetes', value: (r) => r.diabetes ?? '' },
+  { header: 'Both Diabetes and Hypetention(HTN)', value: (r) => r.both_htn_and_diabetic ?? '' },
+  { header: 'RBS(mmol/L)', value: (r) => r.rbs ?? '' },
+  { header: 'FBS(mmol/L)', value: (r) => r.fbs ?? '' },
+  { header: 'HbA1C(%) within 3 months', value: (r) => r.hba1c ?? '' },
+  { header: 'Complications/Co-morbidities at enrollment(2)', value: (r) => r.complications_at_enrollment ?? '' },
+  { header: 'Treatment', value: (r) => r.treatment ?? '' },
+  { header: 'Diabetic Foot Screening', value: (r) => r.diabetic_foot_screening ?? '' },
+  { header: 'Diabetic Foot(New,Known,Nill)', value: (r) => r.diabetic_foot ?? '' },
+  { header: 'Foot Risk Assessment', value: (r) => r.foot_risk_assessment ?? '' },
+  { header: 'Footcare Outcome', value: (r) => r.footcare_outcome ?? '' },
+  { header: 'Screened for TB', value: (r) => r.screened_for_tb ?? '' },
+  { header: 'TB Status after Screening', value: (r) => r.tbs_status ?? '' },
+  { header: 'Active NHIF(Y/N)', value: (r) => (r.covered_by_shif ? 'Y' : 'N') },
+];
+
+/** MOH 270, in the order the register prints its columns */
+export const MOH_270_COLUMNS: RegisterColumn[] = [
+  { header: 'No', value: (_row, index) => index + 1 },
+  { header: 'Date', value: (r) => r.encounter_date ?? '' },
+  { header: 'Patient No', value: (r) => r.amrs_universal_id ?? '' },
+  { header: 'Name', value: (r) => r.person_name ?? '' },
+  { header: 'D.O.B', value: (r) => r.birthdate ?? '' },
+  { header: 'Sex(M/F)', value: (r) => r.gender ?? '' },
+  { header: 'Telephone No', value: (r) => r.phone_number ?? '' },
+  { header: 'Sub County', value: (r) => r.sub_county ?? '' },
+  { header: 'Village/Estate', value: (r) => r.ward ?? '' },
+  { header: 'Landmark', value: (r) => r.landmark ?? '' },
+  { header: 'Treatment supporter', value: (r) => r.contact_of_the_treatment_supporter_and_relationship ?? '' },
+  { header: 'Diagnosis at enrolment', value: (r) => r.diagnosis_at_enrolment ?? '' },
+  { header: 'Year of diagnosis', value: (r) => r.diagnosis_year ?? '' },
+  { header: 'Complications/Co-morbidities at enrollment(2)', value: (r) => r.complications_at_enrollment ?? '' },
+  { header: 'NHIF(Y/N)', value: (r) => (r.covered_by_shif ? 'Y' : 'N') },
+];

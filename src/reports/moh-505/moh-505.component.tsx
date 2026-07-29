@@ -1,22 +1,31 @@
 import React, { useEffect, useState } from 'react';
-import { useSession } from '@openmrs/esm-framework';
-import { Loading } from '@carbon/react';
+import { formatDate, useSession } from '@openmrs/esm-framework';
 import TableWrapper from '../table-wrapper/table-wrapper.component';
 import TableRowMapper from '../table-wrapper/table-row-mapper.component';
 import { getCell } from '../../utils/utils';
-import ReportFiltersComponent from '../../common/report-filters/report-filters.component';
+import { ReportFiltersComponent, type ReportPeriod } from '../../common/report-filters';
+import { showReportError } from '../../common/report-error';
+import { hasReportData, ReportPlaceholder } from '../../common/report-placeholder';
 import { getMoh505 } from '../../resources/moh-505.resource';
 import MOH505Header from './moh-505-header.component';
 import { useSearchParams } from 'react-router-dom';
+import { ReportSkeleton } from '../../common/report-skeleton';
+import { ReportPage } from '../../common/report-page';
+import styles from './moh-505.scss';
 
 const Moh505Report: React.FC = () => {
   const [moh505Data, setMoh505Data] = useState<any>({});
+  const isReportGenerated = hasReportData(moh505Data);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState<string>('');
   const [filters, setFilters] = useState<{ locationUuids?: string; startDate?: string; endDate?: string }>({});
 
   const session = useSession();
   const locationUuids = session?.sessionLocation?.uuid;
+
+  /* Masthead and sign-off fill themselves in, as on the other reports */
+  const facility = session?.sessionLocation?.display ?? '';
+  const compiledBy = session?.user?.person?.display ?? session?.user?.display ?? '';
+  const compiledOn = formatDate(new Date(), { mode: 'standard', time: false, noToday: true });
 
   const [searchParams] = useSearchParams();
 
@@ -30,28 +39,8 @@ const Moh505Report: React.FC = () => {
     }
   }, [searchParams]);
 
-  const fetchMoh505Data = async (filters: { startDate?: string; endDate?: string; month?: string }) => {
-    setErrorMessage('');
+  const fetchMoh505Data = async ({ startDate, endDate }: Pick<ReportPeriod, 'startDate' | 'endDate'>) => {
     setIsLoading(true);
-
-    let startDate = filters.startDate;
-    let endDate = filters.endDate;
-
-    if (filters.month) {
-      const [year, monthIndex] = filters.month.split('-').map(Number);
-      const start = new Date(year, monthIndex - 1, 1);
-      const end = new Date(year, monthIndex, 0);
-
-      const formatLocalDate = (d: Date) => {
-        const y = d.getFullYear();
-        const m = String(d.getMonth() + 1).padStart(2, '0');
-        const day = String(d.getDate()).padStart(2, '0');
-        return `${y}-${m}-${day}`;
-      };
-
-      startDate = formatLocalDate(start);
-      endDate = formatLocalDate(end);
-    }
 
     const params = {
       locationUuids: locationUuids || '',
@@ -65,7 +54,7 @@ const Moh505Report: React.FC = () => {
       setMoh505Data(flatData);
       setFilters({ locationUuids: params.locationUuids, startDate, endDate });
     } catch (error: any) {
-      setErrorMessage(error instanceof Error ? error.message : String(error));
+      showReportError('the MOH-505 report', error);
     } finally {
       setIsLoading(false);
     }
@@ -236,13 +225,7 @@ const Moh505Report: React.FC = () => {
       ],
     },
     {
-      tableCells: [
-        getCell('', 'Suspected Malaria***'),
-        getCell(),
-        getCell(),
-        getCell(),
-        getCell('', '', 5),
-      ],
+      tableCells: [getCell('', 'Suspected Malaria***'), getCell(), getCell(), getCell(), getCell('', '', 5)],
     },
     {
       tableCells: [
@@ -408,31 +391,43 @@ const Moh505Report: React.FC = () => {
     <>
       <ReportFiltersComponent
         reportName="MOH-505 Report"
-        mode="monthly"
+        mode="both"
         onGenerate={fetchMoh505Data}
-        isLoding={isLoading}
+        isLoading={isLoading}
+        isReportGenerated={isReportGenerated}
       />
-      {isLoading && <Loading description="Fetching data...." />}
-      {!isLoading && errorMessage && (
-        <div>
-          <a href="#" className="close" data-dismiss="alert">
-            &times;
-          </a>
-          <h4>
-            <strong>
-              <span className="glyphicon glyphicon-warning-sign"></span>{' '}
-            </strong>{' '}
-            An error occurred while trying to load the report. Please try again.
-          </h4>
-          <p>
-            <small>{errorMessage}</small>
-          </p>
-        </div>
+      {isLoading && <ReportSkeleton />}
+      {!isLoading && !isReportGenerated && <ReportPlaceholder reportName="MOH-505" />}
+      {!isLoading && isReportGenerated && (
+        <ReportPage>
+          <div className={styles.sheet}>
+            <MOH505Header facility={facility} startDate={filters.startDate} endDate={filters.endDate} />
+            <TableWrapper>
+              <TableRowMapper
+                tableRows={tableRows}
+                data={moh505Data}
+                locationUuids={filters.locationUuids}
+                startDate={filters.startDate}
+                endDate={filters.endDate}
+                report="moh-505"
+              />
+            </TableWrapper>
+
+            <div className={styles.signOff}>
+              <span>
+                Compiled by:<span className={styles.line}>{compiledBy}</span>
+              </span>
+              <span>
+                Signature:
+                <span className={styles.line} />
+              </span>
+              <span>
+                Date:<span className={styles.shortLine}>{compiledOn}</span>
+              </span>
+            </div>
+          </div>
+        </ReportPage>
       )}
-      <MOH505Header />
-      <TableWrapper>
-        <TableRowMapper tableRows={tableRows} data={moh505Data} locationUuids={filters.locationUuids} startDate={filters.startDate} endDate={filters.endDate} report='moh-505' />
-      </TableWrapper>
     </>
   );
 };

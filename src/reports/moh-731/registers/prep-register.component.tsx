@@ -1,15 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-import styles from './prep-registers.scss';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import styles from '../../../common/report-register/register-table.scss';
+import { useSearchParams } from 'react-router-dom';
 import { getPrepPatientList } from '../../../resources/moh-731.resource';
-import { Button, Loading } from '@carbon/react';
 import classNames from 'classnames';
+import { prepExportColumns } from './prep.columns';
+import { RegisterLayout, usePatientList } from '../../../common/report-register';
 const PrepRegisterComponent: React.FC = () => {
-  const navigate = useNavigate();
-  const [patientlist, setPatientList] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-
   const [searchParams] = useSearchParams();
 
   const startDate = searchParams.get('startDate');
@@ -18,37 +15,28 @@ const PrepRegisterComponent: React.FC = () => {
   const indicator = searchParams.get('indicator');
   const gender = searchParams.get('gender');
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (!startDate || !endDate || !locationUuids || !indicator || !gender) return;
-
-      setIsLoading(true);
-
-      try {
-        const params = {
-          startDate,
-          endDate,
-          locationUuids,
-          indicator,
-          gender,
-        };
-
-        const data = await getPrepPatientList(params);
-
-        setPatientList(data?.results.results || []);
-      } catch (error) {
-        console.error('Failed to fetch register data', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [startDate, endDate, locationUuids, indicator, gender]);
-
-  function navigateBack() {
-    navigate('/moh-731');
-  }
+  const {
+    rows: patientlist,
+    total,
+    isTotalExact,
+    isLoading,
+    page,
+    pageSize,
+    onPageChange,
+    fetchAll,
+  } = usePatientList(
+    ({ startIndex, limit }) =>
+      getPrepPatientList({
+        startDate,
+        endDate,
+        locationUuids,
+        indicator,
+        gender,
+        startIndex,
+        limit,
+      }),
+    [startDate, endDate, locationUuids, indicator, gender],
+  );
 
   const transformDate = (date: string): string => {
     if (!date) return '';
@@ -60,16 +48,20 @@ const PrepRegisterComponent: React.FC = () => {
     }).format(new Date(date));
   };
   return (
-    <>
-      <div className={styles.buttonContainer}>
-        <Button onClick={navigateBack}>Back</Button>
-      </div>
-      {isLoading && <Loading />}
-      <div className={styles.container}>
-        <b>Ministry Of Health</b>
-        <b>MOH 267 PrEP Daily Activity Register</b>
-        <b>Ver. July 2023</b>
-      </div>
+    <RegisterLayout
+      parentLabel="MOH-731 Report"
+      parentPath="/moh-731"
+      title="MOH 267 PrEP Daily Activity Register"
+      isLoading={isLoading}
+      isEmpty={patientlist.length === 0}
+      page={page}
+      pageSize={pageSize}
+      total={total}
+      isTotalExact={isTotalExact}
+      onPageChange={onPageChange}
+      fetchAll={fetchAll}
+      columns={prepExportColumns}
+    >
       <table className={classNames(styles.table, styles.tableBordered, styles.textCentre)}>
         <thead>
           <tr>
@@ -141,40 +133,40 @@ const PrepRegisterComponent: React.FC = () => {
             </th>
           </tr>
           <tr>
-            <th colSpan={2} className={styles.textCenter}>
+            <th colSpan={2} className={styles.textCentre}>
               (a)
             </th>
-            <th colSpan={2} className={styles.textCenter}>
+            <th colSpan={2} className={styles.textCentre}>
               (b)
             </th>
-            <th colSpan={2} className={styles.textCenter}>
+            <th colSpan={2} className={styles.textCentre}>
               (l)
             </th>
-            <th colSpan={3} className={styles.textCenter}>
+            <th colSpan={3} className={styles.textCentre}>
               (c)
             </th>
-            <th colSpan={2} className={styles.textCenter}>
+            <th colSpan={2} className={styles.textCentre}>
               (d)
             </th>
-            <th colSpan={2} className={styles.textCenter}>
+            <th colSpan={2} className={styles.textCentre}>
               (e)
             </th>
-            <th colSpan={3} className={styles.textCenter}>
+            <th colSpan={3} className={styles.textCentre}>
               (f)
             </th>
-            <th colSpan={2} className={styles.textCenter}>
+            <th colSpan={2} className={styles.textCentre}>
               (g)
             </th>
-            <th colSpan={3} className={styles.textCenter}>
+            <th colSpan={3} className={styles.textCentre}>
               (h)
             </th>
-            <th colSpan={2} className={styles.textCenter}>
+            <th colSpan={2} className={styles.textCentre}>
               (i)
             </th>
-            <th colSpan={2} className={styles.textCenter}>
+            <th colSpan={2} className={styles.textCentre}>
               (j)
             </th>
-            <th colSpan={4} className={styles.textCenter}>
+            <th colSpan={4} className={styles.textCentre}>
               (k)
             </th>
           </tr>
@@ -241,23 +233,23 @@ const PrepRegisterComponent: React.FC = () => {
               <b>TOTAL this Page</b>
             </td>
 
-            <td colSpan={2} className={styles.textCenter}>
+            <td colSpan={2} className={styles.textCentre}>
               {patientlist.length}
             </td>
 
-            <td colSpan={2} className={styles.textCenter}></td>
+            <td colSpan={2} className={styles.textCentre}></td>
 
-            <td colSpan={3} className={styles.textCenter}></td>
+            <td colSpan={3} className={styles.textCentre}></td>
 
-            <td colSpan={2} className={styles.textCenter}></td>
+            <td colSpan={2} className={styles.textCentre}></td>
 
-            <td colSpan={3} className={styles.textCenter}></td>
+            <td colSpan={3} className={styles.textCentre}></td>
 
-            <td colSpan={2} className={styles.textCenter}></td>
+            <td colSpan={2} className={styles.textCentre}></td>
 
-            <td colSpan={2} className={styles.textCenter}></td>
+            <td colSpan={2} className={styles.textCentre}></td>
 
-            <td colSpan={4} className={styles.textCenter}></td>
+            <td colSpan={4} className={styles.textCentre}></td>
           </tr>
 
           <tr>
@@ -265,27 +257,27 @@ const PrepRegisterComponent: React.FC = () => {
               <b>TOTAL this Month</b>
             </td>
 
-            <td colSpan={2} className={styles.textCenter}>
+            <td colSpan={2} className={styles.textCentre}>
               {patientlist.length}
             </td>
 
-            <td colSpan={2} className={styles.textCenter}></td>
+            <td colSpan={2} className={styles.textCentre}></td>
 
-            <td colSpan={3} className={styles.textCenter}></td>
+            <td colSpan={3} className={styles.textCentre}></td>
 
-            <td colSpan={2} className={styles.textCenter}></td>
+            <td colSpan={2} className={styles.textCentre}></td>
 
-            <td colSpan={3} className={styles.textCenter}></td>
+            <td colSpan={3} className={styles.textCentre}></td>
 
-            <td colSpan={2} className={styles.textCenter}></td>
+            <td colSpan={2} className={styles.textCentre}></td>
 
-            <td colSpan={2} className={styles.textCenter}></td>
+            <td colSpan={2} className={styles.textCentre}></td>
 
-            <td colSpan={4} className={styles.textCenter}></td>
+            <td colSpan={4} className={styles.textCentre}></td>
           </tr>
         </tbody>
       </table>
-    </>
+    </RegisterLayout>
   );
 };
 

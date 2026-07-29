@@ -16,7 +16,7 @@ const ANCComponent: React.FC<ANCComponentProps> = ({ moh711Data, startDate, endD
   const location = useLocation();
   const navigateToRegister = (indicator: string) => {
     navigate(
-      `/moh-405-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}`,
+      `/moh-405-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}&from=moh-711`,
       {
         state: {
           from: location.pathname,
@@ -26,7 +26,7 @@ const ANCComponent: React.FC<ANCComponentProps> = ({ moh711Data, startDate, endD
     );
   };
   return (
-    <>
+    <div className={styles.section}>
       <table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
         <thead>
           <tr>
@@ -152,7 +152,7 @@ const ANCComponent: React.FC<ANCComponentProps> = ({ moh711Data, startDate, endD
           </tr>
         </tbody>
       </table>
-    </>
+    </div>
   );
 };
 
