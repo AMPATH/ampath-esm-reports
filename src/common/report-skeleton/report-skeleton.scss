@@ -1,0 +1,29 @@
+@use '@carbon/layout';
+@use '@openmrs/esm-styleguide/src/vars' as *;
+
+.skeleton {
+  padding: layout.$spacing-05;
+  margin-bottom: layout.$spacing-05;
+  background-color: $ui-02;
+  border: 1px solid $ui-03;
+}
+
+/* When it stands in for a register table it sits under the caption bar */
+.skeleton:not(:first-child) {
+  margin-bottom: 0;
+  border-top: none;
+}
+
+.header {
+  padding-bottom: layout.$spacing-05;
+  margin-bottom: layout.$spacing-05;
+  border-bottom: 1px solid $ui-03;
+}
+
+.block {
+  margin-bottom: layout.$spacing-06;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

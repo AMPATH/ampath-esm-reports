@@ -1,30 +1,126 @@
-.tableWrapper {
-  overflow-x: auto;
-  border: 1px solid #d0d0d0;
-  border-radius: 4px;
+/* MOH-706 laid out for A4, on the same scale as the other reports.
+
+   Its nine sub-reports all render through the shared TableWrapper, so their
+   cells are styled from `table-wrapper.scss` rather than here. Those rules are
+   all single-class, so scoping these under `.sheet` (a class plus an element,
+   one step more specific) wins deterministically -- no reliance on which module
+   loads first. The wrapper is asked for a plain table so Carbon's data-table
+   rules, which are far more specific, never apply at all. */
+
+$ink: #000;
+$rule: 1px solid $ink;
+
+$text: 7pt;
+$title: 7.5pt;
+$meta: 6.5pt;
+
+$pad: 3mm;
+
+.mainTitleBox {
+  padding: 2mm $pad;
+  text-align: center;
+  border: $rule;
 }
 
-.tableContainer {
-  width: 100%;
-  border-collapse: collapse;
-
-  thead {
-    background-color: #f4f4f4;
-  }
-
-  tbody tr {
-    border-bottom: 1px solid #e0e0e0;
-  }
-  
+.ministry {
+  font-size: $meta;
 }
 
-.reportSections {
-  position: relative;
-  margin: 0px auto;
-  width: 100%;
-  padding: 12px;
+.reportTitle {
+  font-size: $title;
+  font-weight: 700;
+  color: $ink;
 }
 
 .headerSection {
-  padding: 15px;
+  padding: 0;
+}
+
+/* The nine sub-reports run continuously down the sheet, as they do on the form.
+   Each is kept off a page break so a block is never split from the heading row
+   that names its columns. */
+
+.reportSections {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  > * {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+
+.sheet {
+  font-size: $text;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  td,
+  th {
+    height: auto;
+    min-width: 0;
+    padding: 0.7mm 1mm;
+    overflow-wrap: anywhere;
+    font-size: $text;
+    line-height: 1.25;
+    text-align: center;
+    border: $rule;
+  }
+
+  /* Row labels read as text, not as data */
+  td:first-child {
+    text-align: left;
+  }
+
+  /* The facility block is all labels and values, none of it tabular data */
+  .headerSection td {
+    text-align: left;
+  }
+}
+
+/* Sign-off, enclosed by the form */
+
+.signOff {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2.5mm;
+  padding: $pad;
+  font-size: $meta;
+  white-space: nowrap;
+  border: $rule;
+  border-top: none;
+
+  > span {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: baseline;
+    min-width: 0;
+  }
+}
+
+.line,
+.shortLine {
+  padding: 0 0.5mm;
+  margin-left: 1mm;
+  overflow: hidden;
+  font-weight: 600;
+  text-align: center;
+  text-overflow: ellipsis;
+  border-bottom: $rule;
+}
+
+.line {
+  flex: 1 1 45mm;
+  min-width: 15mm;
+}
+
+.shortLine {
+  flex: 1 1 25mm;
+  min-width: 12mm;
 }

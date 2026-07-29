@@ -1,59 +1,64 @@
-import { Button, Loading, Table, TableBody, TableHead, TableHeader, TableRow } from '@carbon/react';
-import React, { useEffect, useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Table, TableBody, TableHead, TableHeader, TableRow } from '@carbon/react';
+import React from 'react';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
-import styles from '../moh-710.scss';
+import styles from '../../../common/report-register/register-table.scss';
 import { getMoh511PatientList } from '../../../resources/moh-711.resource';
 import { moh511Columns } from './type';
+import { moh511ExportColumns } from './moh-511-710.columns';
+import { RegisterLayout, usePatientList } from '../../../common/report-register';
 
 const Moh511710Register: React.FC = () => {
-  const navigate = useNavigate();
-  const [patientlist, setPatientList] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-
   const [searchParams] = useSearchParams();
+  const location = useLocation();
+
+  /* The endpoint scopes its list by report. Defaulted rather than read only
+     from route state, which is lost on a reload or a pasted link. */
+  const reportName = location.state?.reportName || 'moh710Report';
 
   const startDate = searchParams.get('startDate');
   const endDate = searchParams.get('endDate');
   const locationUuids = searchParams.get('locationUuids');
   const indicator = searchParams.get('indicator');
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (!startDate || !endDate || !locationUuids || !indicator) return;
+  const {
+    rows: patientlist,
+    total,
+    isTotalExact,
+    isLoading,
+    page,
+    pageSize,
+    onPageChange,
+    fetchAll,
+  } = usePatientList(
+    ({ startIndex, limit }) =>
+      getMoh511PatientList({
+        startDate,
+        endDate,
+        locationUuids,
+        indicator,
+        reportName,
+        startIndex,
+        limit,
+      }),
+    [startDate, endDate, locationUuids, indicator, reportName],
+  );
 
-      setIsLoading(true);
-
-      try {
-        const params = {
-          startDate,
-          endDate,
-          locationUuids,
-          indicator,
-        };
-
-        const data = await getMoh511PatientList(params);
-
-        setPatientList(data?.results.results || []);
-      } catch (error) {
-        console.error('Failed to fetch register data', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [startDate, endDate, locationUuids, indicator]);
-
-  function navigateBack() {
-    navigate('/moh-710');
-  }
   return (
-    <>
-      <div className={styles.buttonContainer}>
-        <Button onClick={navigateBack}>Back</Button>
-      </div>
-      <div>{isLoading && <Loading />}</div>
+    <RegisterLayout
+      parentLabel="MOH-710 Report"
+      parentPath="/moh-710"
+      title="MOH 511 Immunization Register"
+      isLoading={isLoading}
+      isEmpty={patientlist.length === 0}
+      page={page}
+      pageSize={pageSize}
+      total={total}
+      isTotalExact={isTotalExact}
+      onPageChange={onPageChange}
+      fetchAll={fetchAll}
+      columns={moh511ExportColumns}
+    >
       <Table>
         <TableHead>
           <TableRow>
@@ -256,7 +261,7 @@ const Moh511710Register: React.FC = () => {
           )}
         </TableBody>
       </Table>
-    </>
+    </RegisterLayout>
   );
 };
 

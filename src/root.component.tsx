@@ -23,38 +23,40 @@ import Moh511710Register from './reports/moh-710/registers/moh-511-710-register.
 import Moh731Report from './reports/moh-731/moh-731.component';
 import Moh366Register from './reports/moh-731/registers/moh-366.component';
 import PrepRegisterComponent from './reports/moh-731/registers/prep-register.component';
+import styles from './root.scss';
 
 const RootComponent: React.FC = () => {
   const baseName = window.getOpenmrsSpaBase() + 'home/reports';
 
   return (
     <BrowserRouter basename={baseName}>
-      <Routes>
-        <Route path="/" element={<ReportsDashboard />} />
-        <Route path="/moh-710" element={<Moh710Report />} />
-        <Route path="/moh-711" element={<Moh711Report />} />
-        <Route path="/moh-717" element={<Moh717Report />} />
-        <Route path="/moh-706" element={<MoH706Report />} />
-        <Route path="/moh-240" element={<Moh240Report />} />
-        <Route path="/moh-505" element={<Moh505Report />} />
-        <Route path="/moh-705a" element={<Moh705AComponent />} />
-        <Route path="/moh-705b" element={<Moh705BComponent />} />
-        <Route path="/moh-745" element={<Moh745Component />} />
-        <Route path="/moh-740" element={<Moh740Report />} />
-        <Route path="/moh-412-register" element={<Moh412Register />} />
-        <Route path="/moh-204b" element={<Moh204BRegisterComponent />} />
-        <Route path="/moh-204a" element={<Moh204ARegisterComponent />} />
-        <Route path="/moh-405-register" element={<Moh405Register />} />
-        <Route path="/moh-406-register" element={<Moh406Register />} />
-        <Route path="/moh-333-register" element={<Moh333Register />} />
-        <Route path="/moh-511-register" element={<Moh511Register />} />
-        <Route path="/moh-510-register" element={<Moh510Register />} />
-        <Route path="/moh-412-register" element={<Moh412Register />} />
-        <Route path="/moh-511-710-register" element={<Moh511710Register />} />
-        <Route path="/moh-731" element={<Moh731Report />} />
-        <Route path="/moh-366-register" element={<Moh366Register />} />
-        <Route path="/prep-register" element={<PrepRegisterComponent />} />
-      </Routes>
+      <div className={styles.page}>
+        <Routes>
+          <Route path="/" element={<ReportsDashboard />} />
+          <Route path="/moh-710" element={<Moh710Report />} />
+          <Route path="/moh-711" element={<Moh711Report />} />
+          <Route path="/moh-717" element={<Moh717Report />} />
+          <Route path="/moh-706" element={<MoH706Report />} />
+          <Route path="/moh-240" element={<Moh240Report />} />
+          <Route path="/moh-505" element={<Moh505Report />} />
+          <Route path="/moh-705a" element={<Moh705AComponent />} />
+          <Route path="/moh-705b" element={<Moh705BComponent />} />
+          <Route path="/moh-745" element={<Moh745Component />} />
+          <Route path="/moh-740" element={<Moh740Report />} />
+          <Route path="/moh-412-register" element={<Moh412Register />} />
+          <Route path="/moh-204b" element={<Moh204BRegisterComponent />} />
+          <Route path="/moh-204a" element={<Moh204ARegisterComponent />} />
+          <Route path="/moh-405-register" element={<Moh405Register />} />
+          <Route path="/moh-406-register" element={<Moh406Register />} />
+          <Route path="/moh-333-register" element={<Moh333Register />} />
+          <Route path="/moh-511-register" element={<Moh511Register />} />
+          <Route path="/moh-510-register" element={<Moh510Register />} />
+          <Route path="/moh-511-710-register" element={<Moh511710Register />} />
+          <Route path="/moh-731" element={<Moh731Report />} />
+          <Route path="/moh-366-register" element={<Moh366Register />} />
+          <Route path="/prep-register" element={<PrepRegisterComponent />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 };

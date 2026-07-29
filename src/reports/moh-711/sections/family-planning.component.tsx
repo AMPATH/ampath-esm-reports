@@ -9,7 +9,7 @@ interface FamilyPlanningComponentProps {
 
 const FamilyPlanningComponent: React.FC<FamilyPlanningComponentProps> = ({ moh711Data }) => {
   return (
-    <>
+    <div className={styles.section}>
       <table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
         <thead>
           <tr>
@@ -214,7 +214,7 @@ const FamilyPlanningComponent: React.FC<FamilyPlanningComponentProps> = ({ moh71
           </tr>
         </tbody>
       </table>
-    </>
+    </div>
   );
 };
 

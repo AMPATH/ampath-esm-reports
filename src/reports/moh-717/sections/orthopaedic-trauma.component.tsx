@@ -18,7 +18,7 @@ const OrthopaedicTraumaComponent: React.FC<OrthopaedicTraumaComponentProps> = ({
             <th colSpan={2}>&gt;5 Years</th>
           </tr>
           <tr>
-            <th className={styles.alighnLeft}>Description</th>
+            <th className={styles.alignLeft}>Description</th>
             <th>New</th>
             <th>Revisit</th>
             <th>New</th>

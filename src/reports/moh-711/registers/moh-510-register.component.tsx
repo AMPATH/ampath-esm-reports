@@ -1,16 +1,11 @@
-import { Button, Loading } from '@carbon/react';
-import React, { useEffect, useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import React from 'react';
+import { useSearchParams } from 'react-router-dom';
 
-import styles from '../moh711.scss';
+import styles from '../../../common/report-register/register-table.scss';
 import { getMoh510PatientList } from '../../../resources/moh-711.resource';
+import { RegisterLayout, usePatientList } from '../../../common/report-register';
 
 const Moh510Register: React.FC = () => {
-  const navigate = useNavigate();
-
-  const [patientlist, setPatientList] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-
   const [searchParams] = useSearchParams();
 
   const startDate = searchParams.get('startDate');
@@ -18,43 +13,42 @@ const Moh510Register: React.FC = () => {
   const locationUuids = searchParams.get('locationUuids');
   const indicator = searchParams.get('indicator');
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (!startDate || !endDate || !locationUuids || !indicator) return;
+  const {
+    rows: patientlist,
+    total,
+    isTotalExact,
+    isLoading,
+    page,
+    pageSize,
+    onPageChange,
+    fetchAll,
+  } = usePatientList(
+    ({ startIndex, limit }) =>
+      getMoh510PatientList({
+        startDate,
+        endDate,
+        locationUuids,
+        indicator,
+        startIndex,
+        limit,
+      }),
+    [startDate, endDate, locationUuids, indicator],
+  );
 
-      setIsLoading(true);
-
-      try {
-        const params = {
-          startDate,
-          endDate,
-          locationUuids,
-          indicator,
-        };
-
-        const data = await getMoh510PatientList(params);
-
-        setPatientList(data?.results.results || []);
-      } catch (error) {
-        console.error('Failed to fetch register data', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [startDate, endDate, locationUuids, indicator]);
-
-  function navigateBack() {
-    navigate('/moh-711');
-  }
   return (
-    <>
-      <div className={styles.buttonContainer}>
-        <Button onClick={navigateBack}>Back</Button>
-      </div>
-      <div>{isLoading && <Loading />}</div>
-    </>
+    <RegisterLayout
+      parentLabel="MOH-711 Report"
+      parentPath="/moh-711"
+      title="MOH 510 Register"
+      isLoading={isLoading}
+      isEmpty={patientlist.length === 0}
+      page={page}
+      pageSize={pageSize}
+      total={total}
+      isTotalExact={isTotalExact}
+      onPageChange={onPageChange}
+      fetchAll={fetchAll}
+    ></RegisterLayout>
   );
 };
 

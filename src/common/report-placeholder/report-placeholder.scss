@@ -1,0 +1,46 @@
+@use '@carbon/layout';
+@use '@carbon/type';
+@use '@openmrs/esm-styleguide/src/vars' as *;
+
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: layout.$spacing-03;
+  padding: layout.$spacing-07 layout.$spacing-05;
+  margin-bottom: layout.$spacing-05;
+  text-align: center;
+  background-color: $ui-02;
+  border: 1px solid $ui-03;
+
+  h5 {
+    @include type.type-style('productive-heading-02');
+    color: $color-gray-100;
+  }
+
+  p {
+    @include type.type-style('body-long-01');
+    color: $text-02;
+  }
+}
+
+.icon {
+  fill: $ui-04;
+}
+
+/* The steps that produce a report. Left aligned inside the centred card: a
+   numbered sequence is read down its left edge, not from a ragged centre. */
+
+.steps {
+  max-width: 28rem;
+  margin-top: layout.$spacing-03;
+  padding-left: layout.$spacing-06;
+  text-align: left;
+  list-style: decimal;
+
+  li {
+    @include type.type-style('body-long-01');
+    color: $text-02;
+    margin-bottom: layout.$spacing-02;
+  }
+}

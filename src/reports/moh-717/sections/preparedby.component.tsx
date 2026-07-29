@@ -1,9 +1,14 @@
 import React from 'react';
+import { formatDate, useSession } from '@openmrs/esm-framework';
 
 import styles from '../moh717.scss';
 import classNames from 'classnames';
 
 const PreparedbyComponent: React.FC = () => {
+  const session = useSession();
+  const preparedBy = session?.user?.person?.display ?? session?.user?.display ?? '';
+  const preparedOn = formatDate(new Date(), { mode: 'standard', time: false, noToday: true });
+
   return (
     <>
       <table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
@@ -19,9 +24,9 @@ const PreparedbyComponent: React.FC = () => {
         <tbody>
           <tr>
             <td>Prepared by:</td>
+            <td>{preparedBy}</td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td>{preparedOn}</td>
             <td></td>
           </tr>
           <tr>

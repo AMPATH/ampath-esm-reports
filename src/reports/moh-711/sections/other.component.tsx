@@ -9,7 +9,7 @@ interface OtherComponentProps {
 
 const OtherComponent: React.FC<OtherComponentProps> = ({ moh711Data }) => {
   return (
-    <>
+    <div className={styles.section}>
       <table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
         <thead>
           <tr>
@@ -40,7 +40,7 @@ const OtherComponent: React.FC<OtherComponentProps> = ({ moh711Data }) => {
           </tr>
         </tbody>
       </table>
-    </>
+    </div>
   );
 };
 

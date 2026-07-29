@@ -1,0 +1,45 @@
+@use '@openmrs/esm-styleguide/src/vars' as *;
+
+/* A4 portrait, in the units the paper is measured in, so the sheet occupies
+   exactly one page on screen and prints at 1:1. */
+
+$page-w: 210mm;
+$page-h: 297mm;
+$page-margin: 10mm;
+
+.viewport {
+  overflow-x: auto;
+}
+
+.sheet {
+  box-sizing: border-box;
+  width: $page-w;
+  min-height: $page-h;
+  padding: $page-margin;
+  margin: 0 auto;
+  background-color: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+  /* set by `usePageScale` from the measured container width, floored at 1 */
+  zoom: var(--page-zoom, 1);
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: $page-margin;
+  }
+
+  .viewport {
+    overflow: visible;
+  }
+
+  .sheet {
+    width: auto;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    /* paper geometry stands on its own; magnification is for screens */
+    zoom: 1;
+  }
+}

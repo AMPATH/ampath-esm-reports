@@ -22,17 +22,17 @@ const OutpatientComponent: React.FC<OutpatientComponentProps> = ({
 
   const navigateTo204ARegister = (indicator: string | string[]) => {
     navigate(
-      `/moh-204a-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}`,
+      `/moh-204a?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}&from=moh-717`,
     );
   };
   const navigateTo204BRegister = (indicator: string | string[]) => {
     navigate(
-      `/moh-204b-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}`,
+      `/moh-204b?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}&from=moh-717`,
     );
   };
   const navigateToMoh405Register = (indicator: string | string[]) => {
     navigate(
-      `/moh-405-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}`,
+      `/moh-405-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}&from=moh-717`,
       {
         state: {
           from: location.pathname,
@@ -43,7 +43,7 @@ const OutpatientComponent: React.FC<OutpatientComponentProps> = ({
   };
   const navigateToMoh406Register = (indicator: string | string[]) => {
     navigate(
-      `/moh-406-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}`,
+      `/moh-406-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}&from=moh-717`,
       {
         state: {
           from: location.pathname,
@@ -54,7 +54,7 @@ const OutpatientComponent: React.FC<OutpatientComponentProps> = ({
   };
   const navigateTo511Register = (indicator: string | string[]) => {
     navigate(
-      `/moh-511-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}`,
+      `/moh-511-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}&from=moh-717`,
       {
         state: {
           from: location.pathname,
@@ -68,12 +68,12 @@ const OutpatientComponent: React.FC<OutpatientComponentProps> = ({
       <table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
         <thead>
           <tr>
-            <th colSpan={5} className={styles.alighnLeft}>
+            <th colSpan={5} className={styles.alignLeft}>
               A. OUTPATIENT SERVICES
             </th>
           </tr>
           <tr>
-            <th colSpan={2} className={styles.alighnLeft}>
+            <th colSpan={2} className={styles.alignLeft}>
               A.1 GENERAL OUTPATIENTS(FILTER CLINICS)
             </th>
             <th>NEW</th>
@@ -205,7 +205,7 @@ const OutpatientComponent: React.FC<OutpatientComponentProps> = ({
             </td>
           </tr>
           <tr>
-            <th colSpan={2} className={styles.alighnLeft}>
+            <th colSpan={2} className={styles.alignLeft}>
               A.2 CASUALTY
             </th>
             <th></th>
@@ -213,7 +213,7 @@ const OutpatientComponent: React.FC<OutpatientComponentProps> = ({
             <th></th>
           </tr>
           <tr>
-            <th colSpan={3} className={styles.alighnLeft}>
+            <th colSpan={3} className={styles.alignLeft}>
               A.3 SPECIAL CLINICS(if recorded separately from General Filter Clinics)
             </th>
             <th></th>
@@ -431,7 +431,7 @@ const OutpatientComponent: React.FC<OutpatientComponentProps> = ({
             </td>
           </tr>
           <tr>
-            <th colSpan={2} className={styles.alighnLeft}>
+            <th colSpan={2} className={styles.alignLeft}>
               A.4 MCH/FP CLIENTS
             </th>
             <th></th>
@@ -501,7 +501,7 @@ const OutpatientComponent: React.FC<OutpatientComponentProps> = ({
             </td>
           </tr>
           <tr>
-            <th colSpan={2} className={styles.alighnLeft}>
+            <th colSpan={2} className={styles.alignLeft}>
               A.5 DENTAL CLINIC
             </th>
             <th></th>
@@ -565,28 +565,28 @@ const OutpatientComponent: React.FC<OutpatientComponentProps> = ({
             <th className={styles.totals}></th>
           </tr>
           <tr>
-            <th colSpan={2} className={styles.alighnLeft}>
+            <th colSpan={2} className={styles.alignLeft}>
               A.7 MEDICAL EXAMINATIONS (except p3)
             </th>
-            <th className={styles.alighnLeft}>{moh717ReportData.medical_examinations_except_p3}</th>
-            <th className={styles.alighnLeft}>A.10 REMOVAL OF STITCHES</th>
-            <th className={styles.alighnLeft}>{moh717ReportData.opd_removal_of_stitches}</th>
+            <th className={styles.alignLeft}>{moh717ReportData.medical_examinations_except_p3}</th>
+            <th className={styles.alignLeft}>A.10 REMOVAL OF STITCHES</th>
+            <th className={styles.alignLeft}>{moh717ReportData.opd_removal_of_stitches}</th>
           </tr>
           <tr>
-            <th colSpan={2} className={styles.alighnLeft}>
+            <th colSpan={2} className={styles.alignLeft}>
               A.8 MEDICAL REPORTS (incl. p3, compensation, insurance, etc.)
             </th>
-            <th className={styles.alighnLeft}>{moh717ReportData.opd_medical_reports}</th>
-            <th className={styles.alighnLeft}>A.12 INJECTIONS</th>
-            <th className={styles.alighnLeft}>{moh717ReportData.opd_injections_given}</th>
+            <th className={styles.alignLeft}>{moh717ReportData.opd_medical_reports}</th>
+            <th className={styles.alignLeft}>A.12 INJECTIONS</th>
+            <th className={styles.alignLeft}>{moh717ReportData.opd_injections_given}</th>
           </tr>
           <tr>
-            <th colSpan={2} className={styles.alighnLeft}>
+            <th colSpan={2} className={styles.alignLeft}>
               A.9 DRESSINGS
             </th>
-            <th className={styles.alighnLeft}>{moh717ReportData.opd_dressing_done}</th>
-            <th className={styles.alighnLeft}>A.12 STITCHING</th>
-            <th className={styles.totalighnLeftals}>{moh717ReportData.opd_stitching}</th>
+            <th className={styles.alignLeft}>{moh717ReportData.opd_dressing_done}</th>
+            <th className={styles.alignLeft}>A.12 STITCHING</th>
+            <th className={styles.alignLeft}>{moh717ReportData.opd_stitching}</th>
           </tr>
         </tbody>
       </table>

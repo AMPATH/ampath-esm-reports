@@ -9,7 +9,7 @@ interface PhysiotherapyComponentProps {
 
 const PhysiotherapyComponent: React.FC<PhysiotherapyComponentProps> = () => {
   return (
-    <>
+    <div className={styles.section}>
       <table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
         <thead>
           <tr>
@@ -54,7 +54,7 @@ const PhysiotherapyComponent: React.FC<PhysiotherapyComponentProps> = () => {
           </tr>
         </tbody>
       </table>
-    </>
+    </div>
   );
 };
 

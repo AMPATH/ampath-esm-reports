@@ -9,10 +9,9 @@ interface ChanisComponentProps {
 
 const ChanisComponent: React.FC<ChanisComponentProps> = ({ moh711Data }) => {
   return (
-    <>
+    <div className={styles.section}>
       <table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
         <thead>
-          <th colSpan={6}></th>
           <tr>
             <th colSpan={6}>F. Child Health and Nutrition Information System</th>
           </tr>
@@ -360,7 +359,7 @@ const ChanisComponent: React.FC<ChanisComponentProps> = ({ moh711Data }) => {
           </tr>
         </tbody>
       </table>
-    </>
+    </div>
   );
 };
 

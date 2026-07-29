@@ -1,17 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-import styles from './moh-366.scss';
+import styles from '../../../common/report-register/register-table.scss';
 import classNames from 'classnames';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { getMoh366PatientList } from '../../../resources/moh-731.resource';
-import { Button, Loading } from '@carbon/react';
+import { RegisterLayout, usePatientList } from '../../../common/report-register';
+import { moh366Columns } from './moh-366.columns';
 
 interface Moh366RegisterProps {}
 const Moh366Register: React.FC<Moh366RegisterProps> = () => {
-  const navigate = useNavigate();
-  const [patientlist, setPatientList] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-
   const [searchParams] = useSearchParams();
 
   const startDate = searchParams.get('startDate');
@@ -20,48 +17,44 @@ const Moh366Register: React.FC<Moh366RegisterProps> = () => {
   const indicator = searchParams.get('indicator');
   const gender = searchParams.get('gender');
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (!startDate || !endDate || !locationUuids || !indicator || gender === null) return;
+  const {
+    rows: patientlist,
+    total,
+    isTotalExact,
+    isLoading,
+    page,
+    pageSize,
+    onPageChange,
+    fetchAll,
+  } = usePatientList(
+    ({ startIndex, limit }) =>
+      getMoh366PatientList({
+        startDate,
+        endDate,
+        locationUuids,
+        indicator,
+        gender,
+        startIndex,
+        limit,
+      }),
+    [startDate, endDate, locationUuids, indicator, gender],
+  );
 
-      setIsLoading(true);
-
-      try {
-        const params = {
-          startDate,
-          endDate,
-          locationUuids,
-          indicator,
-          gender,
-        };
-
-        const data = await getMoh366PatientList(params);
-
-        setPatientList(data?.results.results || []);
-      } catch (error) {
-        console.error('Failed to fetch register data', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [startDate, endDate, locationUuids, indicator, gender]);
-
-  function navigateBack() {
-    navigate('/moh-731');
-  }
   return (
-    <>
-      <div className={styles.buttonContainer}>
-        <Button onClick={navigateBack}>Back</Button>
-      </div>
-      {isLoading && <Loading />}
-      <div className={styles.container}>
-        <b>Ministry Of Health</b>
-        <b>HIV Care Treatment Daily Activity Register MOH 366</b>
-        <b>Ver. July 2023</b>
-      </div>
+    <RegisterLayout
+      parentLabel="MOH-731 Report"
+      parentPath="/moh-731"
+      title="HIV Care Treatment Daily Activity Register MOH 366"
+      isLoading={isLoading}
+      isEmpty={patientlist.length === 0}
+      page={page}
+      pageSize={pageSize}
+      total={total}
+      isTotalExact={isTotalExact}
+      onPageChange={onPageChange}
+      fetchAll={fetchAll}
+      columns={moh366Columns}
+    >
       <table className={classNames(styles.table, styles.tableBordered, styles.textCentre)}>
         <thead>
           <tr>
@@ -114,7 +107,7 @@ const Moh366Register: React.FC<Moh366RegisterProps> = () => {
             <th colSpan={4} className={styles.textCentre}>
               Indicate Y/N/NA
             </th>
-            <th colSpan={2} rowSpan={2} className={classNames(styles.textCenter, styles.verticalText)}>
+            <th colSpan={2} rowSpan={2} className={classNames(styles.textCentre, styles.verticalText)}>
               E=Established <br />
               NE=Not Established
             </th>
@@ -138,38 +131,38 @@ const Moh366Register: React.FC<Moh366RegisterProps> = () => {
             </th>
           </tr>
           <tr>
-            <th className={classNames(styles.textCenter, styles.verticalText)}>&lt; 1 yrs (M)</th>
-            <th className={classNames(styles.textCenter, styles.verticalText)}>&lt; 1 yrs (F)</th>
-            <th className={classNames(styles.textCenter, styles.verticalText)}>1-4 yrs (M)</th>
-            <th className={classNames(styles.textCenter, styles.verticalText)}>1-4 yrs (F)</th>
-            <th className={classNames(styles.textCenter, styles.verticalText)}>5-9 yrs (M)</th>
-            <th className={classNames(styles.textCenter, styles.verticalText)}>5-9 yrs (F)</th>
-            <th className={classNames(styles.textCenter, styles.verticalText)}>10-14 yrs (M)</th>
-            <th className={classNames(styles.textCenter, styles.verticalText)}>10-14 yrs (F)</th>
-            <th className={classNames(styles.textCenter, styles.verticalText)}>15-19 yrs (M)</th>
-            <th className={classNames(styles.textCenter, styles.verticalText)}>15-19 yrs (F)</th>
-            <th className={classNames(styles.textCenter, styles.verticalText)}>20-24 yrs(M)</th>
-            <th className={classNames(styles.textCenter, styles.verticalText)}>20-24 yrs (F)</th>
-            <th className={classNames(styles.textCenter, styles.verticalText)}>25+ yrs (M)</th>
-            <th className={classNames(styles.textCenter, styles.verticalText)}>25+ yrs (F)</th>
-            <th className={classNames(styles.textCenter, styles.verticalText)}>&lt 15 yrs</th>
-            <th className={classNames(styles.textCenter, styles.verticalText)}>15+ yrs</th>
-            <th className={classNames(styles.textCenter, styles.verticalText)}>&lt; 15 yrs</th>
-            <th className={classNames(styles.textCenter, styles.verticalText)}>15+ yrs</th>
-            <th className={classNames(styles.textCenter, styles.verticalText)}>&lt; 1 yrs (M)</th>
-            <th className={classNames(styles.textCenter, styles.verticalText)}>&lt; 1 yrs (F)</th>
-            <th className={classNames(styles.textCenter, styles.verticalText)}>1-4 yrs (M)</th>
-            <th className={classNames(styles.textCenter, styles.verticalText)}>1-4 yrs (F)</th>
-            <th className={classNames(styles.textCenter, styles.verticalText)}>5-9 yrs (M)</th>
-            <th className={classNames(styles.textCenter, styles.verticalText)}>5-9 yrs (F)</th>
-            <th className={classNames(styles.textCenter, styles.verticalText)}>10-14 yrs (M)</th>
-            <th className={classNames(styles.textCenter, styles.verticalText)}>10-14 yrs (F)</th>
-            <th className={classNames(styles.textCenter, styles.verticalText)}>15-19 yrs (M)</th>
-            <th className={classNames(styles.textCenter, styles.verticalText)}>15-19 yrs (F)</th>
-            <th className={classNames(styles.textCenter, styles.verticalText)}>20-24 yrs(M)</th>
-            <th className={classNames(styles.textCenter, styles.verticalText)}>20-24 yrs (F)</th>
-            <th className={classNames(styles.textCenter, styles.verticalText)}>25+ yrs (M)</th>
-            <th className={classNames(styles.textCenter, styles.verticalText)}>25+ yrs (F)</th>
+            <th className={classNames(styles.textCentre, styles.verticalText)}>&lt; 1 yrs (M)</th>
+            <th className={classNames(styles.textCentre, styles.verticalText)}>&lt; 1 yrs (F)</th>
+            <th className={classNames(styles.textCentre, styles.verticalText)}>1-4 yrs (M)</th>
+            <th className={classNames(styles.textCentre, styles.verticalText)}>1-4 yrs (F)</th>
+            <th className={classNames(styles.textCentre, styles.verticalText)}>5-9 yrs (M)</th>
+            <th className={classNames(styles.textCentre, styles.verticalText)}>5-9 yrs (F)</th>
+            <th className={classNames(styles.textCentre, styles.verticalText)}>10-14 yrs (M)</th>
+            <th className={classNames(styles.textCentre, styles.verticalText)}>10-14 yrs (F)</th>
+            <th className={classNames(styles.textCentre, styles.verticalText)}>15-19 yrs (M)</th>
+            <th className={classNames(styles.textCentre, styles.verticalText)}>15-19 yrs (F)</th>
+            <th className={classNames(styles.textCentre, styles.verticalText)}>20-24 yrs(M)</th>
+            <th className={classNames(styles.textCentre, styles.verticalText)}>20-24 yrs (F)</th>
+            <th className={classNames(styles.textCentre, styles.verticalText)}>25+ yrs (M)</th>
+            <th className={classNames(styles.textCentre, styles.verticalText)}>25+ yrs (F)</th>
+            <th className={classNames(styles.textCentre, styles.verticalText)}>&lt 15 yrs</th>
+            <th className={classNames(styles.textCentre, styles.verticalText)}>15+ yrs</th>
+            <th className={classNames(styles.textCentre, styles.verticalText)}>&lt; 15 yrs</th>
+            <th className={classNames(styles.textCentre, styles.verticalText)}>15+ yrs</th>
+            <th className={classNames(styles.textCentre, styles.verticalText)}>&lt; 1 yrs (M)</th>
+            <th className={classNames(styles.textCentre, styles.verticalText)}>&lt; 1 yrs (F)</th>
+            <th className={classNames(styles.textCentre, styles.verticalText)}>1-4 yrs (M)</th>
+            <th className={classNames(styles.textCentre, styles.verticalText)}>1-4 yrs (F)</th>
+            <th className={classNames(styles.textCentre, styles.verticalText)}>5-9 yrs (M)</th>
+            <th className={classNames(styles.textCentre, styles.verticalText)}>5-9 yrs (F)</th>
+            <th className={classNames(styles.textCentre, styles.verticalText)}>10-14 yrs (M)</th>
+            <th className={classNames(styles.textCentre, styles.verticalText)}>10-14 yrs (F)</th>
+            <th className={classNames(styles.textCentre, styles.verticalText)}>15-19 yrs (M)</th>
+            <th className={classNames(styles.textCentre, styles.verticalText)}>15-19 yrs (F)</th>
+            <th className={classNames(styles.textCentre, styles.verticalText)}>20-24 yrs(M)</th>
+            <th className={classNames(styles.textCentre, styles.verticalText)}>20-24 yrs (F)</th>
+            <th className={classNames(styles.textCentre, styles.verticalText)}>25+ yrs (M)</th>
+            <th className={classNames(styles.textCentre, styles.verticalText)}>25+ yrs (F)</th>
           </tr>
           <tr>
             <th className={styles.textCentre}>(a)</th>
@@ -471,7 +464,7 @@ const Moh366Register: React.FC<Moh366RegisterProps> = () => {
           ))}
         </tbody>
       </table>
-    </>
+    </RegisterLayout>
   );
 };
 

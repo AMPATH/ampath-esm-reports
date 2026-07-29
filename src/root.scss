@@ -1,8 +1,23 @@
 @use '@carbon/layout';
 @use '@carbon/type';
+@use '@openmrs/esm-styleguide/src/vars' as *;
+
+/* Single gutter for every route, so the dashboard and the individual reports
+   all clear the left nav by the same amount. */
+.page {
+  box-sizing: border-box;
+  min-height: 100%;
+  padding: 0 layout.$spacing-06;
+}
 
 .container {
   padding: layout.$spacing-07;
+}
+
+@media (max-width: $breakpoint-tablet-max) {
+  .page {
+    padding: 0 layout.$spacing-05;
+  }
 }
 
 .welcome {
@@ -12,4 +27,28 @@
 
 .explainer {
   margin-bottom: layout.$spacing-07;
+}
+
+/* Printing a report should put the report on the paper, not the application
+   around it. Every route renders inside `.page`, so the chrome is hidden once
+   here; the filter bar hides itself (see report-filters.scss), and a report
+   with its own sheet geometry (MOH-731) refines this further. */
+
+@media print {
+  :global(body) {
+    visibility: hidden;
+  }
+
+  .page,
+  .page * {
+    visibility: visible;
+  }
+
+  .page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0;
+  }
 }

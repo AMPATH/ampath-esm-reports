@@ -1,17 +1,14 @@
-import { Button, Loading } from '@carbon/react';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 
-import styles from '../moh711.scss';
+import styles from '../../../common/report-register/register-table.scss';
 import classNames from 'classnames';
 import { getMoh333PatientList } from '../../../resources/moh-711.resource';
 import { moh333Columns } from './type';
+import { moh333ExportColumns } from './moh-333.columns';
+import { RegisterLayout, usePatientList } from '../../../common/report-register';
 
 const Moh333Register: React.FC = () => {
-  const navigate = useNavigate();
-  const [patientlist, setPatientList] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-
   const [searchParams] = useSearchParams();
   const location = useLocation();
 
@@ -21,44 +18,45 @@ const Moh333Register: React.FC = () => {
   const indicator = searchParams.get('indicator');
   const reportName = location.state?.reportName || '';
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (!startDate || !endDate || !locationUuids || !indicator || !reportName) return;
+  const {
+    rows: patientlist,
+    total,
+    isTotalExact,
+    isLoading,
+    page,
+    pageSize,
+    onPageChange,
+    fetchAll,
+  } = usePatientList(
+    ({ startIndex, limit }) =>
+      getMoh333PatientList({
+        startDate,
+        endDate,
+        locationUuids,
+        indicator,
+        reportName,
+        startIndex,
+        limit,
+      }),
+    [startDate, endDate, locationUuids, indicator, reportName],
+  );
 
-      setIsLoading(true);
-
-      try {
-        const params = {
-          startDate,
-          endDate,
-          locationUuids,
-          indicator,
-          reportName,
-        };
-
-        const data = await getMoh333PatientList(params);
-
-        setPatientList(data?.results.results || []);
-      } catch (error) {
-        console.error('Failed to fetch register data', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [startDate, endDate, locationUuids, indicator, reportName]);
-
-  function navigateBack() {
-    navigate(location.state?.from || '//moh-711');
-  }
   return (
-    <>
+    <RegisterLayout
+      parentLabel="MOH-711 Report"
+      parentPath="/moh-711"
+      title="MOH 333 Register"
+      isLoading={isLoading}
+      isEmpty={patientlist.length === 0}
+      page={page}
+      pageSize={pageSize}
+      total={total}
+      isTotalExact={isTotalExact}
+      onPageChange={onPageChange}
+      fetchAll={fetchAll}
+      columns={moh333ExportColumns}
+    >
       {' '}
-      <div className={styles.buttonContainer}>
-        <Button onClick={navigateBack}>Back</Button>
-      </div>
-      <div>{isLoading && <Loading />}</div>
       <div className={styles.tableContainer}>
         <table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
           <thead>
@@ -453,59 +451,59 @@ const Moh333Register: React.FC = () => {
           </thead>
           <tbody>
             <tr>
-              <td className={styles.textCenter}>(a)</td>
-              <td className={styles.textCenter}>(b)</td>
-              <td className={styles.textCenter}>(c)</td>
-              <td className={styles.textCenter}>(d)</td>
-              <td className={styles.textCenter}>(e)</td>
-              <td className={styles.textCenter}>(f)</td>
-              <td className={styles.textCenter}>(g)</td>
-              <td className={styles.textCenter}>(h)</td>
-              <td className={styles.textCenter}>(i)</td>
-              <td className={styles.textCenter}>(j)</td>
-              <td className={styles.textCenter}>(k)</td>
-              <td className={styles.textCenter}>(l)</td>
-              <td className={styles.textCenter}>(m)</td>
-              <td className={styles.textCenter}>(n)</td>
-              <td className={styles.textCenter}>(o)</td>
-              <td className={styles.textCenter}>(p)</td>
-              <td className={styles.textCenter}>(q)</td>
-              <td className={styles.textCenter}>(r)</td>
-              <td className={styles.textCenter}>(s)</td>
-              <td className={styles.textCenter}>(t)</td>
-              <td className={styles.textCenter}>(u)</td>
-              <td className={styles.textCenter}>(v)</td>
-              <td className={styles.textCenter}>(w)</td>
-              <td className={styles.textCenter}>(x)</td>
-              <td className={styles.textCenter}>(y)</td>
-              <td className={styles.textCenter}>(z)</td>
-              <td className={styles.textCenter}>(aa)</td>
-              <td className={styles.textCenter}>(ab)</td>
-              <td className={styles.textCenter}>(ac)</td>
-              <td className={styles.textCenter}>(ad)</td>
-              <td className={styles.textCenter}>(ae)</td>
-              <td className={styles.textCenter}>(af)</td>
-              <td className={styles.textCenter}>(ag)</td>
-              <td className={styles.textCenter}>(ah)</td>
-              <td className={styles.textCenter}>(ai)</td>
-              <td className={styles.textCenter}>(aj)</td>
-              <td colSpan={3} className={styles.textCenter}>
+              <td className={styles.textCentre}>(a)</td>
+              <td className={styles.textCentre}>(b)</td>
+              <td className={styles.textCentre}>(c)</td>
+              <td className={styles.textCentre}>(d)</td>
+              <td className={styles.textCentre}>(e)</td>
+              <td className={styles.textCentre}>(f)</td>
+              <td className={styles.textCentre}>(g)</td>
+              <td className={styles.textCentre}>(h)</td>
+              <td className={styles.textCentre}>(i)</td>
+              <td className={styles.textCentre}>(j)</td>
+              <td className={styles.textCentre}>(k)</td>
+              <td className={styles.textCentre}>(l)</td>
+              <td className={styles.textCentre}>(m)</td>
+              <td className={styles.textCentre}>(n)</td>
+              <td className={styles.textCentre}>(o)</td>
+              <td className={styles.textCentre}>(p)</td>
+              <td className={styles.textCentre}>(q)</td>
+              <td className={styles.textCentre}>(r)</td>
+              <td className={styles.textCentre}>(s)</td>
+              <td className={styles.textCentre}>(t)</td>
+              <td className={styles.textCentre}>(u)</td>
+              <td className={styles.textCentre}>(v)</td>
+              <td className={styles.textCentre}>(w)</td>
+              <td className={styles.textCentre}>(x)</td>
+              <td className={styles.textCentre}>(y)</td>
+              <td className={styles.textCentre}>(z)</td>
+              <td className={styles.textCentre}>(aa)</td>
+              <td className={styles.textCentre}>(ab)</td>
+              <td className={styles.textCentre}>(ac)</td>
+              <td className={styles.textCentre}>(ad)</td>
+              <td className={styles.textCentre}>(ae)</td>
+              <td className={styles.textCentre}>(af)</td>
+              <td className={styles.textCentre}>(ag)</td>
+              <td className={styles.textCentre}>(ah)</td>
+              <td className={styles.textCentre}>(ai)</td>
+              <td className={styles.textCentre}>(aj)</td>
+              <td colSpan={3} className={styles.textCentre}>
                 (ak)
               </td>
-              <td className={styles.textCenter}>(al)</td>
-              <td className={styles.textCenter}>(am)</td>
-              <td className={styles.textCenter}>(an)</td>
-              <td className={styles.textCenter}>(ao)</td>
-              <td className={styles.textCenter}>(ap)</td>
-              <td className={styles.textCenter}>(aq)</td>
-              <td className={styles.textCenter}>(ar)</td>
-              <td className={styles.textCenter}>(as)</td>
-              <td className={styles.textCenter}>(at)</td>
-              <td className={styles.textCenter}>(au)</td>
-              <td className={styles.textCenter}>(av)</td>
-              <td className={styles.textCenter}>(aw)</td>
-              <td className={styles.textCenter}>(ax)</td>
-              <td className={styles.textCenter}>(ay)</td>
+              <td className={styles.textCentre}>(al)</td>
+              <td className={styles.textCentre}>(am)</td>
+              <td className={styles.textCentre}>(an)</td>
+              <td className={styles.textCentre}>(ao)</td>
+              <td className={styles.textCentre}>(ap)</td>
+              <td className={styles.textCentre}>(aq)</td>
+              <td className={styles.textCentre}>(ar)</td>
+              <td className={styles.textCentre}>(as)</td>
+              <td className={styles.textCentre}>(at)</td>
+              <td className={styles.textCentre}>(au)</td>
+              <td className={styles.textCentre}>(av)</td>
+              <td className={styles.textCentre}>(aw)</td>
+              <td className={styles.textCentre}>(ax)</td>
+              <td className={styles.textCentre}>(ay)</td>
             </tr>
             {patientlist?.length > 0 ? (
               patientlist.map((row, i) => (
@@ -632,7 +630,7 @@ const Moh333Register: React.FC = () => {
           </tbody>
         </table>
       </div>
-    </>
+    </RegisterLayout>
   );
 };
 

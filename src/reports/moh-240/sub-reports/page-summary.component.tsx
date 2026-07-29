@@ -88,8 +88,8 @@ const Moh240PageSummary: React.FC = () => {
     }, []);
 
 
-    return <div className={styles.wrapper}>
-        <TableWrapper>
+    return <div className={styles.summarySection}>
+        <TableWrapper className={styles.formTable}>
             <TableRowMapper tableRows={tableRows} />
         </TableWrapper>
     </div>
