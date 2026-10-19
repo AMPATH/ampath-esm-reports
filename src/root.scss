@@ -35,9 +35,6 @@
    with its own sheet geometry (MOH-731) refines this further. */
 
 @media print {
-  :global(body) {
-    visibility: hidden;
-  }
 
   .page,
   .page * {
