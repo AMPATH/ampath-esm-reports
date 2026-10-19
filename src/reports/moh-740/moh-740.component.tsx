@@ -164,23 +164,23 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                             <td className={styles.darkBorder}>No. of newly diagnosed diabetes cases</td>
                             <td className={styles.darkBorder}>
                               <DataCell
-                                value={moh740Data?.dc__gender__M__newly_diagnosed_diabetes}
+                                value={moh740Data?.dc__gender__M__newly_diagnosed_diabetes_this_month}
                                 indicatorSelected={handleIndicatorSelected}
-                                indicator="dc__gender__M__newly_diagnosed_diabetes"
+                                indicator="dc__gender__M__newly_diagnosed_diabetes_this_month"
                               />
                             </td>
                             <td className={styles.darkBorder}>
                               <DataCell
-                                value={moh740Data?.dc__gender__F__newly_diagnosed_diabetes}
+                                value={moh740Data?.dc__gender__F__newly_diagnosed_diabetes_this_month}
                                 indicatorSelected={handleIndicatorSelected}
-                                indicator="dc__gender__F__newly_diagnosed_diabetes"
+                                indicator="dc__gender__F__newly_diagnosed_diabetes_this_month"
                               />
                             </td>
                             <td className={styles.darkBorder}>
                               <DataCell
-                                value={moh740Data?.newly_diagnosed_diabetes}
+                                value={moh740Data?.newly_diagnosed_diabetes_this_month}
                                 indicatorSelected={handleIndicatorSelected}
-                                indicator="newly_diagnosed_diabetes"
+                                indicator="newly_diagnosed_diabetes_this_month"
                               />
                             </td>
                           </tr>
