@@ -170,6 +170,9 @@ export type Moh270Patient = {
   diagnosis_at_enrolment: string;
   diagnosis_year: string;
   complications_at_enrollment: string;
+  enrollment_date: string;
+  diagnosis_at_enrollment: string;
+  year_of_diagnosis: string;
 };
 
 export type Moh222Patient = {

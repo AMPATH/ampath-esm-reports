@@ -33,7 +33,7 @@ const Moh270DailyRegister: React.FC<Moh270DailyRegisterProps> = ({ moh270Patient
           {moh270PatientList.map((p, index) => (
             <TableRow key={p.patient_uuid}>
               <TableCell>{index + 1}</TableCell>
-              <TableCell>{p.encounter_date}</TableCell>
+              <TableCell>{p?.enrollment_date ?? ''}</TableCell>
               <TableCell>{p.amrs_universal_id}</TableCell>
               <TableCell>
                 <Link href={`${window.spaBase}/patient/${p.patient_uuid}/chart/`}>{p.person_name}</Link>
@@ -45,8 +45,8 @@ const Moh270DailyRegister: React.FC<Moh270DailyRegisterProps> = ({ moh270Patient
               <TableCell>{p.ward}</TableCell>
               <TableCell>{p.landmark}</TableCell>
               <TableCell>{p.contact_of_the_treatment_supporter_and_relationship ?? ''}</TableCell>
-              <TableCell>{p.diagnosis_at_enrolment ?? ''}</TableCell>
-              <TableCell>{p.diagnosis_year ?? ''}</TableCell>
+              <TableCell>{p.diagnosis_at_enrollment ?? ''}</TableCell>
+              <TableCell>{p.year_of_diagnosis ?? ''}</TableCell>
               <TableCell>{p.complications_at_enrollment ?? ''}</TableCell>
               <TableCell>{p.covered_by_shif ? 'Y' : 'N'}</TableCell>
             </TableRow>
