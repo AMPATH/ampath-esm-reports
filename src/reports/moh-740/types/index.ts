@@ -13,7 +13,7 @@ export type Moh740Data = {
   sub_county: string;
   reportingMonth: string;
   cumulative_diabetes_patients_in_care: number;
-  newly_diagnosed_diabetes: number;
+  newly_diagnosed_diabetes_this_month: number;
   total_type_1_diabetes: number;
   total_type_2_diabetes: number;
   cumulative_htn_patient: number;
@@ -49,8 +49,8 @@ export type Moh740Data = {
   dc__age_range__61_and_above__type_2_diabetes_mellitus:number;
   dc__gender__M__cumulative_diabetes_patients_in_care: number;
   dc__gender__F__cumulative_diabetes_patients_in_care: number;
-  dc__gender__M__newly_diagnosed_diabetes: number;
-  dc__gender__F__newly_diagnosed_diabetes: number;
+  dc__gender__M__newly_diagnosed_diabetes_this_month: number;
+  dc__gender__F__newly_diagnosed_diabetes_this_month: number;
   dc__gender__M__revisit_to_clinic_known_dm: number;
   dc__gender__F__revisit_to_clinic_known_dm: number;
   dc__gender__M__total_type_1_diabetes: number;
