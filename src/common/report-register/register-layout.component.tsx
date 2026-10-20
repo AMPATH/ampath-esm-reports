@@ -44,6 +44,11 @@ interface RegisterLayoutProps {
   /** The register's own columns. Without them the export falls back to the
       response's raw fields, which will not match the printed form. */
   columns?: RegisterColumn[];
+  /**
+   * The printed form's own sub-headings (e.g. its column letters), written as
+   * a second CSV row so exports stay line-numbered against the paper form.
+   */
+  subHeaders?: string[];
   /** The register table. Optional: MOH 510 has no table implemented yet. */
   children?: React.ReactNode;
 }
@@ -73,6 +78,7 @@ const RegisterLayout: React.FC<RegisterLayoutProps> = ({
   onPageChange,
   fetchAll,
   columns,
+  subHeaders,
   children,
 }) => {
   /* The same register serves every indicator that links to it, so without this
@@ -127,7 +133,7 @@ const RegisterLayout: React.FC<RegisterLayoutProps> = ({
         .replace(/^-|-$/g, '')
         .toLowerCase();
 
-      downloadCsv(columns ? columnsToCsv(all, columns) : rowsToCsv(all), `${slug}.csv`);
+      downloadCsv(columns ? columnsToCsv(all, columns, { subHeaderRow: subHeaders }) : rowsToCsv(all), `${slug}.csv`);
     } catch (error) {
       showReportError('the register export', error);
     } finally {

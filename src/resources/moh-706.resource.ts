@@ -22,6 +22,13 @@ interface Moh706PatientListResponse {
   result: Array<Record<string, unknown>>;
 }
 
+/**
+ * The ETL server validates the OpenMRS session cookie (JSESSIONID), so every
+ * request must carry it. `credentials: 'include'` keeps same-origin proxies
+ * working and is required when the ETL base URL is another origin.
+ */
+const WITH_SESSION_COOKIE = { credentials: 'include' as RequestCredentials };
+
 export async function getMoh706(params: Moh706Params): Promise<Array<Record<string, unknown>>> {
   const url = await buildEtlUrl('lab-706', {
     locationUuids: params.locationUuids || '',
@@ -29,7 +36,7 @@ export async function getMoh706(params: Moh706Params): Promise<Array<Record<stri
     endDate: params.endDate || '',
   });
   try {
-    const response = await openmrsFetch(url);
+    const response = await openmrsFetch(url, WITH_SESSION_COOKIE);
 
     if (!response.ok) {
       const errorText = await response.text();
@@ -57,7 +64,7 @@ export async function getMoh706PatientList(params: PatientListParams): Promise<P
     ...pageParams(params),
   });
   try {
-    const response = await openmrsFetch(url);
+    const response = await openmrsFetch(url, WITH_SESSION_COOKIE);
 
     if (!response.ok) {
       const errorText = await response.text();

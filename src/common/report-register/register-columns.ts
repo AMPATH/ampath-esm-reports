@@ -2,6 +2,18 @@
 export interface RegisterColumn {
   header: string;
   value: (row: Record<string, any>, index: number) => unknown;
+  /**
+   * Keep the cell as text in the CSV so Excel never reinterprets it:
+   * identifiers lose leading zeros and phone numbers become `#NAME?`
+   * formulas when the spreadsheet parses them as numbers.
+   */
+  text?: boolean;
+  /**
+   * Allow the cell to wrap on screen. Registers keep their columns
+   * `nowrap` so short cells stay compact; prose columns (diagnoses,
+   * referrals, comments) would otherwise stretch the whole row wide.
+   */
+  wrap?: boolean;
 }
 
 /** The age bands the registers tabulate against, in the order they appear */

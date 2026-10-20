@@ -44,6 +44,15 @@
   white-space: nowrap;
 }
 
+/* Long prose columns (diagnoses, referrals, comments) wrap inside a bounded
+   width instead of stretching the row past the fold. */
+.tableBordered td.wrapCell {
+  white-space: normal;
+  min-width: 8rem;
+  max-width: 16rem;
+  overflow-wrap: anywhere;
+}
+
 .tableStriped tbody tr:nth-of-type(odd) {
   background-color: $ui-01;
 }

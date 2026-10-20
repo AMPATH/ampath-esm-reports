@@ -5,7 +5,7 @@ import { useSession } from '@openmrs/esm-framework';
 import Moh240Register from './sub-reports/moh-240-register.component';
 import Moh240PageSummary from './sub-reports/page-summary.component';
 import MOH240Header from './moh-240-header.component';
-import { moh240Columns } from './moh-240.columns';
+import { MOH_240_SUB_HEADERS, moh240Columns } from './moh-240.columns';
 import { getMoh706PatientList } from '../../resources/moh-706.resource';
 import { getMoh505PatientList } from '../../resources/moh-505.resource';
 import { RegisterLayout, usePatientList } from '../../common/report-register';
@@ -61,11 +61,12 @@ const Moh240Report: React.FC = () => {
       onPageChange={onPageChange}
       fetchAll={fetchAll}
       columns={moh240Columns(indicators)}
+      subHeaders={MOH_240_SUB_HEADERS}
     >
       <div className={styles.sheet}>
         <MOH240Header facility={session?.sessionLocation?.display ?? ''} startDate={startDate} endDate={endDate} />
         <Moh240Register patientList={patientList} indicator={indicators} />
-        <Moh240PageSummary />
+        <Moh240PageSummary rows={patientList} />
       </div>
     </RegisterLayout>
   );

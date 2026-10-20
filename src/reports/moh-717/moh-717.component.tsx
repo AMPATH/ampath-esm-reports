@@ -6,6 +6,7 @@ import { hasReportData, ReportPlaceholder } from '../../common/report-placeholde
 import styles from './moh717.scss';
 import classNames from 'classnames';
 import { useSession } from '@openmrs/esm-framework';
+import { useLocationDetails } from '../../common/report-header';
 import dayjs from 'dayjs';
 import { getMoh717 } from '../../resources/moh-717.resource';
 import OutpatientComponent from './sections/outpatient.component';
@@ -53,6 +54,7 @@ const Moh717Report: React.FC = () => {
 
   /* The masthead fills itself in, as on the other reports */
   const facility = session?.sessionLocation?.display ?? '';
+  const { county, subCounty, kmhflCode } = useLocationDetails();
   const reportMonth = startDate ? dayjs(startDate).format('MMMM') : '';
   const reportYear = startDate ? dayjs(startDate).format('YYYY') : '';
 
@@ -96,10 +98,10 @@ const Moh717Report: React.FC = () => {
               <h3 className={styles.subTitle}>Monthly Service Workload Report for Health Facilities</h3>
               <div className={styles.locationContainer}>
                 <span>
-                  County: <span className={styles.shortLine}></span>
+                  County: <span className={styles.shortLine}>{county ?? ''}</span>
                 </span>
                 <span>
-                  Sub-County: <span className={styles.shortLine}></span>
+                  Sub-County: <span className={styles.shortLine}>{subCounty ?? ''}</span>
                 </span>
                 <span>
                   Health Facility: <span className={styles.line}>{facility}</span>
@@ -113,7 +115,7 @@ const Moh717Report: React.FC = () => {
                   Year: <span className={styles.shortLine}>{reportYear}</span>
                 </span>
                 <span>
-                  KMHFL Code: <span className={styles.shortLine}></span>
+                  KMHFL Code: <span className={styles.shortLine}>{kmhflCode ?? ''}</span>
                 </span>
               </div>
             </div>

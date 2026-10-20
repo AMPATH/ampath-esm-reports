@@ -1,4 +1,5 @@
 import { type RegisterColumn } from '../../common/report-register';
+import dayjs from 'dayjs';
 
 /** The register's columns, in the order the printed MOH 240 prints them */
 export const MOH_240_HEADERS = [
@@ -37,6 +38,19 @@ export const MOH_240_SUB_HEADERS = MOH_240_HEADERS.map((_, i) =>
 );
 
 /**
+ * Columns whose values must stay text in the CSV: identifiers lose leading
+ * zeros and phone numbers open as `#NAME?` formulas when Excel parses them
+ * as numbers.
+ */
+export const MOH_240_TEXT_KEYS = ['lab_no', 'opd_ip_ref_no', 'telephone_number', 'receipt_number'];
+
+/**
+ * Prose columns allowed to wrap on screen; everything else stays `nowrap` so
+ * one long value cannot stretch the 27-column row past the fold.
+ */
+export const MOH_240_WRAP_KEYS = ['clinical_diagnosis', 'type_of_specimen', 'referrals', 'comments'];
+
+/**
  * The results column carries whichever indicator the drill-down was opened for,
  * so it is read from a field named by that indicator rather than from `results`.
  */
@@ -53,12 +67,39 @@ export function resultFieldFor(indicator: string): string {
   return indicator;
 }
 
+/**
+ * Formats a datetime column the way the printed form reads it. Values the
+ * payload already sends as `DD/MM/YYYY` pass through untouched; only raw ISO
+ * datetimes (`2026-08-19T10:18:14.000Z`) are reformatted, so screen and CSV
+ * agree no matter which shape the endpoint returns.
+ */
+export function formatRegisterDate(value: unknown): string {
+  if (value === null || value === undefined || value === '') {
+    return '';
+  }
+  const text = String(value).trim();
+  return /^\d{4}-\d{2}-\d{2}/.test(text) ? dayjs(text).format('DD/MM/YYYY') : text;
+}
+
 /** Exported with the register's own headings, so the CSV matches the form */
 export function moh240Columns(indicator: string): RegisterColumn[] {
   const resultField = resultFieldFor(indicator);
 
   return MOH_240_HEADERS.map(({ key, header }) => ({
     header,
-    value: (row: Record<string, any>) => (key === 'results' ? (row[resultField] ?? '') : (row[key] ?? '')),
+    value: (row: Record<string, any>) => {
+      if (key === 'results') {
+        // The lab-706 register sends the row's translated result directly;
+        // the per-indicator field remains the fallback for payloads that
+        // only carry the test slots.
+        return row.results ?? row[resultField] ?? '';
+      }
+      if (key === 'test_datetime') {
+        return formatRegisterDate(row[key]);
+      }
+      return row[key] ?? '';
+    },
+    text: (MOH_240_TEXT_KEYS as readonly string[]).includes(key) || undefined,
+    wrap: (MOH_240_WRAP_KEYS as readonly string[]).includes(key) || undefined,
   }));
 }

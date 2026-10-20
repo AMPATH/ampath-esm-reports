@@ -47,7 +47,6 @@ export function toPatientListPage(data: any, startIndex: number, limit: number):
     : Array.isArray(container)
       ? container
       : [];
-
   const reported = [container?.total, container?.totalCount, container?.count, data?.total, data?.totalCount].find(
     (value) => typeof value === 'number',
   );

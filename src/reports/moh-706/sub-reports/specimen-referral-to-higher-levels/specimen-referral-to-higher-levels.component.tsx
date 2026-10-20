@@ -17,10 +17,10 @@ const SpecimenReferralToHigherLevels: React.FC = () => {
                 ]
             },
             { tableCells: [getCell("", "8.1 CD4"), getCell(), getCell()] },
-            { tableCells: [getCell("", "8.2 Viral load"), getCell(), getCell()] },
+            { tableCells: [getCell("", "8.2 Viral load"), getCell("total_viral_load_specimens"), getCell("viral_load_results_received")] },
             { tableCells: [getCell("", "8.3 EID"), getCell(), getCell()] },
             { tableCells: [getCell("", "8.4 Discodant/discrepant"), getCell(), getCell()] },
-            { tableCells: [getCell("", "8.5 TB Culture"), getCell(), getCell()] },
+            { tableCells: [getCell("", "8.5 TB Culture"), getCell("total_tb_culture_specimens"), getCell("tb_culture_results_received")] },
             { tableCells: [getCell("", "8.6 Virological"), getCell(), getCell()] },
             { tableCells: [getCell("", "8.7 Clinical Chemistry"), getCell(), getCell()] },
             { tableCells: [getCell("", "8.8 Histology/cytology"), getCell(), getCell()] },

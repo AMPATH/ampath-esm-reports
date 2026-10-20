@@ -15,11 +15,19 @@ interface DatatableWrapperProps {
   rows: Omit<DataTableRow<any[]>, 'cells'>[];
   headers: DataTableHeader[];
   subHeaders?: string[];
+  /** Header keys whose cells wrap instead of stretching the row (`wrap: true` columns) */
+  wrapKeys?: readonly string[];
   /** Applied to the table, so a register can use its own stylesheet */
   className?: string;
 }
 
-const DatatableWrapper: React.FC<DatatableWrapperProps> = ({ rows, headers, subHeaders = [], className }) => {
+const DatatableWrapper: React.FC<DatatableWrapperProps> = ({
+  rows,
+  headers,
+  subHeaders = [],
+  wrapKeys = [],
+  className,
+}) => {
   return (
     <DataTable rows={rows} headers={headers}>
       {({ rows, headers, getTableProps, getHeaderProps, getRowProps, getCellProps }) => (
@@ -41,8 +49,13 @@ const DatatableWrapper: React.FC<DatatableWrapperProps> = ({ rows, headers, subH
           <TableBody>
             {rows.map((row) => (
               <TableRow {...getRowProps({ row })}>
-                {row.cells.map((cell) => (
-                  <TableCell {...getCellProps({ cell })}>{cell.value}</TableCell>
+                {row.cells.map((cell, i) => (
+                  <TableCell
+                    {...getCellProps({ cell })}
+                    className={wrapKeys.includes(headers[i]?.key) ? 'wrapCell' : undefined}
+                  >
+                    {cell.value}
+                  </TableCell>
                 ))}
               </TableRow>
             ))}

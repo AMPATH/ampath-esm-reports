@@ -11,17 +11,47 @@ import { type RegisterColumn } from './register-columns';
  * wants anyway.
  */
 
-function escapeCell(value: unknown): string {
+/**
+ * Forces text Excel cannot mangle. A cell starting with `=`, `+`, `-` or `@`
+ * is parsed as a formula (`+2547...` becomes `#NAME?`), and a long digit-only
+ * cell is reinterpreted as a number (leading zeros dropped, switched to
+ * scientific notation), so both are emitted as an explicit text formula
+ * (`"..."` quoted inside `=`, which Excel renders as literal text).
+ */
+const FORMULA_PREFIX = /^[=+\-@]/;
+const LONG_DIGITS = /^\d{9,}$/;
+
+function escapeCell(value: unknown, forceText = false): string {
   const text = value === null || value === undefined ? '' : String(value).replace(/\s+/g, ' ').trim();
+
+  if (forceText && text !== '') {
+    return `="${text.replace(/"/g, '""')}"`;
+  }
+
+  if (text !== '' && (FORMULA_PREFIX.test(text) || LONG_DIGITS.test(text))) {
+    return `="${text.replace(/"/g, '""')}"`;
+  }
 
   return /[",\n]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text;
 }
 
 /** Serialises using the register's own columns, so the file matches the form */
-export function columnsToCsv(rows: Array<Record<string, any>>, columns: RegisterColumn[]): string {
-  return [
+export function columnsToCsv(
+  rows: Array<Record<string, any>>,
+  columns: RegisterColumn[],
+  options?: {
+    /** A second header row (e.g. the printed form's column letters) */
+    subHeaderRow?: string[];
+  },
+): string {
+  const headerRows = [
     columns.map((column) => escapeCell(column.header)).join(','),
-    ...rows.map((row, index) => columns.map((column) => escapeCell(column.value(row, index))).join(',')),
+    ...(options?.subHeaderRow ? [options.subHeaderRow.map((cell) => escapeCell(cell)).join(',')] : []),
+  ];
+
+  return [
+    ...headerRows,
+    ...rows.map((row, index) => columns.map((column) => escapeCell(column.value(row, index), column.text)).join(',')),
   ].join('\r\n');
 }
 
@@ -38,7 +68,7 @@ export function rowsToCsv(rows: Array<Record<string, any>>): string {
   const columns = Array.from(keys);
 
   return [
-    columns.map(escapeCell).join(','),
+    columns.map((column) => escapeCell(column)).join(','),
     ...rows.map((row) => columns.map((column) => escapeCell(row[column])).join(',')),
   ].join('\r\n');
 }
