@@ -26,7 +26,7 @@ const Moh270DailyRegister: React.FC<Moh270DailyRegisterProps> = ({ moh270Patient
             <TableHeader>Diagnosis at enrolment</TableHeader>
             <TableHeader>Year of diagnosis</TableHeader>
             <TableHeader>Complications/Co-morbidities at enrollment(2)</TableHeader>
-            <TableHeader>NHIF(Y/N)</TableHeader>
+            <TableHeader>SHA(Y/N)</TableHeader>
           </TableRow>
         </TableHead>
         <TableBody>
