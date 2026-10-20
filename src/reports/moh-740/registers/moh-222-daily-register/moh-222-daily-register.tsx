@@ -40,6 +40,8 @@ const Moh222DailyRegister: React.FC<Moh222DailyRegisterProps> = ({ moh222Patient
             <TableHeader>Screened for TB</TableHeader>
             <TableHeader>TB Status after Screening</TableHeader>
             <TableHeader>Active NHIF(Y/N)</TableHeader>
+            <TableHeader>TCA Date</TableHeader>
+            <TableHeader>Remarks</TableHeader>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -75,6 +77,8 @@ const Moh222DailyRegister: React.FC<Moh222DailyRegisterProps> = ({ moh222Patient
               <TableCell>{p.screened_for_tb}</TableCell>
               <TableCell>{p.tbs_status}</TableCell>
               <TableCell>{p.covered_by_shif ? 'Y' : 'N'}</TableCell>
+              <TableCell>{p.rtc_date}</TableCell>
+              <TableCell></TableCell>
             </TableRow>
           ))}
         </TableBody>
