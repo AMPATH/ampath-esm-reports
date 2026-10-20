@@ -206,6 +206,7 @@ export type Moh222Patient = {
   encounter_date: string;
   endDate: string;
   patient_uuid: string;
+  rtc_date: string;
 };
 
 export type Moh740RegisterDto = {
