@@ -31,8 +31,8 @@ const HistologyAndCytology: React.FC = () => {
             { tableCells: [getCell("", "6.4 Thyroid"), getCell(), getCell(), getCell()] },
             { tableCells: [getCell("", "6.5 Lymph nodes"), getCell(), getCell(), getCell()] },
             { tableCells: [getCell("", "6.6 Liver"), getCell(), getCell(), getCell()] },
-            { tableCells: [getCell("", "6.7 Breast"), getCell(), getCell(), getCell()] },
-            { tableCells: [getCell("", "6.8 Soft tissue masses"), getCell(), getCell(), getCell()] },
+            { tableCells: [getCell("", "6.7 Breast"), getCell("total_cyt_breast"), getCell(), getCell()] },
+            { tableCells: [getCell("", "6.8 Soft tissue masses"), getCell("total_cyt_soft_tissue"), getCell(), getCell()] },
             {
                 tableCells: [
                     getCell("", "Fluid Cytology", 1, 1, true),
@@ -42,7 +42,7 @@ const HistologyAndCytology: React.FC = () => {
                 ]
             },
             { tableCells: [getCell("", "6.9 Ascitic fluid"), getCell(), getCell(), getCell()] },
-            { tableCells: [getCell("", "6.10 CSF"), getCell(), getCell(), getCell()] },
+            { tableCells: [getCell("", "6.10 CSF"), getCell("total_cyt_csf"), getCell(), getCell()] },
             { tableCells: [getCell("", "6.11 Pleural fluid"), getCell(), getCell(), getCell()] },
             { tableCells: [getCell("", "6.12 Urine"), getCell(), getCell(), getCell()] },
             {
@@ -74,7 +74,7 @@ const HistologyAndCytology: React.FC = () => {
                     getCell()
                 ]
             },
-            { tableCells: [getCell("", "6.26 Bone marrow aspirate"), getCell(), getCell(), getCell()] },
+            { tableCells: [getCell("", "6.26 Bone marrow aspirate"), getCell("total_cyt_bone_marrow"), getCell(), getCell()] },
             { tableCells: [getCell("", "6.27 Trephine biopsy"), getCell(), getCell(), getCell()] },
         ]
     }, []);
