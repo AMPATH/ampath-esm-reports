@@ -39,7 +39,7 @@ const Moh222DailyRegister: React.FC<Moh222DailyRegisterProps> = ({ moh222Patient
             <TableHeader>Footcare Outcome</TableHeader>
             <TableHeader>Screened for TB</TableHeader>
             <TableHeader>TB Status after Screening</TableHeader>
-            <TableHeader>Active NHIF(Y/N)</TableHeader>
+            <TableHeader>Active SHA(Y/N)</TableHeader>
             <TableHeader>TCA Date</TableHeader>
             <TableHeader>Remarks</TableHeader>
           </TableRow>
