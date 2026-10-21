@@ -1186,7 +1186,7 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                             </td>
                           </tr>
                           <tr>
-                            <td className={styles.darkBorder}>No. enrolled with NHIF</td>
+                            <td className={styles.darkBorder}>No. enrolled with SHA</td>
                             <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data?.dc__gender__M__covered_by_shif}

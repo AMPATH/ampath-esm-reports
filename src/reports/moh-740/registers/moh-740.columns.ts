@@ -29,7 +29,7 @@ export const MOH_222_COLUMNS: RegisterColumn[] = [
   { header: 'Footcare Outcome', value: (r) => r.footcare_outcome ?? '' },
   { header: 'Screened for TB', value: (r) => r.screened_for_tb ?? '' },
   { header: 'TB Status after Screening', value: (r) => r.tbs_status ?? '' },
-  { header: 'Active NHIF(Y/N)', value: (r) => (r.covered_by_shif ? 'Y' : 'N') },
+  { header: 'Active SHA(Y/N)', value: (r) => (r.covered_by_shif ? 'Y' : 'N') },
 ];
 
 /** MOH 270, in the order the register prints its columns */
@@ -48,5 +48,5 @@ export const MOH_270_COLUMNS: RegisterColumn[] = [
   { header: 'Diagnosis at enrolment', value: (r) => r.diagnosis_at_enrolment ?? '' },
   { header: 'Year of diagnosis', value: (r) => r.diagnosis_year ?? '' },
   { header: 'Complications/Co-morbidities at enrollment(2)', value: (r) => r.complications_at_enrollment ?? '' },
-  { header: 'NHIF(Y/N)', value: (r) => (r.covered_by_shif ? 'Y' : 'N') },
+  { header: 'SHA(Y/N)', value: (r) => (r.covered_by_shif ? 'Y' : 'N') },
 ];
