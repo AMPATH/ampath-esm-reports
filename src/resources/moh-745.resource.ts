@@ -7,6 +7,7 @@ import {
   type PatientListPage,
   type PatientListParams,
 } from './patient-list-page';
+import {type  Moh745reponse, type CancerScreeningResult } from '../reports/moh-745/registers/type';
 
 interface Moh745Params {
   locationUuids: string;
@@ -15,7 +16,7 @@ interface Moh745Params {
   indicator?: string | string[];
 }
 
-export async function getMoh745(params: Moh745Params): Promise<any> {
+export async function getMoh745(params: Moh745Params): Promise<CancerScreeningResult> {
   const url = await buildEtlUrl('moh-745', {
     locationUuids: params.locationUuids || '',
     startDate: params.startDate || '',
@@ -24,13 +25,8 @@ export async function getMoh745(params: Moh745Params): Promise<any> {
   try {
     const response = await openmrsFetch(url);
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(`Failed to fetch dashboard summary: ${response.status} - ${errorText}`);
-    }
-
-    const data = await response.json();
-    return data;
+    const data = await response.json() as Moh745reponse;
+    return data?.result[0] ?? null;
   } catch (error: any) {
     throw new Error(`An error occurred while fetching the MOH-710 report: ${error.message}`);
   }
