@@ -24,9 +24,9 @@ const Serology: React.FC<SerologyProps> = ({ data, locationUuids, startDate, end
                 ]
             },
             { tableCells: [getCell("", "7.1 VDRL"), getCell("total_vdrl"), getCell("positive_vdrl")] },
-            { tableCells: [getCell("", "7.2 TPHA"), getCell(), getCell()] },
-            { tableCells: [getCell("", "7.3 ASOT"), getCell(), getCell()] },
-            { tableCells: [getCell("", "7.4 HIV"), getCell("total_hiv"), getCell("positive_hiv")] },
+            { tableCells: [getCell("", "7.2 TPHA"), getCell("total_tpha"), getCell("positive_tpha")] },
+            { tableCells: [getCell("", "7.3 ASOT"), getCell("total_asot"), getCell()] },
+            { tableCells: [getCell("", "7.4 HIV"), getCell("total_hiv"), getCell("hiv_new_diagnosis")] },
             { tableCells: [getCell("", "7.5 Brucella"), getCell("total_brucella"), getCell("positive_brucella")] },
             { tableCells: [getCell("", "7.6 Rheumatoid factor"), getCell("total_rheumatoid_factor"), getCell("positive_rheumatoid_factor")] },
             { tableCells: [getCell("", "7.7 Helicobacter pylori"), getCell("total_h_pylori"), getCell("positive_h_pylori")] },

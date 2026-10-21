@@ -29,10 +29,10 @@ const Bacteriology: React.FC<BacteriologyProps> = ({ data, locationUuids, startD
             { tableCells: [getCell("", "5.3 High Vaginal Swabs"), getCell(), getCell(), getCell()] },
             { tableCells: [getCell("", "5.4 Throat swab"), getCell(), getCell(), getCell()] },
             { tableCells: [getCell("", "5.5 Rectal swab"), getCell(), getCell(), getCell()] },
-            { tableCells: [getCell("", "5.6 Blood"), getCell(), getCell(), getCell()] },
+            { tableCells: [getCell("", "5.6 Blood"), getCell("total_bact_blood"), getCell(), getCell()] },
             { tableCells: [getCell("", "5.7 Water"), getCell(), getCell(), getCell()] },
             { tableCells: [getCell("", "5.8 Food"), getCell(), getCell(), getCell()] },
-            { tableCells: [getCell("", "5.9 Urethral swabs"), getCell(), getCell(), getCell()] },
+            { tableCells: [getCell("", "5.9 Urethral swabs"), getCell("total_bact_urethral"), getCell(), getCell()] },
             {
                 tableCells: [
                     getCell("", "Bacterial enteric pathogens", 2, 1, true),
@@ -73,7 +73,7 @@ const Bacteriology: React.FC<BacteriologyProps> = ({ data, locationUuids, startD
             {
                 tableCells: [
                     getCell("", "5.16 CSF"),
-                    getCell(),
+                    getCell("total_bact_csf"),
                     getCell(),
                     getCell(),
                 ]

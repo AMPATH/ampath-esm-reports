@@ -84,25 +84,25 @@ const BloodChemistry: React.FC<BloodChemistryProps> = ({ data, locationUuids, st
             {
                 tableCells: [
                     getCell("", "2.6 Sodium"),
-                    getCell(),
-                    getCell(),
-                    getCell(),
+                    getCell("total_sodium"),
+                    getCell("min_sodium"),
+                    getCell("max_sodium"),
                 ]
             },
             {
                 tableCells: [
                     getCell("", "2.7 Potassium"),
-                    getCell(),
-                    getCell(),
-                    getCell(),
+                    getCell("total_potassium"),
+                    getCell("min_potassium"),
+                    getCell("max_potassium"),
                 ]
             },
             {
                 tableCells: [
                     getCell("", "2.8 Chlorides"),
-                    getCell(),
-                    getCell(),
-                    getCell(),
+                    getCell("total_chlorides"),
+                    getCell("min_chlorides"),
+                    getCell("max_chlorides"),
                 ]
             },
             {
@@ -156,9 +156,9 @@ const BloodChemistry: React.FC<BloodChemistryProps> = ({ data, locationUuids, st
             {
                 tableCells: [
                     getCell("", "2.14 Albumin"),
-                    getCell(),
-                    getCell(),
-                    getCell(),
+                    getCell("total_albumin"),
+                    getCell("min_albumin"),
+                    getCell("max_albumin"),
                 ]
             },
             {
@@ -258,8 +258,8 @@ const BloodChemistry: React.FC<BloodChemistryProps> = ({ data, locationUuids, st
             {
                 tableCells: [
                     getCell("", "2.25 CA 19-9"),
-                    getCell(),
-                    getCell("", "", 2),
+                    getCell("total_ca_19_9"),
+                    getCell("positive_ca_19_9", "", 2),
                 ]
             },
             {
@@ -272,15 +272,15 @@ const BloodChemistry: React.FC<BloodChemistryProps> = ({ data, locationUuids, st
             {
                 tableCells: [
                     getCell("", "2.27 CEA"),
-                    getCell(),
-                    getCell("", "", 2),
+                    getCell("total_cea"),
+                    getCell("positive_cea", "", 2),
                 ]
             },
             {
                 tableCells: [
                     getCell("", "2.28 AFP"),
-                    getCell(),
-                    getCell("", "", 2),
+                    getCell("total_afp"),
+                    getCell("positive_afp", "", 2),
                 ]
             },
             {
@@ -294,17 +294,17 @@ const BloodChemistry: React.FC<BloodChemistryProps> = ({ data, locationUuids, st
             {
                 tableCells: [
                     getCell("", "2.29 Proteins"),
-                    getCell(),
-                    getCell(),
-                    getCell(),
+                    getCell("total_proteins"),
+                    getCell("min_proteins"),
+                    getCell("max_proteins"),
                 ]
             },
             {
                 tableCells: [
                     getCell("", "2.30 Glucose"),
-                    getCell(),
-                    getCell(),
-                    getCell(),
+                    getCell("total_glucose"),
+                    getCell("min_glucose"),
+                    getCell("max_glucose"),
                 ]
             },
         ]

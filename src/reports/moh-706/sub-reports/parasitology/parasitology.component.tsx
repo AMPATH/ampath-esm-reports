@@ -63,8 +63,8 @@ const Parasitology: React.FC<ParasitologyProps> = ({ data, locationUuids, startD
             {
                 tableCells: [
                     getCell("", "3.5 Taenia spp."),
-                    getCell(),
-                    getCell(),
+                    getCell("total_taenia"),
+                    getCell("positive_taenia"),
                 ]
             },
             {
