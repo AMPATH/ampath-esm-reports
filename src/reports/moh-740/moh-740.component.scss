@@ -17,7 +17,9 @@ $meta: 6.5pt; // facility strip
   display: flex;
   flex-direction: column;
   width: 100%;
-  row-gap: 0.5rem;
+  /* No gap of its own: the placeholder carries the spacing below the filters,
+     as on every other report, and a gap here doubled it. */
+  row-gap: 0;
   padding: 0.75rem 0;
 }
 

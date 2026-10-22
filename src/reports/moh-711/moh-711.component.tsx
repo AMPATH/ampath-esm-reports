@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ReportFiltersComponent, type ReportPeriod } from '../../common/report-filters';
 import { showReportError } from '../../common/report-error';
-import { hasReportData, ReportPlaceholder } from '../../common/report-placeholder';
+import { hasReportData, ReportPlaceholder, useGeneratedLocation } from '../../common/report-placeholder';
 
 import styles from './moh711.scss';
 import classNames from 'classnames';
@@ -30,7 +30,10 @@ const Moh711Report: React.FC = () => {
     const saved = sessionStorage.getItem('moh711Data');
     return saved ? JSON.parse(saved) : [];
   });
-  const isReportGenerated = hasReportData(moh711Data);
+  /* Only a report for the current location counts: after switching location the
+     old figures would otherwise be shown, and labelled, as the new location's. */
+  const { isForCurrentLocation, hasLocationChanged, markGenerated } = useGeneratedLocation('moh711Location');
+  const isReportGenerated = hasReportData(moh711Data) && isForCurrentLocation;
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [startDate, setStartDate] = useState<string>(() => {
     return sessionStorage.getItem('moh711StartDate') || '';
@@ -77,6 +80,7 @@ const Moh711Report: React.FC = () => {
       const data = await getMoh711(params);
       const flatData = Object.assign({}, ...data.result);
       setMoh711Data(flatData);
+      markGenerated(params.locationUuids);
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
@@ -95,7 +99,9 @@ const Moh711Report: React.FC = () => {
         generatedPeriod={{ startDate, endDate }}
       />
       {isLoading && <ReportSkeleton />}
-      {!isLoading && !isReportGenerated && <ReportPlaceholder reportName="MOH-711" />}
+      {!isLoading && !isReportGenerated && (
+        <ReportPlaceholder reportName="MOH-711" isLocationChanged={hasReportData(moh711Data) && hasLocationChanged} />
+      )}
       {!isLoading && isReportGenerated && (
         <ReportPage>
           <div className={styles.headerContainer}>

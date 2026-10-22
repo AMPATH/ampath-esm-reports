@@ -3,7 +3,7 @@ import styles from './moh-740.component.scss';
 import { ReportFiltersComponent, type ReportPeriod, useRestorePeriod } from '../../common/report-filters';
 import { ReportSkeleton } from '../../common/report-skeleton';
 import { ReportPage } from '../../common/report-page';
-import { ReportPlaceholder } from '../../common/report-placeholder';
+import { ReportPlaceholder, useGeneratedLocation } from '../../common/report-placeholder';
 import { showReportError } from '../../common/report-error';
 import { type Moh740Data, type Moh740Dto } from './types';
 import { formatDate, useSession } from '@openmrs/esm-framework';
@@ -30,6 +30,11 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
   const session = useSession();
   const locationUuid = session.sessionLocation?.uuid;
 
+  /* Only a report for the current location counts: after switching location the
+     old figures would otherwise be shown, and labelled, as the new location's. */
+  const { isForCurrentLocation, hasLocationChanged, markGenerated } = useGeneratedLocation();
+  const isReportGenerated = Boolean(moh740Data) && isForCurrentLocation;
+
   /* The masthead names the location the report was generated from, and the
      period it covers; the sign-off records who produced it and when. */
   const facility = session?.sessionLocation?.display ?? moh740Data?.facility ?? '';
@@ -46,6 +51,7 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
       const resp = await fetchMoh740Report(reportFilters);
       setMoh740Data(resp ?? null);
       setHasGenerated(true);
+      markGenerated(reportFilters.locationUuid);
     } catch (error: any) {
       showReportError('the MOH-740 report', error);
     } finally {
@@ -78,7 +84,7 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                   mode="both"
                   onGenerate={getMoh740ReportData}
                   isLoading={isLoading}
-                  isReportGenerated={Boolean(moh740Data)}
+                  isReportGenerated={isReportGenerated}
                   onPeriodChange={setSelectedPeriod}
                 />
               </div>
@@ -88,7 +94,7 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                 <ReportSkeleton blocks={3} />
               ) : (
                 <>
-                  {moh740Data ? (
+                  {isReportGenerated ? (
                     <ReportPage>
                       <div className={styles.headerContainer}>
                         <div className={styles.mainTitleBox}>
@@ -1275,7 +1281,11 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                       </div>
                     </ReportPage>
                   ) : (
-                    <ReportPlaceholder reportName="MOH-740" isEmptyResult={hasGenerated} />
+                    <ReportPlaceholder
+                      reportName="MOH-740"
+                      isEmptyResult={hasGenerated && isForCurrentLocation}
+                      isLocationChanged={hasGenerated && hasLocationChanged}
+                    />
                   )}
                 </>
               )}

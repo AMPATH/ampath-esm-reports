@@ -1,7 +1,7 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Button, Layer, Pagination } from '@carbon/react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { ArrowLeft, Calendar, Document, Download } from '@carbon/react/icons';
+import { ArrowLeft, Calendar, Document, Download, Location } from '@carbon/react/icons';
 import { formatDate } from '@openmrs/esm-framework';
 
 import { formatIndicatorName } from '../../utils/format-indicator';
@@ -29,6 +29,13 @@ interface RegisterLayoutProps {
   onBack?: () => void;
   /** Register name, e.g. `HIV Care Treatment Daily Activity Register MOH 366` */
   title: string;
+  /**
+   * The page heading, when the register can name the figure itself. Without
+   * it the heading is built from the link's `label` and `gender`.
+   */
+  heading?: string;
+  /** The location the register was generated for, shown beside the period */
+  location?: string;
   isLoading: boolean;
   /** `true` once loaded with nothing to show */
   isEmpty: boolean;
@@ -69,6 +76,8 @@ const RegisterLayout: React.FC<RegisterLayoutProps> = ({
   parentPath,
   onBack,
   title,
+  heading: headingProp,
+  location,
   isLoading,
   isEmpty,
   page,
@@ -109,11 +118,18 @@ const RegisterLayout: React.FC<RegisterLayoutProps> = ({
   if (locationUuids) parentQuery.append('locationUuids', locationUuids);
   if (startDate) parentQuery.append('startDate', startDate);
   if (endDate) parentQuery.append('endDate', endDate);
+  /* back to the report tab the register was opened from, e.g. a summary view */
+  const view = params.get('view');
+  if (view) parentQuery.append('view', view);
+  const section = params.get('section');
+  if (section) parentQuery.append('section', section);
   const parentLink = parentQuery.toString() ? `${parent.path}?${parentQuery}` : parent.path;
 
-  const heading = label
-    ? `${label}${gender && GENDERS[gender] ? ` (${GENDERS[gender]})` : ''}`
-    : formatIndicatorName(indicator ?? '');
+  const heading =
+    headingProp ??
+    (label
+      ? `${label}${gender && GENDERS[gender] ? ` (${GENDERS[gender]})` : ''}`
+      : formatIndicatorName(indicator ?? ''));
 
   /* Exports every page, not the one on screen: the DOM only holds the current
      page once paginated, so a scrape would silently export 50 of 2,000. */
@@ -189,6 +205,12 @@ const RegisterLayout: React.FC<RegisterLayoutProps> = ({
                   <Calendar size={14} />
                   {period}
                 </>
+              )}
+              {location && (
+                <span className={styles.location}>
+                  <Location size={14} />
+                  {location}
+                </span>
               )}
               {typeof total === 'number' && total > 0 && (
                 <span>{isTotalExact ? `${total.toLocaleString()} records` : `${total.toLocaleString()}+ records`}</span>

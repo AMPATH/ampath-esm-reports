@@ -6,7 +6,7 @@ import { getMoh705b } from '../../resources/moh-705.resource';
 import classNames from 'classnames';
 import { ReportFiltersComponent, type ReportPeriod, useRestorePeriod } from '../../common/report-filters';
 import { showReportError } from '../../common/report-error';
-import { hasReportData, ReportPlaceholder } from '../../common/report-placeholder';
+import { hasReportData, ReportPlaceholder, useGeneratedLocation } from '../../common/report-placeholder';
 import { useNavigate } from 'react-router-dom';
 import { ReportSkeleton } from '../../common/report-skeleton';
 import { ReportPage } from '../../common/report-page';
@@ -91,7 +91,10 @@ const indicators = [
 
 const Moh705BComponent: React.FC = () => {
   const [moh705bData, setMoh705bData] = useState<any>([]);
-  const isReportGenerated = hasReportData(moh705bData);
+  /* Only a report for the current location counts: after switching location the
+     old figures would otherwise be shown, and labelled, as the new location's. */
+  const { isForCurrentLocation, hasLocationChanged, markGenerated } = useGeneratedLocation();
+  const isReportGenerated = hasReportData(moh705bData) && isForCurrentLocation;
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [startDate, setStartDate] = useState<string>('');
   const [endDate, setEndDate] = useState<string>('');
@@ -156,7 +159,9 @@ const Moh705BComponent: React.FC = () => {
         generatedPeriod={{ startDate, endDate }}
       />
       {isLoading && <ReportSkeleton />}
-      {!isLoading && !isReportGenerated && <ReportPlaceholder reportName="MOH-705B" />}
+      {!isLoading && !isReportGenerated && (
+        <ReportPlaceholder reportName="MOH-705B" isLocationChanged={hasReportData(moh705bData) && hasLocationChanged} />
+      )}
       {!isLoading && isReportGenerated && (
         <ReportPage>
           <div className={styles.mainTitleBox}>

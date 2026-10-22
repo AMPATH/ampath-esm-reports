@@ -12,7 +12,7 @@ import SpecimenReferralToHigherLevels from './sub-reports/specimen-referral-to-h
 import DrugSusceptibilityTesting from './sub-reports/drug-susceptibility-testing/drug-susceptibility-testing.component';
 import { ReportFiltersComponent, type ReportPeriod } from '../../common/report-filters';
 import { showReportError } from '../../common/report-error';
-import { hasReportData, ReportPlaceholder } from '../../common/report-placeholder';
+import { hasReportData, ReportPlaceholder, useGeneratedLocation } from '../../common/report-placeholder';
 import { getMoh706 } from '../../resources/moh-706.resource';
 import styles from './moh-706.scss';
 import MOH706Header from './moh-706-header.component';
@@ -22,7 +22,10 @@ import { ReportPage } from '../../common/report-page';
 
 const MoH706Report: React.FC = () => {
   const [moh706Data, setMoh706Data] = useState<any>({});
-  const isReportGenerated = hasReportData(moh706Data);
+  /* Only a report for the current location counts: after switching location the
+     old figures would otherwise be shown, and labelled, as the new location's. */
+  const { isForCurrentLocation, hasLocationChanged, markGenerated } = useGeneratedLocation();
+  const isReportGenerated = hasReportData(moh706Data) && isForCurrentLocation;
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [filters, setFilters] = useState<{ locationUuids?: string; startDate?: string; endDate?: string }>({});
 
@@ -59,6 +62,7 @@ const MoH706Report: React.FC = () => {
       const result = await getMoh706(params);
       const flatData = Object.assign({}, ...result);
       setMoh706Data(flatData);
+      markGenerated(params.locationUuids);
       setFilters({ locationUuids: params.locationUuids, startDate, endDate });
     } catch (error: any) {
       showReportError('the MOH-706 report', error);
@@ -77,7 +81,9 @@ const MoH706Report: React.FC = () => {
         isReportGenerated={isReportGenerated}
       />
       {isLoading && <ReportSkeleton />}
-      {!isLoading && !isReportGenerated && <ReportPlaceholder reportName="MOH-706" />}
+      {!isLoading && !isReportGenerated && (
+        <ReportPlaceholder reportName="MOH-706" isLocationChanged={hasReportData(moh706Data) && hasLocationChanged} />
+      )}
       {!isLoading && isReportGenerated && (
         <ReportPage>
           <div className={styles.sheet}>

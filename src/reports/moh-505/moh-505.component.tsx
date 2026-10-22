@@ -5,7 +5,7 @@ import TableRowMapper from '../table-wrapper/table-row-mapper.component';
 import { getCell } from '../../utils/utils';
 import { ReportFiltersComponent, type ReportPeriod } from '../../common/report-filters';
 import { showReportError } from '../../common/report-error';
-import { hasReportData, ReportPlaceholder } from '../../common/report-placeholder';
+import { hasReportData, ReportPlaceholder, useGeneratedLocation } from '../../common/report-placeholder';
 import { getMoh505 } from '../../resources/moh-505.resource';
 import MOH505Header from './moh-505-header.component';
 import { useSearchParams } from 'react-router-dom';
@@ -15,7 +15,10 @@ import styles from './moh-505.scss';
 
 const Moh505Report: React.FC = () => {
   const [moh505Data, setMoh505Data] = useState<any>({});
-  const isReportGenerated = hasReportData(moh505Data);
+  /* Only a report for the current location counts: after switching location the
+     old figures would otherwise be shown, and labelled, as the new location's. */
+  const { isForCurrentLocation, hasLocationChanged, markGenerated } = useGeneratedLocation();
+  const isReportGenerated = hasReportData(moh505Data) && isForCurrentLocation;
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [filters, setFilters] = useState<{ locationUuids?: string; startDate?: string; endDate?: string }>({});
 
@@ -52,6 +55,7 @@ const Moh505Report: React.FC = () => {
       const result = await getMoh505(params);
       const flatData = Object.assign({}, ...result);
       setMoh505Data(flatData);
+      markGenerated(params.locationUuids);
       setFilters({ locationUuids: params.locationUuids, startDate, endDate });
     } catch (error: any) {
       showReportError('the MOH-505 report', error);
@@ -397,7 +401,9 @@ const Moh505Report: React.FC = () => {
         isReportGenerated={isReportGenerated}
       />
       {isLoading && <ReportSkeleton />}
-      {!isLoading && !isReportGenerated && <ReportPlaceholder reportName="MOH-505" />}
+      {!isLoading && !isReportGenerated && (
+        <ReportPlaceholder reportName="MOH-505" isLocationChanged={hasReportData(moh505Data) && hasLocationChanged} />
+      )}
       {!isLoading && isReportGenerated && (
         <ReportPage>
           <div className={styles.sheet}>

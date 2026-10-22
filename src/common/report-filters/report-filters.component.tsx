@@ -278,22 +278,28 @@ const ReportFiltersComponent: React.FC<ReportFiltersProps> = ({
 
         <div className={styles.actions}>
           {/* Restating a period that cannot be generated reads as if it will be,
-              so the blocking reason takes its place. */}
+              so the blocking reason takes its place. Each message is the icon
+              plus one span: left as loose text and <strong> in the flex row,
+              every fragment became a column of its own and wrapped apart. */}
           {isValid && isStale ? (
             <p className={classNames(styles.summary, styles.summaryStale)}>
               <WarningAlt size={16} />
-              Filters changed. The report below is for <strong>{shownPeriod?.label}</strong> &mdash; select Generate
-              report to refresh it.
+              <span>
+                Filters changed. The report below is for <strong>{shownPeriod?.label}</strong> &mdash; select Generate
+                report to refresh it.
+              </span>
             </p>
           ) : isValid ? (
             <p className={styles.summary}>
               <Calendar size={16} />
-              Reporting period: <strong>{period.label}</strong>
+              <span>
+                Reporting period: <strong>{period.label}</strong>
+              </span>
             </p>
           ) : (
             <p className={classNames(styles.summary, styles.summaryInvalid)}>
               <WarningAlt size={16} />
-              {firstError(errors)}
+              <span>{firstError(errors)}</span>
             </p>
           )}
           <div className={styles.actionButtons}>
