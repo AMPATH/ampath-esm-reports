@@ -8,7 +8,7 @@ import { getMoh705aPatientList } from '../../../resources/moh-705.resource';
 import { moh204aExportColumns } from './moh-204a.columns';
 import { RegisterLayout, usePatientList } from '../../../common/report-register';
 
-interface Moh204ARegisterComponentProps {}
+interface Moh204ARegisterComponentProps { }
 
 const Moh204ARegisterComponent: React.FC<Moh204ARegisterComponentProps> = () => {
   const [searchParams] = useSearchParams();
@@ -39,6 +39,15 @@ const Moh204ARegisterComponent: React.FC<Moh204ARegisterComponentProps> = () => 
     [startDate, endDate, locationUuids, indicator],
   );
 
+  const removePatientListDuplicates = async () => {
+    const list = await fetchAll();
+    const filtered = uniqueBy(list, 'person_id');
+    return filtered;
+  }
+
+  const uniqueBy = (arr: any, key: string) =>
+    [...new Map(arr.map((item: any) => [item[key], item])).values()] as Record<string, any>[];
+
   return (
     <RegisterLayout
       parentLabel="MOH-705A Report"
@@ -51,7 +60,7 @@ const Moh204ARegisterComponent: React.FC<Moh204ARegisterComponentProps> = () => 
       total={total}
       isTotalExact={isTotalExact}
       onPageChange={onPageChange}
-      fetchAll={fetchAll}
+      fetchAll={removePatientListDuplicates}
       columns={moh204aExportColumns}
     >
       <div className={styles.tableContainer}>
@@ -273,7 +282,7 @@ const Moh204ARegisterComponent: React.FC<Moh204ARegisterComponentProps> = () => 
           </TableHead>
           <TableBody>
             {patientlist?.length > 0 ? (
-              patientlist?.map((patient) => (
+              uniqueBy(patientlist, 'person_id')?.map((patient) => (
                 <TableRow key={patient.person_id || patient.id}>
                   <TableCell>{patient.date}</TableCell>
                   <TableCell>{patient.opd_number_new_visit}</TableCell>
