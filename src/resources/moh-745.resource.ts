@@ -56,3 +56,21 @@ export async function getMoh412PatientList(params: PatientListParams): Promise<P
     throw new Error(`An error occurred while fetching the MOH-705 patient list: ${error.message}`);
   }
 }
+
+export async function fetchMoh745PatientList(params: PatientListParams): Promise<any[]> {
+  const url = await buildEtlUrl('moh-412-patient-list', {
+    locationUuids: params.locationUuids || '',
+    startDate: params.startDate || '',
+    endDate: params.endDate || '',
+    indicators: Array.isArray(params.indicators) ? params.indicators.join(',') : params.indicators || '',
+    limit:1000
+  });
+  try {
+    const response = await openmrsFetch(url);
+    const data = await response.json();
+    return data?.result ?? [];
+  } catch (error: any) {
+    console.error('Failed to fetch MOH 412 PATIENT LIST data', error);
+    throw new Error(`An error occurred while fetching the MOH-705 patient list: ${error.message}`);
+  }
+}
