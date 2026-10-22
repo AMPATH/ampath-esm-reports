@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ReportFiltersComponent, type ReportPeriod } from '../../common/report-filters';
 import { showReportError } from '../../common/report-error';
-import { hasReportData, ReportPlaceholder } from '../../common/report-placeholder';
+import { hasReportData, ReportPlaceholder, useGeneratedLocation } from '../../common/report-placeholder';
 
 import styles from './moh717.scss';
 import classNames from 'classnames';
@@ -28,7 +28,10 @@ const Moh717Report: React.FC = () => {
     const saved = sessionStorage.getItem('moh717ReportData');
     return saved ? JSON.parse(saved) : [];
   });
-  const isReportGenerated = hasReportData(moh717ReportData);
+  /* Only a report for the current location counts: after switching location the
+     old figures would otherwise be shown, and labelled, as the new location's. */
+  const { isForCurrentLocation, hasLocationChanged, markGenerated } = useGeneratedLocation('moh717Location');
+  const isReportGenerated = hasReportData(moh717ReportData) && isForCurrentLocation;
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [startDate, setStartDate] = useState<string>(() => {
     return sessionStorage.getItem('moh717StartDate') || '';
@@ -72,6 +75,7 @@ const Moh717Report: React.FC = () => {
       const data = await getMoh717(params);
       const flatData = Object.assign({}, ...data.result);
       setMoh717ReportData(flatData);
+      markGenerated(params.locationUuids);
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
@@ -89,7 +93,12 @@ const Moh717Report: React.FC = () => {
         generatedPeriod={{ startDate, endDate }}
       />
       {isLoading && <ReportSkeleton />}
-      {!isLoading && !isReportGenerated && <ReportPlaceholder reportName="MOH-717" />}
+      {!isLoading && !isReportGenerated && (
+        <ReportPlaceholder
+          reportName="MOH-717"
+          isLocationChanged={hasReportData(moh717ReportData) && hasLocationChanged}
+        />
+      )}
       {!isLoading && isReportGenerated && (
         <ReportPage>
           <div className={styles.headerContainer}>

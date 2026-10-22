@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ReportFiltersComponent, type ReportPeriod, useRestorePeriod } from '../../common/report-filters';
 import { showReportError } from '../../common/report-error';
-import { hasReportData, ReportPlaceholder } from '../../common/report-placeholder';
+import { hasReportData, ReportPlaceholder, useGeneratedLocation } from '../../common/report-placeholder';
 
 import styles from './moh-745.scss';
 import classNames from 'classnames';
@@ -15,7 +15,10 @@ import { type CancerScreeningResult } from './registers/type';
 
 const Moh745Component: React.FC = () => {
   const [moh745Data, setMoh745Data] = useState<CancerScreeningResult | null>(null);
-  const isReportGenerated = hasReportData(moh745Data);
+  /* Only a report for the current location counts: after switching location the
+     old figures would otherwise be shown, and labelled, as the new location's. */
+  const { isForCurrentLocation, hasLocationChanged, markGenerated } = useGeneratedLocation();
+  const isReportGenerated = hasReportData(moh745Data) && isForCurrentLocation;
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [startDate, setStartDate] = useState<string>('');
   const [endDate, setEndDate] = useState<string>('');
@@ -47,6 +50,7 @@ const Moh745Component: React.FC = () => {
       const data = await getMoh745(params);
       if(data){
            setMoh745Data(data);
+           markGenerated(params.locationUuids);
       }else{
         setMoh745Data(null);
       } 
@@ -78,7 +82,7 @@ const Moh745Component: React.FC = () => {
         generatedPeriod={{ startDate, endDate }}
       />
       {isLoading && <ReportSkeleton />}
-      {!isLoading && !isReportGenerated && <ReportPlaceholder reportName="MOH-745" />}
+      {!isLoading && !isReportGenerated && <ReportPlaceholder reportName="MOH-745" isLocationChanged={hasReportData(moh745Data) && hasLocationChanged} />}
       {!isLoading && isReportGenerated && (
         <ReportPage>
           <h3 className={styles.reportTitle}>CANCER SCREENING MONTHLY SUMMARY FORM</h3>

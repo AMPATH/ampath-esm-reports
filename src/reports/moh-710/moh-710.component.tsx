@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ReportFiltersComponent, type ReportPeriod } from '../../common/report-filters';
 import { showReportError } from '../../common/report-error';
-import { hasReportData, ReportPlaceholder } from '../../common/report-placeholder';
+import { hasReportData, ReportPlaceholder, useGeneratedLocation } from '../../common/report-placeholder';
 
 import styles from './moh-710.scss';
 import classNames from 'classnames';
@@ -17,7 +17,10 @@ const Moh710Report: React.FC = () => {
     const saved = sessionStorage.getItem('moh710Data');
     return saved ? JSON.parse(saved) : [];
   });
-  const isReportGenerated = hasReportData(moh710Data);
+  /* Only a report for the current location counts: after switching location the
+     old figures would otherwise be shown, and labelled, as the new location's. */
+  const { isForCurrentLocation, hasLocationChanged, markGenerated } = useGeneratedLocation('moh710Location');
+  const isReportGenerated = hasReportData(moh710Data) && isForCurrentLocation;
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
@@ -65,6 +68,7 @@ const Moh710Report: React.FC = () => {
       const data = await getMoh710(params);
       const flatData = Object.assign({}, ...data.result);
       setMoh710Data(flatData);
+      markGenerated(params.locationUuids);
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
@@ -94,7 +98,9 @@ const Moh710Report: React.FC = () => {
         generatedPeriod={{ startDate, endDate }}
       />
       {isLoading && <ReportSkeleton />}
-      {!isLoading && !isReportGenerated && <ReportPlaceholder reportName="MOH-710" />}
+      {!isLoading && !isReportGenerated && (
+        <ReportPlaceholder reportName="MOH-710" isLocationChanged={hasReportData(moh710Data) && hasLocationChanged} />
+      )}
       {!isLoading && isReportGenerated && (
         <ReportPage>
           <div className={styles.mainTitleBox}>

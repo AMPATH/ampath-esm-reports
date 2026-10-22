@@ -6,7 +6,7 @@ import { getMoh705a } from '../../resources/moh-705.resource';
 import styles from './moh-705a.scss';
 import { ReportFiltersComponent, type ReportPeriod, useRestorePeriod } from '../../common/report-filters';
 import { showReportError } from '../../common/report-error';
-import { hasReportData, ReportPlaceholder } from '../../common/report-placeholder';
+import { hasReportData, ReportPlaceholder, useGeneratedLocation } from '../../common/report-placeholder';
 import classNames from 'classnames';
 import { useNavigate } from 'react-router-dom';
 import { ReportSkeleton } from '../../common/report-skeleton';
@@ -14,7 +14,10 @@ import { ReportPage } from '../../common/report-page';
 
 const Moh705AComponent: React.FC = () => {
   const [moh705aData, setMoh705aData] = useState<any>([]);
-  const isReportGenerated = hasReportData(moh705aData);
+  /* Only a report for the current location counts: after switching location the
+     old figures would otherwise be shown, and labelled, as the new location's. */
+  const { isForCurrentLocation, hasLocationChanged, markGenerated } = useGeneratedLocation();
+  const isReportGenerated = hasReportData(moh705aData) && isForCurrentLocation;
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [startDate, setStartDate] = useState<string>('');
   const [endDate, setEndDate] = useState<string>('');
@@ -44,6 +47,7 @@ const Moh705AComponent: React.FC = () => {
       const data = await getMoh705a(params);
       const flatData = Object.assign({}, ...data.result);
       setMoh705aData(flatData);
+      markGenerated(params.locationUuids);
     } catch (error) {
       showReportError('the MOH-705A report', error);
     } finally {
@@ -73,7 +77,9 @@ const Moh705AComponent: React.FC = () => {
         generatedPeriod={{ startDate, endDate }}
       />
       {isLoading && <ReportSkeleton />}
-      {!isLoading && !isReportGenerated && <ReportPlaceholder reportName="MOH-705A" />}
+      {!isLoading && !isReportGenerated && (
+        <ReportPlaceholder reportName="MOH-705A" isLocationChanged={hasReportData(moh705aData) && hasLocationChanged} />
+      )}
       {!isLoading && isReportGenerated && (
         <ReportPage>
           <div className={styles.mainTitleBox}>

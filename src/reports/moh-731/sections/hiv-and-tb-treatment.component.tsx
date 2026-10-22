@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from '../moh-731.scss';
 import classNames from 'classnames';
-import { useNavigate } from 'react-router-dom';
+import { useOpenMoh731Linelist } from '../linelist/use-open-moh-731-linelist';
 
 interface HivAndTBTreatmentComponentProps {
   /** Sign-off strip, rendered along the foot of the first two columns */
@@ -20,13 +20,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
   locationUuids,
   footer,
 }) => {
-  const navigate = useNavigate();
-
-  const navigateToRegister = (indicator: string | string[], gender: string, label: string) => {
-    navigate(
-      `/moh-366-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}&gender=${gender}&label=${encodeURIComponent(label)}&from=moh-731`,
-    );
-  };
+  const openLinelist = useOpenMoh731Linelist(startDate, endDate, locationUuids);
   return (
     <>
       <h5 className={styles.sectionHeader}>3. HIV and TB treatment</h5>
@@ -46,7 +40,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>(M) HV03-01</span>
                       <div
-                        onClick={() => navigateToRegister('art_new_less_1_male', 'M', 'Start ART_<1')}
+                        onClick={() => openLinelist('HV03-01')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -57,7 +51,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                       <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                         <span>(F) HV03-02</span>
                         <div
-                          onClick={() => navigateToRegister('art_new_less_1_female', 'F', 'Start ART_<1')}
+                          onClick={() => openLinelist('HV03-02')}
                           className={styles.rectangle}
                           title="Click to open linelist"
                         >
@@ -71,7 +65,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>(M) HV03-03</span>
                       <div
-                        onClick={() => navigateToRegister('art_new_1_4_male', 'M', 'Start ART 1-4')}
+                        onClick={() => openLinelist('HV03-03')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -82,7 +76,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                       <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                         <span>(F) HV03-04</span>
                         <div
-                          onClick={() => navigateToRegister('art_new_1_4_female', 'F', 'Start ART 1-4')}
+                          onClick={() => openLinelist('HV03-04')}
                           className={styles.rectangle}
                           title="Click to open linelist"
                         >
@@ -96,7 +90,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>(M) HV03-05</span>
                       <div
-                        onClick={() => navigateToRegister('art_new_5_9_male', 'F', 'Start ART 5-9')}
+                        onClick={() => openLinelist('HV03-05')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -107,7 +101,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                       <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                         <span>(F) HV03-06</span>
                         <div
-                          onClick={() => navigateToRegister('art_new_5_9_female', 'F', 'Start ART 5-9')}
+                          onClick={() => openLinelist('HV03-06')}
                           className={styles.rectangle}
                           title="Click to open linelist"
                         >
@@ -121,7 +115,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>(M) HV03-07</span>
                       <div
-                        onClick={() => navigateToRegister('art_new_10_14_male', 'M', 'Start ART 10-14')}
+                        onClick={() => openLinelist('HV03-07')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -132,7 +126,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                       <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                         <span>(F) HV03-08</span>
                         <div
-                          onClick={() => navigateToRegister('art_new_10_14_female', 'F', 'Start ART 10-14')}
+                          onClick={() => openLinelist('HV03-08')}
                           className={styles.rectangle}
                           title="Click to open linelist"
                         >
@@ -146,7 +140,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>(M) HV03-09</span>
                       <div
-                        onClick={() => navigateToRegister('art_new_15_19_male', 'M', 'Start ART 15-19')}
+                        onClick={() => openLinelist('HV03-09')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -157,7 +151,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                       <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                         <span>(F) HV03-10</span>
                         <div
-                          onClick={() => navigateToRegister('art_new_15_19_female', 'F', 'Start ART 15-19')}
+                          onClick={() => openLinelist('HV03-10')}
                           className={styles.rectangle}
                           title="Click to open linelist"
                         >
@@ -171,7 +165,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>(M) HV03-11</span>
                       <div
-                        onClick={() => navigateToRegister('art_new_20_24_male', 'M', 'Start ART 20-24')}
+                        onClick={() => openLinelist('HV03-11')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -182,7 +176,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                       <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                         <span>(F) HV03-12</span>
                         <div
-                          onClick={() => navigateToRegister('art_new_20_24_female', 'F', 'Start ART 20-24')}
+                          onClick={() => openLinelist('HV03-12')}
                           className={styles.rectangle}
                           title="Click to open linelist"
                         >
@@ -196,7 +190,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>(M) HV03-013</span>
                       <div
-                        onClick={() => navigateToRegister('art_new_25_above_male', 'M', 'Start ART 25+')}
+                        onClick={() => openLinelist('HV03-013')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -207,7 +201,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                       <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                         <span>(F) HV03-014</span>
                         <div
-                          onClick={() => navigateToRegister('art_new_25_above_female', 'F', 'Start ART 25+')}
+                          onClick={() => openLinelist('HV03-014')}
                           className={styles.rectangle}
                           title="Click to open linelist"
                         >
@@ -231,7 +225,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>(M) HV03-015</span>
                       <div
-                        onClick={() => navigateToRegister('on_art_less_1_male', 'M', 'On ART_<1')}
+                        onClick={() => openLinelist('HV03-015')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -242,7 +236,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                       <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                         <span>(F) HV03-016</span>
                         <div
-                          onClick={() => navigateToRegister('on_art_less_1_female', 'F', 'On ART_<1')}
+                          onClick={() => openLinelist('HV03-016')}
                           className={styles.rectangle}
                           title="Click to open linelist"
                         >
@@ -256,7 +250,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>(M) HV03-017</span>
                       <div
-                        onClick={() => navigateToRegister('on_art_1_4_male', 'M', 'On ART 1-4')}
+                        onClick={() => openLinelist('HV03-017')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -267,7 +261,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                       <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                         <span>(F) HV03-018</span>
                         <div
-                          onClick={() => navigateToRegister('on_art_1_4_female', 'F', 'On ART 1-4')}
+                          onClick={() => openLinelist('HV03-018')}
                           className={styles.rectangle}
                           title="Click to open linelist"
                         >
@@ -281,7 +275,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>(M) HV03-019</span>
                       <div
-                        onClick={() => navigateToRegister('on_art_5_9_male', 'M', 'On ART 5-9')}
+                        onClick={() => openLinelist('HV03-019')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -292,7 +286,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                       <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                         <span>(F) HV03-020</span>
                         <div
-                          onClick={() => navigateToRegister('on_art_5_9_female', 'F', 'On ART 5-9')}
+                          onClick={() => openLinelist('HV03-020')}
                           className={styles.rectangle}
                           title="Click to open linelist"
                         >
@@ -306,7 +300,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>(M) HV03-021</span>
                       <div
-                        onClick={() => navigateToRegister('on_art_10_14_male', 'M', 'On ART 10-14')}
+                        onClick={() => openLinelist('HV03-021')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -317,7 +311,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                       <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                         <span>(F) HV03-022</span>
                         <div
-                          onClick={() => navigateToRegister('on_art_10_14_female', 'F', 'On ART 10-14')}
+                          onClick={() => openLinelist('HV03-022')}
                           className={styles.rectangle}
                           title="Click to open linelist"
                         >
@@ -331,7 +325,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>(M) HV03-023</span>
                       <div
-                        onClick={() => navigateToRegister('on_art_15_19_male', 'M', 'On ART 15-19')}
+                        onClick={() => openLinelist('HV03-023')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -342,7 +336,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                       <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                         <span>(F) HV03-024</span>
                         <div
-                          onClick={() => navigateToRegister('on_art_15_19_female', 'F', 'On ART 15-19')}
+                          onClick={() => openLinelist('HV03-024')}
                           className={styles.rectangle}
                           title="Click to open linelist"
                         >
@@ -356,7 +350,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>(M) HV03-025</span>
                       <div
-                        onClick={() => navigateToRegister('on_art_20_24_male', 'M', 'On ART 20-24')}
+                        onClick={() => openLinelist('HV03-025')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -367,7 +361,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                       <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                         <span>(F) HV03-026</span>
                         <div
-                          onClick={() => navigateToRegister('on_art_20_24_female', 'F', 'On ART 20-24')}
+                          onClick={() => openLinelist('HV03-026')}
                           className={styles.rectangle}
                           title="Click to open linelist"
                         >
@@ -381,7 +375,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>(M) HV03-027</span>
                       <div
-                        onClick={() => navigateToRegister('on_art_25_above_male', 'M', 'On ART 25+')}
+                        onClick={() => openLinelist('HV03-027')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -392,7 +386,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                       <div className={classNames(`${styles.textBox}`, `${styles.textBox2}`)}>
                         <span>(F) HV03-028</span>
                         <div
-                          onClick={() => navigateToRegister('on_art_25_above_female', 'F', 'On ART 25+')}
+                          onClick={() => openLinelist('HV03-028')}
                           className={styles.rectangle}
                           title="Click to open linelist"
                         >
@@ -416,7 +410,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>HV03-029</span>
                       <div
-                        onClick={() => navigateToRegister('screened_tb_less_15', '', 'Screened for TB_<15')}
+                        onClick={() => openLinelist('HV03-029')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -430,7 +424,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>HV03-030</span>
                       <div
-                        onClick={() => navigateToRegister('screened_tb_greater_15', '', 'Screened for TB_15+')}
+                        onClick={() => openLinelist('HV03-030')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -454,7 +448,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>HV03-031</span>
                       <div
-                        onClick={() => navigateToRegister('start_tpt_less_15', '', 'Start TPT_<15')}
+                        onClick={() => openLinelist('HV03-031')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -468,7 +462,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>HV03-032</span>
                       <div
-                        onClick={() => navigateToRegister('start_tpt_greater_15', '', 'Start TPT_15+')}
+                        onClick={() => openLinelist('HV03-032')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -492,7 +486,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>HV03-033</span>
                       <div
-                        onClick={() => navigateToRegister('established', '', 'Established')}
+                        onClick={() => openLinelist('HV03-033')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -506,7 +500,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>HV03-034</span>
                       <div
-                        onClick={() => navigateToRegister('not_established', '', 'Not Established')}
+                        onClick={() => openLinelist('HV03-034')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -520,7 +514,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>HV03-035</span>
                       <div
-                        onClick={() => navigateToRegister('community', '', 'Community')}
+                        onClick={() => openLinelist('HV03-035')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -534,7 +528,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>HV03-036</span>
                       <div
-                        onClick={() => navigateToRegister('facility', '', 'Facility')}
+                        onClick={() => openLinelist('HV03-036')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -562,12 +556,15 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                   </tr>
                   <tr>
                     <td>0-5Months</td>
-                    <td
-                      className={styles.textBox}
-                      onClick={() => navigateToRegister('has_sam_0_5_months', '', '0-5Months')}
-                    >
+                    <td className={styles.textBox}>
                       <span>HV03-037</span>
-                      <div className={styles.rectangle}>{MOH731Data.has_sam_0_5_months}</div>
+                      <div
+                        onClick={() => openLinelist('HV03-037')}
+                        className={styles.rectangle}
+                        title="Click to open linelist"
+                      >
+                        {MOH731Data.has_sam_0_5_months}
+                      </div>
                     </td>
                     <td></td>
                   </tr>
@@ -576,7 +573,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>HV03-038</span>
                       <div
-                        onClick={() => navigateToRegister('has_sam_6_59_months', '', '6-59Months')}
+                        onClick={() => openLinelist('HV03-038')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -590,7 +587,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>HV03-039</span>
                       <div
-                        onClick={() => navigateToRegister('has_sam_5_9_years', '', '5-9Years')}
+                        onClick={() => openLinelist('HV03-039')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -604,7 +601,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>HV03-040</span>
                       <div
-                        onClick={() => navigateToRegister('has_sam_10_17_years', '', '10-17Years')}
+                        onClick={() => openLinelist('HV03-040')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -618,7 +615,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>HV03-041</span>
                       <div
-                        onClick={() => navigateToRegister('has_sam_18_and_above_years', '', '18+Years')}
+                        onClick={() => openLinelist('HV03-041')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -650,7 +647,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>HV03-043</span>
                       <div
-                        onClick={() => navigateToRegister('has_smm_0_5_months', '', '0-5Months')}
+                        onClick={() => openLinelist('HV03-043')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -664,7 +661,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>HV03-044</span>
                       <div
-                        onClick={() => navigateToRegister('has_smm_6_59_months', '', '6-59Months')}
+                        onClick={() => openLinelist('HV03-044')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -678,7 +675,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>HV03-045</span>
                       <div
-                        onClick={() => navigateToRegister('has_smm_5_9_years', '', '5-9Years')}
+                        onClick={() => openLinelist('HV03-045')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -692,7 +689,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>HV03-046</span>
                       <div
-                        onClick={() => navigateToRegister('has_smm_10_17_years', '', '10-17Years')}
+                        onClick={() => openLinelist('HV03-046')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -706,7 +703,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>HV03-047</span>
                       <div
-                        onClick={() => navigateToRegister('has_smm_18_and_above_years', '', '18+Years')}
+                        onClick={() => openLinelist('HV03-047')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -738,7 +735,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>HV03-049</span>
                       <div
-                        onClick={() => navigateToRegister('severe_acute_supp_0_5_months', '', '0-5Months')}
+                        onClick={() => openLinelist('HV03-049')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -752,7 +749,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>HV03-050</span>
                       <div
-                        onClick={() => navigateToRegister('severe_acute_supp_6_59_months', '', '6-59Months')}
+                        onClick={() => openLinelist('HV03-050')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -766,7 +763,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>HV03-051</span>
                       <div
-                        onClick={() => navigateToRegister('severe_acute_supp_5_9_years', '', '5-9Years')}
+                        onClick={() => openLinelist('HV03-051')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -780,7 +777,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>HV03-052</span>
                       <div
-                        onClick={() => navigateToRegister('severe_acute_supp_10_17_years', '', '10-17Years')}
+                        onClick={() => openLinelist('HV03-052')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -794,7 +791,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>HV03-053</span>
                       <div
-                        onClick={() => navigateToRegister('severe_acute_supp_18_and_above_years', '', '18+Years')}
+                        onClick={() => openLinelist('HV03-053')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -826,7 +823,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>HV03-055</span>
                       <div
-                        onClick={() => navigateToRegister('severe_moderate_supp_0_5_months', '', '0-5Months')}
+                        onClick={() => openLinelist('HV03-055')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -840,7 +837,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>HV03-056</span>
                       <div
-                        onClick={() => navigateToRegister('severe_moderate_supp_6_59_months', '', '6-59Months')}
+                        onClick={() => openLinelist('HV03-056')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -854,7 +851,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>HV03-057</span>
                       <div
-                        onClick={() => navigateToRegister('severe_moderate_supp_5_9_years', '', '5-9Years')}
+                        onClick={() => openLinelist('HV03-057')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -868,7 +865,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>HV03-058</span>
                       <div
-                        onClick={() => navigateToRegister('severe_moderate_supp_10_17_years', '', '10-17Years')}
+                        onClick={() => openLinelist('HV03-058')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -882,7 +879,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td className={styles.textBox}>
                       <span>HV03-059</span>
                       <div
-                        onClick={() => navigateToRegister('severe_moderate_supp_18_and_above_years', '', '18+Years')}
+                        onClick={() => openLinelist('HV03-059')}
                         className={styles.rectangle}
                         title="Click to open linelist"
                       >
@@ -918,7 +915,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                 <td className={styles.textBox}>
                   <span>HV03-061</span>
                   <div
-                    onClick={() => navigateToRegister('start_tb', '', 'TB cases_New')}
+                    onClick={() => openLinelist('HV03-061')}
                     className={styles.rectangle}
                     title="Click to open linelist"
                   >
@@ -936,7 +933,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                 <td className={styles.textBox}>
                   <span>HV03-062</span>
                   <div
-                    onClick={() => navigateToRegister('start_tb_known_positive', '', 'TB_New_Known HIV Positive(KPs)')}
+                    onClick={() => openLinelist('HV03-062')}
                     className={styles.rectangle}
                     title="Click to open linelist"
                   >
@@ -950,7 +947,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                 <td className={styles.textBox}>
                   <span>HV03-063</span>
                   <div
-                    onClick={() => navigateToRegister('start_tb_positive', '', 'TB_New HIV Positive')}
+                    onClick={() => openLinelist('HV03-063')}
                     className={styles.rectangle}
                     title="Click to open linelist"
                   >
@@ -968,7 +965,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                 <td className={styles.textBox}>
                   <span>HV03-064</span>
                   <div
-                    onClick={() => navigateToRegister('start_tb_on_art', '', 'TB_New_Known HIV Positive(KP) on HAART')}
+                    onClick={() => openLinelist('HV03-064')}
                     className={styles.rectangle}
                     title="Click to open linelist"
                   >
@@ -982,7 +979,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                 <td className={styles.textBox}>
                   <span>HV03-065</span>
                   <div
-                    onClick={() => navigateToRegister('start_tb_art_new', '', 'TB New_Start_HAART')}
+                    onClick={() => openLinelist('HV03-065')}
                     className={styles.rectangle}
                     title="Click to open linelist"
                   >
@@ -1150,7 +1147,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                 <td className={styles.textBox}>
                   <span>HV05-01</span>
                   <div
-                    onClick={() => navigateToRegister('exposed_occupational', '', 'Exposed_Occupational')}
+                    onClick={() => openLinelist('HV05-01')}
                     className={styles.rectangle}
                     title="Click to open linelist"
                   >
@@ -1164,7 +1161,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                 <td className={styles.textBox}>
                   <span>HV05-02</span>
                   <div
-                    onClick={() => navigateToRegister('exposed_non_occupational', '', 'Exposed Other')}
+                    onClick={() => openLinelist('HV05-02')}
                     className={styles.rectangle}
                     title="Click to open linelist"
                   >
@@ -1178,7 +1175,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                 <td className={styles.textBox}>
                   <span>HV05-03</span>
                   <div
-                    onClick={() => navigateToRegister('pep_occupational', '', 'PEP_Occupational')}
+                    onClick={() => openLinelist('HV05-03')}
                     className={styles.rectangle}
                     title="Click to open linelist"
                   >
@@ -1192,7 +1189,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                 <td className={styles.textBox}>
                   <span>HV05-04</span>
                   <div
-                    onClick={() => navigateToRegister('pep_non_occupational', '', 'PEP_Other')}
+                    onClick={() => openLinelist('HV05-04')}
                     className={styles.rectangle}
                     title="Click to open linelist"
                   >
