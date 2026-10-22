@@ -1,61 +1,52 @@
-import { Table, TableBody, TableHead, TableHeader, TableRow } from '@carbon/react';
-import React from 'react';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@carbon/react';
+import React, { useEffect, useState } from 'react';
 
 import styles from '../../../common/report-register/register-table.scss';
 import classNames from 'classnames';
 import { useSearchParams } from 'react-router-dom';
 import { moh412Columns } from './type';
-import { getMoh412PatientList } from '../../../resources/moh-745.resource';
+import { fetchMoh745PatientList, getMoh412PatientList } from '../../../resources/moh-745.resource';
 import { moh412ExportColumns } from './moh-412.columns';
 import { RegisterLayout, usePatientList } from '../../../common/report-register';
 
 const Moh412Register: React.FC = () => {
   const [searchParams] = useSearchParams();
+  const startDate = searchParams.get('startDate') ?? '';
+  const endDate = searchParams.get('endDate') ?? '';
+  const locationUuids = searchParams.get('locationUuids') ?? '';
+  const indicators = searchParams.get('indicators') ?? '';
+  const [patientList,setPatientList] = useState<any>([]);
 
-  const startDate = searchParams.get('startDate');
-  const endDate = searchParams.get('endDate');
-  const locationUuids = searchParams.get('locationUuids');
-  const indicator = searchParams.get('indicator');
+  useEffect(()=>{
+     if(startDate && endDate && locationUuids && indicators){
+         fetchPatientList();
+     }
+      
+  },[startDate, endDate, locationUuids, indicators]);
 
-  const {
-    rows: patientlist,
-    total,
-    isTotalExact,
-    isLoading,
-    page,
-    pageSize,
-    onPageChange,
-    fetchAll,
-  } = usePatientList(
-    ({ startIndex, limit }) =>
-      getMoh412PatientList({
+  async function fetchPatientList(){
+      const resp = await fetchMoh745PatientList({
         startDate,
         endDate,
         locationUuids,
-        indicator,
-        startIndex,
-        limit,
-      }),
-    [startDate, endDate, locationUuids, indicator],
-  );
+        indicators,
+      });
+
+      if(resp){
+          setPatientList(resp);
+      }else{
+         setPatientList([]);
+      }
+  }
 
   return (
-    <RegisterLayout
-      parentLabel="MOH-745 Report"
-      parentPath="/moh-745"
-      title="MOH 412 Cancer Screening Register"
-      isLoading={isLoading}
-      isEmpty={patientlist.length === 0}
-      page={page}
-      pageSize={pageSize}
-      total={total}
-      isTotalExact={isTotalExact}
-      onPageChange={onPageChange}
-      fetchAll={fetchAll}
-      columns={moh412ExportColumns}
-    >
+  
       <div className={styles.tableContainer}>
-        <Table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
+        <div>
+           <h4>MOH-412 Register</h4>
+        </div>
+        <div>
+           <Table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
           <TableHead>
             <TableRow>
               <TableHeader colSpan={3}>Month:</TableHeader>
@@ -168,23 +159,41 @@ const Moh412Register: React.FC = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {patientlist?.length > 0 ? (
-              patientlist.map((patient, index) => (
-                <TableRow key={index}>
-                  {moh412Columns.map((col) => (
-                    <td key={col}>{col === 'serial_no' ? index + 1 : (patient?.[col] ?? '')}</td>
-                  ))}
-                </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <td colSpan={moh412Columns.length}>No data available</td>
-              </TableRow>
-            )}
+            {
+              patientList.map((p: any,index: number)=>{
+                  return <><TableRow>
+                         <TableCell>{index + 1}</TableCell>
+                         <TableCell>{p.screening_date ?? ''}</TableCell>
+                         <TableCell>{p?.screening_visit_type ?? ''}</TableCell>
+                         <TableCell>{p?.ccc_number ?? ''}</TableCell>
+                         <TableCell>{p.person_name}</TableCell>
+                         <TableCell></TableCell>
+                         <TableCell>{p?.age ?? ''}</TableCell>
+                         <TableCell></TableCell>
+                         <TableCell></TableCell>
+                         <TableCell>{p?.via_or_via_vili_test_result ?? ''}</TableCell>
+                         <TableCell>{p?.pap_smear_test_result ?? ''}</TableCell>
+                         <TableCell>{p?.hpv_test_result ?? ''}</TableCell>
+                         <TableCell></TableCell>
+                         <TableCell></TableCell>
+                         <TableCell></TableCell>
+                         <TableCell></TableCell>
+                         <TableCell></TableCell>
+                         <TableCell></TableCell>
+                         <TableCell></TableCell>
+                         <TableCell></TableCell>
+                         <TableCell>{p?.hiv_status ?? ''}</TableCell>
+                         <TableCell></TableCell>
+                         <TableCell></TableCell>
+                         <TableCell></TableCell>
+                 </TableRow></>
+              })
+            }
+              
           </TableBody>
         </Table>
+        </div>
       </div>
-    </RegisterLayout>
   );
 };
 export default Moh412Register;

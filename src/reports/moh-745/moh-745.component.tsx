@@ -64,7 +64,7 @@ const Moh745Component: React.FC = () => {
 
   const navigateToRegister = (indicator?: string) => {
     navigate(
-      `/moh-412-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}&from=moh-745`,
+      `/moh-412-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicators=${indicator}&from=moh-745`,
     );
   };
   return (
@@ -167,117 +167,117 @@ const Moh745Component: React.FC = () => {
                   <td onClick={() => navigateToRegister('dc__screening_visit_type__initial__age_range__25_to_49__screened_via_or_via_vili')}>
                    {moh745Data?.dc__screening_visit_type__initial__age_range__25_to_49__screened_via_or_via_vili ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('via_villi_50_above_initial_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__initial__age_range__50_and_above__screened_via_or_via_vili')}>
                     {moh745Data?.dc__screening_visit_type__initial__age_range__50_and_above__screened_via_or_via_vili ?? 0}
                   </td>
                   <td>
                     {moh745Data?.screened_via_or_via_vili_initial_visit ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('via_villi_less_25_routine_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__routine__age_range__less_than_25__screened_via_or_via_vili')}>
                     {moh745Data?.dc__screening_visit_type__routine__age_range__less_than_25__screened_via_or_via_vili ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('via_villi_25_49_routine_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__routine__age_range__25_to_49__screened_via_or_via_vili')}>
                     {moh745Data?.dc__screening_visit_type__routine__age_range__25_to_49__screened_via_or_via_vili ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('via_villi_50_above_routine_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__routine__age_range__50_and_above__screened_via_or_via_vili')}>
                    {moh745Data?.dc__screening_visit_type__routine__age_range__50_and_above__screened_via_or_via_vili ?? 0}
                   </td>
                   <td>
                     {moh745Data?.screened_via_or_via_vili_initial_visit ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('via_villi_less_25_post_treatment_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__post_treatment__age_range__less_than_25__screened_via_or_via_vili')}>
                     {moh745Data?.dc__screening_visit_type__post_treatment__age_range__less_than_25__screened_via_or_via_vili ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('via_villi_25_49_post_treatment_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__post_treatment__age_range__25_to_49__screened_via_or_via_vili')}>
                     {moh745Data?.dc__screening_visit_type__post_treatment__age_range__25_to_49__screened_via_or_via_vili ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('via_villi_50_above_post_treatment_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__post_treatment__age_range__50_and_above__screened_via_or_via_vili')}>
                     {moh745Data?.dc__screening_visit_type__post_treatment__age_range__50_and_above__screened_via_or_via_vili ?? 0}
                   </td>
                   <td>
                     {moh745Data?.screened_via_or_via_vili_post_treatment_visit ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('via_villi_total')}></td>
+                  <td onClick={() => navigateToRegister('screened_via_or_via_vili_post_treatment_visit')}></td>
                 </tr>
                 <tr>
                   <td> b) Number of clients who received Pap smear</td>
-                  <td onClick={() => navigateToRegister('pap_smear_less_25_initial_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__initial__age_range__less_than_25__screened_pap_smear')}>
                     {moh745Data?.dc__screening_visit_type__initial__age_range__less_than_25__screened_pap_smear ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('pap_smear_25_49_initial_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__initial__age_range__25_to_49__screened_pap_smear')}>
                     {moh745Data?.dc__screening_visit_type__initial__age_range__25_to_49__screened_pap_smear ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('pap_smear_50_above_initial_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__initial__age_range__50_and_above__screened_pap_smear')}>
                     {moh745Data?.dc__screening_visit_type__initial__age_range__50_and_above__screened_pap_smear ?? 0}
                   </td>
                   <td>
                     {moh745Data?.screened_pap_smear_initial_visit ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('pap_smear_less_25_routine_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__routine__age_range__less_than_25__screened_pap_smear')}>
                     {moh745Data?.dc__screening_visit_type__routine__age_range__less_than_25__screened_pap_smear ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('pap_smear_25_49_routine_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__routine__age_range__25_to_49__screened_pap_smear')}>
                    {moh745Data?.dc__screening_visit_type__routine__age_range__25_to_49__screened_pap_smear ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('pap_smear_50_above_routine_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__routine__age_range__50_and_above__screened_pap_smear')}>
                    {moh745Data?.dc__screening_visit_type__routine__age_range__50_and_above__screened_pap_smear ?? 0}
                   </td>
                   <td>
                     {moh745Data?.screened_pap_smear_routine_visit ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('pap_smear_less_25_post_treatment_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__post_treatment__age_range__less_than_25__screened_pap_smear')}>
                      {moh745Data?.dc__screening_visit_type__post_treatment__age_range__less_than_25__screened_pap_smear ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('pap_smear_25_49_post_treatment_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__post_treatment__age_range__25_to_49__screened_pap_smear')}>
                      {moh745Data?.dc__screening_visit_type__post_treatment__age_range__25_to_49__screened_pap_smear ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('pap_smear_50_above_post_treatment_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__post_treatment__age_range__50_and_above__screened_pap_smear')}>
                     {moh745Data?.dc__screening_visit_type__post_treatment__age_range__50_and_above__screened_pap_smear ?? 0}
                   </td>
                   <td>
                      {moh745Data?.screened_pap_smear_post_treatment_visit ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('pap_smear_total')}></td>
+                  <td onClick={() => navigateToRegister('screened_pap_smear_post_treatment_visit')}></td>
                 </tr>
                 <tr>
                   <td> c) Number of clients who received HPV Test</td>
-                  <td onClick={() => navigateToRegister('hpv_test_less_25_initial_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__initial__age_range__less_than_25__screened_hpv')}>
                     {moh745Data?.dc__screening_visit_type__initial__age_range__less_than_25__screened_hpv ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('hpv_test_25_49_initial_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__initial__age_range__25_to_49__screened_hpv')}>
                     {moh745Data?.dc__screening_visit_type__initial__age_range__25_to_49__screened_hpv ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('hpv_test_50_above_initial_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__initial__age_range__50_and_above__screened_hpv')}>
                    {moh745Data?.dc__screening_visit_type__initial__age_range__50_and_above__screened_hpv ?? 0}
                   </td>
                   <td>
                    {moh745Data?.screened_hpv_initial_visit ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('hpv_test_less_25_routine_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__routine__age_range__less_than_25__screened_hpv')}>
                    {moh745Data?.dc__screening_visit_type__routine__age_range__less_than_25__screened_hpv ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('hpv_test_25_49_routine_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__routine__age_range__25_to_49__screened_hpv')}>
                     {moh745Data?.dc__screening_visit_type__routine__age_range__25_to_49__screened_hpv ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('hpv_test_50_above_routine_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__routine__age_range__50_and_above__screened_hpv')}>
                    {moh745Data?.dc__screening_visit_type__routine__age_range__50_and_above__screened_hpv ?? 0}
                   </td>
                   <td>
                     {moh745Data?.screened_hpv_routine_visit ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('hpv_test_less_25_post_treatment_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__post_treatment__age_range__less_than_25__screened_hpv')}>
                     {moh745Data?.dc__screening_visit_type__post_treatment__age_range__less_than_25__screened_hpv ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('hpv_test_25_49_post_treatment_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__post_treatment__age_range__25_to_49__screened_hpv')}>
                     {moh745Data?.dc__screening_visit_type__post_treatment__age_range__25_to_49__screened_hpv ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('hpv_test_50_above_post_treatment_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__post_treatment__age_range__50_and_above__screened_hpv')}>
                     {moh745Data?.dc__screening_visit_type__post_treatment__age_range__50_and_above__screened_hpv ?? 0}
                   </td>
                   <td>
                     {moh745Data?.screened_hpv_post_treatment_visit ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('hpv_test_total')}></td>
+                  <td onClick={() => navigateToRegister('screened_hpv_post_treatment_visit')}></td>
                 </tr>
                 <tr>
                   <td>Total Clients Screened (1 a, b &c Above)</td>
@@ -297,43 +297,43 @@ const Moh745Component: React.FC = () => {
                 </tr>
                 <tr>
                   <td>2 a) Number of clients with Positive VIA or VIA/VILLI result</td>
-                  <td onClick={() => navigateToRegister('positive_via_villi_less_25_initial_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__initial__age_range__less_than_25__positive_via_or_via_vili_test_result')}>
                     {moh745Data?.dc__screening_visit_type__initial__age_range__less_than_25__positive_via_or_via_vili_test_result ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('positive_via_villi_25_49_initial_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__initial__age_range__25_to_49__positive_via_or_via_vili_test_result')}>
                    {moh745Data?.dc__screening_visit_type__initial__age_range__25_to_49__positive_via_or_via_vili_test_result ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('positive_via_villi_50_above_initial_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__initial__age_range__50_and_above__positive_via_or_via_vili_test_result')}>
                    {moh745Data?.dc__screening_visit_type__initial__age_range__50_and_above__positive_via_or_via_vili_test_result ?? 0}
                   </td>
                   <td>
                     { moh745Data?.positive_via_or_via_vili_test_result_initial_visit ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('positive_via_villi_less_25_routine_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__routine__age_range__less_than_25__positive_via_or_via_vili_test_result')}>
                     {moh745Data?.dc__screening_visit_type__routine__age_range__less_than_25__positive_via_or_via_vili_test_result ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('positive_via_villi_25_49_routine_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__routine__age_range__25_to_49__positive_via_or_via_vili_test_result')}>
                     {moh745Data?.dc__screening_visit_type__routine__age_range__25_to_49__positive_via_or_via_vili_test_result ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('positive_via_villi_50_above_routine_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__routine__age_range__50_and_above__positive_via_or_via_vili_test_result')}>
                     {moh745Data?.dc__screening_visit_type__routine__age_range__50_and_above__positive_via_or_via_vili_test_result ?? 0}
                   </td>
                   <td>
                     {moh745Data?.positive_via_or_via_vili_test_result_routine_visit ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('positive_via_villi_less_25_post_treatment_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__post_treatment__age_range__less_than_25__positive_via_or_via_vili_test_result')}>
                      {moh745Data?.dc__screening_visit_type__post_treatment__age_range__less_than_25__positive_via_or_via_vili_test_result ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('positive_via_villi_25_49_post_treatment_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__post_treatment__age_range__25_to_49__positive_via_or_via_vili_test_result')}>
                     {moh745Data?.dc__screening_visit_type__post_treatment__age_range__25_to_49__positive_via_or_via_vili_test_result ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('positive_via_villi_50_above_post_treatment_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__post_treatment__age_range__50_and_above__positive_via_or_via_vili_test_result')}>
                     {moh745Data?.dc__screening_visit_type__post_treatment__age_range__50_and_above__positive_via_or_via_vili_test_result ?? 0}
                   </td>
                   <td>
                     {moh745Data?.positive_via_or_via_vili_test_result_post_treatment_visit ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('positive_via_villi_total')}>
+                  <td onClick={() => navigateToRegister('positive_via_or_via_vili_test_result_post_treatment_visit')}>
                    
                   </td>
                 </tr>
@@ -375,43 +375,43 @@ const Moh745Component: React.FC = () => {
                 </tr>
                 <tr>
                   <td> c) Number of clients with Positive HPV result</td>
-                  <td onClick={() => navigateToRegister('positive_hpv_less_25_initial_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__initial__age_range__less_than_25__positive_hpv_test_result')}>
                     {moh745Data?.dc__screening_visit_type__initial__age_range__less_than_25__positive_hpv_test_result ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('positive_hpv_25_49_initial_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__initial__age_range__25_to_49__positive_hpv_test_result')}>
                    {moh745Data?.dc__screening_visit_type__initial__age_range__25_to_49__positive_hpv_test_result ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('positive_hpv_50_above_initial_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__initial__age_range__50_and_above__positive_hpv_test_result')}>
                     {moh745Data?.dc__screening_visit_type__initial__age_range__50_and_above__positive_hpv_test_result ?? 0}
                   </td>
                   <td>
                     {moh745Data?.positive_hpv_test_result_initial_visit ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('positive_hpv_less_25_routine_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__routine__age_range__less_than_25__positive_hpv_test_result')}>
                     {moh745Data?.dc__screening_visit_type__routine__age_range__less_than_25__positive_hpv_test_result ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('positive_hpv_25_49_routine_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__routine__age_range__25_to_49__positive_hpv_test_result')}>
                     {moh745Data?.dc__screening_visit_type__routine__age_range__25_to_49__positive_hpv_test_result ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('positive_hpv_50_above_routine_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__routine__age_range__50_and_above__positive_hpv_test_result')}>
                     {moh745Data?.dc__screening_visit_type__routine__age_range__50_and_above__positive_hpv_test_result ?? 0}
                   </td>
                   <td>
                     {moh745Data?.positive_hpv_test_result_routine_visit ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('positive_hpv_less_25_post_treatment_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__post_treatment__age_range__less_than_25__positive_hpv_test_result')}>
                     {moh745Data?.dc__screening_visit_type__post_treatment__age_range__less_than_25__positive_hpv_test_result ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('positive_hpv_25_49_post_treatment_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__post_treatment__age_range__25_to_49__positive_hpv_test_result')}>
                     {moh745Data?.dc__screening_visit_type__post_treatment__age_range__25_to_49__positive_hpv_test_result ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('positive_hpv_50_above_post_treatment_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__post_treatment__age_range__50_and_above__positive_hpv_test_result')}>
                     {moh745Data?.dc__screening_visit_type__post_treatment__age_range__50_and_above__positive_hpv_test_result ?? 0}
                   </td>
                   <td>
                     {moh745Data?.positive_hpv_test_result_post_treatment_visit ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('positive_hpv_total')}></td>
+                  <td onClick={() => navigateToRegister('positive_hpv_test_result_post_treatment_visit')}></td>
                 </tr>
                 <tr>
                   <td>Total Clients Screened positive (2 a, b &c Above)</td>
@@ -431,75 +431,75 @@ const Moh745Component: React.FC = () => {
                 </tr>
                 <tr>
                   <td>3) Number of clients with suspicios cancer lessions </td>
-                  <td onClick={() => navigateToRegister('suspicious_cancer_lessions_less_25_initial_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__initial__age_range__less_than_25__via_or_via_vili_suspicious_lesion')}>
                     {moh745Data?.dc__screening_visit_type__initial__age_range__less_than_25__via_or_via_vili_suspicious_lesion ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('suspicious_cancer_lessions_25_49_initial_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__initial__age_range__25_to_49__via_or_via_vili_suspicious_lesion')}>
                     {moh745Data?.dc__screening_visit_type__initial__age_range__25_to_49__via_or_via_vili_suspicious_lesion ?? 0}
                   </td>
                   <td onClick={() => navigateToRegister('suspicious_cancer_lessions_50_above_initial_screening')}>
                    {moh745Data?.dc__screening_visit_type__initial__age_range__50_and_above__via_or_via_vili_suspicious_lesion ?? 0}
                   </td>
-                  <td>
+                  <td onClick={() => navigateToRegister('via_or_via_vili_suspicious_lesion_initial_visit')}>
                     {moh745Data?.via_or_via_vili_suspicious_lesion_initial_visit ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('suspicious_cancer_lessions_less_25_routine_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__routine__age_range__less_than_25__via_or_via_vili_suspicious_lesion')}>
                     { moh745Data?.dc__screening_visit_type__routine__age_range__less_than_25__via_or_via_vili_suspicious_lesion ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('suspicious_cancer_lessions_25_49_routine_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__routine__age_range__25_to_49__via_or_via_vili_suspicious_lesion')}>
                     { moh745Data?.dc__screening_visit_type__routine__age_range__25_to_49__via_or_via_vili_suspicious_lesion ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('suspicious_cancer_lessions_50_above_routine_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__routine__age_range__50_and_above__via_or_via_vili_suspicious_lesion')}>
                     { moh745Data?.dc__screening_visit_type__routine__age_range__50_and_above__via_or_via_vili_suspicious_lesion ?? 0}
                   </td>
                   <td>
                     {moh745Data?.via_or_via_vili_suspicious_lesion_routine_visit ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('suspicious_cancer_lessions_less_25_post_treatment_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__post_treatment__age_range__less_than_25__via_or_via_vili_suspicious_lesion')}>
                    { moh745Data?.dc__screening_visit_type__post_treatment__age_range__less_than_25__via_or_via_vili_suspicious_lesion ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('suspicious_cancer_lessions_25_49_post_treatment_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__post_treatment__age_range__25_to_49__via_or_via_vili_suspicious_lesion')}>
                    {moh745Data?.dc__screening_visit_type__post_treatment__age_range__25_to_49__via_or_via_vili_suspicious_lesion ?? 0}
                   </td>
                   <td
-                    onClick={() => navigateToRegister('suspicious_cancer_lessions_50_above_post_treatment_screening')}
+                    onClick={() => navigateToRegister('dc__screening_visit_type__post_treatment__age_range__50_and_above__via_or_via_vili_suspicious_lesion')}
                   >
                    {moh745Data?.dc__screening_visit_type__post_treatment__age_range__50_and_above__via_or_via_vili_suspicious_lesion ?? 0}
                   </td>
-                  <td> {moh745Data?.via_or_via_vili_suspicious_lesion_post_treatment_visit ?? 0}</td>
+                  <td onClick={() => navigateToRegister('via_or_via_vili_suspicious_lesion_post_treatment_visit')}> {moh745Data?.via_or_via_vili_suspicious_lesion_post_treatment_visit ?? 0}</td>
                   <td onClick={() => navigateToRegister('suspicious_cancer_lessions_total')}>
                   
                   </td>
                 </tr>
                 <tr>
                   <td>4) Number of clients treated using Cryotherapy</td>
-                  <td onClick={() => navigateToRegister('cryotherapy_treatment_less_25_initial_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__initial__age_range__less_than_25__treated_via_cyrotherapy')}>
                     {moh745Data?.dc__screening_visit_type__initial__age_range__less_than_25__treated_via_cyrotherapy ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('cryotherapy_treatment_25_49_initial_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__initial__age_range__25_to_49__treated_via_cyrotherapy')}>
                     {moh745Data?.dc__screening_visit_type__initial__age_range__25_to_49__treated_via_cyrotherapy ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('cryotherapy_treatment_50_above_initial_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__initial__age_range__50_and_above__treated_via_cyrotherapy')}>
                     {moh745Data?.dc__screening_visit_type__initial__age_range__50_and_above__treated_via_cyrotherapy ?? 0}
                   </td>
                   <td>{0}</td>
-                  <td onClick={() => navigateToRegister('cryotherapy_treatment_less_25_routine_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__routine__age_range__less_than_25__treated_via_cyrotherapy')}>
                    {moh745Data?.dc__screening_visit_type__routine__age_range__less_than_25__treated_via_cyrotherapy ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('cryotherapy_treatment_25_49_routine_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__routine__age_range__25_to_49__treated_via_cyrotherapy')}>
                     {moh745Data?.dc__screening_visit_type__routine__age_range__25_to_49__treated_via_cyrotherapy ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('cryotherapy_treatment_50_above_routine_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__routine__age_range__50_and_above__treated_via_cyrotherapy')}>
                     {moh745Data?.dc__screening_visit_type__routine__age_range__50_and_above__treated_via_cyrotherapy ?? 0}
                   </td>
                   <td>{0}</td>
-                  <td onClick={() => navigateToRegister('cryotherapy_treatment_less_25_post_treatment_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__post_treatment__age_range__less_than_25__treated_via_cyrotherapy')}>
                    {moh745Data?.dc__screening_visit_type__post_treatment__age_range__less_than_25__treated_via_cyrotherapy ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('cryotherapy_treatment_25_49_post_treatment_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__post_treatment__age_range__25_to_49__treated_via_cyrotherapy')}>
                    {moh745Data?.dc__screening_visit_type__post_treatment__age_range__25_to_49__treated_via_cyrotherapy ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('cryotherapy_treatment_50_above_post_treatment_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__post_treatment__age_range__50_and_above__treated_via_cyrotherapy')}>
                     {moh745Data?.dc__screening_visit_type__post_treatment__age_range__50_and_above__treated_via_cyrotherapy ?? 0}
                   </td>
                   <td>{0}</td>
@@ -509,110 +509,126 @@ const Moh745Component: React.FC = () => {
                 </tr>
                 <tr>
                   <td>5) Number of clients treated using Thermocoagulation</td>
-                  <td onClick={() => navigateToRegister('thermocoagulation_treatment_less_25_initial_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__initial__age_range__less_than_25__treated_via_thermo_coagulation')}>
                     {moh745Data?.dc__screening_visit_type__initial__age_range__less_than_25__treated_via_thermo_coagulation ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('thermocoagulation_treatment_25_49_initial_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__initial__age_range__25_to_49__treated_via_thermo_coagulation')}>
                    {moh745Data?.dc__screening_visit_type__initial__age_range__25_to_49__treated_via_thermo_coagulation ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('thermocoagulation_treatment_50_above_initial_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__initial__age_range__50_and_above__treated_via_thermo_coagulation')}>
                     {moh745Data?.dc__screening_visit_type__initial__age_range__50_and_above__treated_via_thermo_coagulation ?? 0}
                   </td>
                   <td>{moh745Data?.treatment_method_thermo_coagulation_initial_visit ?? 0}</td>
-                  <td onClick={() => navigateToRegister('thermocoagulation_treatment_less_25_routine_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__routine__age_range__less_than_25__treated_via_thermo_coagulation')}>
                     {moh745Data?.dc__screening_visit_type__routine__age_range__less_than_25__treated_via_thermo_coagulation ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('thermocoagulation_treatment_25_49_routine_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__routine__age_range__25_to_49__treated_via_thermo_coagulation')}>
                     {moh745Data?.dc__screening_visit_type__routine__age_range__25_to_49__treated_via_thermo_coagulation ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('thermocoagulation_treatment_50_above_routine_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__routine__age_range__50_and_above__treated_via_thermo_coagulation')}>
                     {moh745Data?.dc__screening_visit_type__routine__age_range__50_and_above__treated_via_thermo_coagulation ?? 0}
                   </td>
-                  <td>{moh745Data?.treatment_method_thermo_coagulation_routine_visit ?? 0}</td>
                   <td
-                    onClick={() => navigateToRegister('thermocoagulation_treatment_less_25_post_treatment_screening')}
+                  onClick={() => navigateToRegister('treatment_method_thermo_coagulation_routine_visit')}
+                  >
+                    {moh745Data?.treatment_method_thermo_coagulation_routine_visit ?? 0}</td>
+                  <td
+                    onClick={() => navigateToRegister('dc__screening_visit_type__post_treatment__age_range__less_than_25__treated_via_thermo_coagulation')}
                   >
                    {moh745Data?.dc__screening_visit_type__post_treatment__age_range__less_than_25__treated_via_thermo_coagulation ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('thermocoagulation_treatment_25_49_post_treatment_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__post_treatment__age_range__25_to_49__treated_via_thermo_coagulation')}>
                    {moh745Data?.dc__screening_visit_type__post_treatment__age_range__25_to_49__treated_via_thermo_coagulation ?? 0}
                   </td>
                   <td
-                    onClick={() => navigateToRegister('thermocoagulation_treatment_50_above_post_treatment_screening')}
+                    onClick={() => navigateToRegister('dc__screening_visit_type__post_treatment__age_range__50_and_above__treated_via_thermo_coagulation')}
                   >
                    {moh745Data?.dc__screening_visit_type__post_treatment__age_range__50_and_above__treated_via_thermo_coagulation ?? 0}
                   </td>
-                  <td>{moh745Data?.treatment_method_thermo_coagulation_post_treatment_visit ?? 0}</td>
+                  <td
+                  onClick={() => navigateToRegister('treatment_method_thermo_coagulation_post_treatment_visit')}
+                  >{moh745Data?.treatment_method_thermo_coagulation_post_treatment_visit ?? 0}</td>
                   <td onClick={() => navigateToRegister('thermocoagulation_treatment_total')}>
                     
                   </td>
                 </tr>
                 <tr>
                   <td>6) Number of clients treated using LEEP</td>
-                  <td onClick={() => navigateToRegister('leep_treatment_less_25_initial_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__initial__age_range__less_than_25__treated_via_leep')}>
                    {moh745Data?.dc__screening_visit_type__initial__age_range__less_than_25__treated_via_leep ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('leep_treatment_25_49_initial_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__initial__age_range__25_to_49__treated_via_leep')}>
                     {moh745Data?.dc__screening_visit_type__initial__age_range__25_to_49__treated_via_leep ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('leep_treatment_50_above_initial_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__initial__age_range__50_and_above__treated_via_leep')}>
                    {moh745Data?.dc__screening_visit_type__initial__age_range__50_and_above__treated_via_leep ?? 0}
                   </td>
-                  <td>{moh745Data?.treatment_method_leep_initial_visit ?? 0}</td>
-                  <td onClick={() => navigateToRegister('leep_treatment_less_25_routine_screening')}>
+                  <td
+                  onClick={() => navigateToRegister('treatment_method_leep_initial_visit')}
+                  >{moh745Data?.treatment_method_leep_initial_visit ?? 0}</td>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__routine__age_range__less_than_25__treated_via_leep')}>
                     {moh745Data?.dc__screening_visit_type__routine__age_range__less_than_25__treated_via_leep ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('leep_treatment_25_49_routine_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__routine__age_range__25_to_49__treated_via_leep')}>
                     {moh745Data?.dc__screening_visit_type__routine__age_range__25_to_49__treated_via_leep ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('leep_treatment_50_above_routine_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__routine__age_range__50_and_above__treated_via_leep')}>
                     {moh745Data?.dc__screening_visit_type__routine__age_range__50_and_above__treated_via_leep ?? 0}
                   </td>
-                  <td>{moh745Data?.treatment_method_leep_routine_visit ?? 0}</td>
-                  <td onClick={() => navigateToRegister('leep_treatment_less_25_post_treatment_screening')}>
+                  <td
+                  onClick={() => navigateToRegister('treatment_method_leep_routine_visit')}
+                  >{moh745Data?.treatment_method_leep_routine_visit ?? 0}</td>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__post_treatment__age_range__less_than_25__treated_via_leep')}>
                    {moh745Data?.dc__screening_visit_type__post_treatment__age_range__less_than_25__treated_via_leep ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('leep_treatment_25_49_post_treatment_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__post_treatment__age_range__25_to_49__treated_via_leep')}>
                    {moh745Data?.dc__screening_visit_type__post_treatment__age_range__25_to_49__treated_via_leep ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('leep_treatment_50_above_post_treatment_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__post_treatment__age_range__50_and_above__treated_via_leep')}>
                     {moh745Data?.dc__screening_visit_type__post_treatment__age_range__50_and_above__treated_via_leep ?? 0}
                   </td>
-                  <td>{moh745Data?.treatment_method_leep_post_treatment_visit ?? 0}</td>
+                  <td
+                  onClick={() => navigateToRegister('treatment_method_leep_post_treatment_visit')}
+                  >{moh745Data?.treatment_method_leep_post_treatment_visit ?? 0}
+                  </td>
                   <td onClick={() => navigateToRegister('leep_treatment_total')}></td>
                 </tr>
                 <tr>
                   <td>7) Numeber of other treatment given (e.g Hysterectomy, cone)</td>
-                  <td onClick={() => navigateToRegister('other_treatment_less_25_initial_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__initial__age_range__less_than_25__treated_via_other')}>
                    {moh745Data?.dc__screening_visit_type__initial__age_range__less_than_25__treated_via_other ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('other_treatment_25_49_initial_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__initial__age_range__25_to_49__treated_via_other')}>
                     {moh745Data?.dc__screening_visit_type__initial__age_range__25_to_49__treated_via_other ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('other_treatment_50_above_initial_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__initial__age_range__50_and_above__treated_via_other')}>
                    {moh745Data?.dc__screening_visit_type__initial__age_range__50_and_above__treated_via_other ?? 0}
                   </td>
                   <td>{moh745Data?.treatment_method_other_initial_visit ?? 0}</td>
-                  <td onClick={() => navigateToRegister('other_treatment_less_25_routine_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__routine__age_range__less_than_25__treated_via_other')}>
                     {moh745Data?.dc__screening_visit_type__routine__age_range__less_than_25__treated_via_other ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('other_treatment_25_49_routine_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__routine__age_range__25_to_49__treated_via_other')}>
                    {moh745Data?.dc__screening_visit_type__routine__age_range__25_to_49__treated_via_other ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('other_treatment_50_above_routine_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__routine__age_range__50_and_above__treated_via_other')}>
                    {moh745Data?.dc__screening_visit_type__routine__age_range__50_and_above__treated_via_other ?? 0}
                   </td>
-                  <td>{moh745Data?.treatment_method_other_routine_visit ?? 0}</td>
-                  <td onClick={() => navigateToRegister('other_treatment_less_25_post_treatment_screening')}>
+                  <td
+                  onClick={() => navigateToRegister('treatment_method_other_routine_visit')}
+                  >{moh745Data?.treatment_method_other_routine_visit ?? 0}</td>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__post_treatment__age_range__less_than_25__treated_via_other')}>
                     {moh745Data?.dc__screening_visit_type__post_treatment__age_range__less_than_25__treated_via_other ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('other_treatment_25_49_post_treatment_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__post_treatment__age_range__25_to_49__treated_via_other')}>
                    {moh745Data?.dc__screening_visit_type__post_treatment__age_range__25_to_49__treated_via_other ?? 0}
                   </td>
-                  <td onClick={() => navigateToRegister('other_treatment_50_above_post_treatment_screening')}>
+                  <td onClick={() => navigateToRegister('dc__screening_visit_type__post_treatment__age_range__50_and_above__treated_via_other')}>
                     {moh745Data?.dc__screening_visit_type__post_treatment__age_range__50_and_above__treated_via_other ?? 0}
                   </td>
-                  <td>{moh745Data?.treatment_method_other_post_treatment_visit ?? 0}</td>
+                  <td
+                  onClick={() => navigateToRegister('treatment_method_other_post_treatment_visit')}
+                  >{moh745Data?.treatment_method_other_post_treatment_visit ?? 0}</td>
                   <td onClick={() => navigateToRegister('other_treatment_total')}>
                     
                   </td>
@@ -621,13 +637,13 @@ const Moh745Component: React.FC = () => {
                   <td>8) Number of HIV positive clients screened</td>
                   <td
                     onClick={() =>
-                      navigateToRegister('hiv_positive_screened_cervical_cancer_less_25_initial_screening')
+                      navigateToRegister('dc__screening_visit_type__initial__age_range__less_than_25__hiv_positive_screened')
                     }
                   >
                   {moh745Data?.dc__screening_visit_type__initial__age_range__less_than_25__hiv_positive_screened ?? 0}
                   </td>
                   <td
-                    onClick={() => navigateToRegister('hiv_positive_screened_cervical_cancer_25_49_initial_screening')}
+                    onClick={() => navigateToRegister('dc__screening_visit_type__initial__age_range__25_to_49__hiv_positive_screened')}
                   >
                    {moh745Data?.dc__screening_visit_type__initial__age_range__25_to_49__hiv_positive_screened ?? 0}
                   </td>
@@ -641,34 +657,38 @@ const Moh745Component: React.FC = () => {
                   <td>{moh745Data?.hiv_positive_screened_initial_visit ?? 0}</td>
                   <td
                     onClick={() =>
-                      navigateToRegister('hiv_positive_screened_cervical_cancer_less_25_routine_screening')
+                      navigateToRegister('dc__screening_visit_type__routine__age_range__less_than_25__hiv_positive_screened')
                     }
                   >
                    {moh745Data?.dc__screening_visit_type__routine__age_range__less_than_25__hiv_positive_screened ?? 0}
                   </td>
                   <td
-                    onClick={() => navigateToRegister('hiv_positive_screened_cervical_cancer_25_49_routine_screening')}
+                    onClick={() => navigateToRegister('dc__screening_visit_type__routine__age_range__25_to_49__hiv_positive_screened')}
                   >
                    {moh745Data?.dc__screening_visit_type__routine__age_range__25_to_49__hiv_positive_screened ?? 0}
                   </td>
                   <td
                     onClick={() =>
-                      navigateToRegister('hiv_positive_screened_cervical_cancer_50_above_routine_screening')
+                      navigateToRegister('dc__screening_visit_type__routine__age_range__50_and_above__hiv_positive_screened')
                     }
                   >
                     {moh745Data?.dc__screening_visit_type__routine__age_range__50_and_above__hiv_positive_screened ?? 0}
                   </td>
-                  <td>{moh745Data?.hiv_positive_screened_routine_visit ?? 0}</td>
+                  <td
+                   onClick={() =>
+                      navigateToRegister('hiv_positive_screened_routine_visit')
+                    }
+                  >{moh745Data?.hiv_positive_screened_routine_visit ?? 0}</td>
                   <td
                     onClick={() =>
-                      navigateToRegister('hiv_positive_screened_cervical_cancer_less_25_post_treatment_screening')
+                      navigateToRegister('dc__screening_visit_type__post_treatment__age_range__less_than_25__hiv_positive_screened')
                     }
                   >
                     {moh745Data?.dc__screening_visit_type__post_treatment__age_range__less_than_25__hiv_positive_screened ?? 0}
                   </td>
                   <td
                     onClick={() =>
-                      navigateToRegister('hiv_positive_screened_cervical_cancer_25_49_post_treatment_screening')
+                      navigateToRegister('dc__screening_visit_type__post_treatment__age_range__25_to_49__hiv_positive_screened')
                     }
                   >
                   
@@ -676,12 +696,14 @@ const Moh745Component: React.FC = () => {
                   </td>
                   <td
                     onClick={() =>
-                      navigateToRegister('hiv_positive_screened_cervical_cancer_50_above_post_treatment_screening')
+                      navigateToRegister('dc__screening_visit_type__post_treatment__age_range__50_and_above__hiv_positive_screened')
                     }
                   >
                    {moh745Data?.dc__screening_visit_type__post_treatment__age_range__50_and_above__hiv_positive_screened ?? 0}
                   </td>
-                  <td>{moh745Data?.hiv_positive_screened_post_treatment_visit ?? 0}</td>
+                  <td
+                  onClick={() => navigateToRegister('hiv_positive_screened_post_treatment_visi')}
+                  >{moh745Data?.hiv_positive_screened_post_treatment_visit ?? 0}</td>
                   <td onClick={() => navigateToRegister('hiv_positive_screened_cervical_cancer_total')}>
                     
                   </td>
@@ -690,61 +712,69 @@ const Moh745Component: React.FC = () => {
                   <td>9) Number of HIV positive with positive screening</td>
                   <td
                     onClick={() =>
-                      navigateToRegister('hiv_positive_cervical_cancer_positive_less_25_initial_screening')
+                      navigateToRegister('dc__screening_visit_type__initial__age_range__less_than_25__hiv_positive_screened_positive_result')
                     }
                   >
                    {moh745Data?.dc__screening_visit_type__initial__age_range__less_than_25__hiv_positive_screened_positive_result ?? 0}
                   </td>
                   <td
-                    onClick={() => navigateToRegister('hiv_positive_cervical_cancer_positive_25_49_initial_screening')}
+                    onClick={() => navigateToRegister('dc__screening_visit_type__initial__age_range__25_to_49__hiv_positive_screened_positive_result')}
                   >
                    {moh745Data?.dc__screening_visit_type__initial__age_range__25_to_49__hiv_positive_screened_positive_result ?? 0}
                   </td>
                   <td
                     onClick={() =>
-                      navigateToRegister('hiv_positive_cervical_cancer_positive_50_above_initial_screening')
+                      navigateToRegister('dc__screening_visit_type__initial__age_range__50_and_above__hiv_positive_screened_positive_result')
                     }
                   >
                    {moh745Data?.dc__screening_visit_type__initial__age_range__50_and_above__hiv_positive_screened_positive_result ?? 0}
                   </td>
-                  <td>{moh745Data?.hiv_positive_screened_positive_result_initial_visit ?? 0}</td>
+                  <td
+                   onClick={() =>
+                      navigateToRegister('hiv_positive_screened_positive_result_initial_visit')
+                    }
+                  >{moh745Data?.hiv_positive_screened_positive_result_initial_visit ?? 0}</td>
                   <td
                     onClick={() =>
-                      navigateToRegister('hiv_positive_cervical_cancer_positive_less_25_routine_screening')
+                      navigateToRegister('dc__screening_visit_type__routine__age_range__less_than_25__hiv_positive_screened_positive_result')
                     }
                   >
                    {moh745Data?.dc__screening_visit_type__routine__age_range__less_than_25__hiv_positive_screened_positive_result ?? 0}
                   </td>
                   <td
-                    onClick={() => navigateToRegister('hiv_positive_cervical_cancer_positive_25_49_routine_screening')}
+                    onClick={() => navigateToRegister('dc__screening_visit_type__routine__age_range__25_to_49__hiv_positive_screened_positive_result')}
                   >
                    {moh745Data?.dc__screening_visit_type__routine__age_range__25_to_49__hiv_positive_screened_positive_result ?? 0}
                   </td>
                   <td
                     onClick={() =>
-                      navigateToRegister('hiv_positive_cervical_cancer_positive_50_above_routine_screening')
+                      navigateToRegister('dc__screening_visit_type__routine__age_range__50_and_above__hiv_positive_screened_positive_result')
                     }
                   >
                    {moh745Data?.dc__screening_visit_type__routine__age_range__50_and_above__hiv_positive_screened_positive_result ?? 0}
                   </td>
-                  <td>{moh745Data?.hiv_positive_screened_positive_result_routine_visit ?? 0}</td>
+                  <td
+                   onClick={() =>
+                      navigateToRegister('hiv_positive_screened_positive_result_routine_visit')
+                    }
+                  >{moh745Data?.hiv_positive_screened_positive_result_routine_visit ?? 0}</td>
                   <td
                     onClick={() =>
-                      navigateToRegister('hiv_positive_cervical_cancer_positive_less_25_post_treatment_screening')
+                      navigateToRegister('dc__screening_visit_type__post_treatment__age_range__less_than_25__hiv_positive_screened_positive_result')
                     }
                   >
                    {moh745Data?.dc__screening_visit_type__post_treatment__age_range__less_than_25__hiv_positive_screened_positive_result ?? 0}
                   </td>
                   <td
                     onClick={() =>
-                      navigateToRegister('hiv_positive_cervical_cancer_positive_25_49_post_treatment_screening')
+                      navigateToRegister('dc__screening_visit_type__post_treatment__age_range__25_to_49__hiv_positive_screened_positive_result')
                     }
                   >
                     {moh745Data?.dc__screening_visit_type__post_treatment__age_range__25_to_49__hiv_positive_screened_positive_result ?? 0}
                   </td>
                   <td
                     onClick={() =>
-                      navigateToRegister('hiv_positive_cervical_cancer_positive_50_above_post_treatment_screening')
+                      navigateToRegister('dc__screening_visit_type__post_treatment__age_range__50_and_above__hiv_positive_screened_positive_result')
                     }
                   >
                    {moh745Data?.dc__screening_visit_type__post_treatment__age_range__50_and_above__hiv_positive_screened_positive_result ?? 0}
