@@ -14,6 +14,7 @@ const Moh270DailyRegister: React.FC<Moh270DailyRegisterProps> = ({ moh270Patient
           <TableRow>
             <TableHeader>No</TableHeader>
             <TableHeader>Date</TableHeader>
+            <TableHeader>Encounter Date</TableHeader>
             <TableHeader>Patient No</TableHeader>
             <TableHeader>Name</TableHeader>
             <TableHeader>D.O.B</TableHeader>
@@ -34,6 +35,7 @@ const Moh270DailyRegister: React.FC<Moh270DailyRegisterProps> = ({ moh270Patient
             <TableRow key={p.patient_uuid}>
               <TableCell>{index + 1}</TableCell>
               <TableCell>{p?.enrollment_date ?? ''}</TableCell>
+              <TableCell>{p?.encounter_date ?? ''}</TableCell>
               <TableCell>{p.amrs_universal_id}</TableCell>
               <TableCell>
                 <Link href={`${window.spaBase}/patient/${p.patient_uuid}/chart/`}>{p.person_name}</Link>
