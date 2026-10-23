@@ -125,6 +125,7 @@ const Moh705AComponent: React.FC = () => {
     try {
       const data = await getMoh705a(params);
       setMoh705aData(data.result ?? []);
+      markGenerated(params.locationUuids);
     } catch (error) {
       showReportError('the MOH-705A report', error);
     } finally {

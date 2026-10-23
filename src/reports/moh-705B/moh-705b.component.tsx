@@ -123,6 +123,7 @@ const Moh705BComponent: React.FC = () => {
     try {
       const data = await getMoh705b(params);
       setMoh705bData(data.result ?? []);
+      markGenerated(params.locationUuids);
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
