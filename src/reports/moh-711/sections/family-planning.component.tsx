@@ -55,14 +55,14 @@ const FamilyPlanningComponent: React.FC<FamilyPlanningComponentProps> = ({ moh71
             <td>5</td>
             <td rowSpan={2}>Injectables</td>
             <td>FP Injections DMPA- IM</td>
-            <td>{moh711Data.fp_injections_dmpa_im}</td>
-            <td></td>
+            <td>{moh711Data.fp_injections_dmpa_im_new}</td>
+            <td>{moh711Data.fp_injections_dmpa_im_revisit}</td>
           </tr>
           <tr>
             <td>6</td>
             <td>FP Injections DMPA- SC</td>
-            <td>{moh711Data.fp_injections_dmpa_sc}</td>
-            <td></td>
+            <td>{moh711Data.fp_injections_dmpa_sc_new}</td>
+            <td>{moh711Data.fp_injections_dmpa_sc_revisit}</td>
           </tr>
           <tr>
             <td>7</td>
@@ -112,40 +112,40 @@ const FamilyPlanningComponent: React.FC<FamilyPlanningComponentProps> = ({ moh71
             <td>12</td>
             <td rowSpan={2}>Implants</td>
             <td>1 Rod</td>
-            <td></td>
-            <td></td>
+            <td>{moh711Data.implants_insertion_1_rod_first_time}</td>
+            <td>{moh711Data.implants_insertion_1_rod_re_insertion}</td>
           </tr>
           <tr>
             <td>13</td>
             <td>2 Rods</td>
-            <td></td>
-            <td></td>
+            <td>{moh711Data.implants_insertion_2_rod_first_time}</td>
+            <td>{moh711Data.implants_insertion_2_rod_re_insertion}</td>
           </tr>
           <tr>
             <td>14</td>
             <td rowSpan={2}>I.U.C.D insertion</td>
             <td>Hormonal</td>
-            <td>{moh711Data.iucd_hormonal}</td>
-            <td></td>
+            <td>{moh711Data.iucd_hormonal_first_time}</td>
+            <td>{moh711Data.iucd_hormonal_re_insertion}</td>
           </tr>
           <tr>
             <td>15</td>
             <td>Non Hormonal</td>
-            <td>{moh711Data.iucd_non_hormonal}</td>
-            <td></td>
+            <td>{moh711Data.iucd_non_hormonal_first_time}</td>
+            <td>{moh711Data.iucd_non_hormonal_re_insertion}</td>
           </tr>
           <tr>
             <td>16</td>
             <td rowSpan={2}>Voluntary surgical contraception</td>
             <td>BTL</td>
-            <td>{moh711Data.surgical_contraception_btl}</td>
-            <td className={styles.greyBackground}></td>
+            <td>{moh711Data.surgical_contraception_btl_first_time}</td>
+            <td className={styles.greyBackground}>{moh711Data.surgical_contraception_btl_re_insertion}</td>
           </tr>
           <tr>
             <td>17</td>
             <td>Vasectomy</td>
-            <td>{moh711Data.vasectomy} </td>
-            <td className={styles.greyBackground}></td>
+            <td>{moh711Data.vasectomy_insertion} </td>
+            <td className={styles.greyBackground}>{moh711Data.vasectomy_re_insertion}</td>
           </tr>
           <tr>
             <th colSpan={3}></th>
@@ -156,14 +156,14 @@ const FamilyPlanningComponent: React.FC<FamilyPlanningComponentProps> = ({ moh71
             <td>18</td>
             <td rowSpan={2}>Removals</td>
             <td>I.U.C.D</td>
-            <td>{moh711Data.iucd_removals}</td>
-            <td className={styles.greyBackground}></td>
+            <td>{moh711Data.iucd_removals_new}</td>
+            <td className={styles.greyBackground}>{moh711Data.iucd_removals_revisit}</td>
           </tr>
           <tr>
             <td>19</td>
             <td>Implants</td>
-            <td>{moh711Data.implants_removal}</td>
-            <td className={styles.greyBackground}></td>
+            <td>{moh711Data.implants_removal_new}</td>
+            <td className={styles.greyBackground}>{moh711Data.implants_removal_revisit}</td>
           </tr>
           <tr>
             <td>20</td>
@@ -203,8 +203,8 @@ const FamilyPlanningComponent: React.FC<FamilyPlanningComponentProps> = ({ moh71
           <tr>
             <td>25</td>
             <td>3 days to 6 weeks</td>
-            <td>{moh711Data.post_partum_fp_4_6_weeks_new}</td>
-            <td className={styles.greyBackground}>{moh711Data.post_partum_fp_4_6_weeks_revisit}</td>
+            <td>{moh711Data.post_partum_fp_3days_6_weeks_new}</td>
+            <td className={styles.greyBackground}>{moh711Data.post_partum_fp_3days_6_weeks_revisit}</td>
           </tr>
           <tr>
             <td>26</td>

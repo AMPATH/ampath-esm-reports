@@ -405,8 +405,8 @@ const Moh405Register: React.FC = () => {
                       {patient.date_of_visit ? new Date(patient.date_of_visit).toLocaleDateString('en-GB') : ''}
                     </td>
                     <td>{patient.anc_number}</td>
-                    <td rowSpan={2}>{patient.anc_number_NUPI}</td>
-                    <td rowSpan={2}>{patient.amrsID}</td>
+                    <td rowSpan={2}>{patient.anc_number}</td>
+                    <td rowSpan={2}>{patient.amrs_id}</td>
                     <td rowSpan={2}>{patient.number_of_anc_visits}</td>
                     <td rowSpan={2}>{patient.full_names}</td>
                     <td>{patient.date_of_birth ? new Date(patient.date_of_birth).toLocaleDateString('en-GB') : ''}</td>
@@ -476,7 +476,7 @@ const Moh405Register: React.FC = () => {
                   </tr>
 
                   <tr>
-                    <td>{patient.NUPI}</td>
+                    <td>{patient.nupi}</td>
                     <td>{patient.age}</td>
                     <td>{patient.phone_number}</td>
                     <td>{patient.fgm_complications}</td>

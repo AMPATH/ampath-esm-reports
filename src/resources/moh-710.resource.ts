@@ -6,6 +6,9 @@ interface Moh710Params {
   startDate?: string;
   endDate?: string;
   indicator?: string | string[];
+  startIndex?: number;
+  limit?: number;
+  reportName?: string;
 }
 
 export async function getMoh710(params: Moh710Params): Promise<any> {
@@ -30,12 +33,14 @@ export async function getMoh710(params: Moh710Params): Promise<any> {
 }
 
 export async function getMoh710PatientList(params: Moh710Params): Promise<any> {
-  const url = await buildEtlUrl('moh-710-patient-list', {
+  const url = await buildEtlUrl('moh-510-patient-list', {
     locationUuids: params.locationUuids || '',
     startDate: params.startDate || '',
     endDate: params.endDate || '',
     indicator: Array.isArray(params.indicator) ? params.indicator.join(',') : params.indicator || '',
+    reportName: params.reportName || 'moh710Report',
   });
+
   try {
     const response = await openmrsFetch(url);
 
