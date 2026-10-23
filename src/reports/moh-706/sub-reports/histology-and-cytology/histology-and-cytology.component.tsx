@@ -28,9 +28,9 @@ const HistologyAndCytology: React.FC = () => {
                     getCell()
                 ]
             },
-            { tableCells: [getCell("", "6.4 Thyroid"), getCell(), getCell(), getCell()] },
-            { tableCells: [getCell("", "6.5 Lymph nodes"), getCell(), getCell(), getCell()] },
-            { tableCells: [getCell("", "6.6 Liver"), getCell(), getCell(), getCell()] },
+            { tableCells: [getCell("", "6.4 Thyroid"), getCell("total_cyt_thyroid"), getCell(), getCell()] },
+            { tableCells: [getCell("", "6.5 Lymph nodes"), getCell("total_cyt_lymph_nodes"), getCell(), getCell()] },
+            { tableCells: [getCell("", "6.6 Liver"), getCell("total_cyt_liver"), getCell(), getCell()] },
             { tableCells: [getCell("", "6.7 Breast"), getCell("total_cyt_breast"), getCell(), getCell()] },
             { tableCells: [getCell("", "6.8 Soft tissue masses"), getCell("total_cyt_soft_tissue"), getCell(), getCell()] },
             {
@@ -41,10 +41,10 @@ const HistologyAndCytology: React.FC = () => {
                     getCell()
                 ]
             },
-            { tableCells: [getCell("", "6.9 Ascitic fluid"), getCell(), getCell(), getCell()] },
+            { tableCells: [getCell("", "6.9 Ascitic fluid"), getCell("total_cyt_ascitic_fluid"), getCell(), getCell()] },
             { tableCells: [getCell("", "6.10 CSF"), getCell("total_cyt_csf"), getCell(), getCell()] },
-            { tableCells: [getCell("", "6.11 Pleural fluid"), getCell(), getCell(), getCell()] },
-            { tableCells: [getCell("", "6.12 Urine"), getCell(), getCell(), getCell()] },
+            { tableCells: [getCell("", "6.11 Pleural fluid"), getCell("total_cyt_pleural_fluid"), getCell(), getCell()] },
+            { tableCells: [getCell("", "6.12 Urine"), getCell("total_cyt_urine"), getCell(), getCell()] },
             {
                 tableCells: [
                     getCell("", "Tissue Histology", 1, 1, true),
@@ -53,19 +53,19 @@ const HistologyAndCytology: React.FC = () => {
                     getCell("", "TNM Stage", 1, 1, true),
                 ]
             },
-            { tableCells: [getCell("", "6.13 Prostate"), getCell(), getCell(), getCell()] },
-            { tableCells: [getCell("", "6.14 Breast tissue"), getCell(), getCell(), getCell()] },
-            { tableCells: [getCell("", "6.15 Ovary"), getCell(), getCell(), getCell()] },
-            { tableCells: [getCell("", "6.16 Uterus (Cervix)"), getCell(), getCell(), getCell()] },
-            { tableCells: [getCell("", "6.17 Uterus (Endometrium)"), getCell(), getCell(), getCell()] },
-            { tableCells: [getCell("", "6.18 Skin"), getCell(), getCell(), getCell()] },
-            { tableCells: [getCell("", "6.19 Head and Neck"), getCell(), getCell(), getCell()] },
-            { tableCells: [getCell("", "6.20 Oral"), getCell(), getCell(), getCell()] },
-            { tableCells: [getCell("", "6.21 Esophagus"), getCell(), getCell(), getCell()] },
-            { tableCells: [getCell("", "6.22 Colorectal"), getCell(), getCell(), getCell()] },
-            { tableCells: [getCell("", "6.23 Hepatobiliary"), getCell(), getCell(), getCell()] },
-            { tableCells: [getCell("", "6.24 Soft tissue and bone"), getCell(), getCell(), getCell()] },
-            { tableCells: [getCell("", "6.25 Lymph nodes tissue"), getCell(), getCell(), getCell()] },
+            { tableCells: [getCell("", "6.13 Prostate"), getCell("total_cyt_prostate"), getCell(), getCell()] },
+            { tableCells: [getCell("", "6.14 Breast tissue"), getCell("total_cyt_breast_tissue"), getCell(), getCell()] },
+            { tableCells: [getCell("", "6.15 Ovary"), getCell("total_cyt_ovary"), getCell(), getCell()] },
+            { tableCells: [getCell("", "6.16 Uterus (Cervix)"), getCell("total_cyt_uterus_cervix"), getCell(), getCell()] },
+            { tableCells: [getCell("", "6.17 Uterus (Endometrium)"), getCell("total_cyt_uterus_endometrium"), getCell(), getCell()] },
+            { tableCells: [getCell("", "6.18 Skin"), getCell("total_cyt_skin"), getCell(), getCell()] },
+            { tableCells: [getCell("", "6.19 Head and Neck"), getCell("total_cyt_head_neck"), getCell(), getCell()] },
+            { tableCells: [getCell("", "6.20 Oral"), getCell("total_cyt_oral"), getCell(), getCell()] },
+            { tableCells: [getCell("", "6.21 Esophagus"), getCell("total_cyt_esophagus"), getCell(), getCell()] },
+            { tableCells: [getCell("", "6.22 Colorectal"), getCell("total_cyt_colorectal"), getCell(), getCell()] },
+            { tableCells: [getCell("", "6.23 Hepatobiliary"), getCell("total_cyt_hepatobiliary"), getCell(), getCell()] },
+            { tableCells: [getCell("", "6.24 Soft tissue and bone"), getCell("total_cyt_soft_tissue_bone"), getCell(), getCell()] },
+            { tableCells: [getCell("", "6.25 Lymph nodes tissue"), getCell("total_cyt_lymph_nodes_tissue"), getCell(), getCell()] },
             {
                 tableCells: [
                     getCell("", "Bone Marrow Studies", 1, 1, true),

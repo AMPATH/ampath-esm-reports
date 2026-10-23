@@ -181,13 +181,13 @@ const BloodChemistry: React.FC<BloodChemistryProps> = ({ data, locationUuids, st
         tableCells: [getCell('', '2.23 PSA'), getCell('total_psa'), getCell('positive_psa', '', 2)],
       },
       {
-        tableCells: [getCell('', '2.24 CA 15-3'), getCell(), getCell('', '', 2)],
+        tableCells: [getCell('', '2.24 CA 15-3'), getCell('total_ca_15_3'), getCell('ca_15_3_high', '', 2)],
       },
       {
         tableCells: [getCell('', '2.25 CA 19-9'), getCell('total_ca_19_9'), getCell('positive_ca_19_9', '', 2)],
       },
       {
-        tableCells: [getCell('', '2.26 CA 125'), getCell(), getCell('', '', 2)],
+        tableCells: [getCell('', '2.26 CA 125'), getCell('total_ca_125'), getCell('ca_125_high', '', 2)],
       },
       {
         tableCells: [getCell('', '2.27 CEA'), getCell('total_cea'), getCell('positive_cea', '', 2)],

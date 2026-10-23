@@ -89,7 +89,7 @@ const Haematology: React.FC<HaematologyProps> = ({ data, locationUuids, startDat
                 tableCells: [getCell("", "4.7 BMA"), getCell(), getCell("", "", 2)]
             },
             {
-                tableCells: [getCell("", "4.8 Coagulation profile"), getCell(), getCell("", "", 2)]
+                tableCells: [getCell("", "4.8 Coagulation profile"), getCell("total_coagulation_profile"), getCell("", "", 2)]
             },
             {
                 tableCells: [getCell("", "4.9 Reticulocyte"), getCell("total_reticulocyte"), getCell("", "", 2)]

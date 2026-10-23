@@ -92,8 +92,8 @@ const UrineAnalysis: React.FC<UrineAnalysisProps> = ({ data, locationUuids, star
             {
                 tableCells: [
                     getCell("", "1.10 Bacteria", 1, 1, false),
-                    getCell(),
-                    getCell(),
+                    getCell("total_bacteria"),
+                    getCell("positive_bacteria"),
                 ]
             },
         ]
