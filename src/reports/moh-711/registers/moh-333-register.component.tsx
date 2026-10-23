@@ -512,7 +512,7 @@ const Moh333Register: React.FC = () => {
                     <td rowSpan={2}>
                       {row.date_of_admission ? new Date(row.date_of_admission).toLocaleDateString('en-GB') : ''}
                     </td>
-                    <td rowSpan={2}>{row.amrsID}</td>
+                    <td rowSpan={2}>{row.amrs_id}</td>
                     <td>{row.admission_number}</td>
                     <td rowSpan={2}>{row.full_names}</td>
 

@@ -438,7 +438,7 @@ const Moh406Register: React.FC = () => {
                     </td>
                     <td>{patient.pnc_number}</td>
                     <td rowSpan={2}>{patient.pnc_number}</td>
-                    <td rowSpan={2}>{patient.amrsID}</td>
+                    <td rowSpan={2}>{patient.amrs_id}</td>
                     <td rowSpan={2}>{patient.full_names}</td>
 
                     <td>{patient.date_of_birth ? new Date(patient.date_of_birth).toLocaleDateString('en-GB') : ''}</td>
@@ -509,7 +509,7 @@ const Moh406Register: React.FC = () => {
                     <td>{patient.phone_number}</td>
                     <td>{patient.pallor}</td>
                     <td>{patient.cervical_cancer_results}</td>
-                    <td>{patient.family_planning_method}</td>
+                    <td>{patient.women_received_post_partum_fp}</td>
                   </tr>
                 </React.Fragment>
               ))
