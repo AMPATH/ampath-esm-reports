@@ -155,6 +155,7 @@ export type Moh270Patient = {
   gender: string;
   amrs_universal_id: string;
   encounter_date: string;
+  rtc_date: string;
   endDate: string;
   covered_by_shif: number;
   patient_uuid: string;
