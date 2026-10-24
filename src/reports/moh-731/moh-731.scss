@@ -217,6 +217,12 @@ $section-gap: 0.8mm; // around a divider
   display: flex;
   align-items: stretch;
   border-bottom: $rule;
+
+  /* the sheet's own border closes the last section; a second rule there
+     doubles the line */
+  &:last-child {
+    border-bottom: none;
+  }
 }
 
 .flexColumn {

@@ -628,7 +628,13 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td>Pregnant & Lactating</td>
                     <td className={styles.textBox}>
                       <span>HV03-042</span>
-                      <div className={styles.rectangle}></div>
+                      <div
+                        onClick={() => openLinelist('HV03-042')}
+                        className={styles.rectangle}
+                        title="Click to open linelist"
+                      >
+                        {MOH731Data.has_sam_preg_lact}
+                      </div>
                     </td>
                     <td></td>
                   </tr>
@@ -716,7 +722,13 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td>Pregnant & Lactating</td>
                     <td className={styles.textBox}>
                       <span>HV03-048</span>
-                      <div className={styles.rectangle}></div>
+                      <div
+                        onClick={() => openLinelist('HV03-048')}
+                        className={styles.rectangle}
+                        title="Click to open linelist"
+                      >
+                        {MOH731Data.has_smm_preg_lact}
+                      </div>
                     </td>
                     <td></td>
                   </tr>
@@ -804,7 +816,13 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td>Pregnant & Lactating</td>
                     <td className={styles.textBox}>
                       <span>HV03-054</span>
-                      <div className={styles.rectangle}></div>
+                      <div
+                        onClick={() => openLinelist('HV03-054')}
+                        className={styles.rectangle}
+                        title="Click to open linelist"
+                      >
+                        {MOH731Data.severe_acute_supp_preg_lact}
+                      </div>
                     </td>
                     <td></td>
                   </tr>
@@ -892,7 +910,13 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                     <td>Pregnant & Lactating</td>
                     <td className={styles.textBox}>
                       <span>HV03-060</span>
-                      <div className={styles.rectangle}></div>
+                      <div
+                        onClick={() => openLinelist('HV03-060')}
+                        className={styles.rectangle}
+                        title="Click to open linelist"
+                      >
+                        {MOH731Data.severe_moderate_supp_preg_lact}
+                      </div>
                     </td>
                     <td></td>
                   </tr>
@@ -906,6 +930,8 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
           <table className={styles.block}>
             <tbody>
               <tr>
+                {/* Not reported yet: the earlier figures were misleading, so each box
+                    shows - until this section's queries are corrected */}
                 <td className={styles.blockTitle} colSpan={3}>
                   3.7 HIV in TB Clinic
                 </td>
@@ -914,13 +940,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                 <td>TB cases_New</td>
                 <td className={styles.textBox}>
                   <span>HV03-061</span>
-                  <div
-                    onClick={() => openLinelist('HV03-061')}
-                    className={styles.rectangle}
-                    title="Click to open linelist"
-                  >
-                    {MOH731Data.start_tb}
-                  </div>
+                  <div className={styles.rectangle}>-</div>
                 </td>
                 <td></td>
               </tr>
@@ -932,13 +952,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                 </td>
                 <td className={styles.textBox}>
                   <span>HV03-062</span>
-                  <div
-                    onClick={() => openLinelist('HV03-062')}
-                    className={styles.rectangle}
-                    title="Click to open linelist"
-                  >
-                    {MOH731Data.start_tb_known_positive}
-                  </div>
+                  <div className={styles.rectangle}>-</div>
                 </td>
                 <td></td>
               </tr>
@@ -946,13 +960,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                 <td>TB_New HIV Positive</td>
                 <td className={styles.textBox}>
                   <span>HV03-063</span>
-                  <div
-                    onClick={() => openLinelist('HV03-063')}
-                    className={styles.rectangle}
-                    title="Click to open linelist"
-                  >
-                    {MOH731Data.start_tb_positive}
-                  </div>
+                  <div className={styles.rectangle}>-</div>
                 </td>
                 <td></td>
               </tr>
@@ -964,13 +972,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                 </td>
                 <td className={styles.textBox}>
                   <span>HV03-064</span>
-                  <div
-                    onClick={() => openLinelist('HV03-064')}
-                    className={styles.rectangle}
-                    title="Click to open linelist"
-                  >
-                    {MOH731Data.start_tb_on_art}
-                  </div>
+                  <div className={styles.rectangle}>-</div>
                 </td>
                 <td></td>
               </tr>
@@ -978,18 +980,13 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                 <td>TB New_Start_HAART</td>
                 <td className={styles.textBox}>
                   <span>HV03-065</span>
-                  <div
-                    onClick={() => openLinelist('HV03-065')}
-                    className={styles.rectangle}
-                    title="Click to open linelist"
-                  >
-                    {MOH731Data.start_tb_art_new}
-                  </div>
+                  <div className={styles.rectangle}>-</div>
                 </td>
                 <td></td>
               </tr>
             </tbody>
           </table>
+          {/* Not reported by the system yet, so each box shows - */}
           <h5 className={styles.columnHeader}>4. Medical Male Circumcision</h5>
           <table className={styles.block}>
             <tbody>
@@ -1002,7 +999,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                 <td>Circumcised_0-60 days</td>
                 <td className={styles.textBox}>
                   <span>HV04-01</span>
-                  <div className={styles.rectangle}></div>
+                  <div className={styles.rectangle}>-</div>
                 </td>
                 <td></td>
               </tr>
@@ -1010,7 +1007,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                 <td>Circumcised_61 days -9 yrs</td>
                 <td className={styles.textBox}>
                   <span>HV04-02</span>
-                  <div className={styles.rectangle}></div>
+                  <div className={styles.rectangle}>-</div>
                 </td>
                 <td></td>
               </tr>
@@ -1018,7 +1015,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                 <td>Circumcised_10-14</td>
                 <td className={styles.textBox}>
                   <span>HV04-03</span>
-                  <div className={styles.rectangle}></div>
+                  <div className={styles.rectangle}>-</div>
                 </td>
                 <td></td>
               </tr>
@@ -1026,7 +1023,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                 <td>Circumcised_15 +</td>
                 <td className={styles.textBox}>
                   <span>HV04-04</span>
-                  <div className={styles.rectangle}></div>
+                  <div className={styles.rectangle}>-</div>
                 </td>
                 <td></td>
               </tr>
@@ -1039,7 +1036,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                 <td className={styles.spaceAfter}>Tested_ HIV+</td>
                 <td className={styles.textBox}>
                   <span>HV04-05</span>
-                  <div className={styles.rectangle}></div>
+                  <div className={styles.rectangle}>-</div>
                 </td>
                 <td></td>
               </tr>
@@ -1047,7 +1044,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                 <td className={styles.spaceAfter}>Tested_ HIV-</td>
                 <td className={styles.textBox}>
                   <span>HV04-06</span>
-                  <div className={styles.rectangle}></div>
+                  <div className={styles.rectangle}>-</div>
                 </td>
                 <td></td>
               </tr>
@@ -1065,7 +1062,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                 <td>Surgical</td>
                 <td className={styles.textBox}>
                   <span>HV04-07</span>
-                  <div className={styles.rectangle}></div>
+                  <div className={styles.rectangle}>-</div>
                 </td>
                 <td></td>
               </tr>
@@ -1073,7 +1070,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                 <td>Devices</td>
                 <td className={styles.textBox}>
                   <span>HV04-08</span>
-                  <div className={styles.rectangle}></div>
+                  <div className={styles.rectangle}>-</div>
                 </td>
                 <td></td>
               </tr>
@@ -1091,7 +1088,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                 <td>AE_During_Moderate</td>
                 <td className={styles.textBox}>
                   <span>HV04-09</span>
-                  <div className={styles.rectangle}></div>
+                  <div className={styles.rectangle}>-</div>
                 </td>
                 <td></td>
               </tr>
@@ -1099,7 +1096,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                 <td>AE_During_Severe</td>
                 <td className={styles.textBox}>
                   <span>HV04-10</span>
-                  <div className={styles.rectangle}></div>
+                  <div className={styles.rectangle}>-</div>
                 </td>
                 <td></td>
               </tr>
@@ -1112,7 +1109,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                 <td className={styles.spaceAfter}>AE_Post_Moderate</td>
                 <td className={styles.textBox}>
                   <span>HV04-11</span>
-                  <div className={styles.rectangle}></div>
+                  <div className={styles.rectangle}>-</div>
                 </td>
                 <td></td>
               </tr>
@@ -1120,7 +1117,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                 <td className={styles.spaceAfter}>AE_Post_Severe</td>
                 <td className={styles.textBox}>
                   <span>HV04-12</span>
-                  <div className={styles.rectangle}></div>
+                  <div className={styles.rectangle}>-</div>
                 </td>
                 <td></td>
               </tr>
@@ -1133,7 +1130,7 @@ const HivAndTBTreatmentComponent: React.FC<HivAndTBTreatmentComponentProps> = ({
                 <td className={styles.spaceAfter}>Follow up visit &lt; 14d</td>
                 <td className={styles.textBox}>
                   <span>HV04-13</span>
-                  <div className={styles.rectangle}></div>
+                  <div className={styles.rectangle}>-</div>
                 </td>
                 <td></td>
               </tr>

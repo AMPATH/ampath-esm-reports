@@ -408,15 +408,64 @@ export const MOH_731_LINELIST_SECTIONS = {
     fetchPatientList: getMoh366PatientList,
     columns: [cccNumber, name, nupi, sex, age, phoneNumber],
   },
+  /* 3.6 Nutrition and HIV (HV03-037 to HV03-060): one row per client, their
+     latest SAM / MAM status in the period, from the ETL's nutrition dataset
+     (service/moh-731/ver-2023/nutrition) */
   nutrition: {
     title: 'Nutrition and HIV',
     fetchPatientList: getMoh366PatientList,
-    columns: [cccNumber, name, nupi, sex, age, phoneNumber],
+    columns: [
+      {
+        header: 'Visit Date',
+        value: (row) => formatDate(row.encounter_date),
+        sortValue: (row) => row.encounter_date,
+      },
+      { header: 'Name', field: 'full_name' },
+      { header: 'CCC Number', field: 'ccc_number', text: true },
+      { header: 'NUPI', field: 'nupi', text: true },
+      { header: 'AMRS Number', field: 'amrs_number', text: true },
+      { header: 'Sex', field: 'gender' },
+      { header: 'Age', field: 'age' },
+      { header: 'Age (Months)', field: 'age_months', hidden: true },
+      { header: 'SAM / MAM', field: 'sam_mam' },
+      { header: 'Food Given', field: 'food_given' },
+      { header: 'Pregnant / Lactating', field: 'pregnant_lactating' },
+      { header: 'Current ARV Regimen', field: 'current_arv_regimen' },
+      { header: 'ARV Line', field: 'cur_arv_line', hidden: true },
+      {
+        header: 'ART Start Date',
+        value: (row) => formatDate(row.art_start_date),
+        sortValue: (row) => row.art_start_date,
+      },
+      { header: 'RTC Date', value: (row) => formatDate(row.rtc_date), sortValue: (row) => row.rtc_date },
+      { header: 'HIV Clinic', field: 'hiv_clinic', hidden: true },
+      { header: 'Encounter Type', field: 'encounter_type', hidden: true },
+      { header: 'Location', field: 'location' },
+      { header: 'Entered By', field: 'entered_by', hidden: true },
+    ],
   },
+  /* 5. Post Exposure Prophylaxis (HV05-01 to HV05-04): one row per exposure, from
+     the ETL's PEP dataset (service/moh-731/ver-2023/pep) */
   pep: {
     title: 'Post Exposure Prophylaxis',
     fetchPatientList: getMoh366PatientList,
-    columns: [cccNumber, name, nupi, sex, age, phoneNumber],
+    columns: [
+      {
+        header: 'Exposure Date',
+        value: (row) => formatDate(row.exposure_date),
+        sortValue: (row) => row.exposure_date,
+      },
+      { header: 'Name', field: 'full_name' },
+      { header: 'CCC Number', field: 'ccc_number', text: true },
+      { header: 'NUPI', field: 'nupi', text: true },
+      { header: 'AMRS Number', field: 'amrs_number', text: true },
+      { header: 'Sex', field: 'gender' },
+      { header: 'Age', field: 'age' },
+      { header: 'Exposure Type', field: 'exposure_type' },
+      { header: 'PEP Given', field: 'pep_given_status' },
+      { header: 'Location', field: 'location' },
+      { header: 'Entered By', field: 'entered_by' },
+    ],
   },
 } satisfies Record<string, Moh731LinelistSection>;
 

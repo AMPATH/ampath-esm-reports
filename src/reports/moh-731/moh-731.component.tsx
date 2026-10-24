@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import styles from './moh-731.scss';
 import { ReportFiltersComponent, type ReportPeriod } from '../../common/report-filters';
@@ -13,7 +13,7 @@ import HivTestingandPreExposusreProphylaxis from './sections/hiv-testing-and-pre
 import PmtctComponent from './sections/pmtct.component';
 import HivAndTBTreatmentComponent from './sections/hiv-and-tb-treatment.component';
 import { ReportSkeleton } from '../../common/report-skeleton';
-import { usePageScale } from '../../common/report-page';
+import { downloadSheetPdf, usePageScale } from '../../common/report-page';
 import Moh731Summary from './summary/moh-731-summary.component';
 import { useOpenMoh731Linelist } from './linelist/use-open-moh-731-linelist';
 
@@ -98,6 +98,20 @@ const Moh731Report: React.FC<Moh731Props> = () => {
   /** Fills the available width, never rendering below A4 */
   const { ref: viewportRef, scale } = usePageScale<HTMLDivElement>(SHEET_WIDTH_MM);
 
+  /* Download PDF saves the form whichever tab is open; the file is made from a
+     copy, so the sheet on screen is left as it is */
+  const formRef = useRef<HTMLDivElement>(null);
+  const downloadPdf = async () => {
+    if (!formRef.current) {
+      return;
+    }
+    const name = ['MOH-731', facility, startDate ? dayjs(startDate).format('YYYY-MM') : '']
+      .filter(Boolean)
+      .join('_')
+      .replace(/[^a-z0-9_-]+/gi, '-');
+    await downloadSheetPdf(formRef.current, `${name}.pdf`);
+  };
+
   const fetchMoh731ReportData = async ({ startDate, endDate }: ReportPeriod) => {
     setIsLoading(true);
     setStartDate(startDate);
@@ -129,6 +143,7 @@ const Moh731Report: React.FC<Moh731Props> = () => {
         isLoading={isLoading}
         isReportGenerated={isReportGenerated}
         generatedPeriod={{ startDate, endDate }}
+        onDownloadPdf={downloadPdf}
       />
       {isLoading && <ReportSkeleton blocks={3} />}
       {!isLoading && !isReportGenerated && (
@@ -148,7 +163,7 @@ const Moh731Report: React.FC<Moh731Props> = () => {
                 <div className={styles.viewport} ref={viewportRef}>
                   {/* The scale is a custom property rather than an inline `zoom`, so
                 the print stylesheet can still reset it to 1 */}
-                  <div className={styles.form} style={{ '--page-zoom': scale } as React.CSSProperties}>
+                  <div className={styles.form} ref={formRef} style={{ '--page-zoom': scale } as React.CSSProperties}>
                     {/* Ministry line sits above the ruled sheet, as on the printed form */}
                     <div className={styles.ministryLine}>
                       <span>Ministry of Health</span>
