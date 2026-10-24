@@ -25,78 +25,93 @@ $tones: (
 );
 
 .dashboard {
-  /* Horizontal gutter comes from `.page` in root.scss */
-  padding: layout.$spacing-05 0 layout.$spacing-07;
+  /* `.page` in root.scss gives every route this side gutter. The dashboard
+     reaches over it so its grey runs edge to edge, then pads it back. */
+  --page-gutter: #{layout.$spacing-06};
+
+  box-sizing: border-box;
+  margin: 0 calc(-1 * var(--page-gutter));
+  padding: 0 var(--page-gutter) layout.$spacing-07;
+  /* the original grey behind the reports; the tab row above it is white */
   background-color: $openmrs-background-grey;
-  min-height: 100%;
+  /* grey down to the foot of the window, below the 3rem top bar, however few
+     reports are listed */
+  min-height: calc(100vh - 3rem);
 }
 
 /* Header */
 
-.header {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: layout.$spacing-03 layout.$spacing-04;
-  padding: layout.$spacing-03 layout.$spacing-05;
-  margin-bottom: layout.$spacing-04;
-  background-color: $ui-02;
-  border: 1px solid $ui-03;
-  border-left: layout.$spacing-02 solid var(--brand-01);
-}
+/* Tabs, with the facility and date at the right end of the tab row */
+.tabsArea {
+  position: relative;
+  padding-top: layout.$spacing-05;
 
-.headerIcon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: layout.$spacing-06;
-  height: layout.$spacing-06;
-  color: var(--brand-01);
-  background-color: $brand-primary-10;
-}
-
-.headerTitle {
-  @include type.type-style('productive-heading-03');
-  color: $color-gray-100;
+  /* a white band behind the tab row, edge to edge over the page gutter, with
+     the tabs' 2px rule along its foot; the reports below sit on grey */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: calc(-1 * var(--page-gutter));
+    right: calc(-1 * var(--page-gutter));
+    height: calc(#{layout.$spacing-05} + #{layout.$spacing-08});
+    background-color: $ui-02;
+    box-shadow: inset 0 -2px 0 $ui-03;
+  }
 }
 
 .headerMeta {
+  @include type.type-style('body-compact-01');
+  position: absolute;
+  /* level with the tab row, below the white band's top padding, and drawn
+     over the band */
+  top: layout.$spacing-05;
+  right: 0;
+  z-index: 1;
   display: flex;
   align-items: center;
-  gap: layout.$spacing-05;
-  margin-left: auto;
-}
-
-.metaItem {
-  @include type.type-style('label-01');
-  display: inline-flex;
-  align-items: center;
-  gap: layout.$spacing-02;
+  /* the height of the tab row, so the line sits level with the tab labels */
+  height: layout.$spacing-08;
   color: $text-02;
   white-space: nowrap;
-
-  svg {
-    fill: var(--brand-01);
-  }
 }
 
 /* Toolbar */
 
 .toolbar {
-  display: flex;
+  /* the tiles' columns, so the search box is exactly one tile wide and the
+     count ends at the grid's right edge */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   align-items: center;
-  gap: layout.$spacing-05;
+  gap: layout.$spacing-04;
   margin-bottom: layout.$spacing-05;
 }
 
 .searchLayer {
-  flex: 1 1 auto;
-  max-width: 24rem;
+  /* two tiles wide, edges lined up with the first two tiles */
+  grid-column: 1 / span 2;
+
+  /* a white field with a thin outline, and the brand colour on focus */
+  :global(.cds--search-input) {
+    background-color: $ui-02;
+    border: 1px solid $ui-03;
+
+    &:hover {
+      border-color: $ui-04;
+    }
+
+    &:focus {
+      outline: 2px solid var(--brand-01);
+      outline-offset: -2px;
+    }
+  }
 }
 
 .resultCount {
   @include type.type-style('label-01');
+  grid-column: -2 / -1;
+  justify-self: end;
   color: $text-02;
   white-space: nowrap;
 }
@@ -216,6 +231,54 @@ $tones: (
 
 /* Empty state */
 
+/* Reports / Registers tabs, between the header and the panels */
+
+.tabList {
+  /* above the white band drawn behind it (.tabsArea::before) */
+  position: relative;
+  z-index: 1;
+  margin-bottom: layout.$spacing-05;
+
+  /* the first tab's label lines up with the content's left edge */
+  :global(.cds--tabs__nav-item:first-child) {
+    padding-left: 0;
+  }
+
+  /* keyboard / click focus in the brand colour too */
+  :global(.cds--tabs__nav-item:focus) {
+    outline-color: var(--brand-01);
+  }
+
+  /* the open tab in the AMPATH brand colour rather than Carbon blue */
+  :global(.cds--tabs__nav-item--selected) {
+    border-bottom-color: var(--brand-01);
+
+    .tabLabel svg {
+      fill: var(--brand-01);
+    }
+  }
+}
+
+/* Icon, name and count inside a tab */
+.tabLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: layout.$spacing-03;
+
+  svg {
+    fill: $text-02;
+  }
+}
+
+.tabCount {
+  margin: 0;
+}
+
+/* Each panel keeps the spacing its content already brings */
+.tabPanel {
+  padding: 0;
+}
+
 .emptyState {
   display: flex;
   flex-direction: column;
@@ -242,31 +305,53 @@ $tones: (
 }
 
 @media (max-width: $breakpoint-tablet-max) {
+  /* the gutter `.page` uses at this size */
   .dashboard {
-    padding: layout.$spacing-05 0;
+    --page-gutter: #{layout.$spacing-05};
+
+    padding-bottom: layout.$spacing-05;
   }
 
-  .headerMeta {
-    align-items: flex-start;
-    flex-wrap: wrap;
-    margin-left: 0;
-  }
-
-  .toolbar {
-    flex-wrap: wrap;
-  }
-
-  .searchLayer {
-    max-width: none;
-  }
-
+  .toolbar,
   .grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* two columns: one and a half tiles, leaving the count room beside it */
+  .searchLayer {
+    grid-column: 1;
+    width: 150%;
   }
 }
 
 @media (max-width: $breakpoint-phone-max) {
+  /* no room beside the tabs: the facility and date sit above them, and the
+     white band grows to hold both */
+  .headerMeta {
+    /* in the flow, but still painted over the band */
+    position: relative;
+    top: auto;
+    right: auto;
+    height: 1.125rem;
+    margin-bottom: layout.$spacing-03;
+  }
+
+  .tabsArea::before {
+    height: calc(#{layout.$spacing-05} + 1.125rem + #{layout.$spacing-03} + #{layout.$spacing-08});
+  }
+
+  .toolbar,
   .grid {
     grid-template-columns: 1fr;
+  }
+
+  /* one column: full width, with the count under the search box */
+  .searchLayer {
+    grid-column: 1;
+    width: 100%;
+  }
+
+  .resultCount {
+    justify-self: start;
   }
 }

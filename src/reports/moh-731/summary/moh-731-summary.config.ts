@@ -61,13 +61,12 @@ export interface SummarySection {
 
 const SEX = ['Male', 'Female'];
 
-/* Sections still on the earlier datasets, whose figures and linelists do not yet
-   agree; they get totals once their queries are corrected */
 /* Section 4: nothing reports these figures yet, on the form or here */
-const NOT_REPORTED = 'Not yet reported by the system; these boxes are blank on the form too.';
+const NOT_REPORTED = 'Not yet reported by the system; these boxes show – on the form too.';
 
-const PENDING_QUERIES =
-  "Figures as reported. Totals will follow once this section's queries are corrected, as its linelists don't match its figures yet.";
+/* 3.7: the earlier figures were misleading, so they are withheld, here and on the form */
+const TB_CLINIC_NOT_REPORTED =
+  "Not reported until this section's queries are corrected: the earlier figures were misleading, so these boxes show – on the form too.";
 
 const prepPopulations = (codes: Record<string, [SummaryCell, SummaryCell]>): SummaryRow[] => [
   { label: 'General population', cells: codes.general },
@@ -190,6 +189,7 @@ export const MOH_731_SUMMARY: SummarySection[] = [
     subsections: [
       {
         block: '2.1 Maternal HIV Testing',
+        note: 'PNC with no delivery date: PNC tests that fit neither PNC box (no delivery date, or one after the test), for data cleanup. Not on the form, so not in the total.',
         tables: [
           {
             columns: ['Initial test', 'Retest'],
@@ -199,6 +199,8 @@ export const MOH_731_SUMMARY: SummarySection[] = [
               { label: 'L&D', cells: ['HV02-04', 'HV02-05'] },
               { label: 'PNC ≤6 weeks', cells: ['HV02-06', 'HV02-07'] },
               { label: 'PNC >6 weeks', cells: ['HV02-08', 'HV02-09'] },
+              /* not on the form: PNC tests no delivery date places either side of six weeks */
+              { label: 'PNC with no delivery date', cells: ['PNC-NODD-I', 'PNC-NODD-R'], excluded: true },
               /* known positives are not tested, so they are not tests */
               { label: 'Known positive at 1st ANC', only: 'HV02-01', excluded: true },
             ],
@@ -370,6 +372,7 @@ export const MOH_731_SUMMARY: SummarySection[] = [
       {
         /* two splits of the same clients, each with its own total */
         block: '3.5 Differentiated Service Delivery',
+        note: 'Both tables are the clients on ART and add up to 3.2 Currently on ART. Not categorized: no stability, or no DSD model, recorded.',
         tables: [
           {
             title: 'By stability',
@@ -377,7 +380,8 @@ export const MOH_731_SUMMARY: SummarySection[] = [
             totalLabel: 'Total by stability',
             rows: [
               { label: 'Established', only: 'HV03-033' },
-              { label: 'Not established', only: 'HV03-034' },
+              { label: 'Not established', only: 'DSD-NE' },
+              { label: 'Not categorized', only: 'DSD-NC' },
             ],
           },
           {
@@ -385,18 +389,21 @@ export const MOH_731_SUMMARY: SummarySection[] = [
             columns: [],
             totalLabel: 'Total by model',
             rows: [
-              { label: 'Community', only: 'HV03-035' },
-              { label: 'Facility', only: 'HV03-036' },
+              { label: 'Community', only: 'DSD-CO' },
+              { label: 'Facility', only: 'DSD-FA' },
+              { label: 'Not categorized', only: 'DSD-MNC' },
             ],
           },
         ],
       },
       {
         block: '3.6 Nutrition and HIV',
-        note: PENDING_QUERIES,
+        note: 'Clients on ART by their latest SAM / MAM status in the period, by age at the period end. Pregnant & lactating women are counted in their own row only, not in an age band.',
         tables: [
           {
             columns: ['SAM+', 'MAM+', 'SAM+ on therapeutic foods', 'MAM+ on supplemental foods'],
+            totalLabel: 'Total',
+            /* a client is SAM or MAM, and food is of the same clients: no row total */
             rowTotals: false,
             rows: [
               { label: '0–5 months', cells: ['HV03-037', 'HV03-043', 'HV03-049', 'HV03-055'] },
@@ -404,22 +411,23 @@ export const MOH_731_SUMMARY: SummarySection[] = [
               { label: '5–9 years', cells: ['HV03-039', 'HV03-045', 'HV03-051', 'HV03-057'] },
               { label: '10–17 years', cells: ['HV03-040', 'HV03-046', 'HV03-052', 'HV03-058'] },
               { label: '18+ years', cells: ['HV03-041', 'HV03-047', 'HV03-053', 'HV03-059'] },
+              { label: 'Pregnant & lactating', cells: ['HV03-042', 'HV03-048', 'HV03-054', 'HV03-060'] },
             ],
           },
         ],
       },
       {
         block: '3.7 HIV in TB Clinic',
-        note: PENDING_QUERIES,
+        note: TB_CLINIC_NOT_REPORTED,
         tables: [
           {
             columns: [],
             rows: [
-              { label: 'New TB cases', only: 'HV03-061' },
-              { label: 'Known HIV positive', only: 'HV03-062' },
-              { label: 'on HAART', only: 'HV03-064', ofWhich: true },
-              { label: 'Newly tested HIV positive', only: 'HV03-063' },
-              { label: 'started HAART', only: 'HV03-065', ofWhich: true },
+              { label: 'New TB cases' },
+              { label: 'Known HIV positive' },
+              { label: 'on HAART', ofWhich: true },
+              { label: 'Newly tested HIV positive' },
+              { label: 'started HAART', ofWhich: true },
             ],
           },
         ],
@@ -489,7 +497,7 @@ export const MOH_731_SUMMARY: SummarySection[] = [
     subsections: [
       {
         block: '5. Post Exposure Prophylaxis',
-        note: "Given PEP: figures as reported. A total will follow once its query is corrected, as its linelists don't match its figures yet.",
+        note: 'Other includes sexual assault. Given PEP is of the exposed.',
         tables: [
           {
             title: 'Exposed',
@@ -503,6 +511,7 @@ export const MOH_731_SUMMARY: SummarySection[] = [
           {
             title: 'Given PEP',
             columns: [],
+            totalLabel: 'Total given PEP',
             rows: [
               { label: 'Occupational', only: 'HV05-03' },
               { label: 'Other', only: 'HV05-04' },

@@ -421,6 +421,24 @@ export const MOH_731_INDICATORS: Record<string, Moh731Indicator> = {
     section: 'hivTests',
     showColumns: ['Delivery Date'],
   },
+  /* Not on the form: PNC tests with no delivery date (or one after the test),
+     which fit neither PNC box. The Summary lists them for data cleanup. */
+  'PNC-NODD-I': {
+    indicator: 'initial_test_pnc_no_delivery_date',
+    gender: 'F',
+    label: 'Tested at PNC, no delivery date',
+    block: '2.1 Maternal HIV Testing',
+    section: 'hivTests',
+    showColumns: ['Delivery Date'],
+  },
+  'PNC-NODD-R': {
+    indicator: 'retest_pnc_no_delivery_date',
+    gender: 'F',
+    label: 'Tested at PNC, no delivery date',
+    block: '2.1 Maternal HIV Testing',
+    section: 'hivTests',
+    showColumns: ['Delivery Date'],
+  },
 
   // 2.2 HIV Positive Results
   'HV02-10': {
@@ -850,6 +868,42 @@ export const MOH_731_INDICATORS: Record<string, Moh731Indicator> = {
     block: '3.5 Differentiated Service Delivery',
     section: 'tbDsd',
   },
+  /* Not on the form: HV03-034 split into clients recorded as not established
+     and clients with no stability recorded. The Summary lists them so that,
+     with Established, they add up to 3.2 Currently on ART. */
+  'DSD-NE': {
+    indicator: 'not_established_recorded',
+    label: 'Not Established (recorded)',
+    block: '3.5 Differentiated Service Delivery',
+    section: 'tbDsd',
+  },
+  'DSD-NC': {
+    indicator: 'dsd_not_categorized',
+    label: 'Not Categorized',
+    block: '3.5 Differentiated Service Delivery',
+    section: 'tbDsd',
+  },
+  /* Not on the form: the clients on ART (3.2) by their latest DSD model. The
+     form's Community and Facility (HV03-035/036) count anyone whose latest model
+     was recorded at the facility, on ART or not. */
+  'DSD-CO': {
+    indicator: 'dsd_community_on_art',
+    label: 'Community (on ART)',
+    block: '3.5 Differentiated Service Delivery',
+    section: 'tbDsd',
+  },
+  'DSD-FA': {
+    indicator: 'dsd_facility_on_art',
+    label: 'Facility (on ART)',
+    block: '3.5 Differentiated Service Delivery',
+    section: 'tbDsd',
+  },
+  'DSD-MNC': {
+    indicator: 'dsd_model_not_categorized',
+    label: 'DSD Model Not Categorized',
+    block: '3.5 Differentiated Service Delivery',
+    section: 'tbDsd',
+  },
   'HV03-035': {
     indicator: 'community',
     label: 'Community',
@@ -894,6 +948,13 @@ export const MOH_731_INDICATORS: Record<string, Moh731Indicator> = {
     block: '3.6 Nutrition and HIV',
     section: 'nutrition',
   },
+  'HV03-042': {
+    indicator: 'has_sam_preg_lact',
+    gender: 'F',
+    label: 'Pregnant & Lactating',
+    block: '3.6 Nutrition and HIV',
+    section: 'nutrition',
+  },
   'HV03-043': {
     indicator: 'has_smm_0_5_months',
     label: '0-5Months',
@@ -921,6 +982,13 @@ export const MOH_731_INDICATORS: Record<string, Moh731Indicator> = {
   'HV03-047': {
     indicator: 'has_smm_18_and_above_years',
     label: '18+Years',
+    block: '3.6 Nutrition and HIV',
+    section: 'nutrition',
+  },
+  'HV03-048': {
+    indicator: 'has_smm_preg_lact',
+    gender: 'F',
+    label: 'Pregnant & Lactating',
     block: '3.6 Nutrition and HIV',
     section: 'nutrition',
   },
@@ -954,6 +1022,13 @@ export const MOH_731_INDICATORS: Record<string, Moh731Indicator> = {
     block: '3.6 Nutrition and HIV',
     section: 'nutrition',
   },
+  'HV03-054': {
+    indicator: 'severe_acute_supp_preg_lact',
+    gender: 'F',
+    label: 'Pregnant & Lactating',
+    block: '3.6 Nutrition and HIV',
+    section: 'nutrition',
+  },
   'HV03-055': {
     indicator: 'severe_moderate_supp_0_5_months',
     label: '0-5Months',
@@ -981,6 +1056,13 @@ export const MOH_731_INDICATORS: Record<string, Moh731Indicator> = {
   'HV03-059': {
     indicator: 'severe_moderate_supp_18_and_above_years',
     label: '18+Years',
+    block: '3.6 Nutrition and HIV',
+    section: 'nutrition',
+  },
+  'HV03-060': {
+    indicator: 'severe_moderate_supp_preg_lact',
+    gender: 'F',
+    label: 'Pregnant & Lactating',
     block: '3.6 Nutrition and HIV',
     section: 'nutrition',
   },

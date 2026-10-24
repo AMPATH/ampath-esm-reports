@@ -63,4 +63,17 @@ export interface ReportFiltersProps {
    * than only once figures have been fetched for it.
    */
   onPeriodChange?: (period: ReportPeriod) => void;
+  /**
+   * Saves the report as a PDF file. Without it, Download PDF opens the
+   * browser's print dialog on the report's print layout.
+   */
+  onDownloadPdf?: () => Promise<void>;
+  /**
+   * The period type a `both` filter bar opens on when the URL carries no
+   * period: `monthly` (last month, the reports' default) or `custom` (today to
+   * today, the registers' default).
+   */
+  defaultTab?: 'monthly' | 'custom';
+  /** Where the breadcrumb leads back to; defaults to All reports on the landing page */
+  backLink?: { label: string; to: string };
 }
