@@ -446,8 +446,20 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                           <tr>
                             <td className={styles.darkBorder}>No. diagnosed for Gestational Diabetes Mellitus</td>
                             <td className={classNames(styles.darkBorder, styles.bgGrey)}>N/A</td>
-                            <td className={styles.darkBorder}></td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                               <DataCell
+                                value={moh740Data?.dc__gender__F__gestatational_diabetes_mellitus}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__F__gestatational_diabetes_mellitus"
+                              />
+                            </td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data?.gestatational_diabetes_mellitus}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="gestatational_diabetes_mellitus"
+                              />
+                            </td>
                           </tr>
                           <tr>
                             <td className={styles.darkBorder}>No. of Diabetes secondary to other causes</td>
