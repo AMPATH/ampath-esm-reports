@@ -6,7 +6,7 @@ import { ReportPage } from '../../common/report-page';
 import { ReportPlaceholder, useGeneratedLocation } from '../../common/report-placeholder';
 import { showReportError } from '../../common/report-error';
 import { type Moh740Data, type Moh740Dto } from './types';
-import { formatDate, useSession } from '@openmrs/esm-framework';
+import { formatDate, navigate, useSession } from '@openmrs/esm-framework';
 import dayjs from 'dayjs';
 import { fetchMoh740Report } from './moh-740.resource';
 import DataCell from './shared/data-cell/data-cell';
@@ -16,6 +16,8 @@ import classNames from 'classnames';
 interface Moh740ReportProps {}
 const Moh740Report: React.FC<Moh740ReportProps> = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [startDate,setStartDate] = useState<string>('');
+  const [endDate,setEndDate] = useState<string>('');
   const [moh740Data, setMoh740Data] = useState<Moh740Data | null>(null);
   /* Distinguishes "never generated" from "generated and came back empty";
      both leave `moh740Data` null but they are not the same thing to report. */
@@ -46,6 +48,8 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
   const getMoh740ReportData = async ({ endDate }: ReportPeriod) => {
     setIsLoading(true);
     setReportingMonth(endDate);
+    setStartDate(endDate);
+    setEndDate(endDate);
     try {
       const reportFilters: Moh740Dto = { endDate, locationUuid: locationUuid ?? '' };
       const resp = await fetchMoh740Report(reportFilters);
@@ -67,11 +71,15 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
     setSelectedIndicator(selectedIndicator);
     const selectedRegister = getRegisterByIndicator(selectedIndicator as any);
     setRegisterType(selectedRegister);
-    setView('register');
+    navigateToRegister(selectedIndicator);
+    // setView('register');
   };
   const handleBackToReport = () => {
     setView('report');
   };
+   const navigateToRegister = (indicator: string) => {
+      navigate({to:`${window.getOpenmrsSpaBase()}home/reports/moh-222?startDate=${endDate}&endDate=${endDate}&locationUuids=${locationUuid}&indicator=${indicator}&from=moh-740`});
+    };
   return (
     <>
       <div className={styles.reportLayout}>
