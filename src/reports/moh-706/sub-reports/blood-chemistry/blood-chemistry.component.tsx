@@ -136,7 +136,7 @@ const BloodChemistry: React.FC<BloodChemistryProps> = ({ data, locationUuids, st
       {
         tableCells: [
           getCell('', '2.17 Total cholesterol'),
-          getCell('total_total_cholesterol'),
+          getCell('total_cholesterol_with_members'),
           getCell('total_cholesterol_low'),
           getCell('total_cholesterol_high'),
         ],
@@ -145,13 +145,13 @@ const BloodChemistry: React.FC<BloodChemistryProps> = ({ data, locationUuids, st
       {
         tableCells: [
           getCell('', '2.18 Triglycerides'),
-          getCell('total_triglycerides'),
+          getCell('total_triglycerides_with_members'),
           getCell('triglycerides_low'),
           getCell('triglycerides_high'),
         ],
       },
       {
-        tableCells: [getCell('', '2.19 LDL'), getCell('total_ldl'), getCell('ldl_low'), getCell('ldl_high')],
+        tableCells: [getCell('', '2.19 LDL'), getCell('total_ldl_with_members'), getCell('ldl_low'), getCell('ldl_high')],
       },
       {
         tableCells: [

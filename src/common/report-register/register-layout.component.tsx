@@ -213,7 +213,7 @@ const RegisterLayout: React.FC<RegisterLayoutProps> = ({
                 </span>
               )}
               {typeof total === 'number' && total > 0 && (
-                <span>{isTotalExact ? `${total.toLocaleString()} records` : `${total.toLocaleString()}+ records`}</span>
+                <span>{isTotalExact ? `${total.toLocaleString()} patients` : `${total.toLocaleString()}+ patients`}</span>
               )}
             </span>
           </span>
