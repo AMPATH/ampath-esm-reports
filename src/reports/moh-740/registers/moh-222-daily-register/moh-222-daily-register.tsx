@@ -1,14 +1,74 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { type Moh222Patient } from '../../types';
 import styles from '../../../../common/report-register/register-table.scss';
 import classNames from 'classnames';
 import { Link, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@carbon/react';
-interface Moh222DailyRegisterProps {
-  moh222PatientList: Moh222Patient[];
-}
-const Moh222DailyRegister: React.FC<Moh222DailyRegisterProps> = ({ moh222PatientList }) => {
+import { useSearchParams } from 'react-router-dom';
+import ReportFiltersComponent from '../../../../common/report-filters/report-filters.component';
+import { type ReportPeriod } from '../../../../common/report-filters/types';
+import { useGeneratedLocation } from '../../../../common/report-placeholder/use-generated-location';
+import { fetchMoh740Register } from '../../moh-740.resource';
+import { useSession } from '@openmrs/esm-framework';
+import { showReportError } from '../../../../common/report-error/show-report-error';
+import dayjs from 'dayjs';
+const Moh222DailyRegister = () => {
+  const [rows, setRows] = useState<Moh222Patient[] | any>([]);
+  const [searchParams ] = useSearchParams();
+  const startDate = searchParams.get('startDate') ?? '';
+  const endDate = searchParams.get('endDate') ?? '';
+  const locationUuids = searchParams.get('locationUuids') ??'';
+  const indicator = searchParams.get('indicator') ?? '';
+  const [isLoading,setIsLoading] = useState<boolean>(false);
+  const [period, setPeriod] = useState<{ startDate: string; endDate: string }>({ startDate: '', endDate: '' });
+  const session = useSession();
+  const { isForCurrentLocation, hasLocationChanged, markGenerated } = useGeneratedLocation('moh222Location');
+  const isGenerated = rows !== null && isForCurrentLocation;
+  useEffect(()=>{
+     if(startDate && endDate && locationUuids){
+            generate({startDate: startDate,endDate: endDate, label: ''})
+     }
+  },[startDate,endDate,locationUuids,indicator]);
+  const generate = async ({ startDate, endDate }: ReportPeriod) => {
+      setIsLoading(true);
+      setPeriod({ startDate, endDate });
+      let indicators = '';
+      let locationUuid = '';
+      const selectedDate =  dayjs(startDate).endOf('month')
+      const registerStartDate = selectedDate.format('YYYY-MM-DD');
+      try {
+        if(!indicator){
+           indicators = 'cumulative_all';
+        }else{
+           indicators = indicator;
+        }
+        if(!locationUuids){
+          locationUuid = session.sessionLocation?.uuid ?? '';
+        }else{
+          locationUuid = locationUuids;
+        }
+        const resp  = await fetchMoh740Register({ locationUuid: locationUuid, endDate: registerStartDate,indicators: indicators});
+        if(resp){
+            setRows(resp);
+        }
+        markGenerated(locationUuids);
+      } catch (error) {
+        showReportError('The MOH 222 register', error);
+      } finally {
+        setIsLoading(false);
+      }
+  };
   return (
     <div className={styles.tableContainer}>
+       <ReportFiltersComponent
+        reportName="MOH 222 Daily Register"
+        mode="both"
+        onGenerate={generate}
+        isLoading={isLoading}
+        isReportGenerated={isGenerated}
+        generatedPeriod={period}
+        defaultTab="custom"
+        backLink={{ label: 'All registers', to: '/?tab=registers' }}
+      />
       <Table className={classNames(styles.table, styles.tableBordered, styles.tableStriped)}>
         <TableHead>
           <TableRow>
@@ -45,7 +105,7 @@ const Moh222DailyRegister: React.FC<Moh222DailyRegisterProps> = ({ moh222Patient
           </TableRow>
         </TableHead>
         <TableBody>
-          {moh222PatientList.map((p, index) => (
+          {rows.map((p, index) => (
             <TableRow key={p.patient_uuid}>
               <TableCell>{index + 1}</TableCell>
               <TableCell>{p.encounter_date}</TableCell>

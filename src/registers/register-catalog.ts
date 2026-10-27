@@ -1,4 +1,4 @@
-import { Microscope } from '@carbon/react/icons';
+import { Activity, Microscope } from '@carbon/react/icons';
 
 import { type ReportCategory } from '../dashboard/report-catalog';
 
@@ -22,6 +22,30 @@ export const registerCategories: ReportCategory[] = [
         path: '/moh-362',
         icon: Microscope,
         keywords: ['hts', 'hiv testing', 'lab', 'referral', 'linkage', 'kits'],
+      },
+    ],
+  },
+  {
+    id: 'diabetes-and-hypertension',
+    title: 'MOH-740',
+    description: 'Diabetes and Hypertension comprehensive care',
+    tone: 'violet',
+    reports: [
+      {
+        code: 'MOH 222',
+        name: 'Diabetes and Hypertension Comprehensive Care Daily Register',
+        description: 'Diabetes and Hypertension Comprehensive Care Daily Register',
+        path: '/moh-222',
+        icon: Activity,
+        keywords: ['cdm', 'ncd', 'diabetes', 'hypertetion'],
+      },
+       {
+        code: 'MOH 270',
+        name: 'Diabetes & Hypertension Comprehensive Care Permanent register',
+        description: 'Diabetes & Hypertension Comprehensive Care Permanent register',
+        path: '/moh-270',
+        icon: Activity,
+        keywords: ['cdm', 'ncd', 'diabetes', 'hypertetion'],
       },
     ],
   },

@@ -27,6 +27,8 @@ import Moh731Linelist from './reports/moh-731/linelist/moh-731-linelist.componen
 import Moh362Register from './registers/moh-362/moh-362.component';
 import styles from './root.scss';
 import Moh510RegisterComponent from './reports/moh-710/registers/moh-510/moh-510.component';
+import Moh222DailyRegister from './reports/moh-740/registers/moh-222-daily-register/moh-222-daily-register';
+import Moh270DailyRegister from './reports/moh-740/registers/moh-270-permanent-register/moh-270-permanent-register';
 
 const RootComponent: React.FC = () => {
   const baseName = window.getOpenmrsSpaBase() + 'home/reports';
@@ -61,6 +63,8 @@ const RootComponent: React.FC = () => {
           <Route path="/prep-register" element={<PrepRegisterComponent />} />
           <Route path="/moh-510-register" element={<Moh510RegisterComponent />} />
           <Route path="/moh-362" element={<Moh362Register />} />
+          <Route path='/moh-222' element={<Moh222DailyRegister/>}/>
+          <Route path='/moh-270' element={<Moh270DailyRegister/>}/>
         </Routes>
       </div>
     </BrowserRouter>
