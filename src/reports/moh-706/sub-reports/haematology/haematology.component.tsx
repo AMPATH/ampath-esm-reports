@@ -53,9 +53,9 @@ const Haematology: React.FC<HaematologyProps> = ({ data, locationUuids, startDat
             {
                 tableCells: [
                     getCell("", "Hemoglobin A1c (HbA1c)"),
-                    getCell(),
-                    getCell(),
-                    getCell()
+                    getCell("total_hba1c"),
+                    getCell("hba1c_pre_diabetes"),
+                    getCell("hba1c_diabetes")
                 ]
             },
             {

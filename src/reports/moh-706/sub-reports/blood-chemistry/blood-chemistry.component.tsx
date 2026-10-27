@@ -40,7 +40,7 @@ const BloodChemistry: React.FC<BloodChemistryProps> = ({ data, locationUuids, st
         tableCells: [getCell('', '2.2 OGTT'), getCell('total_ogtt'), getCell('ogtt_low'), getCell('ogtt_high')],
       },
       {
-        tableCells: [getCell('', '2.3 Renal Function Test', 1, 1, true), getCell(), getCell(), getCell()],
+        tableCells: [getCell('', '2.3 Renal Function Test', 1, 1, true), getCell('total_renal_function_test'), getCell(), getCell()],
       },
       {
         tableCells: [
@@ -49,9 +49,6 @@ const BloodChemistry: React.FC<BloodChemistryProps> = ({ data, locationUuids, st
           getCell('creatinine_low'),
           getCell('creatinine_high'),
         ],
-      },
-      {
-        tableCells: [getCell('', '1.4 Proteins'), getCell(), getCell(), getCell()],
       },
       {
         tableCells: [getCell('', '2.5 Urea'), getCell('total_urea'), getCell('urea_low'), getCell('urea_high')],
@@ -77,7 +74,7 @@ const BloodChemistry: React.FC<BloodChemistryProps> = ({ data, locationUuids, st
         ],
       },
       {
-        tableCells: [getCell('', '2.8 Liver Function Test', 1, 1, true), getCell(), getCell(), getCell()],
+        tableCells: [getCell('', '2.8 Liver Function Test', 1, 1, true), getCell('total_liver_function_test'), getCell(), getCell()],
       },
       {
         tableCells: [
