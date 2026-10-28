@@ -64,6 +64,15 @@ export const registerCategories: ReportCategory[] = [
         icon: Chemistry,
         keywords: ['lab', 'laboratory', 'specimen', 'results', 'malaria', 'referral'],
       },
+      {
+        code: 'TB LAB',
+        name: 'TB Laboratory Register',
+        description:
+          'TB specimens tested: microscopy (AFB), TB-LAMP, LF-LAM and GeneXpert/Truenat results with turnaround.',
+        path: '/tb-lab-register',
+        icon: Chemistry,
+        keywords: ['tb', 'tuberculosis', 'afb', 'microscopy', 'sputum', 'genexpert', 'truenat', 'lamp', 'tat'],
+      },
     ],
   },
 ];
