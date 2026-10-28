@@ -1,0 +1,123 @@
+@use '@carbon/layout';
+@use '@openmrs/esm-styleguide/src/vars' as *;
+
+/* The TB Laboratory Register sheet, drawn as on the printed template: black
+   rules, small type, a two-tier header over the appearance and microscopy
+   columns. It is a wide landscape sheet, so it scrolls sideways inside its
+   frame rather than widening the page. */
+
+$ink: #000;
+$rule: 1px solid $ink;
+$text: 0.6875rem; // 11px body
+$small: 0.625rem; // 10px codes
+
+.sheet {
+  margin-top: layout.$spacing-05;
+  padding: layout.$spacing-05;
+  color: $ink;
+  font-size: $text;
+  line-height: 1.25;
+  background-color: $ui-02;
+  border: 1px solid $ui-03;
+}
+
+.runningHead {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: layout.$spacing-05;
+  font-size: $small;
+  font-weight: 700;
+
+  span:nth-child(2) {
+    text-align: center;
+  }
+
+  span:last-child {
+    text-align: right;
+    font-weight: 400;
+  }
+}
+
+.period {
+  margin-top: layout.$spacing-02;
+  font-size: $small;
+  text-align: right;
+}
+
+.tableScroll {
+  margin-top: layout.$spacing-03;
+  overflow-x: auto;
+}
+
+.register {
+  width: 100%;
+  min-width: 105rem;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: layout.$spacing-02;
+    text-align: center;
+    vertical-align: middle;
+    border: $rule;
+  }
+
+  th {
+    font-weight: 400;
+    vertical-align: top;
+  }
+
+  /* a group header stays centred over its member columns */
+  thead tr:first-child th[colspan] {
+    font-weight: 700;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  td {
+    height: 1.125rem;
+  }
+}
+
+/* a column that stands alone across both header rows reads from the middle */
+.tall {
+  vertical-align: middle !important;
+}
+
+.left {
+  text-align: left !important;
+}
+
+/* Page furniture around the sheet */
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: layout.$spacing-05;
+  margin-top: layout.$spacing-05;
+}
+
+.total {
+  margin-right: auto;
+  font-size: 0.8125rem;
+  color: $text-02;
+}
+
+.pager {
+  margin-top: layout.$spacing-04;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: layout.$spacing-03;
+  margin-top: layout.$spacing-06;
+  padding: layout.$spacing-08 layout.$spacing-05;
+  text-align: center;
+}
+
+.emptyIcon {
+  fill: $text-03;
+}
