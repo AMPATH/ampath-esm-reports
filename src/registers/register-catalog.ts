@@ -1,4 +1,4 @@
-import { Activity, Microscope } from '@carbon/react/icons';
+import { Activity, Chemistry, Microscope } from '@carbon/react/icons';
 
 import { type ReportCategory } from '../dashboard/report-catalog';
 
@@ -39,13 +39,30 @@ export const registerCategories: ReportCategory[] = [
         icon: Activity,
         keywords: ['cdm', 'ncd', 'diabetes', 'hypertetion'],
       },
-       {
+      {
         code: 'MOH 270',
         name: 'Diabetes & Hypertension Comprehensive Care Permanent register',
         description: 'Diabetes & Hypertension Comprehensive Care Permanent register',
         path: '/moh-270',
         icon: Activity,
         keywords: ['cdm', 'ncd', 'diabetes', 'hypertetion'],
+      },
+    ],
+  },
+  {
+    id: 'laboratory',
+    title: 'Laboratory',
+    description: 'Laboratory specimen and testing registers',
+    tone: 'blue',
+    reports: [
+      {
+        code: 'MOH 240',
+        name: 'Laboratory (LAB) Register',
+        description:
+          'Specimens collected and analysed by the laboratory: investigations, results, billing and referral.',
+        path: '/moh-240-register',
+        icon: Chemistry,
+        keywords: ['lab', 'laboratory', 'specimen', 'results', 'malaria', 'referral'],
       },
     ],
   },

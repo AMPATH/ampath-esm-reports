@@ -1,0 +1,41 @@
+@use '@carbon/layout';
+@use '@openmrs/esm-styleguide/src/vars' as *;
+
+/* Page furniture for the standalone Laboratory (LAB) Register MOH 240. The
+   printed sheet itself -- masthead, the A-AA table and the page summary -- is
+   the drill-down register's own (reports/moh-240), reused so the register is
+   identical wherever it opens from. What is styled here is only what the
+   standalone page adds around it: the export toolbar, the pager and the
+   empty state. */
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: layout.$spacing-05;
+  margin-top: layout.$spacing-05;
+}
+
+.total {
+  margin-right: auto;
+  font-size: 0.8125rem;
+  color: $text-02;
+}
+
+.pager {
+  margin-top: layout.$spacing-04;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: layout.$spacing-03;
+  margin-top: layout.$spacing-06;
+  padding: layout.$spacing-08 layout.$spacing-05;
+  text-align: center;
+}
+
+.emptyIcon {
+  fill: $text-03;
+}
