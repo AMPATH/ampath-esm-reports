@@ -27,7 +27,7 @@ export const registerCategories: ReportCategory[] = [
   },
   {
     id: 'diabetes-and-hypertension',
-    title: 'MOH-740',
+    title: 'Diabetes and Hypertension services',
     description: 'Diabetes and Hypertension comprehensive care',
     tone: 'violet',
     reports: [
@@ -75,6 +75,22 @@ export const registerCategories: ReportCategory[] = [
       },
     ],
   },
+  {
+    id: 'cancer-screening',
+    title: 'Cancer Screening services',
+    description: 'Cancer Screening Summary',
+    tone: 'violet',
+    reports: [
+      {
+        code: 'MOH 412',
+        name: 'Cancer Screening Register',
+        description: 'Cancer Screening Register',
+        path: '/moh-412-register',
+        icon: Activity,
+        keywords: ['cancer', 'cervical', 'screening'],
+      }
+    ],
+  }
 ];
 
 export const totalRegisterCount = registerCategories.reduce((count, category) => count + category.reports.length, 0);

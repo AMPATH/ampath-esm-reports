@@ -66,7 +66,7 @@ const Moh270DailyRegister = () => {
         isLoading={isLoading}
         isReportGenerated={isGenerated}
         generatedPeriod={period}
-        defaultTab="custom"
+        defaultTab="monthly"
         backLink={{ label: 'All registers', to: '/?tab=registers' }}
       />
       <Table className={classNames(styles.table, styles.tableBordered, styles.tableStriped)}>

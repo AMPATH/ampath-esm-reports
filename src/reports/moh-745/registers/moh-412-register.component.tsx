@@ -8,14 +8,26 @@ import { moh412Columns } from './type';
 import { fetchMoh745PatientList, getMoh412PatientList } from '../../../resources/moh-745.resource';
 import { moh412ExportColumns } from './moh-412.columns';
 import { RegisterLayout, usePatientList } from '../../../common/report-register';
+import ReportFiltersComponent from '../../../common/report-filters/report-filters.component';
+import { showReportError } from '../../../common/report-error/show-report-error';
+import { type ReportPeriod } from '../../../common/report-filters/types';
+import { useSession } from '@openmrs/esm-framework';
+import dayjs from 'dayjs';
+import { useGeneratedLocation } from '../../../common/report-placeholder/use-generated-location';
 
 const Moh412Register: React.FC = () => {
+   const [rows, setRows] = useState<any[]>([]);
   const [searchParams] = useSearchParams();
   const startDate = searchParams.get('startDate') ?? '';
   const endDate = searchParams.get('endDate') ?? '';
   const locationUuids = searchParams.get('locationUuids') ?? '';
   const indicators = searchParams.get('indicators') ?? '';
   const [patientList,setPatientList] = useState<any>([]);
+  const [isLoading,setIsLoading] = useState<boolean>(false);
+  const [period, setPeriod] = useState<{ startDate: string; endDate: string }>({ startDate: '', endDate: '' });
+  const session = useSession();
+  const { isForCurrentLocation, hasLocationChanged, markGenerated } = useGeneratedLocation('moh412Location');
+  const isGenerated = rows !== null && isForCurrentLocation;
 
   useEffect(()=>{
      if(startDate && endDate && locationUuids && indicators){
@@ -33,18 +45,56 @@ const Moh412Register: React.FC = () => {
       });
 
       if(resp){
-          setPatientList(resp);
+          setRows(resp);
       }else{
-         setPatientList([]);
+         setRows([]);
       }
+  }
+    const generate = async ({ startDate, endDate }: ReportPeriod) => {
+          setIsLoading(true);
+          setPeriod({ startDate, endDate });
+          let ind = '';
+          let locationUuid = '';
+          const selectedDate =  dayjs(startDate).endOf('month')
+          const registerStartDate = selectedDate.format('YYYY-MM-DD');
+          let reportIndicators;
+          try {
+            if(!indicators){
+               reportIndicators = 'cumulative_all';
+            }else{
+               reportIndicators = ind;
+            }
+            if(!locationUuids){
+              locationUuid = session.sessionLocation?.uuid ?? '';
+            }else{
+              locationUuid = locationUuids;
+            }
+            const resp  = await fetchMoh745PatientList({ startDate, endDate, locationUuids: locationUuid,indicators: reportIndicators,
+      });
+            if(resp){
+                setRows(resp);
+            }
+            markGenerated(locationUuids);
+          } catch (error) {
+            showReportError('The MOH 412 register', error);
+          } finally {
+            setIsLoading(false);
+          }
   }
 
   return (
   
       <div className={styles.tableContainer}>
-        <div>
-           <h4>MOH-412 Register</h4>
-        </div>
+        <ReportFiltersComponent
+        reportName="MOH 412 Register"
+        mode="both"
+        onGenerate={generate}
+        isLoading={isLoading}
+        isReportGenerated={isGenerated}
+        generatedPeriod={period}
+        defaultTab="monthly"
+        backLink={{ label: 'All registers', to: '/?tab=registers' }}
+      />
         <div>
            <Table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
           <TableHead>
@@ -160,7 +210,7 @@ const Moh412Register: React.FC = () => {
           </TableHead>
           <TableBody>
             {
-              patientList.map((p: any,index: number)=>{
+              rows.map((p: any,index: number)=>{
                   return <><TableRow>
                          <TableCell>{index + 1}</TableCell>
                          <TableCell>{p.screening_date ?? ''}</TableCell>
