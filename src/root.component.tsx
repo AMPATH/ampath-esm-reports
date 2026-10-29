@@ -32,6 +32,7 @@ import Moh222DailyRegister from './reports/moh-740/registers/moh-222-daily-regis
 import Moh270DailyRegister from './reports/moh-740/registers/moh-270-permanent-register/moh-270-permanent-register';
 import Moh512RegisterComponent from './reports/moh-711/registers/moh-512.component';
 import TbRegisterComponent from './reports/moh-711/registers/tb-register.component';
+import Moh413Component from './reports/moh-710/registers/moh-413/moh-413.component';
 
 const RootComponent: React.FC = () => {
   const baseName = window.getOpenmrsSpaBase() + 'home/reports';
@@ -71,6 +72,7 @@ const RootComponent: React.FC = () => {
           <Route path="/tb-lab-register" element={<TbLabRegister />} />
           <Route path="/moh-512-register" element={<Moh512RegisterComponent />} />
           <Route path="/tb-register" element={<TbRegisterComponent />} />
+          <Route path="/moh-413-register" element={<Moh413Component />} />
         </Routes>
       </div>
     </BrowserRouter>

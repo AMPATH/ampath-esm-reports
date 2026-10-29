@@ -69,7 +69,7 @@ const Moh333Register: React.FC = () => {
                 Admission <br />
                 (dd/mm/yyyy)
               </th>
-              <th rowSpan={6}>AMRSID</th>
+              <th rowSpan={6}>CRId</th>
               <th>Admission number (yyyy-mm-nnnn)</th>
               <th rowSpan={6}>
                 Full Name
@@ -512,9 +512,9 @@ const Moh333Register: React.FC = () => {
                 <React.Fragment key={i}>
                   <tr>
                     <td rowSpan={2}>
-                      {row.date_of_admission ? new Date(row.date_of_admission).toLocaleDateString('en-GB') : ''}
+                      {row.admission_date ? new Date(row.admission_date).toLocaleDateString('en-GB') : ''}
                     </td>
-                    <td rowSpan={2}>{row.amrs_id}</td>
+                    <td rowSpan={2}>{row.cr_id}</td>
                     <td>{row.admission_number}</td>
                     <td rowSpan={2}>{row.full_names}</td>
 

@@ -39,7 +39,7 @@ const Moh405Register: React.FC = () => {
         reportName,
         startIndex,
         limit,
-        from
+        from,
       }),
     [startDate, endDate, locationUuids, indicator, reportName],
   );
@@ -70,7 +70,7 @@ const Moh405Register: React.FC = () => {
                 <br />
                 (Re Visit)
               </th>
-              <th rowSpan={7}>AMRSID</th>
+              <th rowSpan={7}>CRID</th>
               <th rowSpan={7}>
                 Number of <br />
                 Visits <br />
@@ -408,7 +408,7 @@ const Moh405Register: React.FC = () => {
                     </td>
                     <td>{patient.anc_number}</td>
                     <td rowSpan={2}>{patient.anc_number}</td>
-                    <td rowSpan={2}>{patient.amrs_id}</td>
+                    <td rowSpan={2}>{patient.cr_id}</td>
                     <td rowSpan={2}>{patient.number_of_anc_visits}</td>
                     <td rowSpan={2}>{patient.full_names}</td>
                     <td>{patient.date_of_birth ? new Date(patient.date_of_birth).toLocaleDateString('en-GB') : ''}</td>

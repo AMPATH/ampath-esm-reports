@@ -54,19 +54,16 @@ const FamilyPlanningComponent: React.FC<FamilyPlanningComponentProps> = ({
             <td onClick={() => navigateToRegister('first_users_contraceptive_new')}>
               {moh711Data.first_users_contraceptive_new}
             </td>
-            <td
-              className={styles.greyBackground}
-              onClick={() => navigateToRegister('first_users_contraceptive_revisit')}
-            >
-              {moh711Data.first_users_contraceptive_revisit}
-            </td>
+            <td className={styles.greyBackground}></td>
           </tr>
           <tr>
             <td>2</td>
             <td rowSpan={3}>Pills</td>
             <td>Progestine only pills</td>
             <td onClick={() => navigateToRegister('pills_progestine_new')}>{moh711Data.pills_progestine_new}</td>
-            <td onClick={() => navigateToRegister('pills_progestine_revisit')}>{moh711Data.pills_progestine_revisit}</td>
+            <td onClick={() => navigateToRegister('pills_progestine_revisit')}>
+              {moh711Data.pills_progestine_revisit}
+            </td>
           </tr>
           <tr>
             <td>3</td>
@@ -84,18 +81,15 @@ const FamilyPlanningComponent: React.FC<FamilyPlanningComponentProps> = ({
             <td onClick={() => navigateToRegister('emergency_contraceptive_pill_new')}>
               {moh711Data.emergency_contraceptive_pill_new}
             </td>
-            <td
-              className={styles.greyBackground}
-              onClick={() => navigateToRegister('emergency_contraceptive_pill_revisit')}
-            >
-              {moh711Data.emergency_contraceptive_pill_revisit}
-            </td>
+            <td className={styles.greyBackground}></td>
           </tr>
           <tr>
             <td>5</td>
             <td rowSpan={2}>Injectables</td>
             <td>FP Injections DMPA- IM</td>
-            <td onClick={() => navigateToRegister('fp_injections_dmpa_im_new')}>{moh711Data.fp_injections_dmpa_im_new}</td>
+            <td onClick={() => navigateToRegister('fp_injections_dmpa_im_new')}>
+              {moh711Data.fp_injections_dmpa_im_new}
+            </td>
             <td onClick={() => navigateToRegister('fp_injections_dmpa_im_revisit')}>
               {moh711Data.fp_injections_dmpa_im_revisit}
             </td>
@@ -103,7 +97,9 @@ const FamilyPlanningComponent: React.FC<FamilyPlanningComponentProps> = ({
           <tr>
             <td>6</td>
             <td>FP Injections DMPA- SC</td>
-            <td onClick={() => navigateToRegister('fp_injections_dmpa_sc_new')}>{moh711Data.fp_injections_dmpa_sc_new}</td>
+            <td onClick={() => navigateToRegister('fp_injections_dmpa_sc_new')}>
+              {moh711Data.fp_injections_dmpa_sc_new}
+            </td>
             <td onClick={() => navigateToRegister('fp_injections_dmpa_sc_revisit')}>
               {moh711Data.fp_injections_dmpa_sc_revisit}
             </td>
@@ -138,20 +134,13 @@ const FamilyPlanningComponent: React.FC<FamilyPlanningComponentProps> = ({
             <td onClick={() => navigateToRegister('counselled_for_natural_family_planning_new')}>
               {moh711Data.counselled_for_natural_family_planning_new}
             </td>
-            <td
-              className={styles.greyBackground}
-              onClick={() => navigateToRegister('counselled_for_natural_family_planning_revisit')}
-            >
-              {moh711Data.counselled_for_natural_family_planning_revisit}
-            </td>
+            <td className={styles.greyBackground}></td>
           </tr>
           <tr>
             <td>11</td>
             <td>No. of clients given cycle beads</td>
             <td onClick={() => navigateToRegister('cycle_beads_new')}>{moh711Data.cycle_beads_new}</td>
-            <td className={styles.greyBackground} onClick={() => navigateToRegister('cycle_beads_revisit')}>
-              {moh711Data.cycle_beads_revisit}
-            </td>
+            <td className={styles.greyBackground}></td>
           </tr>
         </tbody>
       </table>
@@ -190,7 +179,9 @@ const FamilyPlanningComponent: React.FC<FamilyPlanningComponentProps> = ({
             <td>14</td>
             <td rowSpan={2}>I.U.C.D insertion</td>
             <td>Hormonal</td>
-            <td onClick={() => navigateToRegister('iucd_hormonal_first_time')}>{moh711Data.iucd_hormonal_first_time}</td>
+            <td onClick={() => navigateToRegister('iucd_hormonal_first_time')}>
+              {moh711Data.iucd_hormonal_first_time}
+            </td>
             <td onClick={() => navigateToRegister('iucd_hormonal_re_insertion')}>
               {moh711Data.iucd_hormonal_re_insertion}
             </td>
@@ -212,20 +203,13 @@ const FamilyPlanningComponent: React.FC<FamilyPlanningComponentProps> = ({
             <td onClick={() => navigateToRegister('surgical_contraception_btl_first_time')}>
               {moh711Data.surgical_contraception_btl_first_time}
             </td>
-            <td
-              className={styles.greyBackground}
-              onClick={() => navigateToRegister('surgical_contraception_btl_re_insertion')}
-            >
-              {moh711Data.surgical_contraception_btl_re_insertion}
-            </td>
+            <td className={styles.greyBackground}></td>
           </tr>
           <tr>
             <td>17</td>
             <td>Vasectomy</td>
             <td onClick={() => navigateToRegister('vasectomy_insertion')}>{moh711Data.vasectomy_insertion}</td>
-            <td className={styles.greyBackground} onClick={() => navigateToRegister('vasectomy_re_insertion')}>
-              {moh711Data.vasectomy_re_insertion}
-            </td>
+            <td className={styles.greyBackground}></td>
           </tr>
           <tr>
             <th colSpan={3}></th>
@@ -237,17 +221,13 @@ const FamilyPlanningComponent: React.FC<FamilyPlanningComponentProps> = ({
             <td rowSpan={2}>Removals</td>
             <td>I.U.C.D</td>
             <td onClick={() => navigateToRegister('iucd_removals_new')}>{moh711Data.iucd_removals_new}</td>
-            <td className={styles.greyBackground} onClick={() => navigateToRegister('iucd_removals_revisit')}>
-              {moh711Data.iucd_removals_revisit}
-            </td>
+            <td className={styles.greyBackground}></td>
           </tr>
           <tr>
             <td>19</td>
             <td>Implants</td>
             <td onClick={() => navigateToRegister('implants_removal_new')}>{moh711Data.implants_removal_new}</td>
-            <td className={styles.greyBackground} onClick={() => navigateToRegister('implants_removal_revisit')}>
-              {moh711Data.implants_removal_revisit}
-            </td>
+            <td className={styles.greyBackground}></td>
           </tr>
           <tr>
             <td>20</td>
@@ -280,7 +260,9 @@ const FamilyPlanningComponent: React.FC<FamilyPlanningComponentProps> = ({
           <tr>
             <td>23</td>
             <td>Adults 25+ receiving FP Services</td>
-            <td onClick={() => navigateToRegister('fp_adolescent_25_plus_new')}>{moh711Data.fp_adolescent_25_plus_new}</td>
+            <td onClick={() => navigateToRegister('fp_adolescent_25_plus_new')}>
+              {moh711Data.fp_adolescent_25_plus_new}
+            </td>
             <td onClick={() => navigateToRegister('fp_adolescent_25_plus_revisit')}>
               {moh711Data.fp_adolescent_25_plus_revisit}
             </td>
@@ -292,9 +274,7 @@ const FamilyPlanningComponent: React.FC<FamilyPlanningComponentProps> = ({
             <td onClick={() => navigateToRegister('post_partum_fp_48_hours_new')}>
               {moh711Data.post_partum_fp_48_hours_new}
             </td>
-            <td className={styles.greyBackground} onClick={() => navigateToRegister('post_partum_fp_48_hours_revisit')}>
-              {moh711Data.post_partum_fp_48_hours_revisit}
-            </td>
+            <td className={styles.greyBackground}></td>
           </tr>
           <tr>
             <td>25</td>
@@ -302,20 +282,13 @@ const FamilyPlanningComponent: React.FC<FamilyPlanningComponentProps> = ({
             <td onClick={() => navigateToRegister('post_partum_fp_3days_6_weeks_new')}>
               {moh711Data.post_partum_fp_3days_6_weeks_new}
             </td>
-            <td
-              className={styles.greyBackground}
-              onClick={() => navigateToRegister('post_partum_fp_3days_6_weeks_revisit')}
-            >
-              {moh711Data.post_partum_fp_3days_6_weeks_revisit}
-            </td>
+            <td className={styles.greyBackground}></td>
           </tr>
           <tr>
             <td>26</td>
             <td colSpan={2}>No. of clients receiving post abortion FP Method</td>
             <td onClick={() => navigateToRegister('post_abortion_fp_new')}>{moh711Data.post_abortion_fp_new}</td>
-            <td className={styles.greyBackground} onClick={() => navigateToRegister('post_abortion_fp_revisit')}>
-              {moh711Data.post_abortion_fp_revisit}
-            </td>
+            <td className={styles.greyBackground}></td>
           </tr>
         </tbody>
       </table>

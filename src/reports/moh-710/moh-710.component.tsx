@@ -88,6 +88,18 @@ const Moh710Report: React.FC = () => {
     );
   };
 
+  const navigateTo413Register = (indicator: string) => {
+    navigate(
+      `/moh-413-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}&from=moh-710`,
+      {
+        state: {
+          from: location.pathname,
+          reportName: 'moh710Report',
+        },
+      },
+    );
+  };
+
   const navigateToAncRegister = (indicator: string) => {
     navigate(
       `/moh-405-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}&from=moh-710`,
@@ -430,13 +442,11 @@ const Moh710Report: React.FC = () => {
                 <tbody>
                   <tr>
                     <td>HPV Vaccine Dose1(10-14years)</td>
-                    <td onClick={() => navigateToAncRegister('hpv_vaccine1_10_14_years')}>
-                      {moh710Data.hpv_vaccine1_10_14_years}
-                    </td>
+                    <td onClick={() => navigateTo413Register('hpv1_10_14')}>{moh710Data.hpv1_10_14 ?? 0}</td>
                   </tr>
                   <tr>
                     <td>HPV Vaccine Dose 2</td>
-                    <td onClick={() => navigateToAncRegister('hpv_vaccine2')}>{moh710Data.hpv_vaccine2}</td>
+                    <td onClick={() => navigateTo413Register('hpv2')}>{moh710Data.hpv2 ?? 0}</td>
                   </tr>
                 </tbody>
               </table>
@@ -453,20 +463,20 @@ const Moh710Report: React.FC = () => {
                 <tbody>
                   <tr>
                     <td>HPV Vaccine 1</td>
-                    <td onClick={() => navigateToAncRegister('hpv_vaccine1_10_years')}>
-                      {moh710Data.hpv_vaccine1_10_years}
+                    <td onClick={() => navigateTo413Register('hpv1_10_and_below')}>
+                      {moh710Data.hpv1_10_and_below ?? 0}
                     </td>
-                    <td onClick={() => navigateToAncRegister('hpv_vaccine1_greater_10_years')}>
-                      {moh710Data.hpv_vaccine1_greater_10_years}
+                    <td onClick={() => navigateTo413Register('hpv1_10_and_above')}>
+                      {moh710Data.hpv1_10_and_above ?? 0}
                     </td>
                   </tr>
                   <tr>
                     <td>HPV Vaccine 2</td>
-                    <td onClick={() => navigateToAncRegister('hpv_vaccine2_10_years')}>
-                      {moh710Data.hpv_vaccine2_10_years}
+                    <td onClick={() => navigateTo413Register('hpv2_10_and_below')}>
+                      {moh710Data.hpv2_10_and_below ?? 0}
                     </td>
-                    <td onClick={() => navigateToAncRegister('hpv_vaccine2_greater_10_years')}>
-                      {moh710Data.hpv_vaccine2_greater_10_years}
+                    <td onClick={() => navigateTo413Register('hpv2_10_and_above')}>
+                      {moh710Data.hpv2_10_and_above ?? 0}
                     </td>
                   </tr>
                 </tbody>
@@ -486,7 +496,9 @@ const Moh710Report: React.FC = () => {
                 <tbody>
                   <tr>
                     <td>Squint/White Eye reflection Under 1 year</td>
-                    <td></td>
+                    <td onClick={() => navigateTo510Register('squint_white_eye_reflection')}>
+                      {moh710Data.squint_white_eye_reflection ?? 0}
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -503,8 +515,12 @@ const Moh710Report: React.FC = () => {
                 <tbody>
                   <tr>
                     <td>Adverse Events Following Immunization(AEFI)</td>
-                    <td></td>
-                    <td></td>
+                    <td onClick={() => navigateTo510Register('adverse_event_after_vaccination_below_1')}>
+                      {moh710Data.adverse_event_after_vaccination_below_1 ?? 0}
+                    </td>
+                    <td onClick={() => navigateTo510Register('adverse_event_after_vaccination_above_1')}>
+                      {moh710Data.adverse_event_after_vaccination_above_1 ?? 0}
+                    </td>
                   </tr>
                 </tbody>
               </table>
