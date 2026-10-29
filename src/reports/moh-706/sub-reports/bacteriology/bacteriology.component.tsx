@@ -108,10 +108,10 @@ const Bacteriology: React.FC<BacteriologyProps> = ({ data, locationUuids, startD
                 ]
             },
             { tableCells: [getCell("", "5.29 Total TB smears"), getCell("total_tb_smear"), getCell("positive_tb_smear")] },
-            { tableCells: [getCell("", "5.30 New presumptive TB cases"), getCell(), getCell()] },
-            { tableCells: [getCell("", "5.31 TB Follow up"), getCell(), getCell()] },
+            { tableCells: [getCell("", "5.30 New presumptive TB cases"), getCell("total_tb_sputum_new"), getCell("positive_tb_sputum_new")] },
+            { tableCells: [getCell("", "5.31 TB Follow up"), getCell("total_tb_sputum_followup"), getCell("positive_tb_sputum_followup")] },
             { tableCells: [getCell("", "5.32 Rifampicin Resistant TB"), getCell(), getCell()] },
-            { tableCells: [getCell("", "5.33 MDR TB"), getCell(), getCell()] },
+            { tableCells: [getCell("", "5.33 MDR TB"), getCell("total_tb_sputum_mdr"), getCell("positive_tb_sputum_mdr")] },
         ]
     }, []);
 
