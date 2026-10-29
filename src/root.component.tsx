@@ -20,12 +20,19 @@ import Moh333Register from './reports/moh-711/registers/moh-333-register.compone
 import Moh511Register from './reports/moh-711/registers/moh-511-register.component';
 import Moh511710Register from './reports/moh-710/registers/moh-511-710-register.component';
 import Moh731Report from './reports/moh-731/moh-731.component';
+import Moh729bReport from './reports/moh-729b/moh-729b.component';
+import AcfSummaryReport from './reports/acf-summary/acf-summary.component';
+import AcfSummaryLinelist from './reports/acf-summary/acf-summary-linelist.component';
+import Moh729bLinelist from './reports/moh-729b/moh-729b-linelist.component';
 import Moh366Register from './reports/moh-731/registers/moh-366.component';
 import PrepRegisterComponent from './reports/moh-731/registers/prep-register.component';
 import Moh731Linelist from './reports/moh-731/linelist/moh-731-linelist.component';
 import Moh362Register from './registers/moh-362/moh-362.component';
 import Moh240LabRegister from './registers/moh-240/moh-240.component';
 import TbLabRegister from './registers/tb-lab-register/tb-lab-register.component';
+import Moh267Register from './registers/moh-267/moh-267.component';
+import PresumptiveTbRegister from './registers/presumptive-tb/presumptive-tb.component';
+import Tb4Register from './registers/tb4/tb4.component';
 import styles from './root.scss';
 import Moh510RegisterComponent from './reports/moh-710/registers/moh-510/moh-510.component';
 import Moh222DailyRegister from './reports/moh-740/registers/moh-222-daily-register/moh-222-daily-register';
@@ -62,6 +69,10 @@ const RootComponent: React.FC = () => {
           <Route path="/moh-511-register" element={<Moh511Register />} />
           <Route path="/moh-511-710-register" element={<Moh511710Register />} />
           <Route path="/moh-731" element={<Moh731Report />} />
+          <Route path="/moh-729b" element={<Moh729bReport />} />
+          <Route path="/moh-729b-linelist" element={<Moh729bLinelist />} />
+          <Route path="/acf-summary" element={<AcfSummaryReport />} />
+          <Route path="/acf-summary-linelist" element={<AcfSummaryLinelist />} />
           <Route path="/moh-731-linelist" element={<Moh731Linelist />} />
           <Route path="/moh-366-register" element={<Moh366Register />} />
           <Route path="/prep-register" element={<PrepRegisterComponent />} />
@@ -75,6 +86,9 @@ const RootComponent: React.FC = () => {
           <Route path="/tb-register" element={<TbRegisterComponent />} />
           <Route path="/moh-413-register" element={<Moh413Component />} />
           <Route path="/moh-407-register" element={<Moh407RegisterComponent />} />
+          <Route path="/moh-267" element={<Moh267Register />} />
+          <Route path="/presumptive-tb" element={<PresumptiveTbRegister />} />
+          <Route path="/tb4" element={<Tb4Register />} />
         </Routes>
       </div>
     </BrowserRouter>

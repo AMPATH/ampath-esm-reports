@@ -1,0 +1,276 @@
+@use '@carbon/layout';
+@use '@openmrs/esm-styleguide/src/vars' as *;
+
+/* The MoH 729B F-MAPS report page as one A3 portrait sheet, drawn in the units
+   the paper is measured in (mm, pt) so it prints as one sheet: the masthead,
+   the two halves of regimen codes side by side, and the sign-off beneath.
+   Row heights come from the form (moh-729b.config.ts). */
+
+/* On screen a page is the printable area only, A3 portrait less its 8mm
+   margins: the card around it gives the margin, and `usePageScale` is told
+   this width. */
+$page-w: 297mm - 2 * 8mm;
+$page-h: 420mm - 2 * 8mm;
+
+$ink: #000;
+$rule: 0.6pt solid #000;
+$shade: #a6a6a6; // cells not to be filled
+$light-shade: #bfbfbf;
+$band: #d9d9d9; // ADULT ART, PMTCT, PrEP
+$heading: #f2f2f2; // each section's heading row
+
+/* The card the page sits in, drawn like the filter card above it */
+.reportFrame {
+  margin: layout.$spacing-05 0 layout.$spacing-07;
+  padding: layout.$spacing-05;
+  background-color: $ui-02;
+  border: 1px solid $ui-03;
+}
+
+/* Holds the fixed-width page without making the app scroll sideways */
+.viewport {
+  overflow-x: auto;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: $page-w;
+  height: $page-h;
+  margin: 0 auto;
+  padding: 2mm 3mm 0;
+  color: $ink;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 7pt;
+  line-height: 1.15;
+  background-color: #fff;
+  /* set by `usePageScale` from the measured container width, floored at 1 */
+  zoom: var(--page-zoom, 1);
+}
+
+.titleLine {
+  display: flex;
+  justify-content: space-between;
+  font-family: Calibri, Carlito, Arial, sans-serif;
+  font-size: 10.5pt;
+  font-weight: 700;
+}
+
+.formCode {
+  margin-top: 1mm;
+  font-size: 6pt;
+  font-weight: 700;
+  text-align: right;
+}
+
+/* Facility and county on the left, MFL code and sub-county on the right */
+.fields {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1mm;
+
+  > .fieldGrid:first-child {
+    width: 82mm;
+  }
+
+  > .fieldGrid:last-child {
+    width: 75mm;
+  }
+}
+
+.fieldGrid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 1mm;
+  row-gap: 2.6mm;
+  align-items: end;
+}
+
+.fieldLabel {
+  font-weight: 700;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* The ruled line a field is written on; its caption sits beneath it */
+.fieldLine {
+  position: relative;
+  min-height: 3.4mm;
+  padding-left: 1mm;
+  border-bottom: $rule;
+}
+
+.caption {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding-top: 0.2mm;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* a line with a caption leaves room beneath it for the caption */
+.captioned {
+  margin-bottom: 3mm;
+}
+
+/* Beginning and Ending, each with its (Day/Month/Year) */
+.period {
+  display: grid;
+  grid-template-columns: 30mm 74mm 1fr 75mm;
+  column-gap: 1mm;
+  align-items: end;
+  margin: 1mm 0 1.5mm;
+
+  .caption {
+    font-weight: 400;
+  }
+}
+
+.halves {
+  display: flex;
+  align-items: stretch;
+}
+
+.half {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 0;
+  min-width: 0;
+}
+
+.grid {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 0 0.6mm;
+    overflow: hidden;
+    border: $rule;
+    vertical-align: middle;
+  }
+
+  th {
+    font-weight: 700;
+    text-align: center;
+  }
+
+  td {
+    text-align: left;
+  }
+}
+
+.columnHead th {
+  font-family: Cambria, Georgia, serif;
+  font-size: 6.5pt;
+  line-height: 1.1;
+  vertical-align: top;
+}
+
+.band th {
+  background-color: $band;
+}
+
+.heading th {
+  background-color: $heading;
+}
+
+.bandCell {
+  background-color: $band !important;
+}
+
+.code {
+  text-align: center !important;
+}
+
+.small {
+  font-size: 6.5pt;
+  line-height: 1;
+  text-align: left !important;
+}
+
+.leftText {
+  text-align: left !important;
+}
+
+.italicHeading {
+  font-style: italic;
+  text-align: left !important;
+}
+
+.count {
+  font-variant-numeric: tabular-nums;
+  text-align: center !important;
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    background-color: $brand-primary-10;
+    outline: 1px solid var(--brand-01);
+    outline-offset: -1px;
+  }
+}
+
+.shade {
+  background-color: $shade;
+}
+
+.lightShade {
+  background-color: $light-shade;
+}
+
+.blankCell {
+  background-color: #fff;
+}
+
+/* The right half is shorter: the rest of its column is shaded, as printed */
+.filler {
+  flex: 1;
+  background-color: $light-shade;
+  border: $rule;
+  border-top: none;
+}
+
+.instruction {
+  margin-top: 1mm;
+  font-size: 6.5pt;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.signOff {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4mm;
+  padding: 0 0 0 18mm;
+
+  > .fieldGrid {
+    width: 102mm;
+    row-gap: 3.2mm;
+  }
+
+  > .fieldGrid:last-child {
+    width: 120mm;
+    margin-right: 22mm;
+  }
+}
+
+.notes {
+  margin-top: 2mm;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.pageFoot {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-bottom: 1mm;
+  font-family: Calibri, Carlito, Arial, sans-serif;
+  font-size: 10pt;
+  font-weight: 700;
+}

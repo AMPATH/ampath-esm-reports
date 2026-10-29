@@ -375,9 +375,8 @@ export const MOH_731_SUMMARY: SummarySection[] = [
         note: 'Both tables are the clients on ART and add up to 3.2 Currently on ART. Not categorized: no stability, or no DSD model, recorded.',
         tables: [
           {
-            title: 'By stability',
             columns: [],
-            totalLabel: 'Total by stability',
+            totalLabel: 'Total',
             rows: [
               { label: 'Established', only: 'HV03-033' },
               { label: 'Not established', only: 'DSD-NE' },
@@ -385,9 +384,8 @@ export const MOH_731_SUMMARY: SummarySection[] = [
             ],
           },
           {
-            title: 'By model',
             columns: [],
-            totalLabel: 'Total by model',
+            totalLabel: 'Total',
             rows: [
               { label: 'Community', only: 'DSD-CO' },
               { label: 'Facility', only: 'DSD-FA' },

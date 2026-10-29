@@ -1,0 +1,298 @@
+@use '@carbon/layout';
+@use '@openmrs/esm-styleguide/src/vars' as *;
+
+/* MOH 267 PrEP Daily Activity Register (Ver. July 2023) as A4 landscape pages,
+   drawn in the units the paper is measured in (mm, pt) so a page is one sheet,
+   as on page 3 of the form: the ruled visits, the page and month totals, and
+   on the last page the summary tables, all inside one frame. Heights are fixed
+   so a page never spills over: 22 visits on a full page, 15 with the summary
+   on the last. */
+
+/* On screen a page is the printable area only, A4 landscape less its 8mm
+   margins: the card around it gives the margin, and `usePageScale` is told
+   this width. */
+$page-w: 297mm - 2 * 8mm;
+$page-h: 210mm - 2 * 8mm;
+
+$ink: #000;
+$rule: 0.6pt solid $ink;
+$thick: 1.4pt solid $ink;
+$dotted: 0.6pt dotted $ink;
+$shade: #e8e8e8; // the lower half of (c), and cells that do not apply
+
+$heading-h: 23.8mm;
+$ids-h: 3.4mm;
+$line-h: 3.35mm; // half a visit's row: each visit takes two lines
+$total-h: 4mm;
+
+/* The card the pages sit in, drawn like the filter card above it */
+.reportFrame {
+  margin: layout.$spacing-05 0 layout.$spacing-07;
+  padding: layout.$spacing-05;
+  background-color: $ui-02;
+  border: 1px solid $ui-03;
+}
+
+/* Holds the fixed-width pages without making the app scroll sideways */
+.viewport {
+  display: flex;
+  flex-direction: column;
+  gap: layout.$spacing-09;
+  overflow-x: auto;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  flex: none;
+  box-sizing: border-box;
+  width: $page-w;
+  height: $page-h;
+  margin: 0 auto;
+  color: $ink;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 7pt;
+  line-height: 1.15;
+  background-color: #fff;
+  /* set by `usePageScale` from the measured container width, floored at 1 */
+  zoom: var(--page-zoom, 1);
+}
+
+.runningHead {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  margin-bottom: 1.6mm;
+  font-size: 9.5pt;
+  font-weight: 700;
+
+  span:last-child {
+    text-align: right;
+  }
+}
+
+/* The ruled sheet: visits, totals and summary in one heavy border. A full
+   page's frame ends with its totals; the last page's runs down to the foot. */
+.frame {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border: $thick;
+}
+
+.lastFrame {
+  flex: 1;
+}
+
+.register {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 0 0.6mm;
+    overflow: hidden;
+    text-align: center;
+    vertical-align: middle;
+    border: $rule;
+  }
+
+  /* the frame draws the outer edge */
+  tr > :first-child {
+    border-left: none;
+  }
+
+  tr > :last-child {
+    border-right: none;
+  }
+
+  thead tr:first-child > * {
+    border-top: none;
+  }
+}
+
+.headings th {
+  height: $heading-h;
+  font-size: 7.5pt;
+  font-weight: 700;
+}
+
+/* code lists in the headings, in regular type and set left */
+.codeHeading {
+  font-size: 6.5pt !important;
+  font-weight: 400 !important;
+  text-align: left !important;
+  vertical-align: middle;
+
+  strong {
+    font-size: 7pt;
+  }
+}
+
+.codes {
+  font-weight: 400;
+}
+
+/* (a), (b) … under the headings, in a heavy rule as on the form */
+.columnIds th {
+  height: $ids-h;
+  font-size: 7pt;
+  font-weight: 400;
+  border-top: $thick;
+  border-bottom: $thick;
+}
+
+/* A heading holding two labels: upper cell over lower cell */
+.splitHeader {
+  padding: 0 !important;
+}
+
+.splitStack {
+  display: flex;
+  flex-direction: column;
+  height: $heading-h;
+
+  span {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1mm;
+  }
+
+  span:first-child {
+    border-bottom: $rule;
+  }
+}
+
+.upperLine td,
+.lowerLine td {
+  height: $line-h;
+  white-space: nowrap;
+}
+
+/* the two halves of (c): national ID over NUPI */
+.upperCell {
+  border-bottom: $dotted !important;
+}
+
+.lowerCell {
+  border-top: $dotted !important;
+  background-color: $shade;
+}
+
+.left {
+  text-align: left !important;
+}
+
+/* remarks may take both lines of the row, never more */
+.clamp {
+  display: -webkit-box;
+  overflow: hidden;
+  white-space: normal;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.totalRow th,
+.totalRow td {
+  height: $total-h;
+  font-weight: 700;
+}
+
+/* Summary tables at the foot of the last page, spaced across the sheet as on the form */
+
+.summary {
+  display: flex;
+  flex: 1;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 3mm 1.5mm 0;
+}
+
+.summaryTable {
+  border-collapse: collapse;
+  font-size: 5.5pt;
+  line-height: 1.1;
+
+  th,
+  td {
+    height: 3.8mm;
+    padding: 0 0.5mm;
+    text-align: center;
+    border: $rule;
+  }
+
+  th {
+    font-weight: 700;
+  }
+
+  td {
+    width: 5.1mm;
+  }
+}
+
+.ageTable {
+  width: 66mm;
+}
+
+.rowLabel {
+  width: 15mm;
+  text-align: left !important;
+}
+
+.notApplicable {
+  background-color: $shade;
+}
+
+.methodColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 3mm;
+}
+
+.methodTable {
+  width: 69mm;
+
+  td {
+    width: auto;
+  }
+
+  .rowLabel {
+    width: 22.5mm;
+    height: 5.8mm;
+    font-weight: 400;
+  }
+
+  thead th:not(:first-child) {
+    font-size: 5.5pt;
+    text-align: left;
+  }
+}
+
+.seroconverting {
+  width: 30mm;
+
+  th {
+    width: 22.5mm;
+    height: 5.5mm;
+    text-align: left;
+  }
+
+  td {
+    width: 7.5mm;
+  }
+}
+
+.pageFoot {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 1.2mm;
+  font-size: 8pt;
+  font-weight: 700;
+
+  span:first-child {
+    font-weight: 400;
+  }
+}

@@ -19,25 +19,32 @@ export interface Moh362Row {
   telephone?: string | null;
   date_of_visit?: string | null;
   hts_provider?: string | null;
-  marital_status?: number | string | null;
-  population_type?: number | string | null;
+  /** Married, Widowed, Single, Divorced or Separated */
+  marital_status?: string | null;
+  /** Gen Pop or KVP */
+  population_type?: string | null;
   sub_population?: string | null;
-  setting?: number | string | null;
-  hiv_test1?: number | string | null;
+  /** Facility or Community */
+  setting?: string | null;
+  /** Negative, Positive or Inconclusive */
+  hiv_test1?: string | null;
   kit1_name?: string | null;
   lot1?: string | null;
   expiry1?: string | null;
-  hiv_test2?: number | string | null;
+  hiv_test2?: string | null;
   kit2_name?: string | null;
   lot2?: string | null;
   expiry2?: string | null;
-  hiv_test3?: number | string | null;
+  hiv_test3?: string | null;
   kit3_name?: string | null;
   lot3?: string | null;
   expiry3?: string | null;
+  /** Positive, Negative or Inconclusive */
   final_result?: string | null;
+  /** Yes, No or NA */
   discordant_couple?: string | null;
-  referral_services?: number | string | null;
+  /** PrEP, PEP, VMMC, PMTCT, as a list, or NA */
+  referral_services?: string | null;
   client_tested_as?: string | null;
   referral_to?: string | null;
   residence?: string | null;
@@ -58,24 +65,7 @@ export const clientName = (row: Moh362Row) =>
   row.full_name || [row.first_name, row.middle_name, row.last_name].filter(Boolean).join(' ');
 
 /** Tested positive and linked to care: started on ART */
-export const isLinked = (row: Moh362Row) => row.final_result === 'P' && Boolean(row.art_start_date);
-
-/** An HIV test result (the concept the ETL returns) as the form's code: N, P, I */
-export const testResult = (value: unknown) => {
-  switch (String(value ?? '')) {
-    case '664':
-      return 'N';
-    case '703':
-      return 'P';
-    case '1138':
-      return 'I';
-    default:
-      return text(value);
-  }
-};
-
-/** The final result as the form's code: N, P, Ic (inconclusive), NA */
-export const finalResult = (value: unknown) => (String(value ?? '') === 'I' ? 'Ic' : text(value));
+export const isLinked = (row: Moh362Row) => row.final_result === 'Positive' && Boolean(row.art_start_date);
 
 export const ageOf = (row: Moh362Row) => {
   const age = Number(row.age);

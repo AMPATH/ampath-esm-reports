@@ -1,0 +1,91 @@
+/* REFERRAL AND LINKAGE REGISTER as A4 landscape pages. The page, frame, ruled
+   table and split cells come from the lab register's sheet styles; these are
+   page 6's own measurements: a shorter heading in larger bold type, and taller
+   client rows, 15 to a page, with the total of clients linked on the last. */
+
+$ink: #000;
+$rule: 0.6pt solid $ink;
+$thick: 1.4pt solid $ink;
+$dotted: 0.6pt dotted $ink;
+$shade: #f2f2f2; // the lower cells and the totals row
+
+$heading-h: 21mm;
+$ids-h: 5.2mm;
+$line-h: 4.6mm; // half a client row: each client takes two lines
+$total-h: 6.7mm;
+
+/* the title is set in a serif on this page of the form */
+.title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 10pt;
+  line-height: 1.2;
+}
+
+.linkageTable .headingRow th {
+  height: $heading-h;
+  font-size: 7.5pt;
+  font-weight: 700;
+}
+
+/* the strategy and handed-over headings keep their codes in regular type */
+.linkageTable .headingRow .regular {
+  font-weight: 400;
+}
+
+.linkageTable .idRow th {
+  height: $ids-h;
+  font-size: 8pt;
+  font-weight: 700;
+  border-top: $thick;
+  border-bottom: $thick;
+}
+
+.linkageTable .clientUpper td,
+.linkageTable .clientLower td {
+  height: $line-h;
+  font-size: 7pt;
+  white-space: nowrap;
+}
+
+/* a heading holding two labels: upper cell over lower cell, split by a dotted rule */
+.splitHeader {
+  padding: 0 !important;
+}
+
+.splitStack {
+  display: flex;
+  flex-direction: column;
+  height: $heading-h;
+
+  span {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.5mm;
+  }
+
+  span:first-child {
+    border-bottom: $dotted;
+  }
+}
+
+.linkageTable .totalRow > * {
+  height: $total-h;
+  font-size: 7pt;
+  font-weight: 700;
+  border-top: $thick;
+}
+
+.totalLabel {
+  text-align: left !important;
+}
+
+.totalFill,
+.totalFigure {
+  background-color: $shade;
+}
+
+.totalFigure {
+  font-size: 8pt !important;
+}
