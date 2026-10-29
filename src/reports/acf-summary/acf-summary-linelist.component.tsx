@@ -14,6 +14,8 @@ const COLUMNS: LinelistColumn[] = [
   { header: 'Date', value: (row) => formatDate(row.date), sortValue: (row) => row.date },
   { header: 'Sex', field: 'sex' },
   { header: 'Age', field: 'age' },
+  { header: 'National ID', field: 'national_id', text: true },
+  { header: 'CR Number', field: 'cr_number', text: true },
   { header: 'Referred By', field: 'referred_by' },
   { header: 'HIV Result', field: 'hiv_result' },
   { header: 'Chest X-ray', field: 'xray_result' },
@@ -23,8 +25,6 @@ const COLUMNS: LinelistColumn[] = [
   { header: 'Started Anti-TB', field: 'started_tb_treatment' },
   { header: 'TB Treatment Start', field: 'tb_registration' },
   /* Available from the Columns menu */
-  { header: 'National ID', field: 'national_id', text: true, hidden: true },
-  { header: 'CR Number', field: 'cr_number', text: true, hidden: true },
   { header: 'Phone Number', field: 'phone_number', text: true, hidden: true },
   { header: 'Physical Address', field: 'physical_address', wrap: true, hidden: true },
 ];
@@ -71,7 +71,14 @@ const AcfSummaryLinelist: React.FC = () => {
       isLoading={isLoading}
       isEmpty={rows.length === 0}
     >
-      <LinelistTable rows={rows} columns={COLUMNS} layoutKey="acf-summary" exportName={`ACF ${heading} ${endDate}`} />
+      {/* the layout key changed when the IDs became visible, so a layout saved
+          while they were hidden does not hide them again */}
+      <LinelistTable
+        rows={rows}
+        columns={COLUMNS}
+        layoutKey="acf-summary:ids"
+        exportName={`ACF ${heading} ${endDate}`}
+      />
     </RegisterLayout>
   );
 };
