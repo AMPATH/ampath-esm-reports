@@ -217,7 +217,7 @@ const Moh412Register: React.FC = () => {
                          <TableCell>{p?.screening_visit_type ?? ''}</TableCell>
                          <TableCell>{p?.ccc_number ?? ''}</TableCell>
                          <TableCell>{p.person_name}</TableCell>
-                         <TableCell></TableCell>
+                         <TableCell>{p?.phone_number ?? ''}</TableCell>
                          <TableCell>{p?.age ?? ''}</TableCell>
                          <TableCell></TableCell>
                          <TableCell></TableCell>
