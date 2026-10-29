@@ -13,6 +13,7 @@ export interface PatientListParams {
   /** Row to start at, 0-based, as the ETL expects */
   startIndex?: number;
   limit?: number;
+  from?: string | null;
 }
 
 export interface PatientListPage {

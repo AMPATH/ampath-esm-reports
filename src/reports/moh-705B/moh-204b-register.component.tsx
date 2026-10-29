@@ -14,6 +14,7 @@ const Moh204BRegisterComponent: React.FC = () => {
   const endDate = searchParams.get('endDate');
   const locationUuids = searchParams.get('locationUuids');
   const indicator = searchParams.get('indicator');
+  const from = searchParams.get('from');
 
   const {
     rows: patientlist,
@@ -33,6 +34,7 @@ const Moh204BRegisterComponent: React.FC = () => {
         indicator: indicator!,
         startIndex,
         limit,
+        from
       }),
     [startDate, endDate, locationUuids, indicator],
   );
