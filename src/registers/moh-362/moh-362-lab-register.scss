@@ -1,0 +1,412 @@
+@use '@carbon/layout';
+@use '@openmrs/esm-styleguide/src/vars' as *;
+
+/* MOH 362: HTS LAB REGISTER as A4 landscape pages, drawn in the units the paper
+   is measured in (mm, pt) so a page is one sheet: the ruled client rows and the
+   summary blocks inside one frame, as on page 5 of the form. Heights are fixed
+   so a page never spills over: 23 clients on a full page, and 15 clients with
+   the summary on the last. The referral and linkage register draws its pages
+   with these same page, frame and cell styles. */
+
+/* On screen a page is the printable area only, A4 landscape less its 8mm
+   margins: the card around it (`.reportFrame`) gives the margin, as MOH 731's
+   does, and `usePageScale` is told this width. */
+$page-w: 297mm - 2 * 8mm;
+$page-h: 210mm - 2 * 8mm;
+
+$ink: #000;
+$rule: 0.6pt solid $ink;
+$thick: 1.4pt solid $ink;
+$dotted: 0.6pt dotted $ink;
+$shade: #d9d9d9; // the grey label cells of the summary blocks
+$lower-shade: #f2f2f2; // the lower half of columns (b) and (i)
+
+$heading-h: 38mm;
+$ids-h: 3.2mm;
+$line-h: 2.95mm; // half a client row: each client takes two lines
+
+/* The card the pages sit in, drawn like the filter card above it and like
+   MOH 731's report card (same margin, padding, rule and fill). It wraps
+   `.viewport` rather than styling it: the pages are scaled to the viewport's
+   width, so padding there would push them into a scrollbar. */
+.reportFrame {
+  margin-top: layout.$spacing-05;
+  padding: layout.$spacing-05;
+  background-color: $ui-02;
+  border: 1px solid $ui-03;
+}
+
+/* Holds the fixed-width pages without making the app scroll sideways; the
+   pages are spaced apart as separate sheets */
+.viewport {
+  display: flex;
+  flex-direction: column;
+  gap: layout.$spacing-09;
+  overflow-x: auto;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  flex: none;
+  box-sizing: border-box;
+  width: $page-w;
+  height: $page-h;
+  margin: 0 auto;
+  color: $ink;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 6pt;
+  line-height: 1.15;
+  background-color: #fff;
+  /* set by `usePageScale` from the measured container width, floored at 1 */
+  zoom: var(--page-zoom, 1);
+}
+
+.runningHead {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  font-size: 7.5pt;
+
+  span:nth-child(2) {
+    text-align: center;
+  }
+
+  span:last-child {
+    text-align: right;
+  }
+}
+
+.title {
+  margin: 1mm 0 0.6mm;
+  font-size: 8pt;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+}
+
+/* The ruled sheet: register, summary and sign-off in one border. A full page's
+   frame ends with its last row; the last page's runs down to the foot. */
+.frame {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border: $rule;
+  border-top: none;
+}
+
+.lastFrame {
+  flex: 1;
+}
+
+.register {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 0 0.5mm;
+    overflow: hidden;
+    text-align: center;
+    vertical-align: middle;
+    border: $rule;
+  }
+
+  /* the frame draws the outer edge */
+  tr > :first-child {
+    border-left: none;
+  }
+
+  tr > :last-child {
+    border-right: none;
+  }
+
+  th {
+    font-weight: 400;
+    font-size: 5.5pt;
+  }
+}
+
+.headings th {
+  height: $heading-h;
+}
+
+/* (a), (b) ... under the headings, in a heavy rule as on the form */
+.columnIds th {
+  height: $ids-h;
+  font-size: 5.5pt;
+  border-top: $thick;
+  border-bottom: $thick;
+}
+
+.upperLine td,
+.lowerLine td {
+  height: $line-h;
+  white-space: nowrap;
+}
+
+.upperCell {
+  border-bottom: $dotted !important;
+}
+
+.lowerCell {
+  border-top: $dotted !important;
+  background-color: $lower-shade;
+}
+
+/* the final result in full: "Inconclusive" must fit the narrow column (n) */
+.finalResult {
+  padding: 0 0.3mm !important;
+  font-size: 5.5pt;
+}
+
+/* national ID over the Client Registry ID (CR + 13 digits + check digit) */
+.idCell {
+  padding: 0 0.3mm !important;
+  font-size: 5pt;
+  letter-spacing: -0.1pt;
+}
+
+.left {
+  text-align: left !important;
+}
+
+/* names and remarks may take both lines of the row, never more */
+.clamp {
+  display: -webkit-box;
+  overflow: hidden;
+  white-space: normal;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.codeList {
+  text-align: left !important;
+  font-size: 5pt !important;
+}
+
+/* Headings ruled inside: each stack fills the heading's height */
+
+.splitStack,
+.headerStack,
+.codedStack,
+.referralStack {
+  display: flex;
+  flex-direction: column;
+  height: $heading-h;
+}
+
+.splitHeader,
+.testHeader {
+  padding: 0 !important;
+}
+
+.splitStack span {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.5mm;
+}
+
+.splitStack span:first-child {
+  border-bottom: $rule;
+}
+
+.headerStack {
+  text-align: left;
+
+  span {
+    padding: 0.3mm 0.5mm;
+    border-bottom: $rule;
+  }
+
+  /* the kit, lot and expiry used on this page, written in */
+  em {
+    display: block;
+    overflow: hidden;
+    font-style: normal;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .testName {
+    flex: 1.3;
+  }
+
+  .kit {
+    flex: 1.6;
+  }
+
+  span:nth-child(3),
+  span:nth-child(4) {
+    flex: 1.1;
+  }
+
+  .codes {
+    flex: 0.7;
+    text-align: center;
+    border-bottom: none;
+  }
+}
+
+/* A client's HIV test: the result in full, then the kit, lot and expiry used,
+   wrapped to the column's width in small type. The box is a fixed height
+   within the client's two lines, so the wrapped text never stretches the row
+   and its split cells keep their proportions (the full line is also the cell's
+   tooltip). */
+.testCell {
+  padding: 0 0.4mm !important;
+  text-align: left !important;
+  vertical-align: top !important;
+  white-space: normal !important;
+}
+
+.testBox {
+  /* 2px short of the client's two lines, so the ruled row heights alone set
+     the layout: a box of the full height plus the cell's borders made each row
+     a fraction taller, and drawn for the PDF, where borders round to whole
+     pixels, the rows drifted until the last ran past the foot of the frame */
+  height: calc(2 * #{$line-h} - 2px);
+  overflow: hidden;
+  line-height: 1;
+
+  strong {
+    display: block;
+    font-size: 5pt;
+    font-weight: 700;
+  }
+}
+
+.testDetail {
+  display: block;
+  font-size: 3.6pt;
+  /* three lines of it fit under the result within the box */
+  line-height: 0.92;
+  overflow-wrap: anywhere;
+}
+
+.codedStack {
+  justify-content: center;
+
+  span:first-child {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: $dotted;
+  }
+
+  .codes {
+    flex: 0 0 5.5mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.referralStack {
+  justify-content: space-evenly;
+}
+
+/* Summary blocks at the foot of the page, laid out as on the form */
+
+.summary {
+  display: flex;
+  flex: 1;
+  align-items: stretch;
+  justify-content: space-between;
+  padding: 2mm 3mm 0 7mm;
+  font-weight: 700;
+}
+
+.summaryColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.summaryTable {
+  border-collapse: collapse;
+
+  th,
+  td {
+    height: 4.2mm;
+    padding: 0 1mm;
+    font-size: 7pt;
+    text-align: center;
+    white-space: nowrap;
+    border: $rule;
+  }
+
+  td {
+    min-width: 8mm;
+    font-weight: 400;
+  }
+
+  thead th {
+    background-color: $shade;
+  }
+}
+
+.titleCell {
+  text-align: left !important;
+  font-size: 7.5pt !important;
+}
+
+.rowLabel {
+  text-align: right !important;
+}
+
+.summaryTable tbody .rowLabel {
+  background-color: transparent;
+}
+
+/* the HIV test block shades its labels, as on the form */
+.summaryColumn:last-child .rowLabel {
+  background-color: $shade;
+}
+
+.figureLabel {
+  min-width: 25mm;
+  text-align: right !important;
+  background-color: $shade;
+}
+
+.figure {
+  min-width: 13mm !important;
+}
+
+.figureBox {
+  th {
+    min-width: 22mm;
+  }
+
+  td {
+    height: 8.6mm;
+    font-size: 8pt;
+  }
+}
+
+.signOff {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20mm;
+  padding: 1mm 12mm 1.2mm 0;
+  font-size: 6.5pt;
+}
+
+.rule {
+  display: inline-block;
+  width: 32mm;
+  border-bottom: $rule;
+}
+
+.pageFoot {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 1.5mm;
+  font-size: 7.5pt;
+}

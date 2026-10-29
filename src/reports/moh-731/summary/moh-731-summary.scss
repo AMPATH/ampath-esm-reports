@@ -112,6 +112,11 @@
   overflow-x: auto;
 }
 
+/* tables stacked in one card (3.5's two splits) stand apart */
+.tableScroll + .tableScroll {
+  margin-top: layout.$spacing-06;
+}
+
 .table {
   width: 100%;
   border-collapse: collapse;

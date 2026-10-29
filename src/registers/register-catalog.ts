@@ -1,4 +1,4 @@
-import { Activity, Chemistry, Microscope } from '@carbon/react/icons';
+import { Activity, Chemistry, Medication, Microscope, Stethoscope, TaskView } from '@carbon/react/icons';
 
 import { type ReportCategory } from '../dashboard/report-catalog';
 
@@ -11,8 +11,8 @@ import { type ReportCategory } from '../dashboard/report-catalog';
 export const registerCategories: ReportCategory[] = [
   {
     id: 'hiv-testing',
-    title: 'HIV testing services',
-    description: 'HTS daily registers',
+    title: 'HIV Testing Services & Pre-Exposure Prophylaxis',
+    description: 'HTS and PrEP daily registers',
     tone: 'violet',
     reports: [
       {
@@ -22,6 +22,40 @@ export const registerCategories: ReportCategory[] = [
         path: '/moh-362',
         icon: Microscope,
         keywords: ['hts', 'hiv testing', 'lab', 'referral', 'linkage', 'kits'],
+      },
+      {
+        code: 'MOH 267',
+        name: 'PrEP daily activity',
+        description: 'PrEP visits: clients new, continuing or restarting, their PrEP method, HIV results and STIs.',
+        path: '/moh-267',
+        icon: Medication,
+        keywords: ['prep', 'pre-exposure', 'prophylaxis', 'daily activity', 'dar', 'sti'],
+      },
+    ],
+  },
+  {
+    id: 'tb',
+    title: 'Tuberculosis',
+    description: 'TB case finding registers',
+    tone: 'teal',
+    reports: [
+      {
+        code: 'MOH/REG/DNTLDP/02',
+        name: 'Presumptive TB',
+        description:
+          'Presumptive TB cases, their investigations and results, and whether started on TB treatment or TPT.',
+        path: '/presumptive-tb',
+        icon: Stethoscope,
+        keywords: ['tb', 'tuberculosis', 'presumptive', 'acf', 'case finding', 'sputum', 'genexpert', 'tpt'],
+      },
+      {
+        code: 'TB4',
+        name: 'Notification & treatment',
+        description:
+          'Drug-sensitive TB patients notified: diagnosis, investigations, treatment, follow-up and outcome.',
+        path: '/tb4',
+        icon: TaskView,
+        keywords: ['tb', 'tb4', 'tuberculosis', 'dstb', 'notification', 'treatment', 'outcome', 'smear', 'culture'],
       },
     ],
   },

@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from '@carbon/react';
 import { useSession } from '@openmrs/esm-framework';
 
 import { ReportFiltersComponent, type ReportPeriod, useRestorePeriod } from '../../common/report-filters';
 import { showReportError } from '../../common/report-error';
+import { downloadSheetsPdf } from '../../common/report-page';
+import { registerFileName } from '../register-file-name';
 import { ReportPlaceholder, useGeneratedLocation } from '../../common/report-placeholder';
 import { ReportSkeleton } from '../../common/report-skeleton';
 import { getMoh362 } from '../../resources/moh-362.resource';
@@ -47,6 +49,19 @@ const Moh362Register: React.FC = () => {
 
   useRestorePeriod(generate);
 
+  /* Download PDF saves the whole register, whichever sheet is open: the HTS lab
+     register's pages, then the referral and linkage register's, each an A4
+     landscape page. The file is made from copies, so the pages on screen are
+     left as they are. */
+  const sheetsRef = useRef<HTMLDivElement>(null);
+  const downloadPdf = async () => {
+    const pages = Array.from(sheetsRef.current?.querySelectorAll<HTMLElement>('[data-register-page]') ?? []);
+    const name = registerFileName('MOH-362', session?.sessionLocation?.display ?? '', period);
+    /* the register is styled by its own stylesheets in Arial and Georgia only,
+       and runs to many pages */
+    await downloadSheetsPdf(pages, name, { orientation: 'landscape', stylesheetsOnly: true, image: 'jpeg' });
+  };
+
   /* the open sheet is kept in the URL */
   const [searchParams, setSearchParams] = useSearchParams();
   const selectedSheet = searchParams.get('sheet') === 'linkage' ? 1 : 0;
@@ -71,26 +86,29 @@ const Moh362Register: React.FC = () => {
         generatedPeriod={period}
         defaultTab="custom"
         backLink={{ label: 'All registers', to: '/?tab=registers' }}
+        onDownloadPdf={downloadPdf}
       />
       {isLoading && <ReportSkeleton />}
       {!isLoading && !isGenerated && (
         <ReportPlaceholder reportName="MOH 362 register" isLocationChanged={rows !== null && hasLocationChanged} />
       )}
       {!isLoading && isGenerated && (
-        <Tabs selectedIndex={selectedSheet} onChange={selectSheet}>
-          <TabList aria-label="MOH 362 registers" className={styles.sheetTabs}>
-            <Tab>HTS Lab Register</Tab>
-            <Tab>Referral and Linkage Register</Tab>
-          </TabList>
-          <TabPanels>
-            <TabPanel className={styles.sheetPanel}>
-              <Moh362LabRegister rows={rows} />
-            </TabPanel>
-            <TabPanel className={styles.sheetPanel}>
-              <Moh362LinkageRegister rows={rows.filter(isLinked)} />
-            </TabPanel>
-          </TabPanels>
-        </Tabs>
+        <div ref={sheetsRef}>
+          <Tabs selectedIndex={selectedSheet} onChange={selectSheet}>
+            <TabList aria-label="MOH 362 registers" className={styles.sheetTabs}>
+              <Tab>HTS Lab Register</Tab>
+              <Tab>Referral and Linkage Register</Tab>
+            </TabList>
+            <TabPanels>
+              <TabPanel className={styles.sheetPanel}>
+                <Moh362LabRegister rows={rows} />
+              </TabPanel>
+              <TabPanel className={styles.sheetPanel}>
+                <Moh362LinkageRegister rows={rows.filter(isLinked)} />
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
+        </div>
       )}
     </>
   );
