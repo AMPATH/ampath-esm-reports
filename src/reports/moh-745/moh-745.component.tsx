@@ -492,7 +492,7 @@ const Moh745Component: React.FC = () => {
                     className={styles.reportCount}
                     onClick={() => navigateToRegister('screened_hpv_post_treatment_visit')}
                   >
-                    {moh745Data?.screened_hpv_post_treatment_visit ?? 700}
+                    {moh745Data?.screened_hpv_post_treatment_visit ?? 0}
                   </td>
                   <td className={styles.reportCount} onClick={() => navigateToRegister('screened_hpv_all_visit')}>
                     {moh745Data?.screened_hpv_all_visit ?? 0}

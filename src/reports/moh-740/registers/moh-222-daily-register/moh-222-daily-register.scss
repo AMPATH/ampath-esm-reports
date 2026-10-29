@@ -1,0 +1,20 @@
+.registerHeader{
+    display: flex;
+    flex-direction: column;
+    column-gap: 5px;
+    width: 100%;
+    .registerFilter{
+        display: flex;
+         width: 100%;
+    }
+    .registerToolbar{
+        width: 100%;
+    }
+   
+}
+ .exportRow{
+        padding: 5px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+}

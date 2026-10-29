@@ -1,7 +1,9 @@
-import { Link, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@carbon/react';
+import { Button, Link, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@carbon/react';
 import React, { useEffect, useState } from 'react';
 import { type Moh270Patient } from '../../types';
 import styles from '../../../../common/report-register/register-table.scss';
+import moh270Styles from './moh-270-permanent-register.scss';
+import { Download } from '@carbon/react/icons';
 import classNames from 'classnames';
 import { useSearchParams } from 'react-router-dom';
 import { useSession } from '@openmrs/esm-framework';
@@ -11,8 +13,11 @@ import dayjs from 'dayjs';
 import { fetchMoh740Register } from '../../moh-740.resource';
 import { showReportError } from '../../../../common/report-error/show-report-error';
 import ReportFiltersComponent from '../../../../common/report-filters/report-filters.component';
+import { columnsToCsv, downloadCsv } from '../../../../common/report-register/rows-to-csv';
+import { MOH_270_COLUMNS } from '../moh-740.columns';
 const Moh270DailyRegister = () => {
     const [rows, setRows] = useState<Moh270Patient[] | any>([]);
+    const [isExporting, setIsExporting] = useState(false);
     const [searchParams ] = useSearchParams();
     const startDate = searchParams.get('startDate') ?? '';
     const endDate = searchParams.get('endDate') ?? '';
@@ -23,6 +28,7 @@ const Moh270DailyRegister = () => {
     const session = useSession();
     const { isForCurrentLocation, hasLocationChanged, markGenerated } = useGeneratedLocation('moh270Location');
     const isGenerated = rows !== null && isForCurrentLocation;
+    const columns = MOH_270_COLUMNS;
     useEffect(()=>{
        if(startDate && endDate && locationUuids){
               generate({startDate: startDate,endDate: endDate, label: ''})
@@ -57,6 +63,21 @@ const Moh270DailyRegister = () => {
           setIsLoading(false);
         }
     }
+    const exportCsv = async () => {
+          setIsExporting(true);
+      
+          try {
+            const slug = ['moh-270-permanent-register', period.startDate, period.endDate]
+              .filter(Boolean)
+              .join('-')
+              .toLowerCase();
+            downloadCsv(columnsToCsv(rows, columns, { subHeaderRow: [] }), `${slug}.csv`);
+          } catch (error) {
+            showReportError('the register export', error);
+          } finally {
+            setIsExporting(false);
+          }
+    };
   return (
     <div className={styles.tableContainer}>
        <ReportFiltersComponent
@@ -69,6 +90,13 @@ const Moh270DailyRegister = () => {
         defaultTab="monthly"
         backLink={{ label: 'All registers', to: '/?tab=registers' }}
       />
+      <div className={moh270Styles.exportRow}>
+      <div className={styles.toolbar}>
+            <Button kind="tertiary" size="sm" renderIcon={Download} onClick={exportCsv} disabled={isExporting}>
+              {isExporting ? 'Preparing…' : 'Export CSV'}
+            </Button>
+      </div>
+      </div>
       <Table className={classNames(styles.table, styles.tableBordered, styles.tableStriped)}>
         <TableHead>
           <TableRow>
