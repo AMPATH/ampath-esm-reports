@@ -17,6 +17,7 @@ const Moh406Register: React.FC = () => {
   const locationUuids = searchParams.get('locationUuids');
   const indicator = searchParams.get('indicator');
   const reportName = location.state?.reportName || '';
+  const from = searchParams.get('from');
 
   const {
     rows: patientlist,
@@ -37,6 +38,7 @@ const Moh406Register: React.FC = () => {
         reportName,
         startIndex,
         limit,
+        from
       }),
     [startDate, endDate, locationUuids, indicator, reportName],
   );
