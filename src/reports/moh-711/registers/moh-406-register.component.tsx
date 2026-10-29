@@ -38,7 +38,7 @@ const Moh406Register: React.FC = () => {
         reportName,
         startIndex,
         limit,
-        from
+        from,
       }),
     [startDate, endDate, locationUuids, indicator, reportName],
   );
@@ -115,7 +115,7 @@ const Moh406Register: React.FC = () => {
                 PNC Number/NUPI <br />
                 (Revisit)
               </th>
-              <th rowSpan={6}>AMRSID</th>
+              <th rowSpan={6}>CRID</th>
               <th rowSpan={6}>
                 Full Name(first name, middle and <br />
                 surname)
@@ -440,7 +440,7 @@ const Moh406Register: React.FC = () => {
                     </td>
                     <td>{patient.pnc_number}</td>
                     <td rowSpan={2}>{patient.pnc_number}</td>
-                    <td rowSpan={2}>{patient.amrs_id}</td>
+                    <td rowSpan={2}>{patient.cr_id}</td>
                     <td rowSpan={2}>{patient.full_names}</td>
 
                     <td>{patient.date_of_birth ? new Date(patient.date_of_birth).toLocaleDateString('en-GB') : ''}</td>

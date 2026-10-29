@@ -11,7 +11,7 @@ export const moh406ExportColumns: RegisterColumn[] = [
   { header: 'Registration Information - Date of Visit (dd/mm/yyyy)', value: (row) => row.date_of_visit ?? '' },
   { header: 'Registration Information - PNC Number (New Visit) - NUPI', value: (row) => row.pnc_number ?? '' },
   { header: 'Registration Information - PNC Number/NUPI (Revisit)', value: (row) => row.pnc_number ?? '' },
-  { header: 'Registration Information - AMRSID', value: (row) => row.amrsID ?? '' },
+  { header: 'Registration Information - CRID', value: (row) => row.cr_id ?? '' },
   {
     header: 'Registration Information - Full Name(first name, middle and surname)',
     value: (row) => row.full_names ?? '',
