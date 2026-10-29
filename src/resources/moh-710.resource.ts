@@ -32,7 +32,7 @@ export async function getMoh710(params: Moh710Params): Promise<any> {
   }
 }
 
-export async function getMoh710PatientList(params: Moh710Params): Promise<any> {
+export async function getMoh510PatientList(params: Moh710Params): Promise<any> {
   const url = await buildEtlUrl('moh-510-patient-list', {
     locationUuids: params.locationUuids || '',
     startDate: params.startDate || '',

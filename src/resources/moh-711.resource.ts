@@ -112,29 +112,30 @@ export async function getMoh333PatientList(params: PatientListParams): Promise<P
   }
 }
 
-export async function getMoh510PatientList(params: PatientListParams): Promise<PatientListPage> {
-  const url = await buildEtlUrl('moh-510-patient-list', {
-    locationUuids: params.locationUuids || '',
-    startDate: params.startDate || '',
-    endDate: params.endDate || '',
-    indicator: Array.isArray(params.indicator) ? params.indicator.join(',') : params.indicator || '',
-    ...pageParams(params),
-  });
-  try {
-    const response = await openmrsFetch(url);
+// export async function getMoh510PatientList(params: PatientListParams): Promise<PatientListPage> {
+//   const url = await buildEtlUrl('moh-510-patient-list', {
+//     locationUuids: params.locationUuids || '',
+//     startDate: params.startDate || '',
+//     endDate: params.endDate || '',
+//     indicator: Array.isArray(params.indicator) ? params.indicator.join(',') : params.indicator || '',
+//     ...pageParams(params),
+//     reportName: params.reportName || '',
+//   });
+//   try {
+//     const response = await openmrsFetch(url);
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(`Failed to fetch patient list: ${response.status} - ${errorText}`);
-    }
+//     if (!response.ok) {
+//       const errorText = await response.text();
+//       throw new Error(`Failed to fetch patient list: ${response.status} - ${errorText}`);
+//     }
 
-    const data = await response.json();
+//     const data = await response.json();
 
-    return toPatientListPage(data, params.startIndex ?? 0, params.limit ?? PAGE_SIZE);
-  } catch (error: any) {
-    throw new Error(`An error occurred while fetching the MOH-705 patient list: ${error.message}`);
-  }
-}
+//     return toPatientListPage(data, params.startIndex ?? 0, params.limit ?? PAGE_SIZE);
+//   } catch (error: any) {
+//     throw new Error(`An error occurred while fetching the MOH-705 patient list: ${error.message}`);
+//   }
+// }
 
 export async function getMoh511PatientList(params: PatientListParams): Promise<PatientListPage> {
   const url = await buildEtlUrl('moh-511-patient-list', {
@@ -158,5 +159,55 @@ export async function getMoh511PatientList(params: PatientListParams): Promise<P
     return toPatientListPage(data, params.startIndex ?? 0, params.limit ?? PAGE_SIZE);
   } catch (error: any) {
     throw new Error(`An error occurred while fetching the MOH-705 patient list: ${error.message}`);
+  }
+}
+
+export async function getTBPatientList(params: PatientListParams): Promise<PatientListPage> {
+  const url = await buildEtlUrl('tb-patient-list', {
+    locationUuids: params.locationUuids || '',
+    startDate: params.startDate || '',
+    endDate: params.endDate || '',
+    indicator: Array.isArray(params.indicator) ? params.indicator.join(',') : params.indicator || '',
+    reportName: params.reportName || 'moh711Report',
+    ...pageParams(params),
+  });
+  try {
+    const response = await openmrsFetch(url);
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Failed to fetch patient list: ${response.status} - ${errorText}`);
+    }
+
+    const data = await response.json();
+
+    return toPatientListPage(data, params.startIndex ?? 0, params.limit ?? PAGE_SIZE);
+  } catch (error: any) {
+    throw new Error(`An error occurred while fetching the MOH-705 patient list: ${error.message}`);
+  }
+}
+
+export async function getMoh512PatientList(params: PatientListParams): Promise<PatientListPage> {
+  const url = await buildEtlUrl('moh-512-patient-list', {
+    locationUuids: params.locationUuids || '',
+    startDate: params.startDate || '',
+    endDate: params.endDate || '',
+    indicator: Array.isArray(params.indicator) ? params.indicator.join(',') : params.indicator || '',
+    reportName: params.reportName || 'moh711Report',
+    ...pageParams(params),
+  });
+  try {
+    const response = await openmrsFetch(url);
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Failed to fetch patient list: ${response.status} - ${errorText}`);
+    }
+
+    const data = await response.json();
+
+    return toPatientListPage(data, params.startIndex ?? 0, params.limit ?? PAGE_SIZE);
+  } catch (error: any) {
+    throw new Error(`An error occurred while fetching the MOH-512 patient list: ${error.message}`);
   }
 }

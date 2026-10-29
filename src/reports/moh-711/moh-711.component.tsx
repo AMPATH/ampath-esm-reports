@@ -138,7 +138,12 @@ const Moh711Report: React.FC = () => {
                 locationUuids={locationUuid!}
               />
               <GBVComponent moh711Data={moh711Data} />
-              <FamilyPlanningComponent moh711Data={moh711Data} />
+              <FamilyPlanningComponent
+                moh711Data={moh711Data}
+                startDate={startDate}
+                endDate={endDate}
+                locationUuids={locationUuid!}
+              />
               <CervicalCancerComponent
                 moh711Data={moh711Data}
                 startDate={startDate}
@@ -166,7 +171,12 @@ const Moh711Report: React.FC = () => {
               <ChanisComponent moh711Data={moh711Data} />
               <PhysiotherapyComponent moh711Data={moh711Data} />
               <OtherComponent moh711Data={MaternityComponent} />
-              <TBScreeningComponent moh711Data={moh711Data} />
+              <TBScreeningComponent
+                moh711Data={moh711Data}
+                startDate={startDate}
+                endDate={endDate}
+                locationUuids={locationUuid!}
+              />
             </div>
           </div>
         </ReportPage>

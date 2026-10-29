@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './moh-510.scss';
 import { useSearchParams } from 'react-router-dom';
 import { RegisterLayout, usePatientList } from '../../../../common/report-register';
-import { getMoh710PatientList } from '../../../../resources/moh-710.resource';
+import { getMoh510PatientList } from '../../../../resources/moh-710.resource';
 import { moh510ExportColumns } from './moh-510.columns';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@carbon/react';
 import classNames from 'classnames';
@@ -16,7 +16,6 @@ const Moh510RegisterComponent: React.FC<Moh510RegisterComponentProps> = () => {
   const endDate = searchParams.get('endDate');
   const locationUuids = searchParams.get('locationUuids');
   const indicator = searchParams.get('indicator');
-  const reportName = 'moh710Report';
 
   const {
     rows: patientlist,
@@ -29,14 +28,13 @@ const Moh510RegisterComponent: React.FC<Moh510RegisterComponentProps> = () => {
     fetchAll,
   } = usePatientList(
     ({ startIndex, limit }) =>
-      getMoh710PatientList({
+      getMoh510PatientList({
         startDate: startDate!,
         endDate: endDate!,
         locationUuids: locationUuids!,
         indicator: indicator!,
         startIndex,
         limit,
-        reportName: reportName,
       }),
     [startDate, endDate, locationUuids, indicator],
   );
