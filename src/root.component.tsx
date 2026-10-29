@@ -18,7 +18,6 @@ import Moh405Register from './reports/moh-711/registers/moh-405-register.compone
 import Moh406Register from './reports/moh-711/registers/moh-406-register.component';
 import Moh333Register from './reports/moh-711/registers/moh-333-register.component';
 import Moh511Register from './reports/moh-711/registers/moh-511-register.component';
-import Moh510Register from './reports/moh-711/registers/moh-510-register.component';
 import Moh511710Register from './reports/moh-710/registers/moh-511-710-register.component';
 import Moh731Report from './reports/moh-731/moh-731.component';
 import Moh366Register from './reports/moh-731/registers/moh-366.component';
@@ -59,7 +58,6 @@ const RootComponent: React.FC = () => {
           <Route path="/moh-406-register" element={<Moh406Register />} />
           <Route path="/moh-333-register" element={<Moh333Register />} />
           <Route path="/moh-511-register" element={<Moh511Register />} />
-          <Route path="/moh-510-register" element={<Moh510Register />} />
           <Route path="/moh-511-710-register" element={<Moh511710Register />} />
           <Route path="/moh-731" element={<Moh731Report />} />
           <Route path="/moh-731-linelist" element={<Moh731Linelist />} />
