@@ -1,22 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { RegisterLayout, usePatientList } from '../../../common/report-register';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@carbon/react';
 import classNames from 'classnames';
+import dayjs from 'dayjs';
+import { useSession } from '@openmrs/esm-framework';
 
 import styles from './moh-512.scss';
 import { moh512ExportColumns } from './moh-512-columns';
 import { getMoh512PatientList } from '../../../resources/moh-711.resource';
+import { ReportFiltersComponent, type ReportPeriod } from '../../../common/report-filters';
 
 interface Moh512RegisterComponentProps {}
 
 const Moh512RegisterComponent: React.FC<Moh512RegisterComponentProps> = () => {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
+  const session = useSession();
 
-  const startDate = searchParams.get('startDate');
-  const endDate = searchParams.get('endDate');
-  const locationUuids = searchParams.get('locationUuids');
+  const from = searchParams.get('from');
+  const isDrilldown = Boolean(from);
+  const [generatedPeriod, setGeneratedPeriod] = useState<{ startDate: string; endDate: string } | null>(() => {
+    const startDate = searchParams.get('startDate');
+    const endDate = searchParams.get('endDate');
+    return !isDrilldown && startDate && endDate ? { startDate, endDate } : null;
+  });
+  const isGenerated = isDrilldown || Boolean(generatedPeriod);
+
+  const startDate = generatedPeriod?.startDate ?? searchParams.get('startDate');
+  const endDate = generatedPeriod?.endDate ?? searchParams.get('endDate');
+  const locationUuids = searchParams.get('locationUuids') ?? session?.sessionLocation?.uuid ?? '';
   const indicator = searchParams.get('indicator');
   const reportName = location.state?.reportName || '';
 
@@ -30,8 +43,12 @@ const Moh512RegisterComponent: React.FC<Moh512RegisterComponentProps> = () => {
     onPageChange,
     fetchAll,
   } = usePatientList(
-    ({ startIndex, limit }) =>
-      getMoh512PatientList({
+    ({ startIndex, limit }) => {
+      if (!isDrilldown && !generatedPeriod) {
+        return Promise.resolve({ results: [], total: 0, isTotalExact: true });
+      }
+
+      return getMoh512PatientList({
         startDate,
         endDate,
         locationUuids,
@@ -39,9 +56,23 @@ const Moh512RegisterComponent: React.FC<Moh512RegisterComponentProps> = () => {
         reportName,
         startIndex,
         limit,
-      }),
-    [startDate, endDate, locationUuids, indicator, reportName],
+      });
+    },
+    [startDate, endDate, locationUuids, indicator, reportName, isDrilldown, generatedPeriod],
   );
+
+  const generate = ({ startDate, endDate }: ReportPeriod) => {
+    setGeneratedPeriod({ startDate, endDate });
+    setSearchParams((currentParams) => {
+      const nextParams = new URLSearchParams(currentParams);
+      nextParams.set('startDate', startDate);
+      nextParams.set('endDate', endDate);
+      if (!nextParams.has('locationUuids') && locationUuids) {
+        nextParams.set('locationUuids', locationUuids);
+      }
+      return nextParams;
+    });
+  };
 
   const columns = [
     { key: 'date', label: 'Date' },
@@ -89,52 +120,71 @@ const Moh512RegisterComponent: React.FC<Moh512RegisterComponentProps> = () => {
   ];
 
   return (
-    <RegisterLayout
-      parentLabel="MOH-711 Report"
-      parentPath="/moh-711"
-      title="MOH 512 Register"
-      isLoading={isLoading}
-      isEmpty={patientlist.length === 0}
-      page={page}
-      pageSize={pageSize}
-      total={total}
-      isTotalExact={isTotalExact}
-      onPageChange={onPageChange}
-      fetchAll={fetchAll}
-      columns={moh512ExportColumns}
-    >
-      <div className={styles.tableContainer}>
-        <Table className={classNames(styles.table, styles.tableBordered, styles.tableStriped)}>
-          <TableHead>
-            <TableRow>
-              {columns.map((column) => (
-                <TableHeader key={column.key}>{column.label}</TableHeader>
-              ))}
-            </TableRow>
-          </TableHead>
-
-          <TableBody>
-            {isLoading ? (
-              <TableRow>
-                <TableCell colSpan={columns.length}>Loading register...</TableCell>
-              </TableRow>
-            ) : patientlist.length === 0 ? (
-              <TableRow>
-                <TableCell colSpan={columns.length}>No records found.</TableCell>
-              </TableRow>
-            ) : (
-              patientlist.map((patient, index) => (
-                <TableRow key={patient.person_id || patient.id || index}>
+    <>
+      {!isDrilldown && (
+        <ReportFiltersComponent
+          reportName="MOH 512 Register"
+          mode="range"
+          onGenerate={generate}
+          isLoading={isLoading}
+          isReportGenerated={Boolean(generatedPeriod)}
+          generatedPeriod={generatedPeriod ?? undefined}
+          backLink={{ label: 'All registers', to: '/?tab=registers' }}
+        />
+      )}
+      <RegisterLayout
+        parentLabel={isDrilldown ? 'MOH-711 Report' : 'All registers'}
+        parentPath={isDrilldown ? '/moh-711' : '/?tab=registers'}
+        title="MOH 512 Register"
+        isLoading={isLoading}
+        isEmpty={isGenerated && patientlist.length === 0}
+        page={page}
+        pageSize={pageSize}
+        total={total}
+        isTotalExact={isTotalExact}
+        onPageChange={onPageChange}
+        fetchAll={isGenerated ? fetchAll : undefined}
+        columns={moh512ExportColumns}
+      >
+        {isGenerated && (
+          <div className={styles.tableContainer}>
+            <Table className={classNames(styles.table, styles.tableBordered, styles.tableStriped)}>
+              <TableHead>
+                <TableRow>
                   {columns.map((column) => (
-                    <TableCell key={column.key}>{patient[column.key] ?? ''}</TableCell>
+                    <TableHeader key={column.key}>{column.label}</TableHeader>
                   ))}
                 </TableRow>
-              ))
-            )}
-          </TableBody>
-        </Table>
-      </div>
-    </RegisterLayout>
+              </TableHead>
+
+              <TableBody>
+                {isLoading ? (
+                  <TableRow>
+                    <TableCell colSpan={columns.length}>Loading register...</TableCell>
+                  </TableRow>
+                ) : patientlist.length === 0 ? (
+                  <TableRow>
+                    <TableCell colSpan={columns.length}>No records found.</TableCell>
+                  </TableRow>
+                ) : (
+                  patientlist.map((patient, index) => (
+                    <TableRow key={patient.person_id || patient.id || index}>
+                      {columns.map((column) => (
+                        <TableCell key={column.key}>
+                          {column.key === 'date' && patient[column.key]
+                            ? dayjs(patient[column.key]).format('YYYY-MM-DD')
+                            : (patient[column.key] ?? '')}
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                  ))
+                )}
+              </TableBody>
+            </Table>
+          </div>
+        )}
+      </RegisterLayout>
+    </>
   );
 };
 

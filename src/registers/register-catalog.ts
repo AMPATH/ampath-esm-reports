@@ -88,9 +88,81 @@ export const registerCategories: ReportCategory[] = [
         path: '/moh-412-register',
         icon: Activity,
         keywords: ['cancer', 'cervical', 'screening'],
-      }
+      },
     ],
-  }
+  },
+  {
+    id: 'MOH 711',
+    title: 'MOH 711',
+    description: 'MOH 711 Summary',
+    tone: 'violet',
+    reports: [
+      {
+        code: 'MOH 405',
+        name: 'MOH 405 Register',
+        description: 'MOH 405 Register',
+        path: '/moh-405-register',
+        icon: Activity,
+        keywords: ['anc'],
+      },
+      {
+        code: 'MOH 406',
+        name: 'MOH 406 Register',
+        description: 'MOH 406 Register',
+        path: '/moh-406-register',
+        icon: Activity,
+        keywords: ['pnc'],
+      },
+      {
+        code: 'MOH 333',
+        name: 'MOH 333 Register',
+        description: 'MOH 333 Register',
+        path: '/moh-333-register',
+        icon: Activity,
+        keywords: ['anc'],
+      },
+      {
+        code: 'MOH 407',
+        name: 'MOH 407 Register',
+        description: 'Child Health and Nutrition Register',
+        path: '/moh-407-register',
+        icon: Activity,
+        keywords: ['child health', 'nutrition', 'chanis'],
+      },
+      {
+        code: 'MOH 512',
+        name: 'MOH 512 Register',
+        description: 'MOH 512 Register',
+        path: '/moh-512-register',
+        icon: Activity,
+        keywords: ['family', 'planning'],
+      },
+    ],
+  },
+  {
+    id: 'MOH 710',
+    title: 'MOH 710',
+    description: 'MOH 710',
+    tone: 'violet',
+    reports: [
+      {
+        code: 'MOH 510',
+        name: 'Immunization Register',
+        description: 'Immunization Register',
+        path: '/moh-510-register',
+        icon: Activity,
+        keywords: ['immunization'],
+      },
+      {
+        code: 'MOH 413',
+        name: 'HPV Register',
+        description: 'HPV Register',
+        path: '/moh-413-register',
+        icon: Activity,
+        keywords: ['hpv'],
+      },
+    ],
+  },
 ];
 
 export const totalRegisterCount = registerCategories.reduce((count, category) => count + category.reports.length, 0);
