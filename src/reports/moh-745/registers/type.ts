@@ -174,6 +174,48 @@ export type CancerScreeningResult = {
   dc__screening_visit_type__post_treatment__age_range__50_and_above__hiv_positive_screened_positive_result: string;
   hiv_positive_screened_positive_result_post_treatment_visit: string;
 
+  dc__screening_visit_type__initial__age_range__less_than_25__screened: string;
+  dc__screening_visit_type__initial__age_range__25_to_49__screened: string;
+  dc__screening_visit_type__initial__age_range__50_and_above__screened: string;
+  screened_initial_visit: string;
+  dc__screening_visit_type__routine__age_range__less_than_25__screened: string;
+  dc__screening_visit_type__routine__age_range__25_to_49__screened: string;
+  dc__screening_visit_type__routine__age_range__50_and_above__screened: string;
+  screened_routine_visit: string;
+  screened_hpv_all_visit: string;
+  dc__screening_visit_type__post_treatment__age_range__less_than_25__screened: string;
+  dc__screening_visit_type__post_treatment__age_range__25_to_49__screened: string;
+  dc__screening_visit_type__post_treatment__age_range__50_and_above__screened: string;
+  screened_post_treatment_visit: string;
+  screened_all_visit: string;
+  screened_via_or_via_vili_post_treatment_all_visit: string;
+  screened_via_or_via_vili_all_visit: string;
+  screened_via_or_pap_smear_all_visit: string;
+  positive_hpv_test_result: string;
+  positive_via_or_via_vili_test_result: string;
+  dc__screening_visit_type__initial__age_range__25_to_49__screened_positive_result: string;
+  dc__screening_visit_type__initial__age_range__less_than_25__screened_positive_result: string;
+  dc__screening_visit_type__initial__age_range__50_and_above__screened_positive_result: string;
+  screened_positive_result_initial_visit: string;
+  dc__screening_visit_type__routine__age_range__less_than_25__screened_positive_result: string;
+  dc__screening_visit_type__routine__age_range__25_to_49__screened_positive_result: string;
+  dc__screening_visit_type__routine__age_range__50_and_above__screened_positive_result: string;
+  screened_positive_result_routine_visit: string;
+  dc__screening_visit_type__post_treatment__age_range__less_than_25__screened_positive_result: string;
+  dc__screening_visit_type__post_treatment__age_range__25_to_49__screened_positive_result: string;
+  dc__screening_visit_type__post_treatment__age_range__50_and_above__screened_positive_result: string;
+  screened_positive_result_post_treatment_visit: string;
+  screened_positive_result: string;
+  via_or_via_vili_suspicious_lesion: string;
+  treated_via_cyrotherapy: string;
+  treated_via_cyrotherapy_initial_visit: string;
+  treated_via_cyrotherapy_routine_visit: string;
+  treated_via_cyrotherapy_post_treatment_visit: string;
+  treated_via_thermo_coagulation: string;
+  treated_via_leep: string;
+  treated_via_other: string;
+  hiv_positive_screened: string;
+  hiv_positive_screened_positive_result: string;
 };
 
 export type Moh745reponse = {
