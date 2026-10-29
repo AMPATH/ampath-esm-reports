@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { type Moh222Patient } from '../../types';
 import styles from '../../../../common/report-register/register-table.scss';
+import moh222Styles from './moh-222-daily-register.scss';
 import classNames from 'classnames';
-import { Link, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@carbon/react';
+import { Button, Link, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@carbon/react';
+import { Download } from '@carbon/react/icons';
 import { useSearchParams } from 'react-router-dom';
 import ReportFiltersComponent from '../../../../common/report-filters/report-filters.component';
 import { type ReportPeriod } from '../../../../common/report-filters/types';
@@ -11,8 +13,11 @@ import { fetchMoh740Register } from '../../moh-740.resource';
 import { useSession } from '@openmrs/esm-framework';
 import { showReportError } from '../../../../common/report-error/show-report-error';
 import dayjs from 'dayjs';
+import { columnsToCsv, downloadCsv } from '../../../../common/report-register/rows-to-csv';
+import { MOH_222_COLUMNS } from '../moh-740.columns';
 const Moh222DailyRegister = () => {
   const [rows, setRows] = useState<Moh222Patient[] | any>([]);
+  const [isExporting, setIsExporting] = useState(false);
   const [searchParams ] = useSearchParams();
   const startDate = searchParams.get('startDate') ?? '';
   const endDate = searchParams.get('endDate') ?? '';
@@ -23,6 +28,7 @@ const Moh222DailyRegister = () => {
   const session = useSession();
   const { isForCurrentLocation, hasLocationChanged, markGenerated } = useGeneratedLocation('moh222Location');
   const isGenerated = rows !== null && isForCurrentLocation;
+  const columns = MOH_222_COLUMNS;
   useEffect(()=>{
      if(startDate && endDate && locationUuids){
             generate({startDate: startDate,endDate: endDate, label: ''})
@@ -57,18 +63,46 @@ const Moh222DailyRegister = () => {
         setIsLoading(false);
       }
   };
+    const exportCsv = async () => {
+      setIsExporting(true);
+  
+      try {
+        const slug = ['moh-222-dailly-register', period.startDate, period.endDate]
+          .filter(Boolean)
+          .join('-')
+          .toLowerCase();
+        downloadCsv(columnsToCsv(rows, columns, { subHeaderRow: [] }), `${slug}.csv`);
+      } catch (error) {
+        showReportError('the register export', error);
+      } finally {
+        setIsExporting(false);
+      }
+    };
   return (
     <div className={styles.tableContainer}>
-       <ReportFiltersComponent
-        reportName="MOH 222 Daily Register"
-        mode="both"
-        onGenerate={generate}
-        isLoading={isLoading}
-        isReportGenerated={isGenerated}
-        generatedPeriod={period}
-        defaultTab="monthly"
-        backLink={{ label: 'All registers', to: '/?tab=registers' }}
-      />
+      <div>
+          <ReportFiltersComponent
+            reportName="MOH 222 Daily Register"
+            mode="both"
+            onGenerate={generate}
+            isLoading={isLoading}
+            isReportGenerated={isGenerated}
+            generatedPeriod={period}
+            defaultTab="monthly"
+            backLink={{ label: 'All registers', to: '/?tab=registers' }}
+          />
+      </div>
+      <div>
+      <div className={moh222Styles.exportRow}>
+      <div className={styles.toolbar}>
+            <Button kind="tertiary" size="sm" renderIcon={Download} onClick={exportCsv} disabled={isExporting}>
+              {isExporting ? 'Preparing…' : 'Export CSV'}
+            </Button>
+      </div>
+      </div>
+      </div>
+      
+     
       <Table className={classNames(styles.table, styles.tableBordered, styles.tableStriped)}>
         <TableHead>
           <TableRow>
