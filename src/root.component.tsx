@@ -26,6 +26,10 @@ import AcfSummaryLinelist from './reports/acf-summary/acf-summary-linelist.compo
 import Moh729bLinelist from './reports/moh-729b/moh-729b-linelist.component';
 import Moh366Register from './reports/moh-731/registers/moh-366.component';
 import PrepRegisterComponent from './reports/moh-731/registers/prep-register.component';
+import Moh645Component from './reports/moh-645/moh-645.component';
+import Moh645Register from './reports/moh-645/registers/moh-645-register.component';
+import Moh643Component from './reports/moh-643/moh-643.component';
+import Moh643Register from './reports/moh-643/registers/moh-643-register.component';
 import Moh731Linelist from './reports/moh-731/linelist/moh-731-linelist.component';
 import Moh362Register from './registers/moh-362/moh-362.component';
 import Moh240LabRegister from './registers/moh-240/moh-240.component';
@@ -76,6 +80,10 @@ const RootComponent: React.FC = () => {
           <Route path="/moh-731-linelist" element={<Moh731Linelist />} />
           <Route path="/moh-366-register" element={<Moh366Register />} />
           <Route path="/prep-register" element={<PrepRegisterComponent />} />
+          <Route path="/moh-645" element={<Moh645Component />} />
+          <Route path="/moh-645-register" element={<Moh645Register />} />
+          <Route path="/moh-643" element={<Moh643Component />} />
+          <Route path="/moh-643-register" element={<Moh643Register />} />
           <Route path="/moh-510-register" element={<Moh510RegisterComponent />} />
           <Route path="/moh-362" element={<Moh362Register />} />
           <Route path="/moh-222" element={<Moh222DailyRegister />} />
