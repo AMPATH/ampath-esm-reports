@@ -13,7 +13,7 @@ import { ReportSkeleton } from '../../common/report-skeleton';
 import { ReportPage } from '../../common/report-page';
 import { renderDailyReportRows, reportDays } from '../../common/daily-summary-table';
 
-const indicators = [
+export const indicators = [
   'diarrhoea_with_no_dehydration',
   'diarrhoea_with_some_dehydration',
   'diarrhoea_with_severe_dehydration',

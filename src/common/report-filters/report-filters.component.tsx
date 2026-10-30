@@ -38,6 +38,7 @@ const ReportFiltersComponent: React.FC<ReportFiltersProps> = ({
   reportName,
   mode = 'both',
   facilities,
+  additionalFilters,
   yearsBack = 6,
   isLoading = false,
   isReportGenerated = false,
@@ -295,6 +296,7 @@ const ReportFiltersComponent: React.FC<ReportFiltersProps> = ({
               ))}
             </Select>
           )}
+          {additionalFilters && <div className={classNames(styles.field, styles.additionalFilter)}>{additionalFilters}</div>}
         </div>
 
         <div className={styles.actions}>

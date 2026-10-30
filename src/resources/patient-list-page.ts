@@ -25,7 +25,7 @@ export interface PatientListPage {
 }
 
 /** The paging arguments every patient-list endpoint takes */
-export function pageParams(params: PatientListParams) {
+export function pageParams(params: Pick<PatientListParams, 'startIndex' | 'limit'>) {
   return {
     startIndex: String(params.startIndex ?? 0),
     limit: String(params.limit ?? PAGE_SIZE),

@@ -1,13 +1,46 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import styles from '../moh717.scss';
 import classNames from 'classnames';
 
 interface SpecialServicesComponentProps {
   moh717ReportData: any;
+  startDate: string;
+  endDate: string;
+  locationUuid: string;
 }
 
-const SpecialServicesComponent: React.FC<SpecialServicesComponentProps> = ({ moh717ReportData }) => {
+const SpecialServicesComponent: React.FC<SpecialServicesComponentProps> = ({
+  moh717ReportData,
+  startDate,
+  endDate,
+  locationUuid,
+}) => {
+  const navigate = useNavigate();
+  const radiologyRegisterCell = (indicator: string, label: string, value: unknown, rowSpan?: number) => (
+    <td rowSpan={rowSpan}>
+      <button
+        type="button"
+        className={styles.registerDrilldown}
+        aria-label={`Open MOH 209 register for ${label}`}
+        onClick={() => {
+          const query = new URLSearchParams({
+            startDate,
+            endDate,
+            locationUuids: locationUuid,
+            indicator,
+            label,
+            from: 'moh-717',
+          });
+          navigate(`/moh-209-register?${query.toString()}`);
+        }}
+      >
+        {value == null ? '' : String(value)}
+      </button>
+    </td>
+  );
+
   return (
     <>
       <table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
@@ -44,33 +77,54 @@ const SpecialServicesComponent: React.FC<SpecialServicesComponentProps> = ({ moh
           </tr>
           <tr>
             <td rowSpan={5}>Plain X-Rays without contrast enhancement</td>
-            <td rowSpan={5}>{moh717ReportData.plain_xray_without_enhancement}</td>
+            {radiologyRegisterCell(
+              'plain_xray_without_enhancement',
+              'plain X-rays without contrast enhancement',
+              moh717ReportData.plain_xray_without_enhancement,
+              5,
+            )}
             <td>Contrast enhanced examinations</td>
-            <td>{moh717ReportData.contrast_enhancement_examination}</td>
+            {radiologyRegisterCell(
+              'contrast_enhancement_examination',
+              'contrast enhanced examinations',
+              moh717ReportData.contrast_enhancement_examination,
+            )}
           </tr>
           <tr>
             <td>Magnetic Resonance Imaging</td>
-            <td>{moh717ReportData.magnetic_resonance_imaging}</td>
+            {radiologyRegisterCell(
+              'magnetic_resonance_imaging',
+              'magnetic resonance imaging',
+              moh717ReportData.magnetic_resonance_imaging,
+            )}
           </tr>
           <tr>
             <td>Computarized Tomography</td>
-            <td>{moh717ReportData.computerized_tomography}</td>
+            {radiologyRegisterCell(
+              'computerized_tomography',
+              'computerized tomography',
+              moh717ReportData.computerized_tomography,
+            )}
           </tr>
           <tr>
             <td>Mammography</td>
-            <td>{moh717ReportData.mammography}</td>
+            {radiologyRegisterCell('mammography', 'mammography', moh717ReportData.mammography)}
           </tr>
           <tr>
             <td>Chest x-ray for PTB with specialist's report</td>
-            <td>{moh717ReportData.chest_xray_for_ptb}</td>
+            {radiologyRegisterCell('chest_xray_for_ptb', 'chest X-ray for PTB', moh717ReportData.chest_xray_for_ptb)}
           </tr>
           <tr>
             <td>C.3</td>
             <td>Number of ultrasound examinations</td>
             <td>General ultrasound</td>
-            <td>{moh717ReportData.general_ultrasound}</td>
+            {radiologyRegisterCell('general_ultrasound', 'general ultrasound', moh717ReportData.general_ultrasound)}
             <td>Obstetric ultrasound</td>
-            <td>{moh717ReportData.obstetric_ultrasound}</td>
+            {radiologyRegisterCell(
+              'obstetric_ultrasound',
+              'obstetric ultrasound',
+              moh717ReportData.obstetric_ultrasound,
+            )}
           </tr>
           <tr>
             <td>C.4</td>

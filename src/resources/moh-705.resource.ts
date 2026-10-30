@@ -15,6 +15,10 @@ interface Moh710Params {
   indicator?: string | string[];
 }
 
+type Moh705PatientListParams = Omit<PatientListParams, 'indicator'> & {
+  indicator?: string | string[];
+};
+
 export async function getMoh705a(params: Moh710Params): Promise<any> {
   const url = await buildEtlUrl('moh-705a', {
     locationUuids: params.locationUuids || '',
@@ -36,7 +40,7 @@ export async function getMoh705a(params: Moh710Params): Promise<any> {
   }
 }
 
-export async function getMoh705aPatientList(params: PatientListParams): Promise<PatientListPage> {
+export async function getMoh705aPatientList(params: Moh705PatientListParams): Promise<PatientListPage> {
   const endPoint = (() => {
     if (params.from && params.from?.toLowerCase() === "moh-717") {
       return "moh-717-patient-list";
@@ -87,7 +91,7 @@ export async function getMoh705b(params: Moh710Params): Promise<any> {
   }
 }
 
-export async function getMoh705bPatientList(params: PatientListParams): Promise<PatientListPage> {
+export async function getMoh705bPatientList(params: Moh705PatientListParams): Promise<PatientListPage> {
   const endPoint = (() => {
     if (params.from && params.from?.toLowerCase() === "moh-717") {
       return "moh-717-patient-list";

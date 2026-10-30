@@ -160,7 +160,12 @@ const Moh717Report: React.FC = () => {
               </div>
             </div>
             <div className={styles.section}>
-              <SpecialServicesComponent moh717ReportData={moh717ReportData} />
+              <SpecialServicesComponent
+                moh717ReportData={moh717ReportData}
+                startDate={startDate}
+                endDate={endDate}
+                locationUuid={locationUuid!}
+              />
             </div>
             <div className={styles.sectionTwoContainer}>
               <div className={styles.one}>

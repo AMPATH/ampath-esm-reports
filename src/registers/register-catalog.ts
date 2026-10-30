@@ -1,4 +1,13 @@
-import { Activity, Chemistry, Medication, Microscope, Stethoscope, TaskView } from '@carbon/react/icons';
+import {
+  Activity,
+  Chemistry,
+  Document,
+  DocumentTasks,
+  Medication,
+  Microscope,
+  Stethoscope,
+  TaskView,
+} from '@carbon/react/icons';
 
 import { type ReportCategory } from '../dashboard/report-catalog';
 
@@ -60,6 +69,30 @@ export const registerCategories: ReportCategory[] = [
     ],
   },
   {
+    id: 'outpatient-and-workload',
+    title: 'Outpatient & workload',
+    description: 'Outpatient morbidity registers',
+    tone: 'teal',
+    reports: [
+      {
+        code: 'MOH 204A',
+        name: 'Under-5 Outpatient Register',
+        description: 'Daily outpatient visits and clinical details for children under five years.',
+        path: '/moh-204a',
+        icon: DocumentTasks,
+        keywords: ['outpatient', 'opd', 'under 5', 'under five', 'children', 'morbidity'],
+      },
+      {
+        code: 'MOH 204B',
+        name: 'Over-5 Outpatient Register',
+        description: 'Daily outpatient visits and clinical details for clients aged five years and above.',
+        path: '/moh-204b',
+        icon: Document,
+        keywords: ['outpatient', 'opd', 'over 5', 'above five', 'adults', 'morbidity'],
+      },
+    ],
+  },
+  {
     id: 'diabetes-and-hypertension',
     title: 'Diabetes and Hypertension services',
     description: 'Diabetes and Hypertension comprehensive care',
@@ -106,6 +139,22 @@ export const registerCategories: ReportCategory[] = [
         path: '/tb-lab-register',
         icon: Chemistry,
         keywords: ['tb', 'tuberculosis', 'afb', 'microscopy', 'sputum', 'genexpert', 'truenat', 'lamp', 'tat'],
+      },
+    ],
+  },
+  {
+    id: 'radiology',
+    title: 'Radiology',
+    description: 'Radiology examination register',
+    tone: 'blue',
+    reports: [
+      {
+        code: 'MOH 209',
+        name: 'Radiology Register',
+        description: 'Radiology examinations, reports, referrals and billing details.',
+        path: '/moh-209-register',
+        icon: Microscope,
+        keywords: ['radiology', 'x-ray', 'imaging', 'ultrasound', 'examination'],
       },
     ],
   },
