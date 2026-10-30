@@ -213,16 +213,25 @@
   }
 }
 
-/* The filters no longer match the report on screen. Warning-toned rather than
-   error-toned: nothing is wrong, the figures are simply for another period. */
+/* The filters no longer match the report on screen. A quiet note rather than
+   a banner, in smaller italic type: nothing is wrong, the figures are simply
+   for another period. Warning-toned rather than error-toned. */
 
 .summaryStale {
-  padding: layout.$spacing-03 layout.$spacing-04;
-  color: $color-gray-100;
-  background-color: $warning-background;
+  @include type.type-style('label-01');
+  align-items: center;
+  font-style: italic;
+  color: $text-02;
 
   svg {
-    fill: $color-gray-70;
+    width: 0.875rem;
+    height: 0.875rem;
+    margin-top: 0;
+    fill: #b28600; // Carbon yellow 50: the warning hue, legible on white
+  }
+
+  strong {
+    font-weight: 600;
   }
 }
 

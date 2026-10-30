@@ -1,0 +1,262 @@
+@use '@carbon/layout';
+@use '@openmrs/esm-styleguide/src/vars' as *;
+
+/* The Presumptive TB Register (MOH/REG/DNTLDP/02) as A3 landscape pages, drawn
+   in the units the paper is measured in (mm, pt) so a page is one sheet, as
+   on page 4 of the form: the green-headed ruled table, and beneath it on the
+   last page the page summary and the code tables. Heights are fixed so a page
+   never spills over: 15 cases on a full page, 9 with the summary on the last. */
+
+/* On screen a page is the printable area only, A3 landscape less its 8mm
+   margins: the card around it gives the margin, and `usePageScale` is told
+   this width. */
+$page-w: 420mm - 2 * 8mm;
+$page-h: 297mm - 2 * 8mm;
+
+$ink: #000;
+$rule: 0.6pt solid #404040;
+$green: #70ad47; // the letter row and the code tables' headings
+$green-light: #e2efd9; // the column headings
+$green-code: #d8e4bc; // the lab result code cells
+
+$letters-h: 5.9mm;
+$heading-1: 20.6mm; // to the foot of "Nationality", "Write the Investigation…"
+$heading-2: 24mm; // to the foot of "Type of Sample", the investigation names
+$heading-3: 18.5mm;
+$line-h: 6.75mm; // half a case's row: each case takes two lines
+
+/* The card the pages sit in, drawn like the filter card above it */
+.reportFrame {
+  margin: layout.$spacing-05 0 layout.$spacing-07;
+  padding: layout.$spacing-05;
+  background-color: $ui-02;
+  border: 1px solid $ui-03;
+}
+
+/* Holds the fixed-width pages without making the app scroll sideways */
+.viewport {
+  display: flex;
+  flex-direction: column;
+  gap: layout.$spacing-09;
+  overflow-x: auto;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  flex: none;
+  box-sizing: border-box;
+  width: $page-w;
+  height: $page-h;
+  margin: 0 auto;
+  color: $ink;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 7.5pt;
+  line-height: 1.2;
+  background-color: #fff;
+  /* set by `usePageScale` from the measured container width, floored at 1 */
+  zoom: var(--page-zoom, 1);
+}
+
+.register {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 0.6mm 0.9mm;
+    overflow: hidden;
+    border: $rule;
+  }
+
+  th {
+    font-weight: 400;
+    text-align: center;
+    vertical-align: top;
+    background-color: $green-light;
+  }
+
+  td {
+    vertical-align: middle;
+  }
+}
+
+/* A, B, C … across the top, white on green */
+.letters th {
+  height: $letters-h;
+  padding: 0;
+  font-size: 8pt;
+  font-weight: 700;
+  color: #fff;
+  vertical-align: middle;
+  background-color: $green;
+}
+
+.heading1 th {
+  height: $heading-1;
+}
+
+.heading2 th {
+  height: $heading-2;
+}
+
+.heading3 th {
+  height: $heading-3;
+}
+
+/* the investigation and registration headings start at the left, as printed */
+.leftHeading {
+  text-align: left !important;
+}
+
+/* A case: two ruled lines, the split columns holding an upper and a lower entry */
+.upperLine td,
+.lowerLine td {
+  height: $line-h;
+  white-space: nowrap;
+}
+
+.left {
+  text-align: left;
+}
+
+.centre {
+  text-align: center;
+}
+
+/* names, addresses and remarks may take both lines of the row, never more */
+/* National ID and CR number (CR + 13 digits + check digit): small enough to fit G on one line */
+.idCell {
+  font-size: 5.5pt;
+  white-space: nowrap;
+}
+
+.clamp {
+  display: -webkit-box;
+  overflow: hidden;
+  white-space: normal;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* sample type over the date it was collected, in one cell of the row */
+.stacked {
+  display: block;
+  white-space: nowrap;
+}
+
+/* Beneath the table on the last page: the page summary and the code tables,
+   spaced across the sheet as on the form */
+
+.footer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-top: 6mm;
+}
+
+.pageSummary {
+  width: 62mm;
+
+  h5 {
+    margin: 0 0 3mm;
+    font-size: 8pt;
+    font-weight: 700;
+  }
+
+  p {
+    margin: 0 0 3.2mm;
+    font-size: 7.5pt;
+    line-height: 1.9;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+/* the figure written on the line */
+.blank {
+  display: inline-block;
+  min-width: 20mm;
+  padding: 0 1mm;
+  font-weight: 700;
+  text-align: center;
+  border-bottom: 0.6pt solid $ink;
+}
+
+.codeTable {
+  border-collapse: collapse;
+  font-size: 7pt;
+
+  th,
+  td {
+    height: 5.9mm;
+    padding: 0 1.4mm;
+    text-align: left;
+    vertical-align: middle;
+    border: $rule;
+  }
+
+  thead th {
+    font-weight: 700;
+    color: #fff;
+    background-color: $green;
+  }
+}
+
+.results {
+  width: 51mm;
+
+  thead th {
+    font-size: 8pt;
+    text-align: center;
+  }
+
+  td {
+    width: 50%;
+    font-size: 7.5pt;
+  }
+}
+
+.labCodes {
+  width: 153mm;
+
+  thead th:first-child {
+    width: 18mm;
+    text-align: center;
+  }
+
+  thead th:nth-child(2) {
+    text-align: center;
+  }
+
+  td:first-child {
+    background-color: $green-code;
+  }
+
+  td:nth-child(2) {
+    width: 27mm;
+  }
+}
+
+.referredBy {
+  width: 66mm;
+
+  td:last-child {
+    width: 13mm;
+  }
+}
+
+.investigations {
+  width: 33mm;
+}
+
+.pageFoot {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 1.5mm;
+  font-size: 7.5pt;
+}

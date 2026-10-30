@@ -1,4 +1,4 @@
-import { Activity, Chemistry, Microscope } from '@carbon/react/icons';
+import { Activity, Chemistry, Medication, Microscope, Stethoscope, TaskView } from '@carbon/react/icons';
 
 import { type ReportCategory } from '../dashboard/report-catalog';
 
@@ -11,8 +11,8 @@ import { type ReportCategory } from '../dashboard/report-catalog';
 export const registerCategories: ReportCategory[] = [
   {
     id: 'hiv-testing',
-    title: 'HIV testing services',
-    description: 'HTS daily registers',
+    title: 'HIV Testing Services & Pre-Exposure Prophylaxis',
+    description: 'HTS and PrEP daily registers',
     tone: 'violet',
     reports: [
       {
@@ -22,6 +22,40 @@ export const registerCategories: ReportCategory[] = [
         path: '/moh-362',
         icon: Microscope,
         keywords: ['hts', 'hiv testing', 'lab', 'referral', 'linkage', 'kits'],
+      },
+      {
+        code: 'MOH 267',
+        name: 'PrEP daily activity',
+        description: 'PrEP visits: clients new, continuing or restarting, their PrEP method, HIV results and STIs.',
+        path: '/moh-267',
+        icon: Medication,
+        keywords: ['prep', 'pre-exposure', 'prophylaxis', 'daily activity', 'dar', 'sti'],
+      },
+    ],
+  },
+  {
+    id: 'tb',
+    title: 'Tuberculosis',
+    description: 'TB case finding registers',
+    tone: 'teal',
+    reports: [
+      {
+        code: 'MOH/REG/DNTLDP/02',
+        name: 'Presumptive TB',
+        description:
+          'Presumptive TB cases, their investigations and results, and whether started on TB treatment or TPT.',
+        path: '/presumptive-tb',
+        icon: Stethoscope,
+        keywords: ['tb', 'tuberculosis', 'presumptive', 'acf', 'case finding', 'sputum', 'genexpert', 'tpt'],
+      },
+      {
+        code: 'TB4',
+        name: 'Notification & treatment',
+        description:
+          'Drug-sensitive TB patients notified: diagnosis, investigations, treatment, follow-up and outcome.',
+        path: '/tb4',
+        icon: TaskView,
+        keywords: ['tb', 'tb4', 'tuberculosis', 'dstb', 'notification', 'treatment', 'outcome', 'smear', 'culture'],
       },
     ],
   },
@@ -88,9 +122,81 @@ export const registerCategories: ReportCategory[] = [
         path: '/moh-412-register',
         icon: Activity,
         keywords: ['cancer', 'cervical', 'screening'],
-      }
+      },
     ],
-  }
+  },
+  {
+    id: 'MOH 711',
+    title: 'MOH 711',
+    description: 'MOH 711 Summary',
+    tone: 'violet',
+    reports: [
+      {
+        code: 'MOH 405',
+        name: 'MOH 405 Register',
+        description: 'MOH 405 Register',
+        path: '/moh-405-register',
+        icon: Activity,
+        keywords: ['anc'],
+      },
+      {
+        code: 'MOH 406',
+        name: 'MOH 406 Register',
+        description: 'MOH 406 Register',
+        path: '/moh-406-register',
+        icon: Activity,
+        keywords: ['pnc'],
+      },
+      {
+        code: 'MOH 333',
+        name: 'MOH 333 Register',
+        description: 'MOH 333 Register',
+        path: '/moh-333-register',
+        icon: Activity,
+        keywords: ['anc'],
+      },
+      {
+        code: 'MOH 407',
+        name: 'MOH 407 Register',
+        description: 'Child Health and Nutrition Register',
+        path: '/moh-407-register',
+        icon: Activity,
+        keywords: ['child health', 'nutrition', 'chanis'],
+      },
+      {
+        code: 'MOH 512',
+        name: 'MOH 512 Register',
+        description: 'MOH 512 Register',
+        path: '/moh-512-register',
+        icon: Activity,
+        keywords: ['family', 'planning'],
+      },
+    ],
+  },
+  {
+    id: 'MOH 710',
+    title: 'MOH 710',
+    description: 'MOH 710',
+    tone: 'violet',
+    reports: [
+      {
+        code: 'MOH 510',
+        name: 'Immunization Register',
+        description: 'Immunization Register',
+        path: '/moh-510-register',
+        icon: Activity,
+        keywords: ['immunization'],
+      },
+      {
+        code: 'MOH 413',
+        name: 'HPV Register',
+        description: 'HPV Register',
+        path: '/moh-413-register',
+        icon: Activity,
+        keywords: ['hpv'],
+      },
+    ],
+  },
 ];
 
 export const totalRegisterCount = registerCategories.reduce((count, category) => count + category.reports.length, 0);

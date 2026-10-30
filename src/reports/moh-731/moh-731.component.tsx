@@ -248,13 +248,16 @@ const Moh731Report: React.FC<Moh731Props> = () => {
               </div>
             </TabPanel>
             <TabPanel className={styles.summaryPanel}>
-              <Moh731Summary
-                data={moh731Data}
-                openLinelist={openSummaryLinelist}
-                sectionId={summarySection}
-                onSectionChange={selectSummarySection}
-                period={`${startDate}-${endDate}`}
-              />
+              {/* in the same bordered card as the form, so both tabs read alike */}
+              <div className={styles.reportFrame}>
+                <Moh731Summary
+                  data={moh731Data}
+                  openLinelist={openSummaryLinelist}
+                  sectionId={summarySection}
+                  onSectionChange={selectSummarySection}
+                  period={`${startDate}-${endDate}`}
+                />
+              </div>
             </TabPanel>
           </TabPanels>
         </Tabs>

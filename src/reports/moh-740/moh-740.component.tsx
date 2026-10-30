@@ -71,14 +71,21 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
     setSelectedIndicator(selectedIndicator);
     const selectedRegister = getRegisterByIndicator(selectedIndicator as any);
     setRegisterType(selectedRegister);
-    navigateToRegister(selectedIndicator);
+    navigateToRegister(selectedIndicator, selectedRegister);
     // setView('register');
   };
   const handleBackToReport = () => {
     setView('report');
   };
-   const navigateToRegister = (indicator: string) => {
-      navigate({to:`${window.getOpenmrsSpaBase()}home/reports/moh-222?startDate=${endDate}&endDate=${endDate}&locationUuids=${locationUuid}&indicator=${indicator}&from=moh-740`});
+   const navigateToRegister = (indicator: string, register: string) => {
+     let baseUrl = '';
+      if(register === Moh740Rgisters.DailyRegister){
+         baseUrl = 'moh-222'
+      }
+      if(register === Moh740Rgisters.PermanentRegister){
+          baseUrl = 'moh-270'
+      }
+      navigate({to:`${window.getOpenmrsSpaBase()}home/reports/${baseUrl}?startDate=${endDate}&endDate=${endDate}&locationUuids=${locationUuid}&indicator=${indicator}&from=moh-740`});
     };
   return (
     <>

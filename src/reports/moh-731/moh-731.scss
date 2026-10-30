@@ -47,14 +47,10 @@ $section-gap: 0.8mm; // around a divider
   margin-top: layout.$spacing-05;
 }
 
-/* Each tab's panel brings its own spacing (the report card, the summary grid) */
+/* Each tab's panel brings its own spacing: both sit in the report card */
 .formPanel,
 .summaryPanel {
   padding: 0;
-}
-
-.summaryPanel {
-  margin-top: layout.$spacing-05;
 }
 
 /* The card the sheet sits in, drawn like the filter card above it (same rule
@@ -62,7 +58,8 @@ $section-gap: 0.8mm; // around a divider
    It wraps `.viewport` rather than styling it: the page is scaled to the
    viewport's width, so padding there would push the sheet into a scrollbar. */
 .reportFrame {
-  margin-top: layout.$spacing-05;
+  /* clear of the foot of the page when scrolled to the end */
+  margin: layout.$spacing-05 0 layout.$spacing-07;
   padding: layout.$spacing-05;
   background-color: $ui-02;
   border: 1px solid $ui-03;

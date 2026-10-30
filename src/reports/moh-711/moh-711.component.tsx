@@ -168,7 +168,12 @@ const Moh711Report: React.FC = () => {
                 locationUuids={locationUuid!}
               />
               <PostAbortion moh711Data={moh711Data} />
-              <ChanisComponent moh711Data={moh711Data} />
+              <ChanisComponent
+                moh711Data={moh711Data}
+                startDate={startDate}
+                endDate={endDate}
+                locationUuids={locationUuid!}
+              />
               <PhysiotherapyComponent moh711Data={moh711Data} />
               <OtherComponent moh711Data={MaternityComponent} />
               <TBScreeningComponent

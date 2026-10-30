@@ -13,6 +13,7 @@ export interface ReportParent {
 }
 
 export const REPORT_PARENTS: Record<string, ReportParent> = {
+  'acf-summary': { label: 'ACF Facility Summary Tool', path: '/acf-summary' },
   'moh-240': { label: 'MOH-240 Register', path: '/moh-240' },
   'moh-505': { label: 'MOH-505 Report', path: '/moh-505' },
   'moh-705a': { label: 'MOH-705A Report', path: '/moh-705a' },
@@ -21,7 +22,10 @@ export const REPORT_PARENTS: Record<string, ReportParent> = {
   'moh-710': { label: 'MOH-710 Report', path: '/moh-710' },
   'moh-711': { label: 'MOH-711 Report', path: '/moh-711' },
   'moh-717': { label: 'MOH-717 Report', path: '/moh-717' },
+  'moh-729b': { label: 'MOH 729B F-MAPS Report', path: '/moh-729b' },
   'moh-731': { label: 'MOH-731 Report', path: '/moh-731' },
   'moh-740': { label: 'MOH-740 Report', path: '/moh-740' },
   'moh-745': { label: 'MOH-745 Report', path: '/moh-745' },
+  'moh-645': { label: 'MOH-645 Report', path: '/moh-645' },
+  'moh-643': { label: 'MOH-643 Report', path: '/moh-643' },
 };

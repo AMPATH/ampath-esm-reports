@@ -1,13 +1,15 @@
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@carbon/react';
+import { Button, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@carbon/react';
 import React, { useEffect, useState } from 'react';
 
 import styles from '../../../common/report-register/register-table.scss';
+import { Download } from '@carbon/react/icons';
+import moh412Styles from './moh-412-register.component.scss';
 import classNames from 'classnames';
 import { useSearchParams } from 'react-router-dom';
 import { moh412Columns } from './type';
 import { fetchMoh745PatientList, getMoh412PatientList } from '../../../resources/moh-745.resource';
 import { moh412ExportColumns } from './moh-412.columns';
-import { RegisterLayout, usePatientList } from '../../../common/report-register';
+import { columnsToCsv, downloadCsv, RegisterLayout, usePatientList } from '../../../common/report-register';
 import ReportFiltersComponent from '../../../common/report-filters/report-filters.component';
 import { showReportError } from '../../../common/report-error/show-report-error';
 import { type ReportPeriod } from '../../../common/report-filters/types';
@@ -16,7 +18,8 @@ import dayjs from 'dayjs';
 import { useGeneratedLocation } from '../../../common/report-placeholder/use-generated-location';
 
 const Moh412Register: React.FC = () => {
-   const [rows, setRows] = useState<any[]>([]);
+  const [rows, setRows] = useState<any[]>([]);
+  const [isExporting, setIsExporting] = useState(false);
   const [searchParams] = useSearchParams();
   const startDate = searchParams.get('startDate') ?? '';
   const endDate = searchParams.get('endDate') ?? '';
@@ -28,6 +31,7 @@ const Moh412Register: React.FC = () => {
   const session = useSession();
   const { isForCurrentLocation, hasLocationChanged, markGenerated } = useGeneratedLocation('moh412Location');
   const isGenerated = rows !== null && isForCurrentLocation;
+   const columns = moh412ExportColumns;
 
   useEffect(()=>{
      if(startDate && endDate && locationUuids && indicators){
@@ -81,6 +85,21 @@ const Moh412Register: React.FC = () => {
             setIsLoading(false);
           }
   }
+   const exportCsv = async () => {
+        setIsExporting(true);
+    
+        try {
+          const slug = ['moh-412-register', period.startDate, period.endDate]
+            .filter(Boolean)
+            .join('-')
+            .toLowerCase();
+          downloadCsv(columnsToCsv(rows, columns, { subHeaderRow: [] }), `${slug}.csv`);
+        } catch (error) {
+          showReportError('the register export', error);
+        } finally {
+          setIsExporting(false);
+        }
+    };
 
   return (
   
@@ -95,6 +114,13 @@ const Moh412Register: React.FC = () => {
         defaultTab="monthly"
         backLink={{ label: 'All registers', to: '/?tab=registers' }}
       />
+      <div className={moh412Styles.exportRow}>
+      <div className={styles.toolbar}>
+            <Button kind="tertiary" size="sm" renderIcon={Download} onClick={exportCsv} disabled={isExporting}>
+              {isExporting ? 'Preparing…' : 'Export CSV'}
+            </Button>
+      </div>
+      </div>
         <div>
            <Table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
           <TableHead>
@@ -217,7 +243,7 @@ const Moh412Register: React.FC = () => {
                          <TableCell>{p?.screening_visit_type ?? ''}</TableCell>
                          <TableCell>{p?.ccc_number ?? ''}</TableCell>
                          <TableCell>{p.person_name}</TableCell>
-                         <TableCell></TableCell>
+                         <TableCell>{p?.phone_number ?? ''}</TableCell>
                          <TableCell>{p?.age ?? ''}</TableCell>
                          <TableCell></TableCell>
                          <TableCell></TableCell>

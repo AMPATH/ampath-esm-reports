@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { RegisterLayout, usePatientList } from '../../../common/report-register';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@carbon/react';
 import classNames from 'classnames';
+import dayjs from 'dayjs';
 
 import styles from './tb-register.scss';
 import { TBExportColumns } from './tb-register-columns';
@@ -70,9 +71,11 @@ const TbRegisterComponent: React.FC<TbRegisterComponentProps> = () => {
             {patientlist?.length > 0 ? (
               patientlist?.map((patient, i) => (
                 <TableRow key={patient.person_id || patient.id}>
-                  <TableCell>{patient.date}</TableCell>
+                  <TableCell>{patient.date ? dayjs(patient.date).format('YYYY-MM-DD') : ''}</TableCell>
                   <TableCell>{patient.cr_id}</TableCell>
-                  <TableCell>{patient.date_of_birth}</TableCell>
+                  <TableCell>
+                    {patient.date_of_birth ? dayjs(patient.date_of_birth).format('YYYY-MM-DD') : ''}
+                  </TableCell>
                   <TableCell>{patient.gender}</TableCell>
                   <TableCell>{patient.tb_screening}</TableCell>
                   <TableCell>{patient.rtc}</TableCell>

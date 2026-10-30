@@ -1,0 +1,162 @@
+@use '@carbon/layout';
+@use '@openmrs/esm-styleguide/src/vars' as *;
+
+/* The Summary Tool for Facility-Based Active Case Finding (MOH/F/DNTLDP/02) as
+   one A4 landscape sheet, drawn in the units the paper is measured in (mm, pt)
+   so it prints as one page: the title and header fields, the indicators by
+   department, and the sign-off with the instructions. Row heights come from
+   the form (acf-summary-form.component.tsx). */
+
+/* On screen a page is the printable area only, A4 landscape less its 8mm
+   margins: the card around it gives the margin, and `usePageScale` is told
+   this width. */
+$page-w: 297mm - 2 * 8mm;
+$page-h: 210mm - 2 * 8mm;
+
+$ink: #1a1a1a;
+$rule: 0.6pt solid #404040;
+
+/* The card the page sits in, drawn like the filter card above it */
+.reportFrame {
+  margin: layout.$spacing-05 0 layout.$spacing-07;
+  padding: layout.$spacing-05;
+  background-color: $ui-02;
+  border: 1px solid $ui-03;
+}
+
+/* Holds the fixed-width page without making the app scroll sideways */
+.viewport {
+  overflow-x: auto;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: $page-w;
+  height: $page-h;
+  margin: 0 auto;
+  padding: 4mm 3mm 0;
+  color: $ink;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 7pt;
+  line-height: 1.2;
+  background-color: #fff;
+  /* set by `usePageScale` from the measured container width, floored at 1 */
+  zoom: var(--page-zoom, 1);
+}
+
+.title {
+  margin: 0 0 5mm;
+  font-size: 13pt;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* County, sub county and facility; then month and year */
+.fields {
+  display: flex;
+  gap: 10mm;
+  margin: 0 0 6mm 15mm;
+  font-size: 9pt;
+  font-weight: 700;
+}
+
+.field {
+  display: inline-flex;
+  align-items: flex-end;
+  white-space: nowrap;
+}
+
+.line,
+.wideLine {
+  display: inline-block;
+  min-height: 4mm;
+  margin-left: 1mm;
+  padding: 0 1mm;
+  font-weight: 400;
+  border-bottom: 1px dashed $ink;
+}
+
+.line {
+  width: 55mm;
+}
+
+.wideLine {
+  width: 65mm;
+}
+
+.grid {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 0.6mm 0.8mm;
+    overflow: hidden;
+    border: $rule;
+  }
+
+  thead th {
+    font-size: 6pt;
+    font-weight: 700;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  tbody th {
+    font-size: 6pt;
+    font-weight: 700;
+    text-align: left;
+    vertical-align: top;
+  }
+}
+
+.count {
+  font-size: 8pt;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.clickable {
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    background-color: $brand-primary-10;
+    outline: 1px solid var(--brand-01);
+    outline-offset: -1px;
+  }
+}
+
+.signOff {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4mm;
+  font-size: 9pt;
+  font-weight: 700;
+}
+
+/* The dotted line a sign-off is written on */
+.dots {
+  display: inline-block;
+  width: 50mm;
+  margin-left: 0.5mm;
+  border-bottom: 1px dotted $ink;
+}
+
+.instructions {
+  margin-top: 1.5mm;
+  font-size: 7pt;
+
+  ol {
+    margin: 0.5mm 0 0 5mm;
+    padding: 0;
+    list-style: decimal;
+  }
+
+  li {
+    padding-left: 1mm;
+  }
+}
