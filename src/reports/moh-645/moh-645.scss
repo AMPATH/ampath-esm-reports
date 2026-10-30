@@ -1,0 +1,147 @@
+/* MOH-645 laid out for A4, matching MOH-745 and MOH-740: geometry in
+   millimetres, type in points, one rule weight. */
+
+$ink: #000;
+$bar: #d9d9d9;
+$rule: 1px solid $ink;
+
+$text: 7pt;
+$title: 7.5pt;
+$sub: 7.5pt;
+$meta: 6.5pt;
+
+.headerContainer {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.mainTitleBox {
+  width: 100%;
+  padding: 3mm;
+  text-align: center;
+  border: $rule;
+}
+
+.mainTitle {
+  margin: 0;
+  font-size: $title;
+  font-weight: 700;
+}
+
+.subTitle {
+  margin: 1mm 0 0;
+  font-size: $sub;
+  font-weight: 700;
+}
+
+.topMeta {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border: $rule;
+  border-top: none;
+
+  td {
+    width: 17%;
+    padding: 1.5mm;
+    font-size: $meta;
+    vertical-align: top;
+    word-break: break-word;
+    border: none;
+  }
+
+  td:first-child {
+    width: 32%;
+  }
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 1mm 1.5mm;
+  font-size: $text;
+  text-align: center;
+  border: $rule;
+}
+
+.table th {
+  font-weight: 700;
+  background-color: $bar;
+}
+
+.table td:first-child,
+.table th:first-child {
+  text-align: left;
+}
+
+.sectionHeader {
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  background-color: #ececec;
+}
+
+.table tbody tr:nth-of-type(odd) {
+  background-color: #fafafa;
+}
+
+.clickable {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.clickable:hover {
+  background-color: #e8e8e8;
+}
+
+.rotateUp {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
+}
+
+.signOff {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2.5mm;
+  padding: 3mm;
+  font-size: $meta;
+  white-space: nowrap;
+  border: $rule;
+  border-top: none;
+}
+
+.line,
+.shortLine {
+  display: inline-block;
+  padding: 0 0.5mm;
+  margin-left: 1mm;
+  overflow: hidden;
+  font-weight: 600;
+  text-align: center;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
+  border-bottom: $rule;
+}
+
+.line {
+  width: 36mm;
+}
+
+.shortLine {
+  width: 22mm;
+}
+
+@media print {
+  .table tbody tr:nth-of-type(odd) {
+    background-color: transparent;
+  }
+}

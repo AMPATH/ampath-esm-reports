@@ -139,6 +139,22 @@ export const reportCategories: ReportCategory[] = [
         keywords: ['laboratory', 'lab', 'urine', 'parasitology', 'blood chemistry'],
       },
       {
+        code: 'MOH 645',
+        name: 'Malaria commodities',
+        description: 'Monthly summary of AL and artesunate dispensed, and malaria diagnostics.',
+        path: '/moh-645',
+        icon: HealthCross,
+        keywords: ['malaria', 'al', 'artemether', 'artesunate', 'rdt', 'commodities', 'act'],
+      },
+      {
+        code: 'MOH 643',
+        name: 'Laboratory commodities',
+        description: 'Monthly FCDRR of laboratory reagents: tests done and quantity used.',
+        path: '/moh-643',
+        icon: Microscope,
+        keywords: ['laboratory', 'lab', 'commodities', 'fcdrr', 'hiv', 'cd4', 'viral load', 'reagents'],
+      },
+      {
         code: 'MOH 505',
         name: 'IDSR epidemic monitoring',
         description: 'Weekly monitoring form for priority notifiable diseases.',

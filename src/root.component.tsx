@@ -23,6 +23,10 @@ import Moh511710Register from './reports/moh-710/registers/moh-511-710-register.
 import Moh731Report from './reports/moh-731/moh-731.component';
 import Moh366Register from './reports/moh-731/registers/moh-366.component';
 import PrepRegisterComponent from './reports/moh-731/registers/prep-register.component';
+import Moh645Component from './reports/moh-645/moh-645.component';
+import Moh645Register from './reports/moh-645/registers/moh-645-register.component';
+import Moh643Component from './reports/moh-643/moh-643.component';
+import Moh643Register from './reports/moh-643/registers/moh-643-register.component';
 import styles from './root.scss';
 
 const RootComponent: React.FC = () => {
@@ -55,6 +59,10 @@ const RootComponent: React.FC = () => {
           <Route path="/moh-731" element={<Moh731Report />} />
           <Route path="/moh-366-register" element={<Moh366Register />} />
           <Route path="/prep-register" element={<PrepRegisterComponent />} />
+          <Route path="/moh-645" element={<Moh645Component />} />
+          <Route path="/moh-645-register" element={<Moh645Register />} />
+          <Route path="/moh-643" element={<Moh643Component />} />
+          <Route path="/moh-643-register" element={<Moh643Register />} />
         </Routes>
       </div>
     </BrowserRouter>

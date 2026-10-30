@@ -24,4 +24,6 @@ export const REPORT_PARENTS: Record<string, ReportParent> = {
   'moh-731': { label: 'MOH-731 Report', path: '/moh-731' },
   'moh-740': { label: 'MOH-740 Report', path: '/moh-740' },
   'moh-745': { label: 'MOH-745 Report', path: '/moh-745' },
+  'moh-645': { label: 'MOH-645 Report', path: '/moh-645' },
+  'moh-643': { label: 'MOH-643 Report', path: '/moh-643' },
 };

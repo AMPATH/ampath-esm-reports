@@ -10,6 +10,7 @@
     "start": "openmrs develop",
     "serve": "webpack serve --mode=development",
     "dev": "openmrs develop --backend=https://kibana.ampath.or.ke --api-url=/openmrs --config-url=https://ngx.ampath.or.ke/o3-config.json --port=9000",
+    "dev:local-config": "openmrs develop --backend=https://kibana.ampath.or.ke --api-url=/openmrs --config-url=https://ngx.ampath.or.ke/o3-config.json --config-file=./local-config.json --port=9000",
     "build": "webpack --mode production",
     "analyze": "webpack --mode=production --env analyze=true",
     "lint": "eslint src --ext js,jsx,ts,tsx --max-warnings 0",

@@ -1,0 +1,5 @@
+{
+  "@ampath/esm-reporting": {
+    "etlBaseUrl": "http://localhost:8002"
+  }
+}
