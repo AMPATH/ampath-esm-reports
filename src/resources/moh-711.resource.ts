@@ -38,7 +38,13 @@ export async function getMoh711(params: Moh711Params): Promise<any> {
 }
 
 export async function getMoh406PatientList(params: PatientListParams): Promise<PatientListPage> {
-  const url = await buildEtlUrl('moh-406-patient-list', {
+  const endPoint = (() => {
+    if (params.from && params.from?.toLowerCase() === 'moh-717') {
+      return 'moh-717-patient-list';
+    }
+    return 'moh-406-patient-list';
+  })();
+  const url = await buildEtlUrl(endPoint, {
     locationUuids: params.locationUuids || '',
     startDate: params.startDate || '',
     endDate: params.endDate || '',
@@ -63,7 +69,13 @@ export async function getMoh406PatientList(params: PatientListParams): Promise<P
 }
 
 export async function getMoh405PatientList(params: PatientListParams): Promise<PatientListPage> {
-  const url = await buildEtlUrl('moh-405-patient-list', {
+  const endPoint = (() => {
+    if (params.from && params.from?.toLowerCase() === 'moh-717') {
+      return 'moh-717-patient-list';
+    }
+    return 'moh-405-patient-list';
+  })();
+  const url = await buildEtlUrl(endPoint, {
     locationUuids: params.locationUuids || '',
     startDate: params.startDate || '',
     endDate: params.endDate || '',
@@ -88,36 +100,18 @@ export async function getMoh405PatientList(params: PatientListParams): Promise<P
 }
 
 export async function getMoh333PatientList(params: PatientListParams): Promise<PatientListPage> {
-  const url = await buildEtlUrl('moh-333-patient-list', {
+  const endPoint = (() => {
+    if (params.from && params.from?.toLowerCase() === 'moh-717') {
+      return 'moh-717-patient-list';
+    }
+    return 'moh-333-patient-list';
+  })();
+  const url = await buildEtlUrl(endPoint, {
     locationUuids: params.locationUuids || '',
     startDate: params.startDate || '',
     endDate: params.endDate || '',
     indicator: Array.isArray(params.indicator) ? params.indicator.join(',') : params.indicator || '',
     reportName: params.reportName || '',
-    ...pageParams(params),
-  });
-  try {
-    const response = await openmrsFetch(url);
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(`Failed to fetch patient list: ${response.status} - ${errorText}`);
-    }
-
-    const data = await response.json();
-
-    return toPatientListPage(data, params.startIndex ?? 0, params.limit ?? PAGE_SIZE);
-  } catch (error: any) {
-    throw new Error(`An error occurred while fetching the MOH-705 patient list: ${error.message}`);
-  }
-}
-
-export async function getMoh510PatientList(params: PatientListParams): Promise<PatientListPage> {
-  const url = await buildEtlUrl('moh-510-patient-list', {
-    locationUuids: params.locationUuids || '',
-    startDate: params.startDate || '',
-    endDate: params.endDate || '',
-    indicator: Array.isArray(params.indicator) ? params.indicator.join(',') : params.indicator || '',
     ...pageParams(params),
   });
   try {
@@ -158,5 +152,80 @@ export async function getMoh511PatientList(params: PatientListParams): Promise<P
     return toPatientListPage(data, params.startIndex ?? 0, params.limit ?? PAGE_SIZE);
   } catch (error: any) {
     throw new Error(`An error occurred while fetching the MOH-705 patient list: ${error.message}`);
+  }
+}
+
+export async function getTBPatientList(params: PatientListParams): Promise<PatientListPage> {
+  const url = await buildEtlUrl('tb-patient-list', {
+    locationUuids: params.locationUuids || '',
+    startDate: params.startDate || '',
+    endDate: params.endDate || '',
+    indicator: Array.isArray(params.indicator) ? params.indicator.join(',') : params.indicator || '',
+    reportName: params.reportName || 'moh711Report',
+    ...pageParams(params),
+  });
+  try {
+    const response = await openmrsFetch(url);
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Failed to fetch patient list: ${response.status} - ${errorText}`);
+    }
+
+    const data = await response.json();
+
+    return toPatientListPage(data, params.startIndex ?? 0, params.limit ?? PAGE_SIZE);
+  } catch (error: any) {
+    throw new Error(`An error occurred while fetching the MOH-705 patient list: ${error.message}`);
+  }
+}
+
+export async function getMoh512PatientList(params: PatientListParams): Promise<PatientListPage> {
+  const url = await buildEtlUrl('moh-512-patient-list', {
+    locationUuids: params.locationUuids || '',
+    startDate: params.startDate || '',
+    endDate: params.endDate || '',
+    indicator: Array.isArray(params.indicator) ? params.indicator.join(',') : params.indicator || '',
+    reportName: params.reportName || 'moh711Report',
+    ...pageParams(params),
+  });
+  try {
+    const response = await openmrsFetch(url);
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Failed to fetch patient list: ${response.status} - ${errorText}`);
+    }
+
+    const data = await response.json();
+
+    return toPatientListPage(data, params.startIndex ?? 0, params.limit ?? PAGE_SIZE);
+  } catch (error: any) {
+    throw new Error(`An error occurred while fetching the MOH-512 patient list: ${error.message}`);
+  }
+}
+
+export async function getMoh407PatientList(params: PatientListParams): Promise<PatientListPage> {
+  const url = await buildEtlUrl('moh-407-patient-list', {
+    locationUuids: params.locationUuids || '',
+    startDate: params.startDate || '',
+    endDate: params.endDate || '',
+    indicator: Array.isArray(params.indicator) ? params.indicator.join(',') : params.indicator || '',
+    reportName: params.reportName || 'moh711Report',
+    ...pageParams(params),
+  });
+  try {
+    const response = await openmrsFetch(url);
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Failed to fetch patient list: ${response.status} - ${errorText}`);
+    }
+
+    const data = await response.json();
+
+    return toPatientListPage(data, params.startIndex ?? 0, params.limit ?? PAGE_SIZE);
+  } catch (error: any) {
+    throw new Error(`An error occurred while fetching the MOH-407 patient list: ${error.message}`);
   }
 }

@@ -2,8 +2,8 @@ import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import styles from '../../../common/report-register/register-table.scss';
-import { getMoh510PatientList } from '../../../resources/moh-711.resource';
 import { RegisterLayout, usePatientList } from '../../../common/report-register';
+import { getMoh510PatientList } from '../../../resources/moh-710.resource';
 
 const Moh510Register: React.FC = () => {
   const [searchParams] = useSearchParams();

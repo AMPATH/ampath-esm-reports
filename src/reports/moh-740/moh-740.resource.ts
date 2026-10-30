@@ -7,6 +7,7 @@ import {
   type Moh740RegisterDto,
   type Moh740RegisterResp,
   type Moh270Patient,
+  type Moh222Patient,
 } from './types';
 
 const baseMoh740Url = 'moh-740-report';
@@ -28,8 +29,12 @@ export async function fetchMoh740Report(params: Moh740Dto): Promise<Moh740Data |
   return data?.result?.[0] ?? null;
 }
 
-export async function fetchMoh740Register(params: Moh740RegisterDto): Promise<Moh270Patient[]> {
+export async function fetchMoh740Register(params: Moh740RegisterDto): Promise<Moh270Patient[] | Moh222Patient[] | Error> {
+  if(!params?.locationUuid || !params.endDate){
+       throw new Error('Missing params');
+  }
   const etlBaseUrl = await getEtlBaseUrl();
+  
   const p = {
     endDate: params.endDate,
     indicators: params.indicators,

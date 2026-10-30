@@ -1,14 +1,108 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { type Moh222Patient } from '../../types';
 import styles from '../../../../common/report-register/register-table.scss';
+import moh222Styles from './moh-222-daily-register.scss';
 import classNames from 'classnames';
-import { Link, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@carbon/react';
-interface Moh222DailyRegisterProps {
-  moh222PatientList: Moh222Patient[];
-}
-const Moh222DailyRegister: React.FC<Moh222DailyRegisterProps> = ({ moh222PatientList }) => {
+import { Button, Link, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@carbon/react';
+import { Download } from '@carbon/react/icons';
+import { useSearchParams } from 'react-router-dom';
+import ReportFiltersComponent from '../../../../common/report-filters/report-filters.component';
+import { type ReportPeriod } from '../../../../common/report-filters/types';
+import { useGeneratedLocation } from '../../../../common/report-placeholder/use-generated-location';
+import { fetchMoh740Register } from '../../moh-740.resource';
+import { useSession } from '@openmrs/esm-framework';
+import { showReportError } from '../../../../common/report-error/show-report-error';
+import dayjs from 'dayjs';
+import { columnsToCsv, downloadCsv } from '../../../../common/report-register/rows-to-csv';
+import { MOH_222_COLUMNS } from '../moh-740.columns';
+const Moh222DailyRegister = () => {
+  const [rows, setRows] = useState<Moh222Patient[] | any>([]);
+  const [isExporting, setIsExporting] = useState(false);
+  const [searchParams ] = useSearchParams();
+  const startDate = searchParams.get('startDate') ?? '';
+  const endDate = searchParams.get('endDate') ?? '';
+  const locationUuids = searchParams.get('locationUuids') ??'';
+  const indicator = searchParams.get('indicator') ?? '';
+  const [isLoading,setIsLoading] = useState<boolean>(false);
+  const [period, setPeriod] = useState<{ startDate: string; endDate: string }>({ startDate: '', endDate: '' });
+  const session = useSession();
+  const { isForCurrentLocation, hasLocationChanged, markGenerated } = useGeneratedLocation('moh222Location');
+  const isGenerated = rows !== null && isForCurrentLocation;
+  const columns = MOH_222_COLUMNS;
+  useEffect(()=>{
+     if(startDate && endDate && locationUuids){
+            generate({startDate: startDate,endDate: endDate, label: ''})
+     }
+  },[startDate,endDate,locationUuids,indicator]);
+  const generate = async ({ startDate, endDate }: ReportPeriod) => {
+      setIsLoading(true);
+      setPeriod({ startDate, endDate });
+      let indicators = '';
+      let locationUuid = '';
+      const selectedDate =  dayjs(startDate).endOf('month')
+      const registerStartDate = selectedDate.format('YYYY-MM-DD');
+      try {
+        if(!indicator){
+           indicators = 'cumulative_all';
+        }else{
+           indicators = indicator;
+        }
+        if(!locationUuids){
+          locationUuid = session.sessionLocation?.uuid ?? '';
+        }else{
+          locationUuid = locationUuids;
+        }
+        const resp  = await fetchMoh740Register({ locationUuid: locationUuid, endDate: registerStartDate,indicators: indicators});
+        if(resp){
+            setRows(resp);
+        }
+        markGenerated(locationUuids);
+      } catch (error) {
+        showReportError('The MOH 222 register', error);
+      } finally {
+        setIsLoading(false);
+      }
+  };
+    const exportCsv = async () => {
+      setIsExporting(true);
+  
+      try {
+        const slug = ['moh-222-dailly-register', period.startDate, period.endDate]
+          .filter(Boolean)
+          .join('-')
+          .toLowerCase();
+        downloadCsv(columnsToCsv(rows, columns, { subHeaderRow: [] }), `${slug}.csv`);
+      } catch (error) {
+        showReportError('the register export', error);
+      } finally {
+        setIsExporting(false);
+      }
+    };
   return (
     <div className={styles.tableContainer}>
+      <div>
+          <ReportFiltersComponent
+            reportName="MOH 222 Daily Register"
+            mode="both"
+            onGenerate={generate}
+            isLoading={isLoading}
+            isReportGenerated={isGenerated}
+            generatedPeriod={period}
+            defaultTab="monthly"
+            backLink={{ label: 'All registers', to: '/?tab=registers' }}
+          />
+      </div>
+      <div>
+      <div className={moh222Styles.exportRow}>
+      <div className={styles.toolbar}>
+            <Button kind="tertiary" size="sm" renderIcon={Download} onClick={exportCsv} disabled={isExporting}>
+              {isExporting ? 'Preparing…' : 'Export CSV'}
+            </Button>
+      </div>
+      </div>
+      </div>
+      
+     
       <Table className={classNames(styles.table, styles.tableBordered, styles.tableStriped)}>
         <TableHead>
           <TableRow>
@@ -39,13 +133,13 @@ const Moh222DailyRegister: React.FC<Moh222DailyRegisterProps> = ({ moh222Patient
             <TableHeader>Footcare Outcome</TableHeader>
             <TableHeader>Screened for TB</TableHeader>
             <TableHeader>TB Status after Screening</TableHeader>
-            <TableHeader>Active NHIF(Y/N)</TableHeader>
+            <TableHeader>Active SHA(Y/N)</TableHeader>
             <TableHeader>TCA Date</TableHeader>
             <TableHeader>Remarks</TableHeader>
           </TableRow>
         </TableHead>
         <TableBody>
-          {moh222PatientList.map((p, index) => (
+          {rows.map((p, index) => (
             <TableRow key={p.patient_uuid}>
               <TableCell>{index + 1}</TableCell>
               <TableCell>{p.encounter_date}</TableCell>

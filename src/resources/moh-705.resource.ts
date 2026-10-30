@@ -37,7 +37,13 @@ export async function getMoh705a(params: Moh710Params): Promise<any> {
 }
 
 export async function getMoh705aPatientList(params: PatientListParams): Promise<PatientListPage> {
-  const url = await buildEtlUrl('moh-705a-patient-list', {
+  const endPoint = (() => {
+    if (params.from && params.from?.toLowerCase() === "moh-717") {
+      return "moh-717-patient-list";
+    }
+    return 'moh-705a-patient-list';
+  })();
+  const url = await buildEtlUrl(endPoint, {
     locationUuids: params.locationUuids || '',
     startDate: params.startDate || '',
     endDate: params.endDate || '',
@@ -82,7 +88,13 @@ export async function getMoh705b(params: Moh710Params): Promise<any> {
 }
 
 export async function getMoh705bPatientList(params: PatientListParams): Promise<PatientListPage> {
-  const url = await buildEtlUrl('moh-705b-patient-list', {
+  const endPoint = (() => {
+    if (params.from && params.from?.toLowerCase() === "moh-717") {
+      return "moh-717-patient-list";
+    }
+    return 'moh-705b-patient-list';
+  })();
+  const url = await buildEtlUrl(endPoint, {
     locationUuids: params.locationUuids || '',
     startDate: params.startDate || '',
     endDate: params.endDate || '',

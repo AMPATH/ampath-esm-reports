@@ -14,6 +14,7 @@ const Moh204BRegisterComponent: React.FC = () => {
   const endDate = searchParams.get('endDate');
   const locationUuids = searchParams.get('locationUuids');
   const indicator = searchParams.get('indicator');
+  const from = searchParams.get('from');
 
   const {
     rows: patientlist,
@@ -33,9 +34,19 @@ const Moh204BRegisterComponent: React.FC = () => {
         indicator: indicator!,
         startIndex,
         limit,
+        from
       }),
     [startDate, endDate, locationUuids, indicator],
   );
+
+  const removePatientListDuplicates = async () => {
+    const list = await fetchAll();
+    const filtered = uniqueBy(list, 'person_id');
+    return filtered;
+  };
+
+  const uniqueBy = (arr: any, key: string) =>
+    [...new Map(arr.map((item: any) => [item[key], item])).values()] as Array<Record<string, any>>;
 
   return (
     <RegisterLayout
@@ -49,7 +60,7 @@ const Moh204BRegisterComponent: React.FC = () => {
       total={total}
       isTotalExact={isTotalExact}
       onPageChange={onPageChange}
-      fetchAll={fetchAll}
+      fetchAll={removePatientListDuplicates}
       columns={moh204bExportColumns}
     >
       <div className={styles.tableContainer}>
@@ -190,7 +201,7 @@ const Moh204BRegisterComponent: React.FC = () => {
           </TableHead>
           <TableBody>
             {patientlist?.length > 0 ? (
-              patientlist?.map((patient, index) => (
+              uniqueBy(patientlist, 'person_id')?.map((patient, index) => (
                 <TableRow key={patient.person_id || index}>
                   <TableCell>{patient.date}</TableCell>
                   <TableCell>{patient.opd_number_new_visit}</TableCell>

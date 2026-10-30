@@ -8,6 +8,8 @@
   align-items: center;
   gap: layout.$spacing-03;
   padding: layout.$spacing-07 layout.$spacing-05;
+  /* the same gap below the filter card as a generated report's panel has */
+  margin-top: layout.$spacing-05;
   margin-bottom: layout.$spacing-05;
   text-align: center;
   background-color: $ui-02;

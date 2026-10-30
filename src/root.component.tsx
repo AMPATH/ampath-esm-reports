@@ -18,16 +18,33 @@ import Moh405Register from './reports/moh-711/registers/moh-405-register.compone
 import Moh406Register from './reports/moh-711/registers/moh-406-register.component';
 import Moh333Register from './reports/moh-711/registers/moh-333-register.component';
 import Moh511Register from './reports/moh-711/registers/moh-511-register.component';
-import Moh510Register from './reports/moh-711/registers/moh-510-register.component';
 import Moh511710Register from './reports/moh-710/registers/moh-511-710-register.component';
 import Moh731Report from './reports/moh-731/moh-731.component';
+import Moh729bReport from './reports/moh-729b/moh-729b.component';
+import AcfSummaryReport from './reports/acf-summary/acf-summary.component';
+import AcfSummaryLinelist from './reports/acf-summary/acf-summary-linelist.component';
+import Moh729bLinelist from './reports/moh-729b/moh-729b-linelist.component';
 import Moh366Register from './reports/moh-731/registers/moh-366.component';
 import PrepRegisterComponent from './reports/moh-731/registers/prep-register.component';
 import Moh645Component from './reports/moh-645/moh-645.component';
 import Moh645Register from './reports/moh-645/registers/moh-645-register.component';
 import Moh643Component from './reports/moh-643/moh-643.component';
 import Moh643Register from './reports/moh-643/registers/moh-643-register.component';
+import Moh731Linelist from './reports/moh-731/linelist/moh-731-linelist.component';
+import Moh362Register from './registers/moh-362/moh-362.component';
+import Moh240LabRegister from './registers/moh-240/moh-240.component';
+import TbLabRegister from './registers/tb-lab-register/tb-lab-register.component';
+import Moh267Register from './registers/moh-267/moh-267.component';
+import PresumptiveTbRegister from './registers/presumptive-tb/presumptive-tb.component';
+import Tb4Register from './registers/tb4/tb4.component';
 import styles from './root.scss';
+import Moh510RegisterComponent from './reports/moh-710/registers/moh-510/moh-510.component';
+import Moh222DailyRegister from './reports/moh-740/registers/moh-222-daily-register/moh-222-daily-register';
+import Moh270DailyRegister from './reports/moh-740/registers/moh-270-permanent-register/moh-270-permanent-register';
+import Moh512RegisterComponent from './reports/moh-711/registers/moh-512.component';
+import TbRegisterComponent from './reports/moh-711/registers/tb-register.component';
+import Moh413Component from './reports/moh-710/registers/moh-413/moh-413.component';
+import Moh407RegisterComponent from './reports/moh-711/registers/moh-407-register.component';
 
 const RootComponent: React.FC = () => {
   const baseName = window.getOpenmrsSpaBase() + 'home/reports';
@@ -54,15 +71,32 @@ const RootComponent: React.FC = () => {
           <Route path="/moh-406-register" element={<Moh406Register />} />
           <Route path="/moh-333-register" element={<Moh333Register />} />
           <Route path="/moh-511-register" element={<Moh511Register />} />
-          <Route path="/moh-510-register" element={<Moh510Register />} />
           <Route path="/moh-511-710-register" element={<Moh511710Register />} />
           <Route path="/moh-731" element={<Moh731Report />} />
+          <Route path="/moh-729b" element={<Moh729bReport />} />
+          <Route path="/moh-729b-linelist" element={<Moh729bLinelist />} />
+          <Route path="/acf-summary" element={<AcfSummaryReport />} />
+          <Route path="/acf-summary-linelist" element={<AcfSummaryLinelist />} />
+          <Route path="/moh-731-linelist" element={<Moh731Linelist />} />
           <Route path="/moh-366-register" element={<Moh366Register />} />
           <Route path="/prep-register" element={<PrepRegisterComponent />} />
           <Route path="/moh-645" element={<Moh645Component />} />
           <Route path="/moh-645-register" element={<Moh645Register />} />
           <Route path="/moh-643" element={<Moh643Component />} />
           <Route path="/moh-643-register" element={<Moh643Register />} />
+          <Route path="/moh-510-register" element={<Moh510RegisterComponent />} />
+          <Route path="/moh-362" element={<Moh362Register />} />
+          <Route path="/moh-222" element={<Moh222DailyRegister />} />
+          <Route path="/moh-270" element={<Moh270DailyRegister />} />
+          <Route path="/moh-240-register" element={<Moh240LabRegister />} />
+          <Route path="/tb-lab-register" element={<TbLabRegister />} />
+          <Route path="/moh-512-register" element={<Moh512RegisterComponent />} />
+          <Route path="/tb-register" element={<TbRegisterComponent />} />
+          <Route path="/moh-413-register" element={<Moh413Component />} />
+          <Route path="/moh-407-register" element={<Moh407RegisterComponent />} />
+          <Route path="/moh-267" element={<Moh267Register />} />
+          <Route path="/presumptive-tb" element={<PresumptiveTbRegister />} />
+          <Route path="/tb4" element={<Tb4Register />} />
         </Routes>
       </div>
     </BrowserRouter>

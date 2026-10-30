@@ -36,6 +36,10 @@ const TableRowMapper: React.FC<TableRowMapperProps> = ({ tableRows, data, redire
                             if (endDate) params.append('endDate', endDate);
                             if (tC.key) params.append('indicators', tC.key);
                             params.append('report', report);
+                            // the row's own label, so the register header reads
+                            // the form row ("1.3 Ketones") instead of the key
+                            const rowLabel = tR.tableCells.find((c: any) => c.label)?.label;
+                            if (rowLabel) params.append('label', String(rowLabel));
                             navigate({ to: `${redirectTo}?${params.toString()}` });
                         }
                     };

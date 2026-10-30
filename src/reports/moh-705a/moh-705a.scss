@@ -64,21 +64,63 @@ $pad: 3mm;
 }
 
 .container {
-  overflow-x: auto;
+  overflow-x: visible;
   margin: 0;
 }
 
 .table {
   width: 100%;
+  table-layout: fixed;
   border-collapse: collapse;
+  font-family: inherit;
+}
+
+.numberColumn {
+  width: 3mm;
+}
+
+.diseaseColumn {
+  width: 34mm;
+}
+
+.dayColumn {
+  width: 4.5mm;
+}
+
+.totalColumn {
+  width: 8mm;
 }
 
 .tableBordered td,
 .tableBordered th {
-  padding: 1mm 1.5mm;
+  box-sizing: border-box;
+  padding: 0.6mm 0.45mm;
   font-size: $text;
   text-align: left;
   border: $rule;
+}
+
+.tableBordered tbody td:nth-child(n + 3):not(:last-child),
+.tableBordered thead th:nth-child(n + 2):not(:last-child) {
+  width: 4.5mm;
+  font-size: 5pt;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.tableBordered tbody td:last-child,
+.tableBordered thead th:last-child {
+  width: 8mm;
+  text-align: center;
+}
+
+.tableBordered tbody td:nth-child(2) {
+  font-family: inherit;
+  overflow-wrap: anywhere;
+}
+
+.tableBordered tbody td:nth-child(n + 3) {
+  text-align: center;
 }
 
 .tableBordered th {

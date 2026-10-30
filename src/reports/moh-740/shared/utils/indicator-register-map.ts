@@ -64,8 +64,8 @@ const Moh740DIncatorRegisterMap: Record <RegisterKeys, string> = {
   dc__gender__M__newly_diagnosed_htn_this_month: Moh740Rgisters.DailyRegister,
   dc__gender__M__revisit_known_htn: Moh740Rgisters.DailyRegister,
   dc__gender__F__revisit_known_htn: Moh740Rgisters.DailyRegister,
-  dc__gender__M__is_co_morbid: Moh740Rgisters.DailyRegister,
-  dc__gender__F__is_co_morbid: Moh740Rgisters.DailyRegister,
+  dc__gender__M__is_co_morbid: Moh740Rgisters.PermanentRegister,
+  dc__gender__F__is_co_morbid: Moh740Rgisters.PermanentRegister,
   dc__gender__F__revisit_known_co_morbid: Moh740Rgisters.DailyRegister,
   dc__gender__M__revisit_known_co_morbid: Moh740Rgisters.DailyRegister,
   dc__gender__M__newly_diagnosed_co_morbid_this_month: Moh740Rgisters.DailyRegister,
@@ -146,6 +146,8 @@ const Moh740DIncatorRegisterMap: Record <RegisterKeys, string> = {
   dc__gender__F__on_antihypertensives_this_month: Moh740Rgisters.DailyRegister,
   dc__gender__M__high_bp:Moh740Rgisters.DailyRegister,
   dc__gender__F__high_bp:Moh740Rgisters.DailyRegister,
+  dc__gender__F__gestatational_diabetes_mellitus: Moh740Rgisters.DailyRegister,
+  gestatational_diabetes_mellitus:Moh740Rgisters.DailyRegister,
 };
 
 export function getRegisterByIndicator(indicator: keyof Moh740Data){

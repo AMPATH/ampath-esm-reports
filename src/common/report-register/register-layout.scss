@@ -109,6 +109,7 @@
 .period {
   @include type.type-style('label-01');
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: layout.$spacing-02;
   color: $text-02;
@@ -117,6 +118,15 @@
     fill: var(--brand-01);
     transform: translateY(0.125rem);
   }
+}
+
+/* Location sits after the period as one unit, so on a narrow screen it wraps
+   to its own line whole rather than leaving its pin behind */
+.location {
+  display: inline-flex;
+  align-items: center;
+  gap: layout.$spacing-02;
+  margin-left: layout.$spacing-03;
 }
 
 .export {

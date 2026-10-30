@@ -1,0 +1,247 @@
+@use '@carbon/layout';
+@use '@carbon/type';
+@use '@openmrs/esm-styleguide/src/vars' as *;
+
+/* The Summary tab: the report regrouped into compact tables with totals, a tab
+ * per section. Same light rules and panel fill as the rest of the report. */
+
+.summary {
+  --summary-grid: #e2e2e2;
+}
+
+/* Section tabs, with the codes switch and the export on the same line */
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: layout.$spacing-03;
+  border-bottom: 1px solid $ui-03;
+}
+
+.sectionTabs {
+  flex: 0 1 auto;
+  width: auto;
+  min-width: 0;
+  margin-bottom: -1px;
+}
+
+.tools {
+  display: flex;
+  align-items: center;
+  gap: layout.$spacing-03;
+  padding-bottom: layout.$spacing-02;
+}
+
+.panel {
+  padding: layout.$spacing-04 0 0;
+}
+
+/* Headline totals: one slim line */
+.strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: layout.$spacing-03;
+  margin-bottom: layout.$spacing-04;
+}
+
+.headline {
+  display: inline-flex;
+  align-items: baseline;
+  gap: layout.$spacing-03;
+  padding: layout.$spacing-02 layout.$spacing-04;
+  background-color: $ui-02;
+  border: 1px solid $ui-03;
+  cursor: pointer;
+
+  &:hover {
+    border-color: var(--cds-link-primary, #0f62fe);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--cds-focus, #0f62fe);
+    outline-offset: -2px;
+  }
+}
+
+.headlineLabel {
+  @include type.type-style('label-01');
+  color: $text-02;
+}
+
+.headlineValue {
+  @include type.type-style('productive-heading-03');
+  color: $color-gray-100;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Sub-sections side by side where there is room, one per row on a phone */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 26rem), 1fr));
+  gap: layout.$spacing-04;
+  align-items: start;
+}
+
+.card {
+  padding: layout.$spacing-04;
+  background-color: $ui-02;
+  border: 1px solid $ui-03;
+  min-width: 0;
+}
+
+.cardTitle {
+  @include type.type-style('heading-compact-01');
+  margin-bottom: layout.$spacing-03;
+  color: $color-gray-100;
+}
+
+.note {
+  @include type.type-style('helper-text-01');
+  margin: -(layout.$spacing-02) 0 layout.$spacing-03;
+  color: $text-02;
+}
+
+.tableTitle {
+  @include type.type-style('label-01');
+  margin: layout.$spacing-04 0 layout.$spacing-02;
+  color: $text-02;
+}
+
+.tableScroll {
+  overflow-x: auto;
+}
+
+/* tables stacked in one card (3.5's two splits) stand apart */
+.tableScroll + .tableScroll {
+  margin-top: layout.$spacing-06;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+
+  th,
+  td {
+    padding: 0.3125rem 0.5rem;
+    text-align: right;
+    white-space: nowrap;
+    border-bottom: 1px solid var(--summary-grid);
+  }
+
+  thead th {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: $text-02;
+    background-color: var(--cds-layer-01, #f4f4f4);
+  }
+
+  tbody tr:hover td,
+  tbody tr:hover th {
+    background-color: $brand-primary-10;
+  }
+
+  /* Total row: bold, set off by a double rule */
+  tfoot th,
+  tfoot td {
+    font-weight: 600;
+    border-top: 3px double #b8b8b8;
+    border-bottom: none;
+  }
+}
+
+/* The row labels stay in view when a wide table scrolls sideways */
+.labelCol {
+  position: sticky;
+  left: 0;
+  width: 1%;
+  text-align: left !important;
+  font-weight: 400;
+  color: $color-gray-100;
+  background-color: $ui-02;
+}
+
+thead .labelCol {
+  background-color: var(--cds-layer-01, #f4f4f4);
+}
+
+.totalCol {
+  font-weight: 600;
+  background-color: var(--cds-layer-01, #f4f4f4);
+}
+
+/* A table with no breakdown: the labels take the width, the figures a narrow column */
+.single .labelCol {
+  width: auto;
+}
+
+.single .totalCol {
+  width: 6rem;
+}
+
+.group {
+  color: $text-02;
+}
+
+/* Rows shown for reference, never added into the total */
+.ofWhich .labelCol {
+  padding-left: layout.$spacing-05;
+  font-style: italic;
+}
+
+.excluded .labelCol {
+  color: $text-02;
+}
+
+/* A figure: its value, opening its linelist; its MOH code when codes are shown */
+.value {
+  display: inline-flex;
+  align-items: baseline;
+  gap: layout.$spacing-02;
+  padding: 0;
+  font: inherit;
+  font-weight: inherit;
+  color: var(--cds-link-primary, #0f62fe);
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--cds-focus, #0f62fe);
+    outline-offset: 2px;
+  }
+}
+
+.zero {
+  color: $text-02;
+}
+
+.strong {
+  font-weight: 600;
+}
+
+.code {
+  font-size: 0.6875rem;
+  font-weight: 400;
+  color: $text-02;
+}
+
+.none {
+  color: $text-02;
+}
+
+@media (max-width: $breakpoint-phone-max) {
+  .tools {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

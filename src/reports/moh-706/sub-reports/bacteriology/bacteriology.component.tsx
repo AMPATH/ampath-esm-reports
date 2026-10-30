@@ -25,14 +25,14 @@ const Bacteriology: React.FC<BacteriologyProps> = ({ data, locationUuids, startD
                 ]
             },
             { tableCells: [getCell("", "5.1 Urine"), getCell(), getCell(), getCell()] },
-            { tableCells: [getCell("", "5.2 Pus swabs"), getCell(), getCell(), getCell()] },
+            { tableCells: [getCell("", "5.2 Pus swabs"), getCell("total_bact_pus_swab"), getCell(), getCell()] },
             { tableCells: [getCell("", "5.3 High Vaginal Swabs"), getCell(), getCell(), getCell()] },
-            { tableCells: [getCell("", "5.4 Throat swab"), getCell(), getCell(), getCell()] },
-            { tableCells: [getCell("", "5.5 Rectal swab"), getCell(), getCell(), getCell()] },
-            { tableCells: [getCell("", "5.6 Blood"), getCell(), getCell(), getCell()] },
-            { tableCells: [getCell("", "5.7 Water"), getCell(), getCell(), getCell()] },
-            { tableCells: [getCell("", "5.8 Food"), getCell(), getCell(), getCell()] },
-            { tableCells: [getCell("", "5.9 Urethral swabs"), getCell(), getCell(), getCell()] },
+            { tableCells: [getCell("", "5.4 Throat swab"), getCell("total_bact_throat_swab"), getCell(), getCell()] },
+            { tableCells: [getCell("", "5.5 Rectal swab"), getCell("total_bact_rectal_swab"), getCell(), getCell()] },
+            { tableCells: [getCell("", "5.6 Blood"), getCell("total_bact_blood"), getCell(), getCell()] },
+            { tableCells: [getCell("", "5.7 Water"), getCell("total_bact_water"), getCell(), getCell()] },
+            { tableCells: [getCell("", "5.8 Food"), getCell("total_bact_food"), getCell(), getCell()] },
+            { tableCells: [getCell("", "5.9 Urethral swabs"), getCell("total_bact_urethral"), getCell(), getCell()] },
             {
                 tableCells: [
                     getCell("", "Bacterial enteric pathogens", 2, 1, true),
@@ -54,9 +54,9 @@ const Bacteriology: React.FC<BacteriologyProps> = ({ data, locationUuids, startD
                 ]
             },
             { tableCells: [getCell("", "5.11 Salmonella typhi", 3), getCell("positive_salmonella")] },
-            { tableCells: [getCell("", "5.12 Shigella - dysenteriae type1", 3), getCell()] },
-            { tableCells: [getCell("", "5.13 E. coli O157:H7", 3), getCell()] },
-            { tableCells: [getCell("", "5.14 V. cholerae O1", 3), getCell()] },
+            { tableCells: [getCell("", "5.12 Shigella - dysenteriae type1", 3), getCell("positive_bact_shigella_dysenteriae1")] },
+            { tableCells: [getCell("", "5.13 E. coli O157:H7", 3), getCell("positive_bact_ecoli_o157")] },
+            { tableCells: [getCell("", "5.14 V. cholerae O1", 3), getCell("positive_bact_v_cholerae_o1")] },
             { tableCells: [getCell("", "5.15 V. cholerae O139", 3), getCell()] },
 
             {
@@ -73,7 +73,7 @@ const Bacteriology: React.FC<BacteriologyProps> = ({ data, locationUuids, startD
             {
                 tableCells: [
                     getCell("", "5.16 CSF"),
-                    getCell(),
+                    getCell("total_bact_csf"),
                     getCell(),
                     getCell(),
                 ]
@@ -84,21 +84,21 @@ const Bacteriology: React.FC<BacteriologyProps> = ({ data, locationUuids, startD
                     getCell("", "Number Positive", 3, 1, true),
                 ]
             },
-            { tableCells: [getCell("", "5.17 Neisseria meningitidis A"), getCell("", "", 3)] },
-            { tableCells: [getCell("", "5.18 Neisseria meningitidis B"), getCell("", "", 3)] },
-            { tableCells: [getCell("", "5.19 Neisseria meningitidis C"), getCell("", "", 3)] },
-            { tableCells: [getCell("", "5.20 Neisseria meningitidis W135"), getCell("", "", 3)] },
+            { tableCells: [getCell("", "5.17 Neisseria meningitidis A"), getCell("positive_bact_men_a", "", 3)] },
+            { tableCells: [getCell("", "5.18 Neisseria meningitidis B"), getCell("positive_bact_men_b", "", 3)] },
+            { tableCells: [getCell("", "5.19 Neisseria meningitidis C"), getCell("positive_bact_men_c", "", 3)] },
+            { tableCells: [getCell("", "5.20 Neisseria meningitidis W135"), getCell("positive_bact_men_w135", "", 3)] },
             { tableCells: [getCell("", "5.21 Neisseria meningitidis X"), getCell("", "", 3)] },
-            { tableCells: [getCell("", "5.22 Neisseria meningitidis Y"), getCell("", "", 3)] },
-            { tableCells: [getCell("", "5.23 Neisseria meningitidis (indeterminate)"), getCell("", "", 3)] },
-            { tableCells: [getCell("", "5.24 Streptococcus pneumoniae"), getCell("", "", 3)] },
-            { tableCells: [getCell("", "5.25 Haemophilus influenzae (type b)"), getCell("", "", 3)] },
+            { tableCells: [getCell("", "5.22 Neisseria meningitidis Y"), getCell("positive_bact_men_y", "", 3)] },
+            { tableCells: [getCell("", "5.23 Neisseria meningitidis (indeterminate)"), getCell("positive_bact_men_indeterminate", "", 3)] },
+            { tableCells: [getCell("", "5.24 Streptococcus pneumoniae"), getCell("positive_bact_strep_pneumoniae", "", 3)] },
+            { tableCells: [getCell("", "5.25 Haemophilus influenzae (type b)"), getCell("positive_bact_h_influenzae_b", "", 3)] },
             { tableCells: [getCell("", "5.26 Cryptococcal Meningitis"), getCell("", "", 3)] },
             {
                 tableCells: [getCell("", "Bacterial Pathogens from other types of specimen", 4, 1, true)]
             },
-            { tableCells: [getCell("", "5.27 B. anthracis"), getCell("", "", 3)] },
-            { tableCells: [getCell("", "5.28 Y. pestis"), getCell("", "", 3)] },
+            { tableCells: [getCell("", "5.27 B. anthracis"), getCell("positive_bact_b_anthracis", "", 3)] },
+            { tableCells: [getCell("", "5.28 Y. pestis"), getCell("positive_bact_y_pestis", "", 3)] },
             { tableCells: [getCell("", "TB SPUTUM", 4)] },
             {
                 tableCells: [
@@ -107,11 +107,11 @@ const Bacteriology: React.FC<BacteriologyProps> = ({ data, locationUuids, startD
                     getCell("", "Number Positive", 1, 1, true),
                 ]
             },
-            { tableCells: [getCell("", "5.29 Total TB smears"), getCell(), getCell()] },
-            { tableCells: [getCell("", "5.30 New presumptive TB cases"), getCell(), getCell()] },
-            { tableCells: [getCell("", "5.31 TB Follow up"), getCell(), getCell()] },
+            { tableCells: [getCell("", "5.29 Total TB smears"), getCell("total_tb_smear"), getCell("positive_tb_smear")] },
+            { tableCells: [getCell("", "5.30 New presumptive TB cases"), getCell("total_tb_sputum_new"), getCell("positive_tb_sputum_new")] },
+            { tableCells: [getCell("", "5.31 TB Follow up"), getCell("total_tb_sputum_followup"), getCell("positive_tb_sputum_followup")] },
             { tableCells: [getCell("", "5.32 Rifampicin Resistant TB"), getCell(), getCell()] },
-            { tableCells: [getCell("", "5.33 MDR TB"), getCell(), getCell()] },
+            { tableCells: [getCell("", "5.33 MDR TB"), getCell("total_tb_sputum_mdr"), getCell("positive_tb_sputum_mdr")] },
         ]
     }, []);
 

@@ -1,0 +1,282 @@
+@use '@carbon/layout';
+@use '@openmrs/esm-styleguide/src/vars' as *;
+
+/* The TB4 Notification and Treatment Register (MOH/REG/DLTLDP/01) as A3
+   landscape pages, drawn in the units the paper is measured in (mm, pt) so a
+   page is one sheet, as on pages 8 and 9 of the form: the two facing pages of
+   each spread, five patients to a page, with the keys beneath. Each patient's
+   row is divided inside as printed (nationality over number, weight beside
+   height over BMI and MUAC, …), drawn as stacks of fixed fractions of the row
+   so every page keeps the form's proportions. */
+
+/* On screen a page is the printable area only, A3 landscape less its 8mm
+   margins: the card around it gives the margin, and `usePageScale` is told
+   this width. */
+$page-w: 420mm - 2 * 8mm;
+$page-h: 297mm - 2 * 8mm;
+
+$ink: #000;
+$rule: 0.6pt solid #555;
+$frame: 1.2pt solid $ink;
+$key-fill: #d6e3bc; // the keys' headings
+
+$heading-h: 42mm;
+$row-h: 32mm;
+
+/* The card the pages sit in, drawn like the filter card above it */
+.reportFrame {
+  margin: layout.$spacing-05 0 layout.$spacing-07;
+  padding: layout.$spacing-05;
+  background-color: $ui-02;
+  border: 1px solid $ui-03;
+}
+
+/* The two facing pages as tabs, under the filters */
+.sheetTabs {
+  margin-top: layout.$spacing-05;
+}
+
+.sheetPanel {
+  padding: 0;
+}
+
+/* Holds the fixed-width pages without making the app scroll sideways */
+.viewport {
+  display: flex;
+  flex-direction: column;
+  gap: layout.$spacing-09;
+  overflow-x: auto;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  flex: none;
+  box-sizing: border-box;
+  width: $page-w;
+  height: $page-h;
+  margin: 0 auto;
+  color: $ink;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 7pt;
+  line-height: 1.15;
+  background-color: #fff;
+  /* set by `usePageScale` from the measured container width, floored at 1 */
+  zoom: var(--page-zoom, 1);
+}
+
+.register {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border: $frame;
+
+  th,
+  td {
+    padding: 0;
+    overflow: hidden;
+    border: $rule;
+  }
+
+  th {
+    padding: 0.8mm 0.8mm;
+    font-size: 6.5pt;
+    font-weight: 400;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  /* each patient's row is ruled off heavier, as printed */
+  tbody tr {
+    height: $row-h;
+    border-top: $frame;
+  }
+
+  td {
+    height: $row-h;
+    vertical-align: middle;
+  }
+}
+
+/* the column letter, bold over its heading */
+.letter {
+  display: block;
+  font-weight: 700;
+  text-align: center;
+}
+
+.centreHeading {
+  text-align: center !important;
+}
+
+.boldHeading {
+  font-weight: 700 !important;
+  text-align: center !important;
+}
+
+/* the small headings under the imaging column */
+.tinyHeading {
+  font-size: 5pt !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+/* the months of the drug collection grid */
+.monthHeading {
+  padding: 0 !important;
+  font-size: 5.5pt !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+/* A whole cell's entry */
+.value {
+  display: block;
+  padding: 0.6mm 0.8mm;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.valueLeft {
+  text-align: left;
+}
+
+/* names, addresses and remarks wrap within their cell */
+.wrap {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 6;
+}
+
+/* A divided cell: parts stacked down the row's height, each holding one or
+   more boxes side by side */
+.stack {
+  display: grid;
+  height: $row-h;
+}
+
+.part {
+  display: flex;
+  min-height: 0;
+  border-top: $rule;
+
+  &:first-child {
+    border-top: none;
+  }
+}
+
+.box {
+  position: relative;
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  padding: 0 0.6mm;
+  overflow: hidden;
+  text-align: center;
+  border-left: $rule;
+
+  &:first-child {
+    border-left: none;
+  }
+}
+
+/* a printed label filling its box: "Nationality", "Outcome", "R", … */
+.heading {
+  font-size: 6.5pt;
+  font-weight: 700;
+}
+
+/* a printed label in the corner of a box that is also written in: "BMI/Z score", "MUAC" */
+.tag {
+  position: absolute;
+  top: 0.6mm;
+  left: 0.6mm;
+  font-size: 4.8pt;
+  font-weight: 700;
+}
+
+.boxValue {
+  overflow-wrap: anywhere;
+}
+
+/* An initial phase collection (W): its date written up the narrow column */
+.collection {
+  text-align: center;
+}
+
+.vertical {
+  display: inline-block;
+  font-size: 6pt;
+  white-space: nowrap;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+/* The keys beneath the register, spaced across the sheet as on the form */
+
+.keys {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 4mm;
+  margin-top: 4mm;
+}
+
+.keyTitle {
+  margin: 0 0 1.5mm;
+  font-size: 10pt;
+  font-weight: 700;
+}
+
+.keyColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.keyTable {
+  border-collapse: collapse;
+  font-size: 6.8pt;
+  line-height: 1.12;
+
+  th,
+  td {
+    padding: 0.6mm 1.2mm;
+    text-align: left;
+    vertical-align: middle;
+    border: 0.6pt solid #7f7f7f;
+  }
+
+  thead th {
+    font-size: 7.2pt;
+    font-weight: 700;
+    text-align: center;
+    background-color: $key-fill;
+  }
+
+  td {
+    height: 4.6mm;
+  }
+}
+
+/* a heading within a key, e.g. "CT - Scan", "Comorbidities" */
+.keySubheading td {
+  font-weight: 700;
+}
+
+.leftHeadingKey thead th {
+  text-align: left;
+}
+
+.pageFoot {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 1.5mm;
+  font-size: 7.5pt;
+}

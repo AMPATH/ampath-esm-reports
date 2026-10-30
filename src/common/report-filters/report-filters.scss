@@ -32,7 +32,6 @@
   padding: layout.$spacing-04 layout.$spacing-05;
   background-color: $ui-02;
   border: 1px solid $ui-03;
-  border-left: layout.$spacing-02 solid var(--brand-01);
 }
 
 .fields {
@@ -107,9 +106,13 @@
 }
 
 /* Carbon pins `inline-size: 143.5px` on both the container and the input in
-   range mode. Overridden through the range class so this wins on specificity
-   rather than on stylesheet order. */
-.fields .datePicker:global(.cds--date-picker--range) {
+   range mode, so the two dates never fill the field. `.datePicker` lands on
+   the form-item wrapper, not on the range element itself, so the range is
+   matched as its descendant. */
+.fields .datePicker :global(.cds--date-picker--range) {
+  gap: layout.$spacing-05;
+  width: 100%;
+
   :global(.cds--date-picker-container) {
     flex: 1 1 0;
     inline-size: auto;
@@ -136,18 +139,26 @@
 
 .summary {
   @include type.type-style('body-short-01');
-  display: inline-flex;
-  align-items: center;
+  display: flex;
+  flex: 1 1 18rem;
+  align-items: flex-start;
   gap: layout.$spacing-03;
+  min-width: 0;
+  margin: 0;
   color: $text-02;
 
+  /* level with the first line however many lines the message wraps to */
   svg {
+    flex-shrink: 0;
+    margin-top: 0.0625rem;
     fill: var(--brand-01);
   }
 
+  /* a period such as "01 Sep 2026 to 30 Sep 2026" never breaks mid-range */
   strong {
     color: $color-gray-100;
     font-weight: 600;
+    white-space: nowrap;
   }
 }
 
@@ -202,15 +213,69 @@
   }
 }
 
-/* The filters no longer match the report on screen. Warning-toned rather than
-   error-toned: nothing is wrong, the figures are simply for another period. */
+/* The filters no longer match the report on screen. A quiet note rather than
+   a banner, in smaller italic type: nothing is wrong, the figures are simply
+   for another period. Warning-toned rather than error-toned. */
 
 .summaryStale {
-  padding: layout.$spacing-02 layout.$spacing-03;
-  color: $color-gray-100;
-  background-color: $warning-background;
+  @include type.type-style('label-01');
+  align-items: center;
+  font-style: italic;
+  color: $text-02;
 
   svg {
-    fill: $color-gray-70;
+    width: 0.875rem;
+    height: 0.875rem;
+    margin-top: 0;
+    fill: #b28600; // Carbon yellow 50: the warning hue, legible on white
+  }
+
+  strong {
+    font-weight: 600;
+  }
+}
+
+/* Stacked fields fill the card. The desktop caps above (a year box no wider
+   than a year needs) would otherwise leave each stacked field a different,
+   arbitrary width. Placed after them so it wins at equal specificity. */
+@media (max-width: $breakpoint-tablet-max) {
+  .fields .periodField,
+  .fields .yearField,
+  .fields .monthField,
+  .fields .rangeField {
+    max-width: none;
+  }
+
+  /* Carbon caps buttons at 20rem; sharing the row, they should split it */
+  .actionButtons :global(.cds--btn) {
+    max-width: none;
+  }
+}
+
+/* Phones: one column throughout. Side by side, "Download PDF" and "Generate
+   report" each wrapped onto two lines and together overran the card. */
+@media (max-width: $breakpoint-phone-max) {
+  .filtersContainer {
+    padding: layout.$spacing-04;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* Its flex basis is a width on the row; stacked, it would become a height */
+  .summary {
+    flex: none;
+  }
+
+  .actionButtons {
+    flex-direction: column;
+    align-items: stretch;
+
+    :global(.cds--btn) {
+      flex: none;
+      width: 100%;
+    }
   }
 }

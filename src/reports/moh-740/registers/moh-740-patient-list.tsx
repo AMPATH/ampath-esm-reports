@@ -30,42 +30,7 @@ const Moh740PatientList: React.FC<Moh740PatientListProps> = ({
 
   const isDaily = register === Moh740Rgisters.DailyRegister;
 
-  useEffect(() => {
-    if (locationUuid && reportingMonth && indicators) {
-      fethPatientList();
-    }
-  }, [locationUuid, reportingMonth, indicators, register]);
 
-  async function fethPatientList() {
-    setIsLoading(true);
-
-    try {
-      const resp = await fetchMoh740Register({
-        locationUuid: locationUuid,
-        endDate: reportingMonth,
-        indicators: indicators,
-      });
-
-      if (resp) {
-        if (register === Moh740Rgisters.DailyRegister) {
-          setMoh222PatientList(resp as any);
-          setMoh270PatientList([]);
-        }
-        if (register === Moh740Rgisters.PermanentRegister) {
-          setMoh270PatientList(resp);
-          setMoh222PatientList([]);
-        }
-      }
-    } catch (error) {
-      /* Without this a failed fetch left an empty list, which reads on screen
-         as "no clients matched" rather than as a request that did not land. */
-      setMoh222PatientList([]);
-      setMoh270PatientList([]);
-      showReportError('the register', error);
-    } finally {
-      setIsLoading(false);
-    }
-  }
 
   if (!locationUuid || !reportingMonth || !indicators) {
     return <></>;
@@ -84,9 +49,9 @@ const Moh740PatientList: React.FC<Moh740PatientListProps> = ({
       fetchAll={async () => rows}
     >
       {isDaily ? (
-        <Moh222DailyRegister moh222PatientList={moh222PatientList} />
+        <Moh222DailyRegister/>
       ) : (
-        <Moh270DailyRegister moh270PatientList={moh270patientList} />
+        <Moh270DailyRegister/>
       )}
     </RegisterLayout>
   );

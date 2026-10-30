@@ -1,6 +1,7 @@
 import React from 'react';
 import { Layer } from '@carbon/react';
-import { Report } from '@carbon/react/icons';
+import { Location, Report } from '@carbon/react/icons';
+import { useSession } from '@openmrs/esm-framework';
 
 import styles from './report-placeholder.scss';
 
@@ -9,6 +10,8 @@ interface ReportPlaceholderProps {
   reportName?: string;
   /** Shown when a report was generated but came back with nothing in it */
   isEmptyResult?: boolean;
+  /** A report was generated, but for another location than the current one */
+  isLocationChanged?: boolean;
 }
 
 /**
@@ -20,37 +23,59 @@ interface ReportPlaceholderProps {
  * run this yet", so the template is held back until there is data to put in it.
  * That leaves the page empty, hence the guidance here.
  */
-const ReportPlaceholder: React.FC<ReportPlaceholderProps> = ({ reportName, isEmptyResult = false }) => (
-  <Layer className={styles.placeholder}>
-    <Report size={32} className={styles.icon} />
+const ReportPlaceholder: React.FC<ReportPlaceholderProps> = ({
+  reportName,
+  isEmptyResult = false,
+  isLocationChanged = false,
+}) => {
+  const session = useSession();
+  const location = session?.sessionLocation?.display;
 
-    {isEmptyResult ? (
-      <>
-        <h5>No records for this period</h5>
-        <p>
-          {reportName ?? 'The report'} ran successfully but returned no data for the period you selected. Try a
-          different reporting period, or confirm that data has been entered for this facility.
-        </p>
-      </>
-    ) : (
-      <>
-        <h5>No report generated yet</h5>
-        <p>
-          {reportName ? `The ${reportName} form` : 'The report'} will appear here, filled in with your facility&rsquo;s
-          figures, once you generate it.
-        </p>
-        <ol className={styles.steps}>
-          <li>Choose the reporting period in the filters above.</li>
-          <li>
-            Select <strong>Generate report</strong>.
-          </li>
-          <li>
-            Use <strong>Download PDF</strong> to save or print the completed form.
-          </li>
-        </ol>
-      </>
-    )}
-  </Layer>
-);
+  return (
+    <Layer className={styles.placeholder}>
+      {isLocationChanged ? (
+        <Location size={32} className={styles.icon} />
+      ) : (
+        <Report size={32} className={styles.icon} />
+      )}
+
+      {isLocationChanged ? (
+        <>
+          <h5>Location changed</h5>
+          <p>
+            The last {reportName ?? 'report'} was generated for a different location, so it is not shown here. Select{' '}
+            <strong>Generate report</strong> to produce it for{' '}
+            {location ? <strong>{location}</strong> : 'this location'}.
+          </p>
+        </>
+      ) : isEmptyResult ? (
+        <>
+          <h5>No records for this period</h5>
+          <p>
+            {reportName ?? 'The report'} ran successfully but returned no data for the period you selected. Try a
+            different reporting period, or confirm that data has been entered for this facility.
+          </p>
+        </>
+      ) : (
+        <>
+          <h5>No report generated yet</h5>
+          <p>
+            {reportName ? `The ${reportName} form` : 'The report'} will appear here, filled in with your
+            facility&rsquo;s figures, once you generate it.
+          </p>
+          <ol className={styles.steps}>
+            <li>Choose the reporting period in the filters above.</li>
+            <li>
+              Select <strong>Generate report</strong>.
+            </li>
+            <li>
+              Use <strong>Download PDF</strong> to save or print the completed form.
+            </li>
+          </ol>
+        </>
+      )}
+    </Layer>
+  );
+};
 
 export default ReportPlaceholder;

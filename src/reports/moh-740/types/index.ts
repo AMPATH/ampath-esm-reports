@@ -145,6 +145,8 @@ export type Moh740Data = {
   dc__gender__F__on_antihypertensives_this_month: number;
   dc__gender__M__high_bp:number;
   dc__gender__F__high_bp:number;
+  dc__gender__F__gestatational_diabetes_mellitus: number;
+  gestatational_diabetes_mellitus: number;
 };
 
 export type Moh740Resp = {
@@ -155,6 +157,7 @@ export type Moh270Patient = {
   gender: string;
   amrs_universal_id: string;
   encounter_date: string;
+  rtc_date: string;
   endDate: string;
   covered_by_shif: number;
   patient_uuid: string;

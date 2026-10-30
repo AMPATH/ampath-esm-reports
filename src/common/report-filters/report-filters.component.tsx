@@ -25,6 +25,7 @@ import {
   monthToDateRange,
   validatePeriod,
 } from './date-range';
+import { showReportError } from '../report-error';
 import { type ReportFiltersProps } from './types';
 import styles from './report-filters.scss';
 
@@ -43,6 +44,9 @@ const ReportFiltersComponent: React.FC<ReportFiltersProps> = ({
   generatedPeriod,
   onGenerate,
   onPeriodChange,
+  onDownloadPdf,
+  backLink = { label: 'All reports', to: '/' },
+  defaultTab = 'monthly',
 }) => {
   /* A register's breadcrumb links back here carrying the period the report was
      generated for. Seeding the controls from it matters as much as restoring
@@ -64,8 +68,9 @@ const ReportFiltersComponent: React.FC<ReportFiltersProps> = ({
       ? dayjs(urlStart).format('YYYY-MM')
       : null);
 
+  /* a period in the URL decides; otherwise the report's own default */
   const [activeTab, setActiveTab] = React.useState<'monthly' | 'custom'>(
-    urlStart && urlEnd && !urlWholeMonth ? 'custom' : 'monthly',
+    urlStart && urlEnd ? (urlWholeMonth ? 'monthly' : 'custom') : defaultTab,
   );
 
   const [startDateString, setStartDateString] = React.useState<string>(() => urlStart ?? formatDate(new Date()));
@@ -145,6 +150,22 @@ const ReportFiltersComponent: React.FC<ReportFiltersProps> = ({
         }
       : null);
 
+  const [isPreparingPdf, setIsPreparingPdf] = React.useState(false);
+  const downloadPdf = async () => {
+    if (!onDownloadPdf) {
+      window.print();
+      return;
+    }
+    setIsPreparingPdf(true);
+    try {
+      await onDownloadPdf();
+    } catch (error) {
+      showReportError(`the ${reportName} PDF`, error);
+    } finally {
+      setIsPreparingPdf(false);
+    }
+  };
+
   const isStale = isReportGenerated && shownPeriod !== null && shownPeriod.key !== periodKey;
 
   const handleGenerate = () => {
@@ -198,7 +219,7 @@ const ReportFiltersComponent: React.FC<ReportFiltersProps> = ({
     <div className={styles.filters}>
       <Breadcrumb noTrailingSlash className={styles.breadcrumb}>
         <BreadcrumbItem>
-          <Link to="/">All reports</Link>
+          <Link to={backLink.to}>{backLink.label}</Link>
         </BreadcrumbItem>
         {/* The report name doubles as the page heading, so it stays an `h3`
             rather than being repeated in a separate title row. */}
@@ -278,29 +299,35 @@ const ReportFiltersComponent: React.FC<ReportFiltersProps> = ({
 
         <div className={styles.actions}>
           {/* Restating a period that cannot be generated reads as if it will be,
-              so the blocking reason takes its place. */}
+              so the blocking reason takes its place. Each message is the icon
+              plus one span: left as loose text and <strong> in the flex row,
+              every fragment became a column of its own and wrapped apart. */}
           {isValid && isStale ? (
             <p className={classNames(styles.summary, styles.summaryStale)}>
               <WarningAlt size={16} />
-              Filters changed. The report below is for <strong>{shownPeriod?.label}</strong> &mdash; select Generate
-              report to refresh it.
+              <span>
+                Filters changed. The report below is for <strong>{shownPeriod?.label}</strong> &mdash; select Generate
+                report to refresh it.
+              </span>
             </p>
           ) : isValid ? (
             <p className={styles.summary}>
               <Calendar size={16} />
-              Reporting period: <strong>{period.label}</strong>
+              <span>
+                Reporting period: <strong>{period.label}</strong>
+              </span>
             </p>
           ) : (
             <p className={classNames(styles.summary, styles.summaryInvalid)}>
               <WarningAlt size={16} />
-              {firstError(errors)}
+              <span>{firstError(errors)}</span>
             </p>
           )}
           <div className={styles.actionButtons}>
             {/* Only offered once there is something on screen to put on paper */}
             {isReportGenerated && !isLoading && (
-              <Button kind="tertiary" size="sm" renderIcon={Download} onClick={() => window.print()}>
-                Download PDF
+              <Button kind="tertiary" size="sm" renderIcon={Download} onClick={downloadPdf} disabled={isPreparingPdf}>
+                {isPreparingPdf ? 'Preparing PDF…' : 'Download PDF'}
               </Button>
             )}
             <Button size="sm" renderIcon={ChartColumn} onClick={handleGenerate} disabled={isLoading || !isValid}>

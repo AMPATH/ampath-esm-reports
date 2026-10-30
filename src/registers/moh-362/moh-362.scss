@@ -1,0 +1,11 @@
+@use '@carbon/layout';
+
+/* HTS Lab Register / Referral and Linkage Register tabs, under the filters */
+.sheetTabs {
+  margin-top: layout.$spacing-05;
+}
+
+/* each sheet brings its own frame */
+.sheetPanel {
+  padding: 0;
+}

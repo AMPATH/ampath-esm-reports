@@ -3,10 +3,10 @@ import styles from './moh-740.component.scss';
 import { ReportFiltersComponent, type ReportPeriod, useRestorePeriod } from '../../common/report-filters';
 import { ReportSkeleton } from '../../common/report-skeleton';
 import { ReportPage } from '../../common/report-page';
-import { ReportPlaceholder } from '../../common/report-placeholder';
+import { ReportPlaceholder, useGeneratedLocation } from '../../common/report-placeholder';
 import { showReportError } from '../../common/report-error';
 import { type Moh740Data, type Moh740Dto } from './types';
-import { formatDate, useSession } from '@openmrs/esm-framework';
+import { formatDate, navigate, useSession } from '@openmrs/esm-framework';
 import dayjs from 'dayjs';
 import { fetchMoh740Report } from './moh-740.resource';
 import DataCell from './shared/data-cell/data-cell';
@@ -16,6 +16,8 @@ import classNames from 'classnames';
 interface Moh740ReportProps {}
 const Moh740Report: React.FC<Moh740ReportProps> = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [startDate,setStartDate] = useState<string>('');
+  const [endDate,setEndDate] = useState<string>('');
   const [moh740Data, setMoh740Data] = useState<Moh740Data | null>(null);
   /* Distinguishes "never generated" from "generated and came back empty";
      both leave `moh740Data` null but they are not the same thing to report. */
@@ -30,6 +32,11 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
   const session = useSession();
   const locationUuid = session.sessionLocation?.uuid;
 
+  /* Only a report for the current location counts: after switching location the
+     old figures would otherwise be shown, and labelled, as the new location's. */
+  const { isForCurrentLocation, hasLocationChanged, markGenerated } = useGeneratedLocation();
+  const isReportGenerated = Boolean(moh740Data) && isForCurrentLocation;
+
   /* The masthead names the location the report was generated from, and the
      period it covers; the sign-off records who produced it and when. */
   const facility = session?.sessionLocation?.display ?? moh740Data?.facility ?? '';
@@ -41,11 +48,14 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
   const getMoh740ReportData = async ({ endDate }: ReportPeriod) => {
     setIsLoading(true);
     setReportingMonth(endDate);
+    setStartDate(endDate);
+    setEndDate(endDate);
     try {
       const reportFilters: Moh740Dto = { endDate, locationUuid: locationUuid ?? '' };
       const resp = await fetchMoh740Report(reportFilters);
       setMoh740Data(resp ?? null);
       setHasGenerated(true);
+      markGenerated(reportFilters.locationUuid);
     } catch (error: any) {
       showReportError('the MOH-740 report', error);
     } finally {
@@ -61,11 +71,22 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
     setSelectedIndicator(selectedIndicator);
     const selectedRegister = getRegisterByIndicator(selectedIndicator as any);
     setRegisterType(selectedRegister);
-    setView('register');
+    navigateToRegister(selectedIndicator, selectedRegister);
+    // setView('register');
   };
   const handleBackToReport = () => {
     setView('report');
   };
+   const navigateToRegister = (indicator: string, register: string) => {
+     let baseUrl = '';
+      if(register === Moh740Rgisters.DailyRegister){
+         baseUrl = 'moh-222'
+      }
+      if(register === Moh740Rgisters.PermanentRegister){
+          baseUrl = 'moh-270'
+      }
+      navigate({to:`${window.getOpenmrsSpaBase()}home/reports/${baseUrl}?startDate=${endDate}&endDate=${endDate}&locationUuids=${locationUuid}&indicator=${indicator}&from=moh-740`});
+    };
   return (
     <>
       <div className={styles.reportLayout}>
@@ -78,7 +99,7 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                   mode="both"
                   onGenerate={getMoh740ReportData}
                   isLoading={isLoading}
-                  isReportGenerated={Boolean(moh740Data)}
+                  isReportGenerated={isReportGenerated}
                   onPeriodChange={setSelectedPeriod}
                 />
               </div>
@@ -88,7 +109,7 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                 <ReportSkeleton blocks={3} />
               ) : (
                 <>
-                  {moh740Data ? (
+                  {isReportGenerated ? (
                     <ReportPage>
                       <div className={styles.headerContainer}>
                         <div className={styles.mainTitleBox}>
@@ -440,8 +461,20 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                           <tr>
                             <td className={styles.darkBorder}>No. diagnosed for Gestational Diabetes Mellitus</td>
                             <td className={classNames(styles.darkBorder, styles.bgGrey)}>N/A</td>
-                            <td className={styles.darkBorder}></td>
-                            <td className={styles.darkBorder}></td>
+                            <td className={styles.darkBorder}>
+                               <DataCell
+                                value={moh740Data?.dc__gender__F__gestatational_diabetes_mellitus}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="dc__gender__F__gestatational_diabetes_mellitus"
+                              />
+                            </td>
+                            <td className={styles.darkBorder}>
+                              <DataCell
+                                value={moh740Data?.gestatational_diabetes_mellitus}
+                                indicatorSelected={handleIndicatorSelected}
+                                indicator="gestatational_diabetes_mellitus"
+                              />
+                            </td>
                           </tr>
                           <tr>
                             <td className={styles.darkBorder}>No. of Diabetes secondary to other causes</td>
@@ -1186,7 +1219,7 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                             </td>
                           </tr>
                           <tr>
-                            <td className={styles.darkBorder}>No. enrolled with NHIF</td>
+                            <td className={styles.darkBorder}>No. enrolled with SHA</td>
                             <td className={styles.darkBorder}>
                               <DataCell
                                 value={moh740Data?.dc__gender__M__covered_by_shif}
@@ -1275,7 +1308,11 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                       </div>
                     </ReportPage>
                   ) : (
-                    <ReportPlaceholder reportName="MOH-740" isEmptyResult={hasGenerated} />
+                    <ReportPlaceholder
+                      reportName="MOH-740"
+                      isEmptyResult={hasGenerated && isForCurrentLocation}
+                      isLocationChanged={hasGenerated && hasLocationChanged}
+                    />
                   )}
                 </>
               )}

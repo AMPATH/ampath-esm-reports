@@ -47,8 +47,16 @@ export const MOH_240_TEXT_KEYS = ['lab_no', 'opd_ip_ref_no', 'telephone_number',
 /**
  * Prose columns allowed to wrap on screen; everything else stays `nowrap` so
  * one long value cannot stretch the 27-column row past the fold.
+ * `results` wraps because full-panel rows (v1.2) compose every analyte,
+ * including 'Not done' placeholders, into one long string.
  */
-export const MOH_240_WRAP_KEYS = ['clinical_diagnosis', 'type_of_specimen', 'referrals', 'comments'];
+export const MOH_240_WRAP_KEYS = [
+  'clinical_diagnosis',
+  'type_of_specimen',
+  'referrals',
+  'comments',
+  'results',
+];
 
 /**
  * The results column carries whichever indicator the drill-down was opened for,

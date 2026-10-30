@@ -44,6 +44,8 @@
   "dependencies": {
     "@carbon/react": "^1.83.0",
     "classname": "^0.0.0",
+    "html-to-image": "1.11.11",
+    "jspdf": "^4.2.1",
     "lodash-es": "^4.17.21"
   },
   "peerDependencies": {

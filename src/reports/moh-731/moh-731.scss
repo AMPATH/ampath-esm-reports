@@ -1,3 +1,4 @@
+@use '@carbon/layout';
 @use '@openmrs/esm-styleguide/src/vars' as *;
 
 /* A replica of the printed MOH 731 (Ver. July 2023) facility summary sheet,
@@ -41,6 +42,29 @@ $label-gap: 4mm; // between a row label and its first code
 $label-w: 36mm;
 $section-gap: 0.8mm; // around a divider
 
+/* Form / Summary tabs, between the filters and the panels */
+.tabList {
+  margin-top: layout.$spacing-05;
+}
+
+/* Each tab's panel brings its own spacing: both sit in the report card */
+.formPanel,
+.summaryPanel {
+  padding: 0;
+}
+
+/* The card the sheet sits in, drawn like the filter card above it (same rule
+   and fill) so the report reads as the second panel of one page.
+   It wraps `.viewport` rather than styling it: the page is scaled to the
+   viewport's width, so padding there would push the sheet into a scrollbar. */
+.reportFrame {
+  /* clear of the foot of the page when scrolled to the end */
+  margin: layout.$spacing-05 0 layout.$spacing-07;
+  padding: layout.$spacing-05;
+  background-color: $ui-02;
+  border: 1px solid $ui-03;
+}
+
 /* Holds the fixed-width page without making the app scroll sideways.
 
    No padding of its own: vertical padding here is dead space, and horizontal
@@ -52,17 +76,19 @@ $section-gap: 0.8mm; // around a divider
   overflow-x: auto;
 }
 
+/* On screen the sheet sits inside `.reportFrame`, whose padding is the margin:
+   drawn as a separate shadowed page with its own 8mm margins, it sat further
+   in from the card's edge than any other panel's content does. So the screen
+   sheet is the printable area only -- A4 less its margins, which `@page` puts
+   back for print -- and `usePageScale` is told that width. */
 .form {
   box-sizing: border-box;
-  width: $page-w;
-  min-height: $page-h;
-  padding: $page-margin;
+  width: $page-w - 2 * $page-margin;
   margin: 0 auto;
   color: $ink;
   font-size: $text;
   line-height: 1.15;
   background-color: #fff;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
   /* Set by `usePageScale` from the measured container width, floored at 1 so
      the sheet is never drawn smaller than the paper. Reset to 1 for print. */
   zoom: var(--page-zoom, 1);
@@ -188,6 +214,12 @@ $section-gap: 0.8mm; // around a divider
   display: flex;
   align-items: stretch;
   border-bottom: $rule;
+
+  /* the sheet's own border closes the last section; a second rule there
+     doubles the line */
+  &:last-child {
+    border-bottom: none;
+  }
 }
 
 .flexColumn {
@@ -426,6 +458,24 @@ $section-gap: 0.8mm; // around a divider
 
   .viewport {
     overflow: visible;
+  }
+
+  /* Download PDF prints the form whichever tab is open */
+  .tabList,
+  .summaryPanel {
+    display: none !important;
+  }
+
+  .formPanel[hidden] {
+    display: block !important;
+  }
+
+  /* the card is screen chrome; the printout is the bare sheet */
+  .reportFrame {
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
   }
 
   .form {

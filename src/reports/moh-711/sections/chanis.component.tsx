@@ -1,15 +1,38 @@
 import React from 'react';
+import { Button } from '@carbon/react';
+import { useNavigate } from 'react-router-dom';
 
 import styles from '../moh711.scss';
 import classNames from 'classnames';
 
 interface ChanisComponentProps {
   moh711Data: any;
+  startDate: string;
+  endDate: string;
+  locationUuids: string;
 }
 
-const ChanisComponent: React.FC<ChanisComponentProps> = ({ moh711Data }) => {
+const ChanisComponent: React.FC<ChanisComponentProps> = ({ moh711Data, startDate, endDate, locationUuids }) => {
+  const navigate = useNavigate();
+
+  const openRegister = () => {
+    const params = new URLSearchParams({
+      startDate,
+      endDate,
+      locationUuids,
+      from: 'moh-711',
+    });
+
+    navigate(`/moh-407-register?${params}`, {
+      state: { from: '/moh-711', reportName: 'moh711Report' },
+    });
+  };
+
   return (
     <div className={styles.section}>
+      <Button kind="ghost" size="sm" onClick={openRegister}>
+        Open MOH 407 Register
+      </Button>
       <table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
         <thead>
           <tr>

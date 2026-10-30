@@ -1,61 +1,128 @@
-import { Table, TableBody, TableHead, TableHeader, TableRow } from '@carbon/react';
-import React from 'react';
+import { Button, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@carbon/react';
+import React, { useEffect, useState } from 'react';
 
 import styles from '../../../common/report-register/register-table.scss';
+import { Download } from '@carbon/react/icons';
+import moh412Styles from './moh-412-register.component.scss';
 import classNames from 'classnames';
 import { useSearchParams } from 'react-router-dom';
 import { moh412Columns } from './type';
-import { getMoh412PatientList } from '../../../resources/moh-745.resource';
+import { fetchMoh745PatientList, getMoh412PatientList } from '../../../resources/moh-745.resource';
 import { moh412ExportColumns } from './moh-412.columns';
-import { RegisterLayout, usePatientList } from '../../../common/report-register';
+import { columnsToCsv, downloadCsv, RegisterLayout, usePatientList } from '../../../common/report-register';
+import ReportFiltersComponent from '../../../common/report-filters/report-filters.component';
+import { showReportError } from '../../../common/report-error/show-report-error';
+import { type ReportPeriod } from '../../../common/report-filters/types';
+import { useSession } from '@openmrs/esm-framework';
+import dayjs from 'dayjs';
+import { useGeneratedLocation } from '../../../common/report-placeholder/use-generated-location';
 
 const Moh412Register: React.FC = () => {
+  const [rows, setRows] = useState<any[]>([]);
+  const [isExporting, setIsExporting] = useState(false);
   const [searchParams] = useSearchParams();
+  const startDate = searchParams.get('startDate') ?? '';
+  const endDate = searchParams.get('endDate') ?? '';
+  const locationUuids = searchParams.get('locationUuids') ?? '';
+  const indicators = searchParams.get('indicators') ?? '';
+  const [patientList,setPatientList] = useState<any>([]);
+  const [isLoading,setIsLoading] = useState<boolean>(false);
+  const [period, setPeriod] = useState<{ startDate: string; endDate: string }>({ startDate: '', endDate: '' });
+  const session = useSession();
+  const { isForCurrentLocation, hasLocationChanged, markGenerated } = useGeneratedLocation('moh412Location');
+  const isGenerated = rows !== null && isForCurrentLocation;
+   const columns = moh412ExportColumns;
 
-  const startDate = searchParams.get('startDate');
-  const endDate = searchParams.get('endDate');
-  const locationUuids = searchParams.get('locationUuids');
-  const indicator = searchParams.get('indicator');
+  useEffect(()=>{
+     if(startDate && endDate && locationUuids && indicators){
+         fetchPatientList();
+     }
+      
+  },[startDate, endDate, locationUuids, indicators]);
 
-  const {
-    rows: patientlist,
-    total,
-    isTotalExact,
-    isLoading,
-    page,
-    pageSize,
-    onPageChange,
-    fetchAll,
-  } = usePatientList(
-    ({ startIndex, limit }) =>
-      getMoh412PatientList({
+  async function fetchPatientList(){
+      const resp = await fetchMoh745PatientList({
         startDate,
         endDate,
         locationUuids,
-        indicator,
-        startIndex,
-        limit,
-      }),
-    [startDate, endDate, locationUuids, indicator],
-  );
+        indicators,
+      });
+
+      if(resp){
+          setRows(resp);
+      }else{
+         setRows([]);
+      }
+  }
+    const generate = async ({ startDate, endDate }: ReportPeriod) => {
+          setIsLoading(true);
+          setPeriod({ startDate, endDate });
+          let ind = '';
+          let locationUuid = '';
+          const selectedDate =  dayjs(startDate).endOf('month')
+          const registerStartDate = selectedDate.format('YYYY-MM-DD');
+          let reportIndicators;
+          try {
+            if(!indicators){
+               reportIndicators = 'cumulative_all';
+            }else{
+               reportIndicators = ind;
+            }
+            if(!locationUuids){
+              locationUuid = session.sessionLocation?.uuid ?? '';
+            }else{
+              locationUuid = locationUuids;
+            }
+            const resp  = await fetchMoh745PatientList({ startDate, endDate, locationUuids: locationUuid,indicators: reportIndicators,
+      });
+            if(resp){
+                setRows(resp);
+            }
+            markGenerated(locationUuids);
+          } catch (error) {
+            showReportError('The MOH 412 register', error);
+          } finally {
+            setIsLoading(false);
+          }
+  }
+   const exportCsv = async () => {
+        setIsExporting(true);
+    
+        try {
+          const slug = ['moh-412-register', period.startDate, period.endDate]
+            .filter(Boolean)
+            .join('-')
+            .toLowerCase();
+          downloadCsv(columnsToCsv(rows, columns, { subHeaderRow: [] }), `${slug}.csv`);
+        } catch (error) {
+          showReportError('the register export', error);
+        } finally {
+          setIsExporting(false);
+        }
+    };
 
   return (
-    <RegisterLayout
-      parentLabel="MOH-745 Report"
-      parentPath="/moh-745"
-      title="MOH 412 Cancer Screening Register"
-      isLoading={isLoading}
-      isEmpty={patientlist.length === 0}
-      page={page}
-      pageSize={pageSize}
-      total={total}
-      isTotalExact={isTotalExact}
-      onPageChange={onPageChange}
-      fetchAll={fetchAll}
-      columns={moh412ExportColumns}
-    >
+  
       <div className={styles.tableContainer}>
-        <Table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
+        <ReportFiltersComponent
+        reportName="MOH 412 Register"
+        mode="both"
+        onGenerate={generate}
+        isLoading={isLoading}
+        isReportGenerated={isGenerated}
+        generatedPeriod={period}
+        defaultTab="monthly"
+        backLink={{ label: 'All registers', to: '/?tab=registers' }}
+      />
+      <div className={moh412Styles.exportRow}>
+      <div className={styles.toolbar}>
+            <Button kind="tertiary" size="sm" renderIcon={Download} onClick={exportCsv} disabled={isExporting}>
+              {isExporting ? 'Preparing…' : 'Export CSV'}
+            </Button>
+      </div>
+      </div>
+        <div>
+           <Table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
           <TableHead>
             <TableRow>
               <TableHeader colSpan={3}>Month:</TableHeader>
@@ -168,23 +235,41 @@ const Moh412Register: React.FC = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {patientlist?.length > 0 ? (
-              patientlist.map((patient, index) => (
-                <TableRow key={index}>
-                  {moh412Columns.map((col) => (
-                    <td key={col}>{col === 'serial_no' ? index + 1 : (patient?.[col] ?? '')}</td>
-                  ))}
-                </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <td colSpan={moh412Columns.length}>No data available</td>
-              </TableRow>
-            )}
+            {
+              rows.map((p: any,index: number)=>{
+                  return <><TableRow>
+                         <TableCell>{index + 1}</TableCell>
+                         <TableCell>{p.screening_date ?? ''}</TableCell>
+                         <TableCell>{p?.screening_visit_type ?? ''}</TableCell>
+                         <TableCell>{p?.ccc_number ?? ''}</TableCell>
+                         <TableCell>{p.person_name}</TableCell>
+                         <TableCell>{p?.phone_number ?? ''}</TableCell>
+                         <TableCell>{p?.age ?? ''}</TableCell>
+                         <TableCell></TableCell>
+                         <TableCell></TableCell>
+                         <TableCell>{p?.via_or_via_vili_test_result ?? ''}</TableCell>
+                         <TableCell>{p?.pap_smear_test_result ?? ''}</TableCell>
+                         <TableCell>{p?.hpv_test_result ?? ''}</TableCell>
+                         <TableCell></TableCell>
+                         <TableCell></TableCell>
+                         <TableCell></TableCell>
+                         <TableCell></TableCell>
+                         <TableCell></TableCell>
+                         <TableCell></TableCell>
+                         <TableCell></TableCell>
+                         <TableCell></TableCell>
+                         <TableCell>{p?.hiv_status ?? ''}</TableCell>
+                         <TableCell></TableCell>
+                         <TableCell></TableCell>
+                         <TableCell></TableCell>
+                 </TableRow></>
+              })
+            }
+              
           </TableBody>
         </Table>
+        </div>
       </div>
-    </RegisterLayout>
   );
 };
 export default Moh412Register;
