@@ -81,6 +81,11 @@
   max-width: 24rem;
 }
 
+.fields .additionalFilter {
+  min-width: 13rem;
+  max-width: 20rem;
+}
+
 /* Matches Carbon's `.cds--label` so the switcher's label sits on the same
    baseline as the labels Carbon renders for the selects. */
 .fieldLabel {

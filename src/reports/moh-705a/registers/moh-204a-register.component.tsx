@@ -1,22 +1,56 @@
-import React from 'react';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@carbon/react';
+import React, { useState } from 'react';
+import { Select, SelectItem, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@carbon/react';
 
 import styles from '../../../common/report-register/register-table.scss';
 import classNames from 'classnames';
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
+import { useSession } from '@openmrs/esm-framework';
 import { getMoh705aPatientList } from '../../../resources/moh-705.resource';
 import { moh204aExportColumns } from './moh-204a.columns';
+import { indicators as moh705aIndicators } from '../moh-705a.component';
 import { RegisterLayout, usePatientList } from '../../../common/report-register';
+import { ReportFiltersComponent, type ReportPeriod } from '../../../common/report-filters';
+import { formatIndicatorName } from '../../../utils/format-indicator';
 
 interface Moh204ARegisterComponentProps { }
 
 const Moh204ARegisterComponent: React.FC<Moh204ARegisterComponentProps> = () => {
-  const [searchParams] = useSearchParams();
-  const startDate = searchParams.get('startDate');
-  const endDate = searchParams.get('endDate');
-  const locationUuids = searchParams.get('locationUuids');
-  const indicator = searchParams.get('indicator');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const session = useSession();
   const from = searchParams.get('from');
+  const isDrilldown = Boolean(from);
+  const [selectedIndicator, setSelectedIndicator] = useState(() => searchParams.get('indicator') ?? '');
+  const [generatedIndicator, setGeneratedIndicator] = useState(() => searchParams.get('indicator') ?? '');
+  const [generatedPeriod, setGeneratedPeriod] = useState<{ startDate: string; endDate: string } | null>(() => {
+    const startDate = searchParams.get('startDate');
+    const endDate = searchParams.get('endDate');
+    return !isDrilldown && startDate && endDate ? { startDate, endDate } : null;
+  });
+  const isGenerated = isDrilldown || Boolean(generatedPeriod);
+
+  const startDate = generatedPeriod?.startDate ?? searchParams.get('startDate');
+  const endDate = generatedPeriod?.endDate ?? searchParams.get('endDate');
+  const locationUuids = searchParams.get('locationUuids') ?? session?.sessionLocation?.uuid ?? '';
+  const indicator = generatedIndicator;
+
+  const generate = ({ startDate, endDate }: ReportPeriod) => {
+    setGeneratedPeriod({ startDate, endDate });
+    setGeneratedIndicator(selectedIndicator);
+    setSearchParams((currentParams) => {
+      const nextParams = new URLSearchParams(currentParams);
+      nextParams.set('startDate', startDate);
+      nextParams.set('endDate', endDate);
+      if (selectedIndicator) {
+        nextParams.set('indicator', selectedIndicator);
+      } else {
+        nextParams.delete('indicator');
+      }
+      if (!nextParams.has('locationUuids') && locationUuids) {
+        nextParams.set('locationUuids', locationUuids);
+      }
+      return nextParams;
+    });
+  };
 
   const {
     rows: patientlist,
@@ -28,45 +62,83 @@ const Moh204ARegisterComponent: React.FC<Moh204ARegisterComponentProps> = () => 
     onPageChange,
     fetchAll,
   } = usePatientList(
-    ({ startIndex, limit }) =>
-      getMoh705aPatientList({
+    ({ startIndex, limit }) => {
+      if (!isDrilldown && !generatedPeriod) {
+        return Promise.resolve({ results: [], total: 0, isTotalExact: true });
+      }
+
+      return getMoh705aPatientList({
         startDate: startDate!,
         endDate: endDate!,
-        locationUuids: locationUuids!,
-        indicator: indicator!,
+        locationUuids,
+        indicator,
         startIndex,
         limit,
-        from
-      }),
-    [startDate, endDate, locationUuids, indicator],
+        from,
+      });
+    },
+    [startDate, endDate, locationUuids, indicator, from, isDrilldown, generatedPeriod],
   );
 
   const removePatientListDuplicates = async () => {
     const list = await fetchAll();
     const filtered = uniqueBy(list, 'person_id');
     return filtered;
-  }
+  };
 
   const uniqueBy = (arr: any, key: string) =>
     [...new Map(arr.map((item: any) => [item[key], item])).values()] as Record<string, any>[];
 
+  const parentPath = isDrilldown ? (from === 'moh-717' ? '/moh-717' : '/moh-705a') : '/?tab=registers';
+
   return (
-    <RegisterLayout
-      parentLabel="MOH-705A Report"
-      parentPath="/moh-705a"
-      title="MOH 204A Under-5 Outpatient Register"
-      isLoading={isLoading}
-      isEmpty={patientlist.length === 0}
-      page={page}
-      pageSize={pageSize}
-      total={total}
-      isTotalExact={isTotalExact}
-      onPageChange={onPageChange}
-      fetchAll={removePatientListDuplicates}
-      columns={moh204aExportColumns}
-    >
-      <div className={styles.tableContainer}>
-        <Table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
+    <>
+      {!isDrilldown && (
+        <ReportFiltersComponent
+          reportName="MOH 204A Under-5 Outpatient Register"
+          mode="range"
+          onGenerate={generate}
+          isLoading={isLoading}
+          isReportGenerated={Boolean(generatedPeriod)}
+          generatedPeriod={generatedPeriod ?? undefined}
+          backLink={{ label: 'All registers', to: '/?tab=registers' }}
+          additionalFilters={
+            <Select
+              id="moh-204a-indicator"
+              labelText="Indicator"
+              size="sm"
+              value={selectedIndicator}
+              onChange={(event) => setSelectedIndicator(event.target.value)}
+            >
+              <SelectItem value="" text="All indicators" />
+              {moh705aIndicators.map((indicatorOption) => (
+                <SelectItem
+                  key={indicatorOption}
+                  value={indicatorOption}
+                  text={formatIndicatorName(indicatorOption)}
+                />
+              ))}
+            </Select>
+          }
+        />
+      )}
+
+      <RegisterLayout
+        parentLabel={isDrilldown ? 'MOH-705A Report' : 'All registers'}
+        parentPath={parentPath}
+        title="MOH 204A Under-5 Outpatient Register"
+        isLoading={isLoading}
+        isEmpty={isGenerated && patientlist.length === 0}
+        page={page}
+        pageSize={pageSize}
+        total={total}
+        isTotalExact={isTotalExact}
+        onPageChange={onPageChange}
+        fetchAll={isGenerated ? removePatientListDuplicates : undefined}
+        columns={moh204aExportColumns}
+      >
+        <div className={styles.tableContainer}>
+          <Table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
           <TableHead>
             <TableRow>
               <TableHeader>
@@ -322,9 +394,10 @@ const Moh204ARegisterComponent: React.FC<Moh204ARegisterComponentProps> = () => 
               </TableRow>
             )}
           </TableBody>
-        </Table>
-      </div>
-    </RegisterLayout>
+          </Table>
+        </div>
+      </RegisterLayout>
+    </>
   );
 };
 

@@ -1,3 +1,5 @@
+import { type ReactNode } from 'react';
+
 /**
  * Which period controls a report offers.
  *
@@ -40,6 +42,8 @@ export interface ReportFiltersProps {
   mode?: ReportFilterMode;
   /** Renders a facility picker when supplied. Omit to hide it. */
   facilities?: FacilityOption[];
+  /** Additional controls rendered beside the standard period filters. */
+  additionalFilters?: ReactNode;
   /** How many years the year dropdown offers, counting back from now */
   yearsBack?: number;
   /** Disables the generate button and shows a pending label */

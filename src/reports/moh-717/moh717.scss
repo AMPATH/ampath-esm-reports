@@ -141,6 +141,16 @@ $gap: 3mm;
   text-align: left;
 }
 
+.registerDrilldown {
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+}
+
 /* The inpatient block turns its column headings on their side to fit */
 
 .rotateUp {
