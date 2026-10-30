@@ -49,15 +49,16 @@ const Bacteriology: React.FC<BacteriologyProps> = ({ data, locationUuids, startD
             },
             {
                 tableCells: [
-                    getCell("", "Stool Isolates", 3, 1, true),
+                    getCell("", "Stool Isolates", 2, 1, true),
+                    getCell("", "Total Exam", 1, 1, true),
                     getCell("", "Number Positive", 1, 1, true),
                 ]
             },
-            { tableCells: [getCell("", "5.11 Salmonella typhi", 3), getCell("positive_salmonella")] },
-            { tableCells: [getCell("", "5.12 Shigella - dysenteriae type1", 3), getCell("positive_bact_shigella_dysenteriae1")] },
-            { tableCells: [getCell("", "5.13 E. coli O157:H7", 3), getCell("positive_bact_ecoli_o157")] },
-            { tableCells: [getCell("", "5.14 V. cholerae O1", 3), getCell("positive_bact_v_cholerae_o1")] },
-            { tableCells: [getCell("", "5.15 V. cholerae O139", 3), getCell()] },
+            { tableCells: [getCell("", "5.11 Salmonella typhi", 2), getCell("total_salmonella"), getCell("positive_salmonella")] },
+            { tableCells: [getCell("", "5.12 Shigella - dysenteriae type1", 2), getCell("total_bact_shigella_dysenteriae1"), getCell("positive_bact_shigella_dysenteriae1")] },
+            { tableCells: [getCell("", "5.13 E. coli O157:H7", 2), getCell("total_bact_ecoli_o157"), getCell("positive_bact_ecoli_o157")] },
+            { tableCells: [getCell("", "5.14 V. cholerae O1", 2), getCell("total_bact_v_cholerae_o1"), getCell("positive_bact_v_cholerae_o1")] },
+            { tableCells: [getCell("", "5.15 V. cholerae O139", 2), getCell(), getCell()] },
 
             {
                 tableCells: [getCell("", "Bacterial meningitis", 4, 1, true)]
@@ -81,19 +82,20 @@ const Bacteriology: React.FC<BacteriologyProps> = ({ data, locationUuids, startD
             {
                 tableCells: [
                     getCell("", "Bacterial meningitis Serotypes", 1, 1, true),
-                    getCell("", "Number Positive", 3, 1, true),
+                    getCell("", "Total Exam", 1, 1, true),
+                    getCell("", "Number Positive", 2, 1, true),
                 ]
             },
-            { tableCells: [getCell("", "5.17 Neisseria meningitidis A"), getCell("positive_bact_men_a", "", 3)] },
-            { tableCells: [getCell("", "5.18 Neisseria meningitidis B"), getCell("positive_bact_men_b", "", 3)] },
-            { tableCells: [getCell("", "5.19 Neisseria meningitidis C"), getCell("positive_bact_men_c", "", 3)] },
-            { tableCells: [getCell("", "5.20 Neisseria meningitidis W135"), getCell("positive_bact_men_w135", "", 3)] },
-            { tableCells: [getCell("", "5.21 Neisseria meningitidis X"), getCell("", "", 3)] },
-            { tableCells: [getCell("", "5.22 Neisseria meningitidis Y"), getCell("positive_bact_men_y", "", 3)] },
-            { tableCells: [getCell("", "5.23 Neisseria meningitidis (indeterminate)"), getCell("positive_bact_men_indeterminate", "", 3)] },
-            { tableCells: [getCell("", "5.24 Streptococcus pneumoniae"), getCell("positive_bact_strep_pneumoniae", "", 3)] },
-            { tableCells: [getCell("", "5.25 Haemophilus influenzae (type b)"), getCell("positive_bact_h_influenzae_b", "", 3)] },
-            { tableCells: [getCell("", "5.26 Cryptococcal Meningitis"), getCell("", "", 3)] },
+            { tableCells: [getCell("", "5.17 Neisseria meningitidis A"), getCell("total_bact_men_a"), getCell("positive_bact_men_a", "", 2)] },
+            { tableCells: [getCell("", "5.18 Neisseria meningitidis B"), getCell("total_bact_men_b"), getCell("positive_bact_men_b", "", 2)] },
+            { tableCells: [getCell("", "5.19 Neisseria meningitidis C"), getCell("total_bact_men_c"), getCell("positive_bact_men_c", "", 2)] },
+            { tableCells: [getCell("", "5.20 Neisseria meningitidis W135"), getCell("total_bact_men_w135"), getCell("positive_bact_men_w135", "", 2)] },
+            { tableCells: [getCell("", "5.21 Neisseria meningitidis X"), getCell(), getCell("", "", 2)] },
+            { tableCells: [getCell("", "5.22 Neisseria meningitidis Y"), getCell("total_bact_men_y"), getCell("positive_bact_men_y", "", 2)] },
+            { tableCells: [getCell("", "5.23 Neisseria meningitidis (indeterminate)"), getCell("total_bact_men_indeterminate"), getCell("positive_bact_men_indeterminate", "", 2)] },
+            { tableCells: [getCell("", "5.24 Streptococcus pneumoniae"), getCell("total_bact_strep_pneumoniae"), getCell("positive_bact_strep_pneumoniae", "", 2)] },
+            { tableCells: [getCell("", "5.25 Haemophilus influenzae (type b)"), getCell("total_bact_h_influenzae_b"), getCell("positive_bact_h_influenzae_b", "", 2)] },
+            { tableCells: [getCell("", "5.26 Cryptococcal Meningitis"), getCell("total_crag"), getCell("positive_crag", "", 2)] },
             {
                 tableCells: [getCell("", "Bacterial Pathogens from other types of specimen", 4, 1, true)]
             },
