@@ -545,7 +545,7 @@ const Moh406Register: React.FC = () => {
                         <td>{patient.counselled}</td>
 
                         <td rowSpan={2}>{patient.other_maternal_complications}</td>
-                        <td rowSpan={2}>{patient.haematinics}</td>
+                        <td rowSpan={2}>{patient.haemanitics}</td>
                         <td rowSpan={2}>{patient.referrals_from}</td>
                         <td rowSpan={2}>{patient.referrals_to}</td>
                         <td rowSpan={2}>{patient.reason_for_referral}</td>
@@ -557,8 +557,8 @@ const Moh406Register: React.FC = () => {
                         <td>{patient.age}</td>
                         <td>{patient.phone_number}</td>
                         <td>{patient.pallor}</td>
-                        <td>{patient.cervical_cancer_results}</td>
-                        <td>{patient.women_received_post_partum_fp}</td>
+                        <td>{patient.cervical_cancer_result}</td>
+                        <td>{patient.ppfp_method}</td>
                       </tr>
                     </React.Fragment>
                   ))

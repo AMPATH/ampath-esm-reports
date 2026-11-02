@@ -170,7 +170,7 @@ const Moh333Register: React.FC = () => {
                 </th>
                 <th rowSpan={6}>Diagnosis</th>
                 <th colSpan={13}>Delivery</th>
-                <th colSpan={9}></th>
+                <th colSpan={9}>Baby</th>
                 <th>
                   VDRL/
                   <br />
@@ -188,7 +188,7 @@ const Moh333Register: React.FC = () => {
                   <br />
                   testing)
                 </th>
-                <th colSpan={4}>Baby</th>
+                <th colSpan={4}>Mother</th>
                 <th>
                   Maternal <br />
                   HAART
@@ -586,7 +586,7 @@ const Moh333Register: React.FC = () => {
                       <td rowSpan={2}>{row.uterotonic_given}</td>
                       <td rowSpan={2}>{row.vaginal_examination}</td>
                       <td rowSpan={2}>{row.blood_loss}</td>
-                      <td rowSpan={2}>{row.mother_status_after_delivery}</td>
+                      <td rowSpan={2}>{row.mothers_status_after_delivery}</td>
 
                       <td>{row.maternal_deaths_notified}</td>
 
@@ -599,11 +599,11 @@ const Moh333Register: React.FC = () => {
                       <td>{row.initiated_on_bf_less_one_hour}</td>
 
                       <td rowSpan={2}>{row.teo_given_at_birth}</td>
-                      <td rowSpan={2}>{row.chlorhexdine_applied_on_cord_stump}</td>
+                      <td rowSpan={2}>{row.chlorhexidine_applied_on_cord_stamp}</td>
                       <td>{row.birth_with_deformity}</td>
-                      <td rowSpan={2}>{row.given_vitamin_k}</td>
+                      <td rowSpan={2}>{row.vitamin_k_given}</td>
 
-                      <td>{row.duo_test_result}</td>
+                      <td>{row.rpr_vdrl_duo_results}</td>
 
                       <td rowSpan={2}>
                         {row.hiv_test_1_kit_name} / {row.hiv_test_1_lot_no} /{' '}
@@ -659,8 +659,8 @@ const Moh333Register: React.FC = () => {
 
                       <td>{row.kangaroo_mother_care}</td>
                       <td>{row.type_of_deformity}</td>
-                      <td>{row.hiv_test_type}</td>
-                      <td>{row.hiv_test_type}</td>
+                      <td>{row.rpr_vdrl_duo_results}</td>
+                      <td>{row.hiv_result_maternity}</td>
                     </tr>
                   </React.Fragment>
                 ))
