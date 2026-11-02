@@ -194,10 +194,16 @@ export const HEPATITIS_B: TotalledGroup = {
 /** The TPT group counted from MOH 731 3.4 Starting TPT */
 export const TPT_HIV_POSITIVE = 'TPT HIV Positive';
 
+/** The prophylaxis group counted from the prophylaxis recorded at clinic visits */
+export const UNIVERSAL_PROPHYLAXIS = 'Universal prophylaxis';
+
+/** The CM group counted from the CM treatment recorded at clinic visits */
+export const CRYPTOCOCCAL_MENINGITIS = 'Cryptococcal Menengitis New Clients only';
+
 export const OPPORTUNISTIC_INFECTIONS: TotalledGroup[] = [
   {
     number: '1',
-    title: 'Universal prophylaxis',
+    title: UNIVERSAL_PROPHYLAXIS,
     h: 43,
     rows: [
       ['OI1A', 'Adult patients on Cotrimoxazole prophylaxis', 40],
@@ -224,7 +230,7 @@ export const OPPORTUNISTIC_INFECTIONS: TotalledGroup[] = [
   },
   {
     number: '4',
-    title: 'Cryptococcal Menengitis New Clients only',
+    title: CRYPTOCOCCAL_MENINGITIS,
     h: 40,
     noTotal: true,
     rows: [

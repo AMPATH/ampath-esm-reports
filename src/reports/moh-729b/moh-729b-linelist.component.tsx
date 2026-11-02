@@ -120,6 +120,66 @@ const TPT_COLUMNS: LinelistColumn[] = [
   { header: 'Regimen Code', field: 'regimen_code' },
 ];
 
+/** HIV-exposed infants on ARV prophylaxis, at their latest HEI visit of the month in the count */
+const INFANT_COLUMNS: LinelistColumn[] = [
+  { header: 'Name', field: 'full_name' },
+  { header: 'HEI Number', field: 'hei_number', text: true },
+  { header: 'AMRS Number', field: 'amrs_number', text: true },
+  { header: 'Sex', field: 'gender' },
+  { header: 'Age', field: 'infant_age' },
+  { header: 'Age Band', field: 'age_band' },
+  { header: 'Visit Date', value: (row) => formatDate(row.encounter_date), sortValue: (row) => row.encounter_date },
+  { header: 'Prophylaxis', field: 'regimen' },
+  { header: 'Feeding', field: 'feeding' },
+  { header: 'Regimen Code', field: 'regimen_code' },
+  /* Available from the Columns menu */
+  {
+    header: 'Date of Birth',
+    value: (row) => formatDate(row.birthdate),
+    sortValue: (row) => row.birthdate,
+    hidden: true,
+  },
+  { header: 'Location', field: 'location', hidden: true },
+];
+
+/** Clients on Cotrimoxazole or Dapsone, at their latest visit of the month on it */
+const PROPHYLAXIS_COLUMNS: LinelistColumn[] = [
+  { header: 'Name', field: 'full_name' },
+  { header: 'CCC Number', field: 'ccc_number', text: true },
+  { header: 'AMRS Number', field: 'amrs_number', text: true },
+  { header: 'Sex', field: 'gender' },
+  { header: 'Age', field: 'age' },
+  { header: 'Visit Date', value: (row) => formatDate(row.encounter_date), sortValue: (row) => row.encounter_date },
+  { header: 'Prophylaxis', field: 'regimen' },
+  { header: 'Plan', field: 'prophylaxis_plan' },
+  { header: 'Regimen Code', field: 'regimen_code' },
+  /* Available from the Columns menu */
+  { header: 'Location', field: 'location', hidden: true },
+];
+
+/** New Cryptococcal Meningitis clients, at their first CM visit of the month */
+const CM_COLUMNS: LinelistColumn[] = [
+  { header: 'Name', field: 'full_name' },
+  { header: 'CCC Number', field: 'ccc_number', text: true },
+  { header: 'AMRS Number', field: 'amrs_number', text: true },
+  { header: 'Sex', field: 'gender' },
+  { header: 'Age', field: 'age' },
+  { header: 'Visit Date', value: (row) => formatDate(row.encounter_date), sortValue: (row) => row.encounter_date },
+  { header: 'Current Treatment', field: 'current_treatment', wrap: true },
+  { header: 'Treatment Phase', field: 'treatment_phase' },
+  {
+    header: 'Treatment Start Date',
+    value: (row) => formatDate(row.treatment_start_date),
+    sortValue: (row) => row.treatment_start_date,
+  },
+  { header: 'Treatment Plan', field: 'treatment_plan' },
+  { header: 'ART Deferred for CM', field: 'art_deferred_for_crypto' },
+  { header: 'Regimen Code', field: 'regimen_code' },
+  /* Available from the Columns menu */
+  { header: 'Location', field: 'location', hidden: true },
+  { header: 'Encounter Type', field: 'encounter_type', hidden: true },
+];
+
 /** Each group's columns, its saved column layout and what its clients are */
 const GROUPS = {
   art: { columns: ART_COLUMNS, layoutKey: 'moh-729b', title: 'Current active clients on ART' },
@@ -127,11 +187,18 @@ const GROUPS = {
   pep: { columns: PEP_COLUMNS, layoutKey: 'moh-729b:pep', title: 'Clients given PEP this month' },
   tpt: { columns: TPT_COLUMNS, layoutKey: 'moh-729b:tpt', title: 'HIV positive clients started on TPT this month' },
   hbv: { columns: HBV_COLUMNS, layoutKey: 'moh-729b:hbv', title: 'Hepatitis B patients who are HIV-ve' },
+  prophylaxis: {
+    columns: PROPHYLAXIS_COLUMNS,
+    layoutKey: 'moh-729b:prophylaxis',
+    title: 'Clients on universal prophylaxis',
+  },
+  infants: { columns: INFANT_COLUMNS, layoutKey: 'moh-729b:infants', title: 'HIV-exposed infants on prophylaxis' },
+  cm: { columns: CM_COLUMNS, layoutKey: 'moh-729b:cm', title: 'New Cryptococcal Meningitis clients' },
 };
 
 /**
  * The clients behind a count on the MOH 729B form or its Summary: the month's
- * clients on ART, PrEP, PEP, Hep B or TPT (the same rows the form is counted
+ * clients on ART, PrEP, PEP, Hep B, TPT, CM treatment or prophylaxis, and HIV-exposed infants (the same rows the form is counted
  * from), narrowed to the count's regimen code and, where the form splits it,
  * weight band or line. A total of several counts (`f`, one per count, with a
  * `label`) lists the clients of all of them; its counts never overlap.
@@ -160,9 +227,15 @@ const Moh729bLinelist: React.FC = () => {
       ? GROUPS.hbv
       : /^[AC]TPT1[AB]$/.test(cell.code)
         ? GROUPS.tpt
-        : PEP_CODES.has(cell.code)
-          ? GROUPS.pep
-          : GROUPS.art;
+        : cell.code.startsWith('OI6')
+          ? GROUPS.cm
+          : /^OI[12][AC]$/.test(cell.code)
+            ? GROUPS.prophylaxis
+            : ['PC8', 'PC7', 'PC1X'].includes(cell.code)
+              ? GROUPS.infants
+              : PEP_CODES.has(cell.code)
+                ? GROUPS.pep
+                : GROUPS.art;
 
   const locationName = useLocationName(locationUuids);
   /* the month's clients come back in one response; they are fetched once and
