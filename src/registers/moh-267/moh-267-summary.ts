@@ -34,6 +34,7 @@ export const METHODS = [
   'Daily oral PrEP',
   'Dapivirine Vaginal ring',
   'Cabotegravir Injectable',
+  'Lenacapavir',
 ] as const;
 
 const inBand = (row: Moh267Row, band: { min: number; max?: number }) => {

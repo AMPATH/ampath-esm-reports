@@ -187,7 +187,7 @@ const Summary: React.FC<{ rows: Moh267Row[]; endDate: string }> = ({ rows, endDa
                 <br />
                 PrEP method
               </th>
-              <th colSpan={5}>Number of Clients on each PrEP method (h)</th>
+              <th colSpan={6}>Number of Clients on each PrEP method (h)</th>
             </tr>
             <tr>
               <th>
@@ -210,6 +210,7 @@ const Summary: React.FC<{ rows: Moh267Row[]; endDate: string }> = ({ rows, endDa
                 <br />
                 injectable
               </th>
+              <th>Lenacapavir</th>
               <th>Total</th>
             </tr>
           </thead>
@@ -220,7 +221,6 @@ const Summary: React.FC<{ rows: Moh267Row[]; endDate: string }> = ({ rows, endDa
                 {METHODS.map((method) => (
                   <td key={method}>{indicator.count(method)}</td>
                 ))}
-                {/* every method, Lenacapavir included, which has no column of its own */}
                 <td>{indicator.count('Total')}</td>
               </tr>
             ))}
@@ -323,6 +323,8 @@ const RegisterPage: React.FC<{
                 <strong>3.</strong> Dapivirine Vaginal ring
                 <br />
                 <strong>4.</strong> Cabotegravir Injectable
+                <br />
+                <strong>5.</strong> Lenacapavir
               </th>
               <th>
                 HIV Results
