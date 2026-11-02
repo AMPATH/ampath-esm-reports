@@ -46,7 +46,9 @@ export function moh240LineListColumns(facility: string): LinelistColumn[] {
     { header: 'Serial No', field: 'lab_no', text: true },
     { header: 'Facility Name', value: () => facility },
     { header: 'Visit Date', value: (row) => formatRegisterDate(row.date), sortValue: (row) => toIsoDate(row.date) },
-    { header: 'Encounter Type', field: 'encounter_type' },
+    // the ETL resolves the lab encounter's type to its dictionary name
+    // (encounter_type_name); the raw id stays as the fallback until it does
+    { header: 'Encounter Type', value: (row) => row.encounter_type_name || row.encounter_type },
     { header: 'CR Number', field: 'cr_number', text: true },
     // B. CLIENT
     { header: 'Client Name', field: 'full_name', wrap: true },

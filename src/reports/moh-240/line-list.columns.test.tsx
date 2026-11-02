@@ -65,6 +65,13 @@ describe('moh240LineListColumns', () => {
     expect(valueOf('Provider Name', row)).toBe('Dr. Otieno');
   });
 
+  it('shows the resolved encounter type name, falling back to the raw id', () => {
+    expect(valueOf('Encounter Type', { encounter_type: 6, encounter_type_name: 'POC OPD Triage' })).toBe(
+      'POC OPD Triage',
+    );
+    expect(valueOf('Encounter Type', { encounter_type: 6, encounter_type_name: '' })).toBe('6');
+  });
+
   it('fills RBS from the row' + ' ' + 's own blood-sugar result, and never from a fasting one', () => {
     const random = {
       investigation_required: 'Random Blood Sugar',
