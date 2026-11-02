@@ -43,25 +43,25 @@ const PNCComponent: React.FC<PNCComponentProps> = ({ moh711Data, startDate, endD
             <td>1</td>
             <td rowSpan={2}>No. of PNC Clients</td>
             <td>New</td>
-            <td onClick={() => navigateToRegister('pnc_new_clients')}>{moh711Data.pnc_new_clients}</td>
+            <td onClick={() => navigateToRegister('pnc_new_clients')}>{moh711Data.pnc_new_clients ?? 0}</td>
           </tr>
           <tr>
             <td>2</td>
             <td>Revisit</td>
-            <td onClick={() => navigateToRegister('pnc_revisit_clients')}>{moh711Data.pnc_revisit_clients}</td>
+            <td onClick={() => navigateToRegister('pnc_revisit_clients')}>{moh711Data.pnc_revisit_clients ?? 0}</td>
           </tr>
           <tr>
             <td>3</td>
             <td colSpan={2}>No of Women counselled on Post Partum FP</td>
             <td onClick={() => navigateToRegister('women_couselled_on_post_partum_fp')}>
-              {moh711Data.women_couselled_on_post_partum_fp}
+              {moh711Data.women_couselled_on_post_partum_fp ?? 0}
             </td>
           </tr>
           <tr>
             <td>4</td>
             <td colSpan={2}>No of Clients who received Post Partum FP</td>
             <td onClick={() => navigateToRegister('women_received_post_partum_fp')}>
-              {moh711Data.women_received_post_partum_fp}
+              {moh711Data.women_received_post_partum_fp ?? 0}
             </td>
           </tr>
           <tr>
@@ -69,21 +69,21 @@ const PNCComponent: React.FC<PNCComponentProps> = ({ moh711Data, startDate, endD
             <td rowSpan={3}>No. of Mothers receiving Postpartum Care</td>
             <td>within 48 hours</td>
             <td onClick={() => navigateToRegister('mothers_post_partum_care_48_hours')}>
-              {moh711Data.mothers_post_partum_care_48_hours}
+              {moh711Data.mothers_post_partum_care_48_hours ?? 0}
             </td>
           </tr>
           <tr>
             <td></td>
             <td>Between 3 days to 6 weeks</td>
             <td onClick={() => navigateToRegister('mothers_post_partum_care_3_6_weeks')}>
-              {moh711Data.mothers_post_partum_care_3_6_weeks}
+              {moh711Data.mothers_post_partum_care_3_6_weeks ?? 0}
             </td>
           </tr>
           <tr>
             <td></td>
             <td>After 6 weeks</td>
             <td onClick={() => navigateToRegister('mothers_post_partum_care_after_6_weeks')}>
-              {moh711Data.mothers_post_partum_care_after_6_weeks}
+              {moh711Data.mothers_post_partum_care_after_6_weeks ?? 0}
             </td>
           </tr>
           <tr>
@@ -91,31 +91,31 @@ const PNCComponent: React.FC<PNCComponentProps> = ({ moh711Data, startDate, endD
             <td rowSpan={3}>No. of Babies received Postpartum Care</td>
             <td>Within 48 hours</td>
             <td onClick={() => navigateToRegister('infants_post_partum_care_48_hours')}>
-              {moh711Data.infants_post_partum_care_48_hours}
+              {moh711Data.infants_post_partum_care_48_hours ?? 0}
             </td>
           </tr>
           <tr>
             <td>Between 3 days to 6 weeks</td>
             <td onClick={() => navigateToRegister('infants_post_partum_care_3_6_weeks')}>
-              {moh711Data.infants_post_partum_care_3_6_weeks}
+              {moh711Data.infants_post_partum_care_3_6_weeks ?? 0}
             </td>
           </tr>
           <tr>
             <td>After 6 weeks</td>
             <td onClick={() => navigateToRegister('infants_post_partum_care_after_6_weeks')}>
-              {moh711Data.infants_post_partum_care_after_6_weeks}
+              {moh711Data.infants_post_partum_care_after_6_weeks ?? 0}
             </td>
           </tr>
           <tr>
             <td>7</td>
             <td colSpan={2}>Number of Cases of Fistula</td>
-            <td onClick={() => navigateToRegister('fistula_cases')}>{moh711Data.fistula_cases}</td>
+            <td onClick={() => navigateToRegister('fistula_cases')}>{moh711Data.fistula_cases ?? 0}</td>
           </tr>
           <tr>
             <td>8</td>
             <td colSpan={2}>No referred from the Community unit to PNC</td>
             <td onClick={() => navigateToRegister('referrals_from_community')}>
-              {moh711Data.referrals_from_community}
+              {moh711Data.referrals_from_community ?? 0}
             </td>
           </tr>
         </tbody>

@@ -100,6 +100,14 @@ export const reportCategories: ReportCategory[] = [
         icon: GenderFemale,
         keywords: ['cancer', 'cervical', 'screening', 'via', 'hpv'],
       },
+      {
+        code: 'MOH 733',
+        name: 'Nutrition',
+        description: 'Nutrition summary.',
+        path: '/moh-733',
+        icon: Growth,
+        keywords: ['nutrition'],
+      },
     ],
   },
   {
