@@ -16,6 +16,8 @@ import {
   type Regimen,
   type TotalledGroup,
   TPT_HIV_POSITIVE,
+  CRYPTOCOCCAL_MENINGITIS,
+  UNIVERSAL_PROPHYLAXIS,
 } from './moh-729b.config';
 import { type Moh729bCell } from './moh-729b.types';
 import styles from './moh-729b.scss';
@@ -171,7 +173,8 @@ const ArtHalf: React.FC = () => {
  * A numbered group of the right half: its heading with Total, then a count and
  * a Total per regimen, the columns between shaded as one block. `extraRows`
  * lengthens the block over rows that follow the group (Hepatitis B's).
- * `isCounted` fills each regimen's Total from the data (PEP, Hepatitis B and TPT HIV Positive).
+ * `isCounted` fills each regimen's Total from the data (PEP, Hepatitis B and the OIs counted:
+ * universal prophylaxis, TPT HIV Positive and Cryptococcal Meningitis).
  */
 const TotalledRows: React.FC<{ group: TotalledGroup; extraRows?: number; isCounted?: boolean }> = ({
   group,
@@ -237,8 +240,10 @@ const PmtctHalf: React.FC = () => (
       {PMTCT_INFANTS.rows.map((regimen) => (
         <tr key={regimen[0]} style={height(regimen[2] ?? 38)}>
           <RegimenCells regimen={regimen} />
-          {blanks(5)}
-          <td className={styles.shade} />
+          {INFANT_AGES.map((band) => (
+            <Count key={band} cell={{ code: regimen[0], band }} />
+          ))}
+          <Count cell={{ code: regimen[0] }} />
         </tr>
       ))}
 
@@ -261,7 +266,11 @@ const PmtctHalf: React.FC = () => (
         <th colSpan={7}>Management of Opportunistic infections (OIs)</th>
       </tr>
       {OPPORTUNISTIC_INFECTIONS.map((group) => (
-        <TotalledRows key={group.title} group={group} isCounted={group.title === TPT_HIV_POSITIVE} />
+        <TotalledRows
+          key={group.title}
+          group={group}
+          isCounted={[UNIVERSAL_PROPHYLAXIS, TPT_HIV_POSITIVE, CRYPTOCOCCAL_MENINGITIS].includes(group.title)}
+        />
       ))}
     </tbody>
   </table>
@@ -286,6 +295,8 @@ interface Moh729bFormProps {
   endDate: string;
   /** The counts of the ART and PMTCT regimens; without them the form is drawn blank */
   counts?: Moh729bCounts;
+  /** The reporting officer (the logged-in user), filled in under Report prepared by with today's date */
+  preparedBy?: string;
 }
 
 /**
@@ -297,10 +308,13 @@ interface Moh729bFormProps {
  * month by MOH 731's PrEP section, and PEP from the clients given PEP in the
  * month by its PEP section, and Hepatitis B from the HIV-negative clients its
  * HBV screening at ANC finds positive, and TPT HIV Positive from its 3.4
- * Starting TPT by the drug started; infants, universal prophylaxis, TPT HIV
- * Negative and Cryptococcal Meningitis stay blank until their queries are added.
+ * Starting TPT by the drug started, Cryptococcal Meningitis from the new CM
+ * clients (15 and over) by their treatment, universal prophylaxis from the
+ * clients on Cotrimoxazole or Dapsone at a visit in the month, and PMTCT
+ * infants from the HEI visits on ARV prophylaxis by feeding and age band; TPT
+ * HIV Negative stays blank until its query is added.
  */
-const Moh729bForm: React.FC<Moh729bFormProps> = ({ facility, startDate, endDate, counts }) => {
+const Moh729bForm: React.FC<Moh729bFormProps> = ({ facility, startDate, endDate, counts, preparedBy }) => {
   const { ref, scale } = usePageScale<HTMLDivElement>(PAGE_WIDTH_MM);
   const formDate = (value: string) => (value ? dayjs(value).format('DD/MM/YYYY') : '');
 
@@ -359,14 +373,19 @@ const Moh729bForm: React.FC<Moh729bFormProps> = ({ facility, startDate, endDate,
         </p>
 
         <div className={styles.signOff}>
+          {/* the reporting officer and date are filled in; the approving officer signs by hand */}
           {[
-            ['Report prepared by:', 'Name of Reporting Officer'],
-            ['Report approved by:', 'Name of Approving officer'],
-          ].map(([label, caption]) => (
+            { label: 'Report prepared by:', caption: 'Name of Reporting Officer', name: preparedBy, isPrepared: true },
+            { label: 'Report approved by:', caption: 'Name of Approving officer' },
+          ].map(({ label, caption, name, isPrepared }) => (
             <div key={label} className={styles.fieldGrid}>
-              <Field label={label} caption={caption} />
+              <Field label={label} value={name} caption={caption} />
               {SIGN_OFF.map((line) => (
-                <Field key={line} label={line} />
+                <Field
+                  key={line}
+                  label={line}
+                  value={isPrepared && line === 'Date:' ? dayjs().format('DD/MM/YYYY') : undefined}
+                />
               ))}
             </div>
           ))}

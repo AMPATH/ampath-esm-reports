@@ -1,5 +1,5 @@
-import { WEIGHT_BANDS } from './moh-729b.config';
-import { type Moh729bCell } from './moh-729b.types';
+import { INFANT_AGES, WEIGHT_BANDS } from './moh-729b.config';
+import { ALL_ON_ART, ART_AGE_BANDS, type Moh729bCell } from './moh-729b.types';
 
 /**
  * The layout of the MOH 729B Summary tab: each section as a set of tables, each
@@ -132,6 +132,18 @@ const PMTCT_MOTHERS: SummaryTable = {
   totalLabel: 'Total pregnant women',
 };
 
+const PMTCT_INFANTS: SummaryTable = {
+  columns: INFANT_AGES,
+  rows: (
+    [
+      ['AZT + NVP, breastfeeding', 'PC8'],
+      ['AZT + NVP, not breastfeeding', 'PC7'],
+      ['Any other PMTCT regimen', 'PC1X'],
+    ] as Array<[string, string]>
+  ).map(([label, code]) => ({ label, cells: INFANT_AGES.map((band) => [{ code, band }]), total: [{ code }] })),
+  totalLabel: 'Total infants',
+};
+
 const PREP: SummaryTable = {
   columns: [],
   rows: [
@@ -170,11 +182,35 @@ const TPT: SummaryTable = {
   totalLabel: 'Total started TPT',
 };
 
+/* No Total row: a client who switched between Cotrimoxazole and Dapsone in the
+   month is counted under both, as the form counts each drug */
+const UNIVERSAL_PROPHYLAXIS: SummaryTable = {
+  columns: ['Adults (≥15 yrs)', 'Children (<15 yrs)'],
+  rows: [byCode('Cotrimoxazole', ['OI1A', 'OI1C']), byCode('Dapsone', ['OI2A', null])],
+};
+
+const CRYPTOCOCCAL_MENINGITIS: SummaryTable = {
+  columns: [],
+  rows: [single('Liposomal Amphotericin B + Flucytosine + Fluconazole', 'OI6B'), single('Any other treatment', 'OI6X')],
+  totalLabel: 'Total new CM clients',
+};
+
+/* Laid out as MOH 731 3.2 Currently on ART (age band by sex, from the same
+   HIV monthly dataset), so the two reports can be checked against each other */
+const CURRENTLY_ON_ART: SummaryTable = {
+  columns: ['Male', 'Female'],
+  rows: Object.entries(ART_AGE_BANDS).map(([age, { label }]) => ({
+    label,
+    cells: ['M', 'F'].map((sex) => [{ code: ALL_ON_ART, sex, age }]),
+  })),
+  totalLabel: 'Total currently on ART',
+};
+
 const all = (table: SummaryTable) => tableCells(table);
 
 /** Not counted yet: shown on the form blank, listed here so the gap is visible */
 export const NOT_YET_COUNTED =
-  'Not counted yet: PMTCT infants (PC8, PC7, PC1X), universal prophylaxis (OI1A, OI1C, OI2A), TPT for HIV-negative clients (ATPT1C) and Cryptococcal Meningitis (OI6B, OI6X). These are blank on the form too, until their queries are added.';
+  'Not counted yet: TPT for HIV-negative clients (ATPT1C). It is blank on the form too, until its query is added.';
 
 export const MOH_729B_SUMMARY: SummarySection[] = [
   {
@@ -184,9 +220,15 @@ export const MOH_729B_SUMMARY: SummarySection[] = [
       { label: 'Adults on ART', cells: all(ADULT_ART) },
       { label: 'Children on ART', cells: all(PAEDIATRIC_ART) },
       { label: 'Pregnant women on ART', cells: all(PMTCT_MOTHERS) },
-      { label: 'Total on ART', cells: [...all(ADULT_ART), ...all(PAEDIATRIC_ART), ...all(PMTCT_MOTHERS)] },
+      { label: 'Infants on prophylaxis', cells: all(PMTCT_INFANTS) },
+      { label: 'Currently on ART', cells: [{ code: ALL_ON_ART }] },
     ],
     cards: [
+      {
+        title: 'Currently on ART (as MOH 731 3.2)',
+        note: 'By age and sex, as MOH 731 counts them; equal to the regimens below.',
+        tables: [CURRENTLY_ON_ART],
+      },
       { title: 'Adult ART', tables: [ADULT_ART] },
       {
         title: 'Paediatric ART',
@@ -194,6 +236,11 @@ export const MOH_729B_SUMMARY: SummarySection[] = [
         tables: [PAEDIATRIC_ART, PAEDIATRIC_WEIGHT],
       },
       { title: 'PMTCT · Pregnant women', note: 'Women pregnant this month.', tables: [PMTCT_MOTHERS] },
+      {
+        title: 'PMTCT · Infants',
+        note: 'HIV-exposed infants on ARV prophylaxis at an HEI visit this month, by feeding and age at the visit.',
+        tables: [PMTCT_INFANTS],
+      },
     ],
   },
   {
@@ -217,12 +264,27 @@ export const MOH_729B_SUMMARY: SummarySection[] = [
   {
     id: 'ois',
     tab: 'OIs & TPT',
-    headlines: [{ label: 'Started TPT (HIV positive)', cells: all(TPT) }],
+    headlines: [
+      { label: 'On Cotrimoxazole', cells: [{ code: 'OI1A' }, { code: 'OI1C' }] },
+      { label: 'On Dapsone', cells: [{ code: 'OI2A' }] },
+      { label: 'Started TPT (HIV positive)', cells: all(TPT) },
+      { label: 'New CM clients (≥15 yrs)', cells: all(CRYPTOCOCCAL_MENINGITIS) },
+    ],
     cards: [
+      {
+        title: 'Universal prophylaxis',
+        note: 'On Cotrimoxazole or Dapsone at a visit this month; adult or child by age at the visit.',
+        tables: [UNIVERSAL_PROPHYLAXIS],
+      },
       {
         title: 'TPT HIV Positive',
         note: 'Started ART and TPT this month (MOH 731 3.4).',
         tables: [TPT],
+      },
+      {
+        title: 'Cryptococcal Meningitis · New clients',
+        note: 'Aged 15 and over, with a CM treatment recorded this month and none before it; counted at their first CM visit of the month.',
+        tables: [CRYPTOCOCCAL_MENINGITIS],
       },
     ],
   },

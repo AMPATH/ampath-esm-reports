@@ -49,6 +49,7 @@ const Moh729bReport: React.FC = () => {
   const session = useSession();
   const locationUuids = session?.sessionLocation?.uuid ?? '';
   const facility = session?.sessionLocation?.display ?? '';
+  const preparedBy = session?.user?.person?.display ?? session?.user?.display ?? '';
   /* Only a report for the current location counts */
   const { isForCurrentLocation, hasLocationChanged, markGenerated } = useGeneratedLocation('moh729bLocation');
   const isReportGenerated = rows !== null && isForCurrentLocation;
@@ -78,15 +79,17 @@ const Moh729bReport: React.FC = () => {
     navigate(`/moh-729b-linelist?${params}`);
   };
 
+  /* clients, not rows: an infant can be in a code under two age bands in a month */
+  const clientsOf = (matching: Moh729bRow[]) => new Set(matching.map((row) => row.person_id)).size;
   const counts = useMemo<Moh729bCounts>(
     () => ({
-      count: (cell) => (rows ?? []).filter((row) => inCell(row, cell)).length,
+      count: (cell) => clientsOf((rows ?? []).filter((row) => inCell(row, cell))),
       open: (cell) => openLinelist([cell]),
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [rows, period, locationUuids, view, section],
   );
-  const countClients = (cells: Moh729bCell[]) => (rows ?? []).filter((row) => inCells(row, cells)).length;
+  const countClients = (cells: Moh729bCell[]) => clientsOf((rows ?? []).filter((row) => inCells(row, cells)));
 
   /* Download PDF saves the form as one A3 portrait page, made from a copy, so
      the page on screen is left as it is */
@@ -133,6 +136,7 @@ const Moh729bReport: React.FC = () => {
                   startDate={period.startDate}
                   endDate={period.endDate}
                   counts={counts}
+                  preparedBy={preparedBy}
                 />
               </div>
             </TabPanel>

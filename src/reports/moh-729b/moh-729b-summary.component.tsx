@@ -13,7 +13,7 @@ import {
   type SummaryTable,
   tableCells,
 } from './moh-729b-summary.config';
-import { countedCode, type Moh729bCell } from './moh-729b.types';
+import { ALL_ON_ART, countedCode, type Moh729bCell } from './moh-729b.types';
 /* drawn exactly like the MOH 731 Summary */
 import styles from '../moh-731/summary/moh-731-summary.scss';
 
@@ -41,7 +41,7 @@ const readShowCodes = () => {
 
 /** The form's code for a single count, e.g. `CF2G` or `PM12 · 2nd Line` */
 const codeOf = (cells: Moh729bCell[]) =>
-  cells.length === 1 && !cells[0].band ? countedCode(cells[0].code) : undefined;
+  cells.length === 1 && !cells[0].band && cells[0].code !== ALL_ON_ART ? countedCode(cells[0].code) : undefined;
 
 /**
  * The MOH 729B report regrouped for reading, as the MOH 731 Summary: a tab per
