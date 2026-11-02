@@ -24,7 +24,7 @@ export interface Moh267Row {
   population_type?: string | null;
   /** (g) New, Continuing, Discontinued or Restart */
   prep_status?: string | null;
-  /** (h) Daily oral PrEP, Event driven oral PrEP, Dapivirine Vaginal ring, Cabotegravir Injectable (or Lenacapavir) */
+  /** (h) Daily oral PrEP, Event driven oral PrEP, Dapivirine Vaginal ring, Cabotegravir Injectable or Lenacapavir (added to the form's codes) */
   prep_method?: string | null;
   /** (i) Negative, Positive, Inconclusive or NA */
   hiv_result?: string | null;
