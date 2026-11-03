@@ -118,6 +118,7 @@ const RegisterLayout: React.FC<RegisterLayoutProps> = ({
   if (locationUuids) parentQuery.append('locationUuids', locationUuids);
   if (startDate) parentQuery.append('startDate', startDate);
   if (endDate) parentQuery.append('endDate', endDate);
+  parentQuery.append('regen', '1');
   /* back to the report tab the register was opened from, e.g. a summary view */
   const view = params.get('view');
   if (view) parentQuery.append('view', view);

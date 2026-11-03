@@ -38,6 +38,7 @@ const Moh711AncLinelist: React.FC = () => {
   const endDate = searchParams.get('endDate');
   const locationUuids = searchParams.get('locationUuids');
   const indicator = searchParams.get('indicator') ?? '';
+  const from = searchParams.get('from');
   const locationName = useLocationName(locationUuids);
 
   const fetchPatientList = useCallback(
@@ -51,9 +52,9 @@ const Moh711AncLinelist: React.FC = () => {
         startIndex,
         limit,
       }),
-    [startDate, endDate, locationUuids, indicator],
+    [startDate, endDate, locationUuids, indicator, from],
   );
-  const { rows, isLoading } = useAllRows(fetchPatientList, [startDate, endDate, locationUuids, indicator]);
+  const { rows, isLoading } = useAllRows(fetchPatientList, [startDate, endDate, locationUuids, indicator, from]);
   return (
     <RegisterLayout
       parentLabel="MOH-711 Report"

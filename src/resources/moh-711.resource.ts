@@ -37,7 +37,7 @@ export async function getMoh711(params: Moh711Params): Promise<any> {
   }
 }
 
-export async function getMoh406PatientList(params: PatientListParams): Promise<PatientListPage> {
+export async function getMoh406PatientList(params: PatientListParams & { from?: string | null }): Promise<PatientListPage> {
   const endPoint = (() => {
     if (params.from && params.from?.toLowerCase() === 'moh-717') {
       return 'moh-717-patient-list';
@@ -68,7 +68,7 @@ export async function getMoh406PatientList(params: PatientListParams): Promise<P
   }
 }
 
-export async function getMoh405PatientList(params: PatientListParams): Promise<PatientListPage> {
+export async function getMoh405PatientList(params: PatientListParams & { from?: string | null }): Promise<PatientListPage> {
   const endPoint = (() => {
     if (params.from && params.from?.toLowerCase() === 'moh-717') {
       return 'moh-717-patient-list';
@@ -99,7 +99,7 @@ export async function getMoh405PatientList(params: PatientListParams): Promise<P
   }
 }
 
-export async function getMoh333PatientList(params: PatientListParams): Promise<PatientListPage> {
+export async function getMoh333PatientList(params: PatientListParams & { from?: string | null }): Promise<PatientListPage> {
   const endPoint = (() => {
     if (params.from && params.from?.toLowerCase() === 'moh-717') {
       return 'moh-717-patient-list';
