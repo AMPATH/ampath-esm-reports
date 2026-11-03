@@ -16,15 +16,19 @@ import { type ReportPeriod } from './types';
  * already; this is for the ones that do not.
  */
 export function useRestorePeriod(onRestore: (period: ReportPeriod) => void) {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const startDate = searchParams.get('startDate');
   const endDate = searchParams.get('endDate');
   const month = searchParams.get('month') ?? undefined;
+  const shouldRegenerate = searchParams.get('regen') === '1';
 
   /* Keyed on the period rather than a bare "has run" flag, so following a
-     second register back to a different month still regenerates. */
+     second register back to a different month still regenerates. A breadcrumb
+     back from a drill-down adds `regen=1` to force a fresh fetch even when the
+     same period is being revisited. */
   const restored = useRef<string | null>(null);
+    const forcedRestore = useRef<string | null>(null);
 
   useEffect(() => {
     if (!startDate || !endDate) {
@@ -33,11 +37,17 @@ export function useRestorePeriod(onRestore: (period: ReportPeriod) => void) {
 
     const key = `${startDate}|${endDate}`;
 
-    if (restored.current === key) {
+    if (restored.current === key && (!shouldRegenerate || forcedRestore.current === key)) {
       return;
     }
 
     restored.current = key;
+    if (shouldRegenerate) {
+      forcedRestore.current = key;
+      const nextParams = new URLSearchParams(searchParams);
+      nextParams.delete('regen');
+      setSearchParams(nextParams, { replace: true });
+    }
     onRestore({ startDate, endDate, month, label: describePeriod(startDate, endDate, month) });
-  }, [startDate, endDate, month, onRestore]);
+  }, [startDate, endDate, month, shouldRegenerate, onRestore, searchParams, setSearchParams]);
 }

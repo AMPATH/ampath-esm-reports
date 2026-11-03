@@ -9,6 +9,8 @@ import Moh240Report from './reports/moh-240/moh-240.component';
 import Moh505Report from './reports/moh-505/moh-505.component';
 import Moh705BComponent from './reports/moh-705B/moh-705b.component';
 import Moh705AComponent from './reports/moh-705a/moh-705a.component';
+import Moh705ALinelist from './reports/moh-705a/linelist/moh-705a-linelist.component';
+import Moh705BLinelist from './reports/moh-705B/linelist/moh-705b-linelist.component';
 import Moh745Component from './reports/moh-745/moh-745.component';
 import Moh740Report from './reports/moh-740/moh-740.component';
 import Moh204ARegisterComponent from './reports/moh-705a/registers/moh-204a-register.component';
@@ -67,7 +69,9 @@ const RootComponent: React.FC = () => {
           <Route path="/moh-240" element={<Moh240Report />} />
           <Route path="/moh-505" element={<Moh505Report />} />
           <Route path="/moh-705a" element={<Moh705AComponent />} />
+          <Route path="/moh-705a-linelist" element={<Moh705ALinelist />} />
           <Route path="/moh-705b" element={<Moh705BComponent />} />
+          <Route path="/moh-705b-linelist" element={<Moh705BLinelist />} />
           <Route path="/moh-745" element={<Moh745Component />} />
           <Route path="/moh-740" element={<Moh740Report />} />
           <Route path="/moh-412-register" element={<Moh412Register />} />

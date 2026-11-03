@@ -20,37 +20,35 @@ const OutpatientComponent: React.FC<OutpatientComponentProps> = ({
   const navigate = useNavigate();
   const location = useLocation();
 
-  const navigateTo204ARegister = (indicator: string | string[]) => {
+  const navigateTo204ALinelist = (indicator: string | string[]) => {
     navigate(
-      `/moh-204a?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}&from=moh-717`,
+      `/moh-705a-linelist?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}&from=moh-717`,
     );
   };
-  const navigateTo204BRegister = (indicator: string | string[]) => {
+  const navigateTo204BLinelist = (indicator: string | string[]) => {
     navigate(
-      `/moh-204b?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}&from=moh-717`,
+      `/moh-705b-linelist?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}&from=moh-717`,
     );
   };
   const navigateToMoh405Register = (indicator: string | string[]) => {
-    navigate(
-      `/moh-405-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}&from=moh-717`,
-      {
-        state: {
-          from: location.pathname,
-          reportName: 'moh717Report',
-        },
-      },
-    );
+    const params = new URLSearchParams({
+      startDate,
+      endDate,
+      locationUuids,
+      indicator: Array.isArray(indicator) ? indicator.join(',') : indicator,
+      from: 'moh-717',
+    });
+    navigate(`/moh-711-anc-linelist?${params}`);
   };
   const navigateToMoh406Register = (indicator: string | string[]) => {
-    navigate(
-      `/moh-406-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}&from=moh-717`,
-      {
-        state: {
-          from: location.pathname,
-          reportName: 'moh717Report',
-        },
-      },
-    );
+    const params = new URLSearchParams({
+      startDate,
+      endDate,
+      locationUuids,
+      indicator: Array.isArray(indicator) ? indicator.join(',') : indicator,
+      from: 'moh-717',
+    });
+    navigate(`/moh-711-pnc-linelist?${params}`);
   };
   const navigateTo511Register = (indicator: string | string[]) => {
     navigate(
@@ -85,15 +83,15 @@ const OutpatientComponent: React.FC<OutpatientComponentProps> = ({
           <tr>
             <td>A.1.1</td>
             <td>Over 5 - Male</td>
-            <td onClick={() => navigateTo204BRegister('opd_attendance_greater_5yrs_male_new')}>
+            <td onClick={() => navigateTo204BLinelist('opd_attendance_greater_5yrs_male_new')}>
               {moh717ReportData.opd_attendance_greater_5yrs_male_new}
             </td>
-            <td onClick={() => navigateTo204BRegister('opd_attendance_greater_5yrs_male_revisit')}>
+            <td onClick={() => navigateTo204BLinelist('opd_attendance_greater_5yrs_male_revisit')}>
               {moh717ReportData.opd_attendance_greater_5yrs_male_revisit}
             </td>
             <td
               onClick={() =>
-                navigateTo204BRegister([
+                navigateTo204BLinelist([
                   'opd_attendance_greater_5yrs_male_new',
                   'opd_attendance_greater_5yrs_male_revisit',
                 ])
@@ -106,15 +104,15 @@ const OutpatientComponent: React.FC<OutpatientComponentProps> = ({
           <tr>
             <td>A.1.2</td>
             <td>Over 5 - Female</td>
-            <td onClick={() => navigateTo204BRegister('opd_attendance_greater_5yrs_female_new')}>
+            <td onClick={() => navigateTo204BLinelist('opd_attendance_greater_5yrs_female_new')}>
               {moh717ReportData.opd_attendance_greater_5yrs_female_new}
             </td>
-            <td onClick={() => navigateTo204BRegister('opd_attendance_greater_5yrs_female_revisit')}>
+            <td onClick={() => navigateTo204BLinelist('opd_attendance_greater_5yrs_female_revisit')}>
               {moh717ReportData.opd_attendance_greater_5yrs_female_revisit}
             </td>
             <td
               onClick={() =>
-                navigateTo204BRegister([
+                navigateTo204BLinelist([
                   'opd_attendance_greater_5yrs_female_new',
                   'opd_attendance_greater_5yrs_female_revisit',
                 ])
@@ -127,15 +125,15 @@ const OutpatientComponent: React.FC<OutpatientComponentProps> = ({
           <tr>
             <td>A.1.3</td>
             <td>Children Under 5 - Male</td>
-            <td onClick={() => navigateTo204ARegister('opd_attendance_less_5yrs_male_new')}>
+            <td onClick={() => navigateTo204ALinelist('opd_attendance_less_5yrs_male_new')}>
               {moh717ReportData.opd_attendance_less_5yrs_male_new}
             </td>
-            <td onClick={() => navigateTo204ARegister('opd_attendance_less_5yrs_male_revisit')}>
+            <td onClick={() => navigateTo204ALinelist('opd_attendance_less_5yrs_male_revisit')}>
               {moh717ReportData.opd_attendance_less_5yrs_male_revisit}
             </td>
             <td
               onClick={() =>
-                navigateTo204ARegister(['opd_attendance_less_5yrs_male_new', 'opd_attendance_less_5yrs_male_revisit'])
+                navigateTo204ALinelist(['opd_attendance_less_5yrs_male_new', 'opd_attendance_less_5yrs_male_revisit'])
               }
             >
               {(moh717ReportData.opd_attendance_less_5yrs_male_new || 0) +
@@ -145,15 +143,15 @@ const OutpatientComponent: React.FC<OutpatientComponentProps> = ({
           <tr>
             <td>A.1.4</td>
             <td>Children Under 5 - Female</td>
-            <td onClick={() => navigateTo204ARegister('opd_attendance_less_5yrs_female_new')}>
+            <td onClick={() => navigateTo204ALinelist('opd_attendance_less_5yrs_female_new')}>
               {moh717ReportData.opd_attendance_less_5yrs_female_new}
             </td>
-            <td onClick={() => navigateTo204ARegister('opd_attendance_less_5yrs_female_revisit')}>
+            <td onClick={() => navigateTo204ALinelist('opd_attendance_less_5yrs_female_revisit')}>
               {moh717ReportData.opd_attendance_less_5yrs_female_revisit}
             </td>
             <td
               onClick={() =>
-                navigateTo204ARegister([
+                navigateTo204ALinelist([
                   'opd_attendance_less_5yrs_female_new',
                   'opd_attendance_less_5yrs_female_revisit',
                 ])
@@ -166,11 +164,11 @@ const OutpatientComponent: React.FC<OutpatientComponentProps> = ({
           <tr>
             <td>A.1.5</td>
             <td>Over 60 years</td>
-            <td onClick={() => navigateTo204BRegister('over_60_years_new')}>{moh717ReportData.over_60_years_new}</td>
-            <td onClick={() => navigateTo204BRegister('over_60_years_revisit')}>
+            <td onClick={() => navigateTo204BLinelist('over_60_years_new')}>{moh717ReportData.over_60_years_new}</td>
+            <td onClick={() => navigateTo204BLinelist('over_60_years_revisit')}>
               {moh717ReportData.over_60_years_revisit}
             </td>
-            <td onClick={() => navigateTo204ARegister(['over_60_years_new', 'over_60_years_revisit'])}>
+            <td onClick={() => navigateTo204BLinelist(['over_60_years_new', 'over_60_years_revisit'])}>
               {(moh717ReportData.over_60_years_new || 0) + (moh717ReportData.over_60_years_revisit || 0)}
             </td>
           </tr>
@@ -452,18 +450,18 @@ const OutpatientComponent: React.FC<OutpatientComponentProps> = ({
           <tr>
             <td>A.4.2</td>
             <td>ANC Attendances</td>
-            <td onClick={() => navigateToMoh405Register('anc_new')}>{moh717ReportData.anc_new}</td>
-            <td onClick={() => navigateToMoh405Register('anc_revisit')}>{moh717ReportData.anc_revisit}</td>
-            <td onClick={() => navigateToMoh405Register(['anc_new', 'anc_revisit'])}>
+            <td onClick={() => navigateToMoh405Register('new_anc_clients')}>{moh717ReportData.anc_new}</td>
+            <td onClick={() => navigateToMoh405Register('revisit_anc_clients')}>{moh717ReportData.anc_revisit}</td>
+            <td onClick={() => navigateToMoh405Register(['new_anc_clients', 'revisit_anc_clients'])}>
               {(moh717ReportData.anc_new || 0) + (moh717ReportData.anc_revisit || 0)}
             </td>
           </tr>
           <tr>
             <td>A.4.3</td>
             <td>PNC Attendances</td>
-            <td onClick={() => navigateToMoh406Register('pnc_new')}>{moh717ReportData.pnc_new}</td>
-            <td onClick={() => navigateToMoh406Register('pnc_revisit')}>{moh717ReportData.pnc_revisit}</td>
-            <td onClick={() => navigateToMoh406Register(['pnc_new', 'pnc_revisit'])}>
+            <td onClick={() => navigateToMoh406Register('pnc_new_clients')}>{moh717ReportData.pnc_new}</td>
+            <td onClick={() => navigateToMoh406Register('pnc_revisit_clients')}>{moh717ReportData.pnc_revisit}</td>
+            <td onClick={() => navigateToMoh406Register(['pnc_new_clients', 'pnc_revisit_clients'])}>
               {(moh717ReportData.pnc_new || 0) + (moh717ReportData.pnc_revisit || 0)}
             </td>
           </tr>

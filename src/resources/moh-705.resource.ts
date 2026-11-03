@@ -52,6 +52,7 @@ export async function getMoh705aPatientList(params: Moh705PatientListParams): Pr
     startDate: params.startDate || '',
     endDate: params.endDate || '',
     indicator: Array.isArray(params.indicator) ? params.indicator.join(',') : params.indicator || '',
+    reportName: params.reportName || '',
     ...pageParams(params),
   });
   try {
@@ -103,6 +104,7 @@ export async function getMoh705bPatientList(params: Moh705PatientListParams): Pr
     startDate: params.startDate || '',
     endDate: params.endDate || '',
     indicator: Array.isArray(params.indicator) ? params.indicator.join(',') : params.indicator || '',
+    reportName: params.reportName || '',
     ...pageParams(params),
   });
   try {
