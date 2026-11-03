@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from '../moh711.scss';
 import classNames from 'classnames';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useOpenMoh711FamilyPlanningLinelist } from '../linelist/use-open-moh-711-family-planning-linelist';
 
 interface FamilyPlanningComponentProps {
   moh711Data: any;
@@ -17,19 +17,7 @@ const FamilyPlanningComponent: React.FC<FamilyPlanningComponentProps> = ({
   endDate,
   locationUuids,
 }) => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const navigateToRegister = (indicator: string) => {
-    navigate(
-      `/moh-512-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}&from=moh-711`,
-      {
-        state: {
-          from: location.pathname,
-          reportName: 'moh711Report',
-        },
-      },
-    );
-  };
+  const openLinelist = useOpenMoh711FamilyPlanningLinelist(startDate, endDate, locationUuids);
   return (
     <div className={styles.section}>
       <table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
@@ -51,7 +39,7 @@ const FamilyPlanningComponent: React.FC<FamilyPlanningComponentProps> = ({
           <tr>
             <td>1</td>
             <td colSpan={2}>No. of 1st Ever Users of Contraceptive</td>
-            <td onClick={() => navigateToRegister('first_users_contraceptive_new')}>
+            <td onClick={() => openLinelist('first_users_contraceptive_new')}>
               {moh711Data.first_users_contraceptive_new ?? 0}
             </td>
             <td className={styles.greyBackground}></td>
@@ -60,25 +48,25 @@ const FamilyPlanningComponent: React.FC<FamilyPlanningComponentProps> = ({
             <td>2</td>
             <td rowSpan={3}>Pills</td>
             <td>Progestine only pills</td>
-            <td onClick={() => navigateToRegister('pills_progestine_new')}>{moh711Data.pills_progestine_new ?? 0}</td>
-            <td onClick={() => navigateToRegister('pills_progestine_revisit')}>
+            <td onClick={() => openLinelist('pills_progestine_new')}>{moh711Data.pills_progestine_new ?? 0}</td>
+            <td onClick={() => openLinelist('pills_progestine_revisit')}>
               {moh711Data.pills_progestine_revisit ?? 0}
             </td>
           </tr>
           <tr>
             <td>3</td>
             <td>Pills Combined oral contraceptive</td>
-            <td onClick={() => navigateToRegister('pills_combined_oral_contraceptive_new')}>
+            <td onClick={() => openLinelist('pills_combined_oral_contraceptive_new')}>
               {moh711Data.pills_combined_oral_contraceptive_new ?? 0}
             </td>
-            <td onClick={() => navigateToRegister('pills_combined_oral_contraceptive_revisit')}>
+            <td onClick={() => openLinelist('pills_combined_oral_contraceptive_revisit')}>
               {moh711Data.pills_combined_oral_contraceptive_revisit ?? 0}
             </td>
           </tr>
           <tr>
             <td>4</td>
             <td>Emergency contraceptive pill</td>
-            <td onClick={() => navigateToRegister('emergency_contraceptive_pill_new')}>
+            <td onClick={() => openLinelist('emergency_contraceptive_pill_new')}>
               {moh711Data.emergency_contraceptive_pill_new ?? 0}
             </td>
             <td className={styles.greyBackground}></td>
@@ -87,20 +75,20 @@ const FamilyPlanningComponent: React.FC<FamilyPlanningComponentProps> = ({
             <td>5</td>
             <td rowSpan={2}>Injectables</td>
             <td>FP Injections DMPA- IM</td>
-            <td onClick={() => navigateToRegister('fp_injections_dmpa_im_new')}>
+            <td onClick={() => openLinelist('fp_injections_dmpa_im_new')}>
               {moh711Data.fp_injections_dmpa_im_new ?? 0}
             </td>
-            <td onClick={() => navigateToRegister('fp_injections_dmpa_im_revisit')}>
+            <td onClick={() => openLinelist('fp_injections_dmpa_im_revisit')}>
               {moh711Data.fp_injections_dmpa_im_revisit ?? 0}
             </td>
           </tr>
           <tr>
             <td>6</td>
             <td>FP Injections DMPA- SC</td>
-            <td onClick={() => navigateToRegister('fp_injections_dmpa_sc_new')}>
+            <td onClick={() => openLinelist('fp_injections_dmpa_sc_new')}>
               {moh711Data.fp_injections_dmpa_sc_new ?? 0}
             </td>
-            <td onClick={() => navigateToRegister('fp_injections_dmpa_sc_revisit')}>
+            <td onClick={() => openLinelist('fp_injections_dmpa_sc_revisit')}>
               {moh711Data.fp_injections_dmpa_sc_revisit ?? 0}
             </td>
           </tr>
@@ -108,22 +96,22 @@ const FamilyPlanningComponent: React.FC<FamilyPlanningComponentProps> = ({
             <td>7</td>
             <td rowSpan={3}>Condoms</td>
             <td>No. of clients received (Male condoms)</td>
-            <td onClick={() => navigateToRegister('male_condoms_new')}>{moh711Data.male_condoms_new ?? 0}</td>
-            <td onClick={() => navigateToRegister('male_condoms_revisit')}>{moh711Data.male_condoms_revisit ?? 0}</td>
+            <td onClick={() => openLinelist('male_condoms_new')}>{moh711Data.male_condoms_new ?? 0}</td>
+            <td onClick={() => openLinelist('male_condoms_revisit')}>{moh711Data.male_condoms_revisit ?? 0}</td>
           </tr>
           <tr>
             <td>8</td>
             <td>No. of clients received (Female condoms)</td>
-            <td onClick={() => navigateToRegister('female_condoms_new')}>{moh711Data.female_condoms_new ?? 0}</td>
-            <td onClick={() => navigateToRegister('female_condoms_revisit')}>{moh711Data.female_condoms_revisit ?? 0}</td>
+            <td onClick={() => openLinelist('female_condoms_new')}>{moh711Data.female_condoms_new ?? 0}</td>
+            <td onClick={() => openLinelist('female_condoms_revisit')}>{moh711Data.female_condoms_revisit ?? 0}</td>
           </tr>
           <tr>
             <td>9</td>
             <td>No. of clients received (Both Male and Female condoms)</td>
-            <td onClick={() => navigateToRegister('male_and_female_condoms_new')}>
+            <td onClick={() => openLinelist('male_and_female_condoms_new')}>
               {moh711Data.male_and_female_condoms_new ?? 0}
             </td>
-            <td onClick={() => navigateToRegister('male_and_female_condoms_revisit')}>
+            <td onClick={() => openLinelist('male_and_female_condoms_revisit')}>
               {moh711Data.male_and_female_condoms_revisit ?? 0}
             </td>
           </tr>
@@ -131,7 +119,7 @@ const FamilyPlanningComponent: React.FC<FamilyPlanningComponentProps> = ({
             <td>10</td>
             <td rowSpan={2}>Natural FP</td>
             <td>No. of clients counselled Natural FP</td>
-            <td onClick={() => navigateToRegister('counselled_for_natural_family_planning_new')}>
+            <td onClick={() => openLinelist('counselled_for_natural_family_planning_new')}>
               {moh711Data.counselled_for_natural_family_planning_new ?? 0}
             </td>
             <td className={styles.greyBackground}></td>
@@ -139,7 +127,7 @@ const FamilyPlanningComponent: React.FC<FamilyPlanningComponentProps> = ({
           <tr>
             <td>11</td>
             <td>No. of clients given cycle beads</td>
-            <td onClick={() => navigateToRegister('cycle_beads_new')}>{moh711Data.cycle_beads_new ?? 0}</td>
+            <td onClick={() => openLinelist('cycle_beads_new')}>{moh711Data.cycle_beads_new ?? 0}</td>
             <td className={styles.greyBackground}></td>
           </tr>
         </tbody>
@@ -158,20 +146,20 @@ const FamilyPlanningComponent: React.FC<FamilyPlanningComponentProps> = ({
             <td>12</td>
             <td rowSpan={2}>Implants</td>
             <td>1 Rod</td>
-            <td onClick={() => navigateToRegister('implants_insertion_1_rod_first_time')}>
+            <td onClick={() => openLinelist('implants_insertion_1_rod_first_time')}>
               {moh711Data.implants_insertion_1_rod_first_time ?? 0}
             </td>
-            <td onClick={() => navigateToRegister('implants_insertion_1_rod_re_insertion')}>
+            <td onClick={() => openLinelist('implants_insertion_1_rod_re_insertion')}>
               {moh711Data.implants_insertion_1_rod_re_insertion ?? 0}
             </td>
           </tr>
           <tr>
             <td>13</td>
             <td>2 Rods</td>
-            <td onClick={() => navigateToRegister('implants_insertion_2_rod_first_time')}>
+            <td onClick={() => openLinelist('implants_insertion_2_rod_first_time')}>
               {moh711Data.implants_insertion_2_rod_first_time ?? 0}
             </td>
-            <td onClick={() => navigateToRegister('implants_insertion_2_rod_re_insertion')}>
+            <td onClick={() => openLinelist('implants_insertion_2_rod_re_insertion')}>
               {moh711Data.implants_insertion_2_rod_re_insertion ?? 0}
             </td>
           </tr>
@@ -179,20 +167,20 @@ const FamilyPlanningComponent: React.FC<FamilyPlanningComponentProps> = ({
             <td>14</td>
             <td rowSpan={2}>I.U.C.D insertion</td>
             <td>Hormonal</td>
-            <td onClick={() => navigateToRegister('iucd_hormonal_first_time')}>
+            <td onClick={() => openLinelist('iucd_hormonal_first_time')}>
               {moh711Data.iucd_hormonal_first_time ?? 0}
             </td>
-            <td onClick={() => navigateToRegister('iucd_hormonal_re_insertion')}>
+            <td onClick={() => openLinelist('iucd_hormonal_re_insertion')}>
               {moh711Data.iucd_hormonal_re_insertion ?? 0}
             </td>
           </tr>
           <tr>
             <td>15</td>
             <td>Non Hormonal</td>
-            <td onClick={() => navigateToRegister('iucd_non_hormonal_first_time')}>
+            <td onClick={() => openLinelist('iucd_non_hormonal_first_time')}>
               {moh711Data.iucd_non_hormonal_first_time ?? 0}
             </td>
-            <td onClick={() => navigateToRegister('iucd_non_hormonal_re_insertion')}>
+            <td onClick={() => openLinelist('iucd_non_hormonal_re_insertion')}>
               {moh711Data.iucd_non_hormonal_re_insertion ?? 0}
             </td>
           </tr>
@@ -200,7 +188,7 @@ const FamilyPlanningComponent: React.FC<FamilyPlanningComponentProps> = ({
             <td>16</td>
             <td rowSpan={2}>Voluntary surgical contraception</td>
             <td>BTL</td>
-            <td onClick={() => navigateToRegister('surgical_contraception_btl_first_time')}>
+            <td onClick={() => openLinelist('surgical_contraception_btl_first_time')}>
               {moh711Data.surgical_contraception_btl_first_time ?? 0}
             </td>
             <td className={styles.greyBackground}></td>
@@ -208,7 +196,7 @@ const FamilyPlanningComponent: React.FC<FamilyPlanningComponentProps> = ({
           <tr>
             <td>17</td>
             <td>Vasectomy</td>
-            <td onClick={() => navigateToRegister('vasectomy_insertion')}>{moh711Data.vasectomy_insertion ?? 0}</td>
+            <td onClick={() => openLinelist('vasectomy_insertion')}>{moh711Data.vasectomy_insertion ?? 0}</td>
             <td className={styles.greyBackground}></td>
           </tr>
           <tr>
@@ -220,13 +208,13 @@ const FamilyPlanningComponent: React.FC<FamilyPlanningComponentProps> = ({
             <td>18</td>
             <td rowSpan={2}>Removals</td>
             <td>I.U.C.D</td>
-            <td onClick={() => navigateToRegister('iucd_removals_new')}>{moh711Data.iucd_removals_new ?? 0}</td>
+            <td onClick={() => openLinelist('iucd_removals_new')}>{moh711Data.iucd_removals_new ?? 0}</td>
             <td className={styles.greyBackground}></td>
           </tr>
           <tr>
             <td>19</td>
             <td>Implants</td>
-            <td onClick={() => navigateToRegister('implants_removal_new')}>{moh711Data.implants_removal_new ?? 0}</td>
+            <td onClick={() => openLinelist('implants_removal_new')}>{moh711Data.implants_removal_new ?? 0}</td>
             <td className={styles.greyBackground}></td>
           </tr>
           <tr>
@@ -236,34 +224,34 @@ const FamilyPlanningComponent: React.FC<FamilyPlanningComponentProps> = ({
               other FP services)
             </td>
             <td>Adolescent clients (10-14 yrs) Receiving FP Services</td>
-            <td onClick={() => navigateToRegister('fp_adolescent_10_14_new')}>{moh711Data.fp_adolescent_10_14_new ?? 0}</td>
-            <td onClick={() => navigateToRegister('fp_adolescent_10_14_revisit')}>
+            <td onClick={() => openLinelist('fp_adolescent_10_14_new')}>{moh711Data.fp_adolescent_10_14_new ?? 0}</td>
+            <td onClick={() => openLinelist('fp_adolescent_10_14_revisit')}>
               {moh711Data.fp_adolescent_10_14_revisit ?? 0}
             </td>
           </tr>
           <tr>
             <td>21</td>
             <td>Adolescent clients (15-19 Yrs) Receiving FP Services</td>
-            <td onClick={() => navigateToRegister('fp_adolescent_15_19_new')}>{moh711Data.fp_adolescent_15_19_new ?? 0}</td>
-            <td onClick={() => navigateToRegister('fp_adolescent_15_19_revisit')}>
+            <td onClick={() => openLinelist('fp_adolescent_15_19_new')}>{moh711Data.fp_adolescent_15_19_new ?? 0}</td>
+            <td onClick={() => openLinelist('fp_adolescent_15_19_revisit')}>
               {moh711Data.fp_adolescent_15_19_revisit ?? 0}
             </td>
           </tr>
           <tr>
             <td>22</td>
             <td>Adolescent clients (20-24 Yrs) Receiving FP Services</td>
-            <td onClick={() => navigateToRegister('fp_adolescent_20_24_new')}>{moh711Data.fp_adolescent_20_24_new ?? 0}</td>
-            <td onClick={() => navigateToRegister('fp_adolescent_20_24_revisit')}>
+            <td onClick={() => openLinelist('fp_adolescent_20_24_new')}>{moh711Data.fp_adolescent_20_24_new ?? 0}</td>
+            <td onClick={() => openLinelist('fp_adolescent_20_24_revisit')}>
               {moh711Data.fp_adolescent_20_24_revisit ?? 0}
             </td>
           </tr>
           <tr>
             <td>23</td>
             <td>Adults 25+ receiving FP Services</td>
-            <td onClick={() => navigateToRegister('fp_adolescent_25_plus_new')}>
+            <td onClick={() => openLinelist('fp_adolescent_25_plus_new')}>
               {moh711Data.fp_adolescent_25_plus_new ?? 0}
             </td>
-            <td onClick={() => navigateToRegister('fp_adolescent_25_plus_revisit')}>
+            <td onClick={() => openLinelist('fp_adolescent_25_plus_revisit')}>
               {moh711Data.fp_adolescent_25_plus_revisit ?? 0}
             </td>
           </tr>
@@ -271,7 +259,7 @@ const FamilyPlanningComponent: React.FC<FamilyPlanningComponentProps> = ({
             <td>24</td>
             <td rowSpan={2}>No. of clients receiving immediate post partum FP Method</td>
             <td>within 48 Hours</td>
-            <td onClick={() => navigateToRegister('post_partum_fp_48_hours_new')}>
+            <td onClick={() => openLinelist('post_partum_fp_48_hours_new')}>
               {moh711Data.post_partum_fp_48_hours_new ?? 0}
             </td>
             <td className={styles.greyBackground}></td>
@@ -279,7 +267,7 @@ const FamilyPlanningComponent: React.FC<FamilyPlanningComponentProps> = ({
           <tr>
             <td>25</td>
             <td>3 days to 6 weeks</td>
-            <td onClick={() => navigateToRegister('post_partum_fp_3days_6_weeks_new')}>
+            <td onClick={() => openLinelist('post_partum_fp_3days_6_weeks_new')}>
               {moh711Data.post_partum_fp_3days_6_weeks_new ?? 0}
             </td>
             <td className={styles.greyBackground}></td>
@@ -287,7 +275,7 @@ const FamilyPlanningComponent: React.FC<FamilyPlanningComponentProps> = ({
           <tr>
             <td>26</td>
             <td colSpan={2}>No. of clients receiving post abortion FP Method</td>
-            <td onClick={() => navigateToRegister('post_abortion_fp_new')}>{moh711Data.post_abortion_fp_new ?? 0}</td>
+            <td onClick={() => openLinelist('post_abortion_fp_new')}>{moh711Data.post_abortion_fp_new ?? 0}</td>
             <td className={styles.greyBackground}></td>
           </tr>
         </tbody>
