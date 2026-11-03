@@ -16,6 +16,10 @@ import Moh204BRegisterComponent from './reports/moh-705B/moh-204b-register.compo
 import Moh209RegisterComponent from './reports/moh-717/registers/moh-209-register.component';
 import Moh412Register from './reports/moh-745/registers/moh-412-register.component';
 import Moh405Register from './reports/moh-711/registers/moh-405-register.component';
+import Moh711AncLinelist from './reports/moh-711/linelist/moh-711-anc-linelist.component';
+import Moh711MaternityLinelist from './reports/moh-711/linelist/moh-711-maternity-linelist.component';
+import Moh711PncLinelist from './reports/moh-711/linelist/moh-711-pnc-linelist.component';
+import Moh711FamilyPlanningLinelist from './reports/moh-711/linelist/moh-711-family-planning-linelist.component';
 import Moh406Register from './reports/moh-711/registers/moh-406-register.component';
 import Moh333Register from './reports/moh-711/registers/moh-333-register.component';
 import Moh511Register from './reports/moh-711/registers/moh-511-register.component';
@@ -101,6 +105,10 @@ const RootComponent: React.FC = () => {
           <Route path="/presumptive-tb" element={<PresumptiveTbRegister />} />
           <Route path="/tb4" element={<Tb4Register />} />
           <Route path="/moh-733" element={<Moh733Component />} />
+          <Route path="/moh-711-anc-linelist" element={<Moh711AncLinelist />} />
+          <Route path="/moh-711-maternity-linelist" element={<Moh711MaternityLinelist />} />
+          <Route path="/moh-711-pnc-linelist" element={<Moh711PncLinelist />} />
+          <Route path="/moh-711-family-planning-linelist" element={<Moh711FamilyPlanningLinelist />} />
         </Routes>
       </div>
     </BrowserRouter>
