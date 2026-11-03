@@ -70,8 +70,8 @@ const Parasitology: React.FC<ParasitologyProps> = ({ data, locationUuids, startD
             {
                 tableCells: [
                     getCell("", "3.6 Hymenolepis nana"),
-                    getCell(),
-                    getCell(),
+                    getCell("total_hymenolepis"),
+                    getCell("positive_hymenolepis"),
                 ]
             },
             {
@@ -91,8 +91,8 @@ const Parasitology: React.FC<ParasitologyProps> = ({ data, locationUuids, startD
             {
                 tableCells: [
                     getCell("", "3.9 S. mansoni"),
-                    getCell(),
-                    getCell(),
+                    getCell("total_s_mansoni"),
+                    getCell("positive_s_mansoni"),
                 ]
             },
             {
@@ -105,8 +105,8 @@ const Parasitology: React.FC<ParasitologyProps> = ({ data, locationUuids, startD
             {
                 tableCells: [
                     getCell("", "3.11 Amoeba"),
-                    getCell(),
-                    getCell(),
+                    getCell("total_amoeba"),
+                    getCell("positive_amoeba"),
                 ]
             },
         ]

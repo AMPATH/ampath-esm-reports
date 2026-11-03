@@ -26,7 +26,7 @@ const Bacteriology: React.FC<BacteriologyProps> = ({ data, locationUuids, startD
             },
             { tableCells: [getCell("", "5.1 Urine"), getCell(), getCell(), getCell()] },
             { tableCells: [getCell("", "5.2 Pus swabs"), getCell("total_bact_pus_swab"), getCell(), getCell()] },
-            { tableCells: [getCell("", "5.3 High Vaginal Swabs"), getCell(), getCell(), getCell()] },
+            { tableCells: [getCell("", "5.3 High Vaginal Swabs"), getCell("total_hvs"), getCell(), getCell()] },
             { tableCells: [getCell("", "5.4 Throat swab"), getCell("total_bact_throat_swab"), getCell(), getCell()] },
             { tableCells: [getCell("", "5.5 Rectal swab"), getCell("total_bact_rectal_swab"), getCell(), getCell()] },
             { tableCells: [getCell("", "5.6 Blood"), getCell("total_bact_blood"), getCell(), getCell()] },
@@ -58,7 +58,7 @@ const Bacteriology: React.FC<BacteriologyProps> = ({ data, locationUuids, startD
             { tableCells: [getCell("", "5.12 Shigella - dysenteriae type1", 2), getCell("total_bact_shigella_dysenteriae1"), getCell("positive_bact_shigella_dysenteriae1")] },
             { tableCells: [getCell("", "5.13 E. coli O157:H7", 2), getCell("total_bact_ecoli_o157"), getCell("positive_bact_ecoli_o157")] },
             { tableCells: [getCell("", "5.14 V. cholerae O1", 2), getCell("total_bact_v_cholerae_o1"), getCell("positive_bact_v_cholerae_o1")] },
-            { tableCells: [getCell("", "5.15 V. cholerae O139", 2), getCell(), getCell()] },
+            { tableCells: [getCell("", "5.15 V. cholerae O139", 2), getCell(), getCell("positive_bact_v_cholerae_o1")] },
 
             {
                 tableCells: [getCell("", "Bacterial meningitis", 4, 1, true)]

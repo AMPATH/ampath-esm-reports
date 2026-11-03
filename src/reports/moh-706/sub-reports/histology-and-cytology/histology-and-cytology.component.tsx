@@ -17,7 +17,7 @@ const HistologyAndCytology: React.FC = () => {
                     getCell(),
                 ]
             },
-            { tableCells: [getCell("", "6.1 PAP smear"), getCell(), getCell(), getCell(),] },
+            { tableCells: [getCell("", "6.1 PAP smear"), getCell("total_pap_smear"), getCell(), getCell(),] },
             { tableCells: [getCell("", "6.2 Touch preparations"), getCell(), getCell(), getCell()] },
             { tableCells: [getCell("", "6.3 Tissue impressions"), getCell(), getCell(), getCell()] },
             {
@@ -75,7 +75,7 @@ const HistologyAndCytology: React.FC = () => {
                 ]
             },
             { tableCells: [getCell("", "6.26 Bone marrow aspirate"), getCell("total_cyt_bone_marrow"), getCell(), getCell()] },
-            { tableCells: [getCell("", "6.27 Trephine biopsy"), getCell(), getCell(), getCell()] },
+            { tableCells: [getCell("", "6.27 Trephine biopsy"), getCell("total_trephine"), getCell(), getCell()] },
         ]
     }, []);
 
