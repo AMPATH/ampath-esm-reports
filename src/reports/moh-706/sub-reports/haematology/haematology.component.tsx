@@ -83,10 +83,10 @@ const Haematology: React.FC<HaematologyProps> = ({ data, locationUuids, startDat
                 tableCells: [getCell("", "4.5 Sickling test"), getCell("total_sickling"), getCell("positive_sickling", "", 2)]
             },
             {
-                tableCells: [getCell("", "4.6 Peripheral blood films"), getCell(), getCell("", "", 2)]
+                tableCells: [getCell("", "4.6 Peripheral blood films"), getCell("total_pbf"), getCell("positive_pbf", "", 2)]
             },
             {
-                tableCells: [getCell("", "4.7 BMA"), getCell(), getCell("", "", 2)]
+                tableCells: [getCell("", "4.7 BMA"), getCell("total_bma"), getCell("positive_bma", "", 2)]
             },
             {
                 tableCells: [getCell("", "4.8 Coagulation profile"), getCell("total_coagulation_profile"), getCell("", "", 2)]
@@ -104,8 +104,8 @@ const Haematology: React.FC<HaematologyProps> = ({ data, locationUuids, startDat
             {
                 tableCells: [
                     getCell("", "4.10 Erythrocyte Sedimentation Rate"),
-                    getCell(),
-                    getCell("", "", 2),
+                    getCell("total_esr"),
+                    getCell("esr_high", "", 2),
                 ]
             },
             {
