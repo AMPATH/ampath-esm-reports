@@ -51,7 +51,7 @@ const Moh705ALinelist: React.FC = () => {
         startDate: startDate || undefined,
         endDate: endDate || undefined,
         locationUuids,
-        indicator,
+        ...(indicator ? { indicator } : {}),
         reportName: 'moh705aReport',
         startIndex,
         limit,

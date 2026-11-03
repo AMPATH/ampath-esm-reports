@@ -71,7 +71,7 @@ const Moh204ARegisterComponent: React.FC<Moh204ARegisterComponentProps> = () => 
         startDate: startDate!,
         endDate: endDate!,
         locationUuids,
-        indicator,
+        ...(indicator ? { indicator } : {}),
         startIndex,
         limit,
         from,

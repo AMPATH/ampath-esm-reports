@@ -69,7 +69,7 @@ const Moh204BRegisterComponent: React.FC = () => {
         startDate: startDate!,
         endDate: endDate!,
         locationUuids,
-        indicator,
+        ...(indicator ? { indicator } : {}),
         startIndex,
         limit,
         from,
