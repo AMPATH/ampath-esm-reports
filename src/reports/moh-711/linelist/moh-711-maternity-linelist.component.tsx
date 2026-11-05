@@ -40,6 +40,7 @@ const MATERNITY_LINELIST_COLUMNS: LinelistColumn[] = [
   { header: 'Delivery Complications', field: 'delivery_complication' },
   { header: 'APGAR Score', field: 'apgar_score' },
   { header: 'Birth Outcome', field: 'birth_outcome' },
+  { header: 'Date of HIV Testing', field: 'date_of_hiv_test' },
   { header: 'Birth Weight (Grams)', field: 'birth_weight' },
   { header: 'Initiated Breastfeeding Within 1 Hour', field: 'initiated_on_bf_in_1_hour' },
   { header: 'Kangaroo Mother Care (KMC)', field: 'kangaroo_mother_care' },

@@ -1,9 +1,8 @@
 import React from 'react';
-import { Button } from '@carbon/react';
-import { useNavigate } from 'react-router-dom';
 
 import styles from '../moh711.scss';
 import classNames from 'classnames';
+import { useOpenMoh711ChanisLinelist } from '../linelist/use-open-moh-711-chanis-linelist';
 
 interface ChanisComponentProps {
   moh711Data: any;
@@ -13,26 +12,10 @@ interface ChanisComponentProps {
 }
 
 const ChanisComponent: React.FC<ChanisComponentProps> = ({ moh711Data, startDate, endDate, locationUuids }) => {
-  const navigate = useNavigate();
-
-  const openRegister = () => {
-    const params = new URLSearchParams({
-      startDate,
-      endDate,
-      locationUuids,
-      from: 'moh-711',
-    });
-
-    navigate(`/moh-407-register?${params}`, {
-      state: { from: '/moh-711', reportName: 'moh711Report' },
-    });
-  };
+  const openLinelist = useOpenMoh711ChanisLinelist(startDate, endDate, locationUuids);
 
   return (
     <div className={styles.section}>
-      <Button kind="ghost" size="sm" onClick={openRegister}>
-        Open MOH 407 Register
-      </Button>
       <table className={classNames(`${styles.table}`, `${styles.tableBordered}`, `${styles.tableStriped}`)}>
         <thead>
           <tr>
@@ -53,134 +36,134 @@ const ChanisComponent: React.FC<ChanisComponentProps> = ({ moh711Data, startDate
               0 - &lt;6 <br /> months
             </td>
             <td>Normal Weight for Age</td>
-            <td>{moh711Data.normal_weight_0_6_months_male ?? 0}</td>
-            <td>{moh711Data.normal_weight_0_6_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('normal_weight_0_6_months_male')}>{moh711Data.normal_weight_0_6_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('normal_weight_0_6_months_female')}>{moh711Data.normal_weight_0_6_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <td>Underweight</td>
-            <td>{moh711Data.underweight_0_6_months_male ?? 0}</td>
-            <td>{moh711Data.underweight_0_6_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('underweight_0_6_months_male')}>{moh711Data.underweight_0_6_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('underweight_0_6_months_female')}>{moh711Data.underweight_0_6_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <td>Severely underweight</td>
-            <td>{moh711Data.severely_underweight_0_6_months_male ?? 0}</td>
-            <td>{moh711Data.severely_underweight_0_6_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('severely_underweight_0_6_months_male')}>{moh711Data.severely_underweight_0_6_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('severely_underweight_0_6_months_female')}>{moh711Data.severely_underweight_0_6_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <td>Overweight</td>
-            <td>{moh711Data.overweight_0_6_months_male ?? 0}</td>
-            <td>{moh711Data.overweight_0_6_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('overweight_0_6_months_male')}>{moh711Data.overweight_0_6_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('overweight_0_6_months_female')}>{moh711Data.overweight_0_6_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <td>Obese</td>
-            <td>{moh711Data.obese_0_6_months_male ?? 0}</td>
-            <td>{moh711Data.obese_0_6_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('obese_0_6_months_male')}>{moh711Data.obese_0_6_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('obese_0_6_months_female')}>{moh711Data.obese_0_6_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <th>Total Weighed</th>
-            <td>{moh711Data.obese_0_6_months_male ?? 0}</td>
-            <td>{moh711Data.obese_0_6_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('obese_0_6_months_male')}>{moh711Data.obese_0_6_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('obese_0_6_months_female')}>{moh711Data.obese_0_6_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <td rowSpan={6}>2</td>
             <td rowSpan={6}>6-23 months</td>
             <td>Normal Weight for Age</td>
-            <td>{moh711Data.normal_weight_6_23_months_male ?? 0}</td>
-            <td>{moh711Data.normal_weight_6_23_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('normal_weight_6_23_months_male')}>{moh711Data.normal_weight_6_23_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('normal_weight_6_23_months_female')}>{moh711Data.normal_weight_6_23_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <td>Underweight</td>
-            <td>{moh711Data.underweight_6_23_months_male ?? 0}</td>
-            <td>{moh711Data.underweight_6_23_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('underweight_6_23_months_male')}>{moh711Data.underweight_6_23_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('underweight_6_23_months_female')}>{moh711Data.underweight_6_23_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <td>Severely underweight</td>
-            <td>{moh711Data.severely_underweight_6_23_months_male ?? 0}</td>
-            <td>{moh711Data.severely_underweight_6_23_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('severely_underweight_6_23_months_male')}>{moh711Data.severely_underweight_6_23_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('severely_underweight_6_23_months_female')}>{moh711Data.severely_underweight_6_23_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <td>Overweight</td>
-            <td>{moh711Data.overweight_6_23_months_male ?? 0}</td>
-            <td>{moh711Data.overweight_6_23_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('overweight_6_23_months_male')}>{moh711Data.overweight_6_23_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('overweight_6_23_months_female')}>{moh711Data.overweight_6_23_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <td>Obese 6-23</td>
-            <td>{moh711Data.obese_6_23_months_male ?? 0}</td>
-            <td>{moh711Data.obese_6_23_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('obese_6_23_months_male')}>{moh711Data.obese_6_23_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('obese_6_23_months_female')}>{moh711Data.obese_6_23_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <th>Total Weighed</th>
-            <td>{moh711Data.obese_6_23_months_male ?? 0}</td>
-            <td>{moh711Data.obese_6_23_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('obese_6_23_months_male')}>{moh711Data.obese_6_23_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('obese_6_23_months_female')}>{moh711Data.obese_6_23_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <td rowSpan={6}>3</td>
             <td rowSpan={6}>24 - 59 months</td>
             <td>Normal Weight for Age</td>
-            <td>{moh711Data.normal_weight_24_59_months_male ?? 0}</td>
-            <td>{moh711Data.normal_weight_24_59_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('normal_weight_24_59_months_male')}>{moh711Data.normal_weight_24_59_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('normal_weight_24_59_months_female')}>{moh711Data.normal_weight_24_59_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <td>Underweight</td>
-            <td>{moh711Data.underweight_24_59_months_male ?? 0}</td>
-            <td>{moh711Data.underweight_24_59_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('underweight_24_59_months_male')}>{moh711Data.underweight_24_59_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('underweight_24_59_months_female')}>{moh711Data.underweight_24_59_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <td>Severely underweight</td>
-            <td>{moh711Data.severely_underweight_24_59_months_male ?? 0}</td>
-            <td>{moh711Data.severely_underweight_24_59_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('severely_underweight_24_59_months_male')}>{moh711Data.severely_underweight_24_59_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('severely_underweight_24_59_months_female')}>{moh711Data.severely_underweight_24_59_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <td>Overweight</td>
-            <td>{moh711Data.overweight_24_59_months_male ?? 0}</td>
-            <td>{moh711Data.overweight_24_59_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('overweight_24_59_months_male')}>{moh711Data.overweight_24_59_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('overweight_24_59_months_female')}>{moh711Data.overweight_24_59_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <td>Obese 24-59</td>
-            <td>{moh711Data.obese_24_59_months_male ?? 0}</td>
-            <td>{moh711Data.obese_24_59_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('obese_24_59_months_male')}>{moh711Data.obese_24_59_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('obese_24_59_months_female')}>{moh711Data.obese_24_59_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <th>Total Weighed</th>
-            <td>{moh711Data.obese_24_59_months_male ?? 0}</td>
-            <td>{moh711Data.obese_6_23_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('obese_24_59_months_male')}>{moh711Data.obese_24_59_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('obese_6_23_months_female')}>{moh711Data.obese_6_23_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <td rowSpan={3}>4</td>
             <td rowSpan={3}>MUAC 6-59 months</td>
             <td>Normal (Green)</td>
-            <td>{moh711Data.muac_6_59_months_normal_male ?? 0}</td>
-            <td>{moh711Data.muac_6_59_months_normal_female ?? 0}</td>
+            <td onClick={() => openLinelist('muac_6_59_months_normal_male')}>{moh711Data.muac_6_59_months_normal_male ?? 0}</td>
+            <td onClick={() => openLinelist('muac_6_59_months_normal_female')}>{moh711Data.muac_6_59_months_normal_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <td>Moderate (Yellow)</td>
-            <td>{moh711Data.muac_6_59_months_moderate_male ?? 0}</td>
-            <td>{moh711Data.muac_6_59_months_moderate_female ?? 0}</td>
+            <td onClick={() => openLinelist('muac_6_59_months_moderate_male')}>{moh711Data.muac_6_59_months_moderate_male ?? 0}</td>
+            <td onClick={() => openLinelist('muac_6_59_months_moderate_female')}>{moh711Data.muac_6_59_months_moderate_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <td>Severe (Red)</td>
-            <td>{moh711Data.muac_6_59_months_severe_male ?? 0}</td>
-            <td>{moh711Data.muac_6_59_months_severe_female ?? 0}</td>
+            <td onClick={() => openLinelist('muac_6_59_months_severe_male')}>{moh711Data.muac_6_59_months_severe_male ?? 0}</td>
+            <td onClick={() => openLinelist('muac_6_59_months_severe_female')}>{moh711Data.muac_6_59_months_severe_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
@@ -194,78 +177,78 @@ const ChanisComponent: React.FC<ChanisComponentProps> = ({ moh711Data, startDate
             <td rowSpan={4}>5</td>
             <td rowSpan={4}>0-&le;6 Months</td>
             <td>Normal Height for Age</td>
-            <td>{moh711Data.height_for_age_0_6_months_normal_male ?? 0}</td>
-            <td>{moh711Data.height_for_age_0_6_months_normal_female ?? 0}</td>
+            <td onClick={() => openLinelist('height_for_age_0_6_months_normal_male')}>{moh711Data.height_for_age_0_6_months_normal_male ?? 0}</td>
+            <td onClick={() => openLinelist('height_for_age_0_6_months_normal_female')}>{moh711Data.height_for_age_0_6_months_normal_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <td>Stunted</td>
-            <td>{moh711Data.stunted_0_6_months_male ?? 0}</td>
-            <td>{moh711Data.stunted_0_6_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('stunted_0_6_months_male')}>{moh711Data.stunted_0_6_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('stunted_0_6_months_female')}>{moh711Data.stunted_0_6_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <td>Severely Stunted</td>
-            <td>{moh711Data.severely_stunted_0_6_months_male ?? 0}</td>
-            <td>{moh711Data.severely_stunted_0_6_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('severely_stunted_0_6_months_male')}>{moh711Data.severely_stunted_0_6_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('severely_stunted_0_6_months_female')}>{moh711Data.severely_stunted_0_6_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <th>Total Measured</th>
-            <td>{moh711Data.severely_stunted_0_6_months_male ?? 0}</td>
-            <td>{moh711Data.severely_stunted_0_6_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('severely_stunted_0_6_months_male')}>{moh711Data.severely_stunted_0_6_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('severely_stunted_0_6_months_female')}>{moh711Data.severely_stunted_0_6_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <td rowSpan={4}>6</td>
             <td rowSpan={4}>6 - 23 months</td>
             <td>Normal Height for Age</td>
-            <td>{moh711Data.normal_height_for_age_6_23_months_male ?? 0}</td>
-            <td>{moh711Data.normal_height_for_age_6_23_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('normal_height_for_age_6_23_months_male')}>{moh711Data.normal_height_for_age_6_23_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('normal_height_for_age_6_23_months_female')}>{moh711Data.normal_height_for_age_6_23_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <td>Stunted</td>
-            <td>{moh711Data.stunted_6_23_months_male ?? 0}</td>
-            <td>{moh711Data.stunted_6_23_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('stunted_6_23_months_male')}>{moh711Data.stunted_6_23_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('stunted_6_23_months_female')}>{moh711Data.stunted_6_23_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <td>Severely Stunted</td>
-            <td>{moh711Data.severely_stunted_6_23_months_male ?? 0}</td>
-            <td>{moh711Data.severely_stunted_6_23_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('severely_stunted_6_23_months_male')}>{moh711Data.severely_stunted_6_23_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('severely_stunted_6_23_months_female')}>{moh711Data.severely_stunted_6_23_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <th>Total Weighed</th>
-            <td>{moh711Data.severely_stunted_0_6_months_male ?? 0}</td>
-            <td>{moh711Data.severely_stunted_0_6_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('severely_stunted_0_6_months_male')}>{moh711Data.severely_stunted_0_6_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('severely_stunted_0_6_months_female')}>{moh711Data.severely_stunted_0_6_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <td rowSpan={4}>7</td>
             <td rowSpan={4}>24 - 59 months</td>
             <td>Normal Height for Age</td>
-            <td>{moh711Data.normal_height_for_age_24_59_months_male ?? 0}</td>
-            <td>{moh711Data.normal_height_for_age_24_59_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('normal_height_for_age_24_59_months_male')}>{moh711Data.normal_height_for_age_24_59_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('normal_height_for_age_24_59_months_female')}>{moh711Data.normal_height_for_age_24_59_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <td>Stunted</td>
-            <td>{moh711Data.stunted_24_59_months_male ?? 0}</td>
-            <td>{moh711Data.stunted_24_59_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('stunted_24_59_months_male')}>{moh711Data.stunted_24_59_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('stunted_24_59_months_female')}>{moh711Data.stunted_24_59_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <td>Severely Stunted</td>
-            <td>{moh711Data.severely_stunted_24_59_months_male ?? 0}</td>
-            <td>{moh711Data.severely_stunted_24_59_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('severely_stunted_24_59_months_male')}>{moh711Data.severely_stunted_24_59_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('severely_stunted_24_59_months_female')}>{moh711Data.severely_stunted_24_59_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <th>Total Weighed</th>
-            <td>{moh711Data.severely_stunted_0_6_months_male ?? 0}</td>
-            <td>{moh711Data.severely_stunted_0_6_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('severely_stunted_0_6_months_male')}>{moh711Data.severely_stunted_0_6_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('severely_stunted_0_6_months_female')}>{moh711Data.severely_stunted_0_6_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
@@ -278,50 +261,50 @@ const ChanisComponent: React.FC<ChanisComponentProps> = ({ moh711Data, startDate
             <td rowSpan={4}>8</td>
             <td rowSpan={4}>0 - 59 Months</td>
             <td>New Visits</td>
-            <td>{moh711Data.new_visits_0_59_months_attending_cwc_male ?? 0}</td>
-            <td>{moh711Data.new_visits_0_59_months_attending_cwc_female ?? 0}</td>
+            <td onClick={() => openLinelist('new_visits_0_59_months_attending_cwc_male')}>{moh711Data.new_visits_0_59_months_attending_cwc_male ?? 0}</td>
+            <td onClick={() => openLinelist('new_visits_0_59_months_attending_cwc_female')}>{moh711Data.new_visits_0_59_months_attending_cwc_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <td>Kwashiorkor</td>
-            <td>{moh711Data.kwashiokor_0_59_months_male ?? 0}</td>
-            <td>{moh711Data.kwashiokor_0_59_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('kwashiokor_0_59_months_male')}>{moh711Data.kwashiokor_0_59_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('kwashiokor_0_59_months_female')}>{moh711Data.kwashiokor_0_59_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <td>Marasmus</td>
-            <td>{moh711Data.marasmus_0_59_months_male ?? 0}</td>
-            <td>{moh711Data.marasmus_0_59_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('marasmus_0_59_months_male')}>{moh711Data.marasmus_0_59_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('marasmus_0_59_months_female')}>{moh711Data.marasmus_0_59_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <td>Faltering Growth</td>
-            <td>{moh711Data.faltering_growth_0_59_months_male ?? 0}</td>
-            <td>{moh711Data.faltering_growth_0_59_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('faltering_growth_0_59_months_male')}>{moh711Data.faltering_growth_0_59_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('faltering_growth_0_59_months_female')}>{moh711Data.faltering_growth_0_59_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <td>9</td>
             <td>0 - &le;6</td>
             <td>Exclusive breastfeeding</td>
-            <td>{moh711Data.exclusive_breastfeeding_0_6_months_male ?? 0}</td>
-            <td>{moh711Data.exclusive_breastfeeding_0_6_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('exclusive_breastfeeding_0_6_months_male')}>{moh711Data.exclusive_breastfeeding_0_6_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('exclusive_breastfeeding_0_6_months_female')}>{moh711Data.exclusive_breastfeeding_0_6_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <td>10</td>
             <td> 12-59 Months</td>
             <td>Dewormed</td>
-            <td>{moh711Data.dewormed_12_59_months_male ?? 0}</td>
-            <td>{moh711Data.dewormed_12_59_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('dewormed_12_59_months_male')}>{moh711Data.dewormed_12_59_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('dewormed_12_59_months_female')}>{moh711Data.dewormed_12_59_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>
             <td>11</td>
             <td>6-23 months</td>
             <td>MNPs Supplimentation</td>
-            <td>{moh711Data.mnps_supplimentation_6_23_months_male ?? 0}</td>
-            <td>{moh711Data.mnps_supplimentation_6_23_months_female ?? 0}</td>
+            <td onClick={() => openLinelist('mnps_supplimentation_6_23_months_male')}>{moh711Data.mnps_supplimentation_6_23_months_male ?? 0}</td>
+            <td onClick={() => openLinelist('mnps_supplimentation_6_23_months_female')}>{moh711Data.mnps_supplimentation_6_23_months_female ?? 0}</td>
             <td></td>
           </tr>
           <tr>

@@ -23,7 +23,7 @@ const ANC_LINELIST_COLUMNS: LinelistColumn[] = [
   { header: 'Haemoglobin Level', field: 'hb' },
   { header: 'Syphilis Screening Method', field: 'rpr_vdrl_duo' },
   { header: 'Syphilis Screening Result', field: 'rpr_vdrl_duo_results' },
-  { header: 'Breast Examination', field: 'breast_exam' },
+  { header: 'Breast Examination', field: 'breast_exam_finding' },
   { header: 'FGM Screening', field: 'fgm' },
   { header: 'IPT Dose', field: 'ipt_dose' },
   { header: 'Supplementation', field: 'supplementation' },

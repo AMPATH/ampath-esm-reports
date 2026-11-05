@@ -22,6 +22,7 @@ import Moh711AncLinelist from './reports/moh-711/linelist/moh-711-anc-linelist.c
 import Moh711MaternityLinelist from './reports/moh-711/linelist/moh-711-maternity-linelist.component';
 import Moh711PncLinelist from './reports/moh-711/linelist/moh-711-pnc-linelist.component';
 import Moh711FamilyPlanningLinelist from './reports/moh-711/linelist/moh-711-family-planning-linelist.component';
+import Moh711ChanisLinelist from './reports/moh-711/linelist/moh-711-chanis-linelist.component';
 import Moh406Register from './reports/moh-711/registers/moh-406-register.component';
 import Moh333Register from './reports/moh-711/registers/moh-333-register.component';
 import Moh511Register from './reports/moh-711/registers/moh-511-register.component';
@@ -113,6 +114,7 @@ const RootComponent: React.FC = () => {
           <Route path="/moh-711-maternity-linelist" element={<Moh711MaternityLinelist />} />
           <Route path="/moh-711-pnc-linelist" element={<Moh711PncLinelist />} />
           <Route path="/moh-711-family-planning-linelist" element={<Moh711FamilyPlanningLinelist />} />
+          <Route path="/moh-711-chanis-linelist" element={<Moh711ChanisLinelist />} />
         </Routes>
       </div>
     </BrowserRouter>
