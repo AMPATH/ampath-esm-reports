@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import { ReportSkeleton } from '../../common/report-skeleton';
 import { ReportPage } from '../../common/report-page';
 import { renderDailyReportRows, reportDays } from '../../common/daily-summary-table';
+import { useLocationDetails } from '../../common/report-header/use-location-details';
 
 export const indicators = [
   'diarrhoea_with_no_dehydration',
@@ -106,6 +107,7 @@ const Moh705AComponent: React.FC = () => {
 
   /* Masthead and sign-off fill themselves in, as on the other reports */
   const facility = session?.sessionLocation?.display ?? '';
+  const { county, subCounty } = useLocationDetails();
   const reportMonth = startDate ? dayjs(startDate).format('MMMM') : '';
   const reportYear = startDate ? dayjs(startDate).format('YYYY') : '';
   const compiledBy = session?.user?.person?.display ?? session?.user?.display ?? '';
@@ -178,11 +180,11 @@ const Moh705AComponent: React.FC = () => {
             </span>
             <span>
               County:
-              <span className={styles.line} />
+              <span className={styles.line}>{county ?? ''}</span>
             </span>
             <span>
               Sub County:
-              <span className={styles.line} />
+              <span className={styles.line}>{subCounty ?? ''}</span>
             </span>
             <span>
               Month:<span className={styles.shortLine}>{reportMonth}</span>
@@ -242,17 +244,17 @@ const Moh705AComponent: React.FC = () => {
                     </tr>
                     <tr>
                       <td>5</td>
-                      <td>Dysentary (Blood diarrhoea)</td>
+                      <td>Dysentery (Blood diarrhoea)</td>
                       <td onClick={() => openLinelist('dysentry')}>{moh705aData.dysentry}</td>
                     </tr>
                     <tr>
                       <td>6</td>
-                      <td>Gastroenterities</td>
+                      <td>Gastroenteritis</td>
                       <td onClick={() => openLinelist('gastroenterities')}>{moh705aData.gastroenterities}</td>
                     </tr>
                     <tr>
                       <td>7</td>
-                      <td>Pneomonia</td>
+                      <td>Pneumonia</td>
                       <td onClick={() => openLinelist('pneumonia')}>{moh705aData.pneumonia}</td>
                     </tr>
                     <tr>
@@ -318,7 +320,7 @@ const Moh705AComponent: React.FC = () => {
                     </tr>
                     <tr>
                       <td>19</td>
-                      <td>Meningococcal Menengitis</td>
+                      <td>Meningococcal Meningitis</td>
                       <td onClick={() => openLinelist('meningococcal_meningitis')}>
                         {moh705aData.meningococcal_meningitis}
                       </td>
@@ -390,7 +392,7 @@ const Moh705AComponent: React.FC = () => {
                     </tr>
                     <tr>
                       <td>33</td>
-                      <td>Tonsilitis</td>
+                      <td>Tonsillitis</td>
                       <td onClick={() => openLinelist('tonsilities')}>{moh705aData.tonsilities}</td>
                     </tr>
                     <tr>
@@ -419,7 +421,7 @@ const Moh705AComponent: React.FC = () => {
                     </tr>
                     <tr>
                       <td>38</td>
-                      <td>Diseases fo the skin</td>
+                      <td>Diseases of the skin</td>
                       <td onClick={() => openLinelist('diseases_of_the_skin')}>
                         {moh705aData.diseases_of_the_skin}
                       </td>
@@ -529,7 +531,7 @@ const Moh705AComponent: React.FC = () => {
                     </tr>
                     <tr>
                       <td>58</td>
-                      <td>Tryponosomiasis</td>
+                      <td>Trypanosomiasis</td>
                       <td onClick={() => openLinelist('tryponosomiasis')}>{moh705aData.tryponosomiasis}</td>
                     </tr>
                     <tr>
@@ -546,7 +548,7 @@ const Moh705AComponent: React.FC = () => {
                     </tr>
                     <tr>
                       <td>61</td>
-                      <td>Rift valley fever</td>
+                      <td>Rift Valley fever</td>
                       <td onClick={() => openLinelist('rift_valley_fever')}>{moh705aData.rift_valley_fever}</td>
                     </tr>
                     <tr>

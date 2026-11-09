@@ -42,8 +42,8 @@ export function useLocationDetails(): LocationDetails {
         );
 
         setDetails({
-          county: location?.stateProvince || undefined,
-          subCounty: location?.countyDistrict || undefined,
+          subCounty: location?.stateProvince || undefined,
+          county: location?.countyDistrict || undefined,
           kmhflCode: kmhfl?.display || undefined,
         });
       })
