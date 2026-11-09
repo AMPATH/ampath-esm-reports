@@ -13,6 +13,86 @@ import { ReportSkeleton } from '../../common/report-skeleton';
 import { ReportPage } from '../../common/report-page';
 import styles from './moh-505.scss';
 
+const BAND_UNDER_5 = 'dc__age_range__0_to_4__';
+const BAND_5_AND_ABOVE = 'dc__age_range__5_and_above__';
+
+/* The form prints each disease's Cases and Deaths per age band. The flat
+   table only carries the Cases flags so far - the per-disease death concepts
+   still have to be counterchecked against the 705 A/B procedures, so every
+   Deaths cell renders blank until they land. */
+const diseases = [
+  { label: 'AEFI*', flag: 'aefi' },
+  { label: 'Acute Jaundice', flag: 'acute_jaundice' },
+  { label: 'Acute Malnutrition', flag: 'acute_malnutrition' },
+  { label: 'AFP (Poliomyelitis)**', flag: '' },
+  { label: 'Anthrax', flag: 'anthrax' },
+  { label: 'Cholera', flag: 'cholera' },
+  { label: 'Dengue', flag: 'dengue' },
+  { label: 'Dysentery (Bacillary)', flag: 'dysentery_bacillary' },
+  { label: 'Guinea Worm Disease', flag: '' },
+  { label: 'Measles', flag: 'measles' },
+  { label: 'Suspected Malaria***', flag: '' },
+  { label: 'Deaths due to Malaria****', flag: '' },
+  { label: 'Maternal deaths', flag: 'maternal_deaths' },
+];
+
+const diseasesRight = [
+  { label: 'Meningococcal Meningitis', flag: 'bacterial_meningitis' },
+  { label: 'Neonatal deaths', flag: 'neonatal_deaths' },
+  { label: 'Neonatal Tetanus', flag: 'neonatal_tetanus' },
+  { label: 'Plague', flag: 'plague' },
+  { label: 'Rabies', flag: 'rabies' },
+  { label: 'Rift Valley Fever', flag: '' },
+  { label: 'SARI (Cluster ≥3 cases)*****', flag: '' },
+  { label: 'Suspected MDR/XDR TB', flag: '' },
+  { label: 'Typhoid', flag: 'typhoid' },
+  { label: 'VHF******', flag: '' },
+  { label: 'Yellow Fever', flag: 'yellow_fever' },
+  { label: 'Others (Specify)*******', flag: '' },
+  { label: '', flag: '' },
+];
+
+/** The diseases table's 10-cell body row: label, Cases/Deaths per band, twice */
+function diseaseRow(left: { label: string; flag: string }, right: { label: string; flag: string }) {
+  const bandCells = (flag: string) => [
+    // Cases drill down into the MOH 240 register; Deaths stay blank until the
+    // per-disease death concepts are captured by the stored procedure.
+    getCell(flag ? `${BAND_UNDER_5}${flag}` : '', ''),
+    getCell('', ''),
+    getCell(flag ? `${BAND_5_AND_ABOVE}${flag}` : '', ''),
+    getCell('', ''),
+  ];
+  return {
+    tableCells: [getCell('', left.label), ...bandCells(left.flag), getCell('', right.label), ...bandCells(right.flag)],
+  };
+}
+
+const diseaseHeaderRows = [
+  {
+    tableCells: [
+      getCell('', 'Diseases, Conditions or Events', 1, 2, true),
+      getCell('', '< 5 years', 2, 1, true),
+      getCell('', '≥ 5 years', 2, 1, true),
+      getCell('', 'Diseases, Conditions or Events', 1, 2, true),
+      getCell('', '< 5 years', 2, 1, true),
+      getCell('', '≥ 5 years', 2, 1, true),
+    ],
+  },
+  {
+    tableCells: [
+      getCell('', 'Cases', 1, 1, true),
+      getCell('', 'Deaths', 1, 1, true),
+      getCell('', 'Cases', 1, 1, true),
+      getCell('', 'Deaths', 1, 1, true),
+      getCell('', 'Cases', 1, 1, true),
+      getCell('', 'Deaths', 1, 1, true),
+      getCell('', 'Cases', 1, 1, true),
+      getCell('', 'Deaths', 1, 1, true),
+    ],
+  },
+];
+
+/* The Moh505Report: a report for the current location counts */
 const Moh505Report: React.FC = () => {
   const [moh505Data, setMoh505Data] = useState<any>({});
   /* Only a report for the current location counts: after switching location the
@@ -64,332 +144,58 @@ const Moh505Report: React.FC = () => {
     }
   };
 
-  // Static table rows for now - can be updated to use moh505Data
-  const tableRows = [
-    {
+  /* The printed form totals Tested/Positive across the two age bands; the
+     aggregate only carries the band columns, so the totals sum them here.
+     String(0) stays truthy so zero totals still print; a missing flag keeps
+     the cell blank rather than printing a misleading 0. */
+  const bandedTotal = (flag: string) => {
+    if (!flag) {
+      return '';
+    }
+    const under5 = Number(moh505Data[`${BAND_UNDER_5}${flag}`] ?? 0);
+    const fiveAndAbove = Number(moh505Data[`${BAND_5_AND_ABOVE}${flag}`] ?? 0);
+    return String(under5 + fiveAndAbove);
+  };
+
+  /** Tested/Positive rows for a 7-column lab block: <5, ≥5, Total, twice */
+  const labRow = (label: string, first: string, second: string) => ({
+    tableCells: [
+      getCell('', label),
+      getCell(first ? `${BAND_UNDER_5}${first}` : '', ''),
+      getCell(first ? `${BAND_5_AND_ABOVE}${first}` : '', ''),
+      getCell('', bandedTotal(first)),
+      getCell(second ? `${BAND_UNDER_5}${second}` : '', ''),
+      getCell(second ? `${BAND_5_AND_ABOVE}${second}` : '', ''),
+      getCell('', bandedTotal(second)),
+    ],
+  });
+
+  /* Malaria block: the mRDT half has its own flags, so it binds directly */
+  const malariaRow = (kind: 'tested' | 'positive') => {
+    const suffix = kind === 'tested' ? 'malaria_microscopy_tested' : 'malaria_microscopy_positive';
+    const mrdt = kind === 'tested' ? 'malaria_mrdt_tested' : 'malaria_mrdt_positive';
+    return {
       tableCells: [
-        getCell('', 'Diseases, Conditions or Events', 1, 2, true),
-        getCell('', '< 5 years', 2, 1, true),
-        getCell('', '≥ 5 years', 6, 1, true),
-        getCell('', 'Diseases, Conditions or Events', 1, 2, true),
-        getCell('', '< 5 years', 2, 1, true),
-        getCell('', '≥ 5 years', 2, 1, true),
+        getCell('', kind === 'tested' ? 'Tested' : 'Positive'),
+        getCell(`${BAND_UNDER_5}${suffix}`),
+        getCell(`${BAND_5_AND_ABOVE}${suffix}`),
+        getCell('', bandedTotal(suffix)),
+        getCell(`${BAND_UNDER_5}${mrdt}`),
+        getCell(`${BAND_5_AND_ABOVE}${mrdt}`),
+        getCell('', bandedTotal(mrdt)),
       ],
-    },
-    {
-      tableCells: [
-        ,
-        getCell('', 'Cases', 1, 1, true),
-        getCell('', 'Deaths', 1, 1, true),
-        getCell('', 'Cases', 1, 1, true),
-        getCell('', 'Deaths', 5, 1, true),
-        ,
-        getCell('', 'Cases', 1, 1, true),
-        getCell('', 'Deaths', 1, 1, true),
-        getCell('', 'Cases', 1, 1, true),
-        getCell('', 'Deaths', 1, 1, true),
-      ],
-    },
-    {
-      tableCells: [
-        getCell('', 'AEFI*'),
-        getCell('dc__age_range__0_to_4__aefi'),
-        getCell(),
-        getCell('dc__age_range__5_and_above__aefi'),
-        getCell('', '', 5),
-        getCell('', 'Meningococcal Meningitis'),
-        getCell('dc__age_range__0_to_4__bacterial_meningitis'),
-        getCell(),
-        getCell('dc__age_range__5_and_above__bacterial_meningitis'),
-        getCell(),
-      ],
-    },
-    {
-      tableCells: [
-        getCell('', 'Acute Jaundice'),
-        getCell('dc__age_range__0_to_4__acute_jaundice', ''),
-        getCell(),
-        getCell('dc__age_range__5_and_above__acute_jaundice', ''),
-        getCell('', '', 5),
-        getCell('', 'Neonatal deaths'),
-        getCell('dc__age_range__0_to_4__neonatal_deaths', ''),
-        getCell(),
-        getCell('dc__age_range__5_and_above__neonatal_deaths', ''),
-        getCell('', '', 2, 2),
-      ],
-    },
-    {
-      tableCells: [
-        getCell('', 'Acute Malnutrition'),
-        getCell('dc__age_range__0_to_4__acute_malnutrition', ''),
-        getCell(),
-        getCell('dc__age_range__5_and_above__acute_malnutrition', ''),
-        getCell('', '', 5),
-        getCell('', 'Neonatal Tetanus'),
-        getCell('dc__age_range__0_to_4__neonatal_tetanus', ''),
-        getCell(),
-      ],
-    },
-    {
-      tableCells: [
-        getCell('', 'AFP (Poliomyelitis)**'),
-        getCell(),
-        getCell(),
-        getCell(),
-        getCell('', '', 5),
-        getCell('', 'Plague'),
-        getCell('dc__age_range__0_to_4__plague', ''),
-        getCell(),
-        getCell('dc__age_range__5_and_above__plague', ''),
-        getCell(),
-      ],
-    },
-    {
-      tableCells: [
-        getCell('', 'Anthrax'),
-        getCell('dc__age_range__0_to_4__anthrax', ''),
-        getCell(),
-        getCell('dc__age_range__5_and_above__anthrax', ''),
-        getCell('', '', 5),
-        getCell('', 'Rabies'),
-        getCell('dc__age_range__0_to_4__rabies', ''),
-        getCell(),
-        getCell('dc__age_range__5_and_above__rabies', ''),
-        getCell(),
-      ],
-    },
-    {
-      tableCells: [
-        getCell('', 'Cholera'),
-        getCell('dc__age_range__0_to_4__cholera', ''),
-        getCell(),
-        getCell('dc__age_range__5_and_above__cholera', ''),
-        getCell('', '', 5),
-        getCell('', 'Rift Valley Fever'),
-        getCell(),
-        getCell(),
-        getCell(),
-        getCell(),
-      ],
-    },
-    {
-      tableCells: [
-        getCell('', 'Dengue'),
-        getCell('dc__age_range__0_to_4__dengue', ''),
-        getCell(),
-        getCell('dc__age_range__5_and_above__dengue', ''),
-        getCell('', '', 5),
-        getCell('', 'SARI (Cluster ≥3 cases)*****'),
-        getCell(),
-        getCell(),
-        getCell(),
-        getCell(),
-      ],
-    },
-    {
-      tableCells: [
-        getCell('', 'Dysentery (Bacillary)'),
-        getCell('dc__age_range__0_to_4__dysentery_bacillary', ''),
-        getCell(),
-        getCell('dc__age_range__5_and_above__dysentery_bacillary', ''),
-        getCell('', '', 5),
-        getCell('', 'Suspected MDR/XDR TB'),
-        getCell(),
-        getCell(),
-        getCell(),
-        getCell(),
-      ],
-    },
-    {
-      tableCells: [
-        getCell('', 'Guinea Worm Disease'),
-        getCell(),
-        getCell(),
-        getCell(),
-        getCell('', '', 5),
-        getCell('', 'Typhoid'),
-        getCell('dc__age_range__0_to_4__typhoid', ''),
-        getCell(),
-        getCell('dc__age_range__5_and_above__typhoid', ''),
-        getCell(),
-      ],
-    },
-    {
-      tableCells: [
-        getCell('', 'Measles'),
-        getCell('dc__age_range__0_to_4__measles', ''),
-        getCell(),
-        getCell('dc__age_range__5_and_above__measles', ''),
-        getCell('', '', 5),
-        getCell('', 'VHF******', 1, 2),
-        getCell('', '', 1, 2),
-        getCell('', '', 1, 2),
-        getCell('', '', 1, 2),
-        getCell('', '', 1, 2),
-      ],
-    },
-    {
-      tableCells: [getCell('', 'Suspected Malaria***'), getCell(), getCell(), getCell(), getCell('', '', 5)],
-    },
-    {
-      tableCells: [
-        getCell('', 'Deaths due to Malaria****', 1, 2),
-        getCell('', '', 1, 2),
-        getCell('', '', 1, 2),
-        getCell('', '', 1, 2),
-        getCell('', '', 5, 2),
-        getCell('', 'Yellow Fever', 1, 2),
-        getCell('dc__age_range__0_to_4__yellow_fever', '', 1, 2),
-        getCell('', '', 1, 2),
-        getCell('dc__age_range__5_and_above__yellow_fever', '', 1, 2),
-        getCell('', '', 1, 2),
-      ],
-    },
-    {
-      tableCells: [,],
-    },
-    {
-      tableCells: [
-        getCell('', 'Maternal deaths'),
-        getCell('dc__age_range__0_to_4__maternal_deaths', ''),
-        getCell(),
-        getCell('dc__age_range__5_and_above__maternal_deaths', ''),
-        getCell('', '', 5),
-        getCell('', 'Others (Specify)*******'),
-        getCell(),
-        getCell(),
-        getCell(),
-        getCell(),
-      ],
-    },
-    {
-      tableCells: [getCell('', '', 14)],
-    },
-    {
-      tableCells: [
-        getCell('', 'Disease', 1, 1, true),
-        getCell('', 'Microscopy', 3, 1, true),
-        getCell('', 'mRDT', 5, 1, true),
-        getCell('', 'Disease', 2, 1, true),
-        getCell('', 'Laboratory diagnosis', 3, 1, true),
-      ],
-    },
-    {
-      tableCells: [
-        getCell('', 'Malaria', 1, 1, true),
-        getCell('', '<5 yrs'),
-        getCell('', '≥5 yrs'),
-        getCell('', 'Total'),
-        getCell('', '<5 yrs', 2),
-        getCell('', '≥5 yrs', 3),
-        getCell('', 'Shigella Dysentery', 2, 1, true),
-        getCell('', '<5 yrs', 2),
-        getCell('', '≥5 yrs', 1),
-      ],
-    },
-    {
-      tableCells: [
-        getCell('', 'Tested'),
-        getCell('dc__age_range__0_to_4__malaria_microscopy_tested', ''),
-        getCell('dc__age_range__5_and_above__malaria_microscopy_tested', ''),
-        getCell(),
-        getCell('dc__age_range__0_to_4__malaria_mrdt_tested', '', 2),
-        getCell('dc__age_range__5_and_above__malaria_mrdt_tested', '', 3),
-        getCell('', 'Tested', 2),
-        getCell('dc__age_range__0_to_4__typhoid_lab_tested', '', 2),
-        getCell('dc__age_range__5_and_above__typhoid_lab_tested', '', 1),
-      ],
-    },
-    {
-      tableCells: [
-        getCell('', 'Positive'),
-        getCell('dc__age_range__0_to_4__malaria_microscopy_positive', ''),
-        getCell('dc__age_range__5_and_above__malaria_microscopy_positive', ''),
-        getCell(),
-        getCell('dc__age_range__0_to_4__malaria_mrdt_positive', '', 2),
-        getCell('dc__age_range__5_and_above__malaria_mrdt_positive', '', 3),
-        getCell('', 'Positive', 2),
-        getCell('dc__age_range__0_to_4__typhoid_lab_positive', '', 2),
-        getCell('dc__age_range__5_and_above__typhoid_lab_positive', '', 1),
-      ],
-    },
-    {
-      tableCells: [
-        getCell('', 'Bacterial Meningitis', 1, 2, true),
-        getCell('', 'No CSF', 1, 2, true),
-        getCell('', 'No contaminated', 1, 2, true),
-        getCell('', 'No Tested', 1, 2, true),
-        getCell('', '+ve Nm', 1, 2, true),
-        getCell('', '+ve Sp', 1, 2, true),
-        getCell('', '+ve H influenza', 3, 2, true),
-        getCell('', 'Tuberculosis (MDR/XDR)', 2, 2, true),
-        getCell('', '<5 yrs', 2, 2),
-        getCell('', '≥5 yrs', 1, 2),
-      ],
-    },
-    {
-      tableCells: [,],
-    },
-    {
-      tableCells: [
-        getCell('', '', 1, 2),
-        getCell('', '', 1, 2),
-        getCell('', '', 1, 2),
-        getCell('', '', 1, 2),
-        getCell('', '', 1, 2),
-        getCell('', '', 1, 2),
-        getCell('', '', 1, 2),
-        getCell('', '', 2, 2),
-        getCell('', 'Tested', 2),
-        getCell('', '', 2),
-        getCell(),
-      ],
-    },
-    {
-      tableCells: [, , , , , , , , getCell('', 'Positive', 2), getCell('', '', 2), getCell()],
-    },
-    {
-      tableCells: [
-        getCell('', 'No of CSF Sub-Typed', 1, 2, true),
-        getCell('', '+ve NmA', 1, 2, true),
-        getCell('', '+ve NmB', 1, 2, true),
-        getCell('', '+ve NmC', 1, 2, true),
-        getCell('', '+ve NmW 135', 1, 2, true),
-        getCell('', '+ve NmX', 1, 2, true),
-        getCell('', '+ve NmY', 1, 2, true),
-        getCell('', 'Indeterminate', 1, 2, true),
-        getCell('', 'Hib', 1, 2, true),
-        getCell('', 'Typhoid', 2, 2, true),
-        getCell('', '< 5 years', 2, 2),
-        getCell('', '≥ 5 years', 1, 2),
-      ],
-    },
-    {
-      tableCells: [,],
-    },
-    {
-      tableCells: [
-        getCell('', '', 1, 2),
-        getCell('', '', 1, 2),
-        getCell('', '', 1, 2),
-        getCell('', '', 1, 2),
-        getCell('', '', 1, 2),
-        getCell('', '', 1, 2),
-        getCell('', '', 1, 2),
-        getCell('', '', 1, 2),
-        getCell('', '', 1, 2),
-        getCell('', 'Tested', 2),
-        getCell('', '', 2),
-        getCell('', '', 1),
-      ],
-    },
-    {
-      tableCells: [, , , , , , , , , getCell('', 'Positive', 2, 1), getCell('', '', 2, 1), getCell('', '', 1, 1)],
-    },
-    {
-      tableCells: [,],
-    },
-  ];
+    };
+  };
+
+  const drillDownProps = {
+    data: moh505Data,
+    locationUuids: filters.locationUuids,
+    startDate: filters.startDate,
+    endDate: filters.endDate,
+    report: 'moh-505',
+  };
+
+  const diseaseBodyRows = diseases.map((left, i) => diseaseRow(left, diseasesRight[i]));
 
   return (
     <>
@@ -408,16 +214,168 @@ const Moh505Report: React.FC = () => {
         <ReportPage>
           <div className={styles.sheet}>
             <MOH505Header facility={facility} startDate={filters.startDate} endDate={filters.endDate} />
+
+            <TableWrapper>
+              <TableRowMapper tableRows={diseaseHeaderRows} />
+              <TableRowMapper {...drillDownProps} tableRows={diseaseBodyRows} />
+            </TableWrapper>
+
+            <div className={styles.sectionGap} />
+
             <TableWrapper>
               <TableRowMapper
-                tableRows={tableRows}
-                data={moh505Data}
-                locationUuids={filters.locationUuids}
-                startDate={filters.startDate}
-                endDate={filters.endDate}
-                report="moh-505"
+                tableRows={[
+                  {
+                    tableCells: [
+                      getCell('', 'Disease', 1, 1, true),
+                      getCell('', 'Malaria — Microscopy', 3, 1, true),
+                      getCell('', 'Malaria — mRDT', 3, 1, true),
+                    ],
+                  },
+                  {
+                    tableCells: [
+                      getCell('', '', 1, 1, true),
+                      getCell('', '<5 yrs', 1, 1, true),
+                      getCell('', '≥5 yrs', 1, 1, true),
+                      getCell('', 'Total', 1, 1, true),
+                      getCell('', '<5 yrs', 1, 1, true),
+                      getCell('', '≥5 yrs', 1, 1, true),
+                      getCell('', 'Total', 1, 1, true),
+                    ],
+                  },
+                  malariaRow('tested'),
+                  malariaRow('positive'),
+                ]}
               />
             </TableWrapper>
+
+            <div className={styles.sectionGap} />
+
+            <TableWrapper>
+              <TableRowMapper
+                tableRows={[
+                  {
+                    tableCells: [
+                      getCell('', 'Disease', 1, 1, true),
+                      getCell('', 'Shigella Dysentery', 3, 1, true),
+                      getCell('', 'Typhoid — Laboratory diagnosis', 3, 1, true),
+                    ],
+                  },
+                  {
+                    tableCells: [
+                      getCell('', '', 1, 1, true),
+                      getCell('', '<5 yrs', 1, 1, true),
+                      getCell('', '≥5 yrs', 1, 1, true),
+                      getCell('', 'Total', 1, 1, true),
+                      getCell('', '<5 yrs', 1, 1, true),
+                      getCell('', '≥5 yrs', 1, 1, true),
+                      getCell('', 'Total', 1, 1, true),
+                    ],
+                  },
+                  /* Shigella dysentery has no lab concepts in the flat table
+                     yet; typhoid binds its lab tested/positive flags. */
+                  labRow('Tested', '', 'typhoid_lab_tested'),
+                  labRow('Positive', '', 'typhoid_lab_positive'),
+                ]}
+              />
+            </TableWrapper>
+
+            <div className={styles.sectionGap} />
+
+            <TableWrapper>
+              <TableRowMapper
+                tableRows={[
+                  {
+                    tableCells: [
+                      getCell('', 'Bacterial Meningitis (CSF)', 1, 1, true),
+                      getCell('', 'No CSF', 1, 1, true),
+                      getCell('', 'No contaminated', 1, 1, true),
+                      getCell('', 'No Tested', 1, 1, true),
+                      getCell('', '+ve Nm', 1, 1, true),
+                      getCell('', '+ve Sp', 1, 1, true),
+                      getCell('', '+ve H. influenza', 2, 1, true),
+                    ],
+                  },
+                  {
+                    /* Only "No CSF" has a captured concept so far; the rest
+                       print blank until the CSF block concepts exist. */
+                    tableCells: [
+                      getCell('', 'CSF results'),
+                      getCell('', bandedTotal('meningitis_no_csf')),
+                      getCell('', ''),
+                      getCell('', ''),
+                      getCell('', ''),
+                      getCell('', ''),
+                      getCell('', '', 2),
+                    ],
+                  },
+                ]}
+              />
+            </TableWrapper>
+
+            <div className={styles.sectionGap} />
+
+            <TableWrapper>
+              <TableRowMapper
+                tableRows={[
+                  {
+                    tableCells: [
+                      getCell('', 'No of CSF Sub-Typed', 1, 1, true),
+                      getCell('', '+ve NmA', 1, 1, true),
+                      getCell('', '+ve NmB', 1, 1, true),
+                      getCell('', '+ve NmC', 1, 1, true),
+                      getCell('', '+ve NmW 135', 1, 1, true),
+                      getCell('', '+ve NmX', 1, 1, true),
+                      getCell('', '+ve NmY', 1, 1, true),
+                      getCell('', 'Indeterminate', 1, 1, true),
+                    ],
+                  },
+                  {
+                    /* CSF sub-typing has no captured concepts yet */
+                    tableCells: [
+                      getCell('', ''),
+                      getCell('', ''),
+                      getCell('', ''),
+                      getCell('', ''),
+                      getCell('', ''),
+                      getCell('', ''),
+                      getCell('', ''),
+                      getCell('', ''),
+                    ],
+                  },
+                ]}
+              />
+            </TableWrapper>
+
+            <div className={styles.sectionGap} />
+
+            <TableWrapper>
+              <TableRowMapper
+                tableRows={[
+                  {
+                    tableCells: [
+                      getCell('', 'Tuberculosis (MDR/XDR)', 1, 1, true),
+                      getCell('', '< 5 years', 1, 1, true),
+                      getCell('', '≥ 5 years', 1, 1, true),
+                    ],
+                  },
+                  {
+                    /* TB MDR/XDR has no captured concepts yet */
+                    tableCells: [getCell('', 'Tested'), getCell('', ''), getCell('', '')],
+                  },
+                  {
+                    tableCells: [getCell('', 'Positive'), getCell('', ''), getCell('', '')],
+                  },
+                ]}
+              />
+            </TableWrapper>
+
+            <p className={styles.notes}>
+              *AEFI: Adverse Events Following Immunisation &nbsp;|&nbsp; **AFP: Acute Flaccid Paralysis &nbsp;|&nbsp;
+              ***Suspected malaria includes OPD and IPD cases. &nbsp;|&nbsp; ****Deaths due to malaria include all ages.
+              &nbsp;|&nbsp; *****SARI cluster: three or more cases in the same week. &nbsp;|&nbsp; ******VHF: Viral
+              Haemorrhagic Fever. &nbsp;|&nbsp; *******Specify other diseases/conditions not listed above.
+            </p>
 
             <div className={styles.signOff}>
               <span>
