@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { ReportSkeleton } from '../../common/report-skeleton';
 import { ReportPage } from '../../common/report-page';
 import { renderDailyReportRows, reportDays } from '../../common/daily-summary-table';
+import { useLocationDetails } from '../../common/report-header/use-location-details';
 
 export const indicators = [
   'diarrhoea',
@@ -105,6 +106,7 @@ const Moh705BComponent: React.FC = () => {
 
   /* Masthead and sign-off fill themselves in, as on the other reports */
   const facility = session?.sessionLocation?.display ?? '';
+  const { county, subCounty } = useLocationDetails();
   const reportMonth = startDate ? dayjs(startDate).format('MMMM') : '';
   const reportYear = startDate ? dayjs(startDate).format('YYYY') : '';
   const compiledBy = session?.user?.person?.display ?? session?.user?.display ?? '';
@@ -176,11 +178,11 @@ const Moh705BComponent: React.FC = () => {
             </span>
             <span>
               County:
-              <span className={styles.line} />
+              <span className={styles.line}>{county ?? ''}</span>
             </span>
             <span>
               Sub County:
-              <span className={styles.line} />
+              <span className={styles.line}>{subCounty ?? ''}</span>
             </span>
             <span>
               Month:<span className={styles.shortLine}>{reportMonth}</span>
@@ -224,7 +226,7 @@ const Moh705BComponent: React.FC = () => {
                     </tr>
                     <tr>
                       <td>3</td>
-                      <td>Dysentry (Bloody diarrhoea)</td>
+                      <td>Dysentery (Bloody diarrhoea)</td>
                       <td onClick={() => openLinelist('dysentry')}>{moh705bData.dysentry}</td>
                     </tr>
                     <tr>
@@ -405,7 +407,7 @@ const Moh705BComponent: React.FC = () => {
                     </tr>
                     <tr>
                       <td>36</td>
-                      <td>Disease of the skin</td>
+                      <td>Diseases of the skin</td>
                       <td onClick={() => openLinelist('diseases_of_the_skin')}>
                         {moh705bData.diseases_of_the_skin}
                       </td>
@@ -507,7 +509,7 @@ const Moh705BComponent: React.FC = () => {
                     </tr>
                     <tr>
                       <td>54</td>
-                      <td>Muscular skeletal conditions</td>
+                      <td>Musculoskeletal conditions</td>
                       <td onClick={() => openLinelist('mascular_skeletal_conditions')}>
                         {moh705bData.mascular_skeletal_conditions}
                       </td>
@@ -519,7 +521,7 @@ const Moh705BComponent: React.FC = () => {
                     </tr>
                     <tr>
                       <td>56</td>
-                      <td>Suspected Neoplams/Cancers</td>
+                      <td>Suspected Neoplasms/Cancers</td>
                       <td onClick={() => openLinelist('suspected_neoplams_cancers')}>
                         {moh705bData.suspected_neoplams_cancers}
                       </td>
@@ -538,7 +540,7 @@ const Moh705BComponent: React.FC = () => {
                     </tr>
                     <tr>
                       <td>59</td>
-                      <td>Rift valley fever</td>
+                      <td>Rift Valley fever</td>
                       <td onClick={() => openLinelist('rift_valley_fever')}>{moh705bData.rift_valley_fever}</td>
                     </tr>
                     <tr>
