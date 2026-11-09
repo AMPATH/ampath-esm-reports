@@ -626,7 +626,7 @@ const Moh333Register: React.FC = () => {
                           : ''}
                       </td>
 
-                      <td>{row.hiv_test_results_maternity}</td>
+                      <td>{row.hiv_results}</td>
 
                       <td rowSpan={2}>{row.maternal_haart}</td>
                       <td rowSpan={2}>{row.infant_prophylaxis}</td>
@@ -643,7 +643,7 @@ const Moh333Register: React.FC = () => {
                       <td rowSpan={2}>{row.referrals_from}</td>
                       <td rowSpan={2}>{row.referrals_to}</td>
                       <td rowSpan={2}>{row.reasons_for_refferal}</td>
-                      <td rowSpan={2}>{row.comments}</td>
+                      <td rowSpan={2}>{row.remarks}</td>
                     </tr>
 
                     <tr>
@@ -660,7 +660,7 @@ const Moh333Register: React.FC = () => {
                       <td>{row.kangaroo_mother_care}</td>
                       <td>{row.type_of_deformity}</td>
                       <td>{row.rpr_vdrl_duo_results}</td>
-                      <td>{row.hiv_result_maternity}</td>
+                      <td>{row.hiv_test_type}</td>
                     </tr>
                   </React.Fragment>
                 ))

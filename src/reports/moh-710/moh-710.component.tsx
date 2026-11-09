@@ -175,9 +175,7 @@ const Moh710Report: React.FC = () => {
                   </tr>
                   <tr>
                     <td>OPV Birth doses Administered</td>
-                    <td onClick={() => navigateTo510Register('opv_vaccine_age_less_than_1yr')}>
-                      {moh710Data.opv_vaccine_age_less_than_1yr}
-                    </td>
+                    <td onClick={() => navigateTo510Register('opv_birth_doses')}>{moh710Data.opv_birth_doses}</td>
                     <td onClick={() => navigateTo510Register('opv_vaccine_age_greater_than_1yr')}>
                       {moh710Data.opv_vaccine_age_greater_than_1yr}
                     </td>
@@ -328,11 +326,11 @@ const Moh710Report: React.FC = () => {
                   </tr>
                   <tr>
                     <td>Measles-Rubella 1 doses Administered</td>
-                    <td onClick={() => navigateTo510Register('measles_vaccine_age_greater_than_1yr')}>
-                      {moh710Data.measles_vaccine_age_greater_than_1yr}
-                    </td>
                     <td onClick={() => navigateTo510Register('measles_vaccine_age_less_than_1yr')}>
                       {moh710Data.measles_vaccine_age_less_than_1yr}
+                    </td>
+                    <td onClick={() => navigateTo510Register('measles_vaccine_age_greater_than_1yr')}>
+                      {moh710Data.measles_vaccine_age_greater_than_1yr}
                     </td>
                   </tr>
                   <tr>
@@ -346,7 +344,9 @@ const Moh710Report: React.FC = () => {
                   </tr>
                   <tr>
                     <td>Fully Immunized Children(FIC) under 1 year</td>
-                    <td>{moh710Data.fully_immunized_children}</td>
+                    <td onClick={() => navigateTo510Register('fully_immunized_children')}>
+                      {moh710Data.fully_immunized_children}
+                    </td>
                     <td></td>
                   </tr>
                 </tbody>

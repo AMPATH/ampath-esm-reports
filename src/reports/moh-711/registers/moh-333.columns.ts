@@ -8,7 +8,7 @@ import { type RegisterColumn } from '../../../common/report-register';
  * their field names rather than headings borrowed from neighbouring columns.
  */
 export const moh333ExportColumns: RegisterColumn[] = [
-  { header: 'Date of Admission (dd/mm/yyyy)', value: (row) => row.date_of_admission ?? '' },
+  { header: 'Date of Admission (dd/mm/yyyy)', value: (row) => row.admission_date ?? '' },
   { header: 'AMRSID', value: (row) => row.amrsID ?? '' },
   { header: 'Admission number (yyyy-mm-nnnn) - NUPI', value: (row) => row.admission_number ?? '' },
   { header: 'Full Name (First, Middle, surname)', value: (row) => row.full_names ?? '' },
