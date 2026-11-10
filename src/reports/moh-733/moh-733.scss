@@ -2,6 +2,16 @@
 /* Smaller than the section headings beneath it: at 9pt the form title was
    heavier than the lettered sections it introduces. */
 
+$ink: #000;
+$bar: #d9d9d9;
+$rule: 1px solid $ink;
+
+$text: 7pt;
+$title: 7.5pt;
+$meta: 6.5pt;
+
+$pad: 3mm;
+
 .mainTitleBox h5 {
   font-size: 7.5pt;
   font-weight: 700;
@@ -188,4 +198,25 @@
     margin: 2rem;
     justify-content: space-between;
     padding: 2rem;
+}
+
+.signOff {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2.5mm;
+  padding: $pad;
+  font-size: $meta;
+  white-space: nowrap;
+  border: $rule;
+  border-top: none;
+
+  .line {
+    width: 45mm;
+  }
+
+  .shortLine {
+    width: 25mm;
+  }
 }

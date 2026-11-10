@@ -20,7 +20,7 @@ const CHANIS_LINELIST_COLUMNS: LinelistColumn[] = [
     value: (row) => formatDate(row.date_of_birth),
     sortValue: (row) => row.date_of_birth,
   },
-  { header: 'Age (Months)', field: 'age_months' },
+  { header: 'Age (Months)', field: 'age_in_months' },
   { header: 'Sex (Male/Female)', field: 'sex' },
   { header: 'Weight (kg)', field: 'weight' },
   { header: 'Height (cm)', field: 'height' },

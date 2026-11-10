@@ -2,6 +2,8 @@ import React from 'react';
 
 import styles from '../moh-733.scss';
 import classNames from 'classnames';
+import { useOpenMoh733Linelist } from '../linelist/use-open-moh-733-linelist';
+
 interface NutritionInterventionComponentProps {
   moh733Data: any;
   startDate: string;
@@ -15,6 +17,8 @@ const NutritionInterventionComponent: React.FC<NutritionInterventionComponentPro
   endDate,
   locationUuids,
 }) => {
+  const openLinelist = useOpenMoh733Linelist(startDate, endDate, locationUuids);
+
   return (
     <>
       <div className={styles.category}>
@@ -46,69 +50,165 @@ const NutritionInterventionComponent: React.FC<NutritionInterventionComponentPro
             <tbody>
               <tr>
                 <td>0 - 5 Months</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td onClick={() => openLinelist('gen_population_male_0_5_months')}>
+                  {moh733Data?.gen_population_male_0_5_months || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_hiv_male_0_5_months')}>
+                  {moh733Data?.sam_therapeutic_foods_hiv_male_0_5_months || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_hiv_and_tb_male_0_5_months')}>
+                  {moh733Data?.sam_therapeutic_foods_hiv_and_tb_male_0_5_months || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_tb_male_0_5_months')}>
+                  {moh733Data?.sam_therapeutic_foods_tb_male_0_5_months || 0}
+                </td>
+                <td onClick={() => openLinelist('gen_population_female_0_5_months')}>
+                  {moh733Data?.gen_population_female_0_5_months || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_hiv_female_0_5_months')}>
+                  {moh733Data?.sam_therapeutic_foods_hiv_female_0_5_months || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_hiv_and_tb_female_0_5_months')}>
+                  {moh733Data?.sam_therapeutic_foods_hiv_and_tb_female_0_5_months || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_tb_female_0_5_months')}>
+                  {moh733Data?.sam_therapeutic_foods_tb_female_0_5_months || 0}
+                </td>
               </tr>
               <tr>
                 <td>6 - 59 Months</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td onClick={() => openLinelist('gen_population_male_6_59_months')}>
+                  {moh733Data?.gen_population_male_6_59_months || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_hiv_male_6_59_months')}>
+                  {moh733Data?.sam_therapeutic_foods_hiv_male_6_59_months || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_hiv_and_tb_male_6_59_months')}>
+                  {moh733Data?.sam_therapeutic_foods_hiv_and_tb_male_6_59_months || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_tb_male_6_59_months')}>
+                  {moh733Data?.sam_therapeutic_foods_tb_male_6_59_months || 0}
+                </td>
+                <td onClick={() => openLinelist('gen_population_female_6_59_months')}>
+                  {moh733Data?.gen_population_female_6_59_months || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_hiv_female_6_59_months')}>
+                  {moh733Data?.sam_therapeutic_foods_hiv_female_6_59_months || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_hiv_and_tb_female_6_59_months')}>
+                  {moh733Data?.sam_therapeutic_foods_hiv_and_tb_female_6_59_months || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_tb_female_6_59_months')}>
+                  {moh733Data?.sam_therapeutic_foods_tb_female_6_59_months || 0}
+                </td>
               </tr>
               <tr>
                 <td>5 - 9 Years</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td onClick={() => openLinelist('gen_population_male_5_9_years')}>
+                  {moh733Data?.gen_population_male_5_9_years || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_hiv_male_5_9_years')}>
+                  {moh733Data?.sam_therapeutic_foods_hiv_male_5_9_years || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_hiv_and_tb_male_5_9_years')}>
+                  {moh733Data?.sam_therapeutic_foods_hiv_and_tb_male_5_9_years || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_tb_male_5_9_years')}>
+                  {moh733Data?.sam_therapeutic_foods_tb_male_5_9_years || 0}
+                </td>
+                <td onClick={() => openLinelist('gen_population_female_5_9_years')}>
+                  {moh733Data?.gen_population_female_5_9_years || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_hiv_female_5_9_years')}>
+                  {moh733Data?.sam_therapeutic_foods_hiv_female_5_9_years || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_hiv_and_tb_female_5_9_years')}>
+                  {moh733Data?.sam_therapeutic_foods_hiv_and_tb_female_5_9_years || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_tb_female_5_9_years')}>
+                  {moh733Data?.sam_therapeutic_foods_tb_female_5_9_years || 0}
+                </td>
               </tr>
               <tr>
                 <td>10 - 17 Years</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td onClick={() => openLinelist('gen_population_male_10_17_years')}>
+                  {moh733Data?.gen_population_male_10_17_years || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_hiv_male_10_17_years')}>
+                  {moh733Data?.sam_therapeutic_foods_hiv_male_10_17_years || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_hiv_and_tb_male_10_17_years')}>
+                  {moh733Data?.sam_therapeutic_foods_hiv_and_tb_male_10_17_years || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_tb_male_10_17_years')}>
+                  {moh733Data?.sam_therapeutic_foods_tb_male_10_17_years || 0}
+                </td>
+                <td onClick={() => openLinelist('gen_population_female_10_17_years')}>
+                  {moh733Data?.gen_population_female_10_17_years || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_hiv_female_10_17_years')}>
+                  {moh733Data?.sam_therapeutic_foods_hiv_female_10_17_years || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_hiv_and_tb_female_10_17_years')}>
+                  {moh733Data?.sam_therapeutic_foods_hiv_and_tb_female_10_17_years || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_tb_female_10_17_years')}>
+                  {moh733Data?.sam_therapeutic_foods_tb_female_10_17_years || 0}
+                </td>
               </tr>
               <tr>
                 <td>18+ Years</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td onClick={() => openLinelist('gen_population_male_18_above_years')}>
+                  {moh733Data?.gen_population_male_18_above_years || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_hiv_male_18_above_years')}>
+                  {moh733Data?.sam_therapeutic_foods_hiv_male_18_above_years || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_hiv_and_tb_male_18_above_years')}>
+                  {moh733Data?.sam_therapeutic_foods_hiv_and_tb_male_18_above_years || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_tb_male_18_above_years')}>
+                  {moh733Data?.sam_therapeutic_foods_tb_male_18_above_years || 0}
+                </td>
+                <td onClick={() => openLinelist('gen_population_female_18_above_years')}>
+                  {moh733Data?.gen_population_female_18_above_years || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_hiv_female_18_above_years')}>
+                  {moh733Data?.sam_therapeutic_foods_hiv_female_18_above_years || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_hiv_and_tb_female_18_above_years')}>
+                  {moh733Data?.sam_therapeutic_foods_hiv_and_tb_female_18_above_years || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_tb_female_18_above_years')}>
+                  {moh733Data?.sam_therapeutic_foods_tb_female_18_above_years || 0}
+                </td>
               </tr>
               <tr>
                 <td>18 - 19 Years</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td onClick={() => openLinelist('gen_population_male_18_19_years')}>
+                  {moh733Data?.gen_population_male_18_19_years || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_hiv_male_18_19_years')}>
+                  {moh733Data?.sam_therapeutic_foods_hiv_male_18_19_years || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_hiv_and_tb_male_18_19_years')}>
+                  {moh733Data?.sam_therapeutic_foods_hiv_and_tb_male_18_19_years || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_tb_male_18_19_years')}>
+                  {moh733Data?.sam_therapeutic_foods_tb_male_18_19_years || 0}
+                </td>
+                <td onClick={() => openLinelist('gen_population_female_18_19_years')}>
+                  {moh733Data?.gen_population_female_18_19_years || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_hiv_female_18_19_years')}>
+                  {moh733Data?.sam_therapeutic_foods_hiv_female_18_19_years || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_hiv_and_tb_female_18_19_years')}>
+                  {moh733Data?.sam_therapeutic_foods_hiv_and_tb_female_18_19_years || 0}
+                </td>
+                <td onClick={() => openLinelist('sam_therapeutic_foods_tb_female_18_19_years')}>
+                  {moh733Data?.sam_therapeutic_foods_tb_female_18_19_years || 0}
+                </td>
               </tr>
             </tbody>
           </table>
@@ -141,69 +241,165 @@ const NutritionInterventionComponent: React.FC<NutritionInterventionComponentPro
             <tbody>
               <tr>
                 <td>0 - 5 Months</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td onClick={() => openLinelist('gen_population_male_0_5_months')}>
+                  {moh733Data?.gen_population_male_0_5_months || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_hiv_male_0_5_months')}>
+                  {moh733Data?.mam_therapeutic_foods_hiv_male_0_5_months || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_hiv_and_tb_male_0_5_months')}>
+                  {moh733Data?.mam_therapeutic_foods_hiv_and_tb_male_0_5_months || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_tb_male_0_5_months')}>
+                  {moh733Data?.mam_therapeutic_foods_tb_male_0_5_months || 0}
+                </td>
+                <td onClick={() => openLinelist('gen_population_female_0_5_months')}>
+                  {moh733Data?.gen_population_female_0_5_months || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_hiv_female_0_5_months')}>
+                  {moh733Data?.mam_therapeutic_foods_hiv_female_0_5_months || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_hiv_and_tb_female_0_5_months')}>
+                  {moh733Data?.mam_therapeutic_foods_hiv_and_tb_female_0_5_months || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_tb_female_0_5_months')}>
+                  {moh733Data?.mam_therapeutic_foods_tb_female_0_5_months || 0}
+                </td>
               </tr>
               <tr>
                 <td>6 - 59 Months</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td onClick={() => openLinelist('gen_population_male_6_59_months')}>
+                  {moh733Data?.gen_population_male_6_59_months || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_hiv_male_6_59_months')}>
+                  {moh733Data?.mam_therapeutic_foods_hiv_male_6_59_months || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_hiv_and_tb_male_6_59_months')}>
+                  {moh733Data?.mam_therapeutic_foods_hiv_and_tb_male_6_59_months || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_tb_male_6_59_months')}>
+                  {moh733Data?.mam_therapeutic_foods_tb_male_6_59_months || 0}
+                </td>
+                <td onClick={() => openLinelist('gen_population_female_6_59_months')}>
+                  {moh733Data?.gen_population_female_6_59_months || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_hiv_female_6_59_months')}>
+                  {moh733Data?.mam_therapeutic_foods_hiv_female_6_59_months || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_hiv_and_tb_female_6_59_months')}>
+                  {moh733Data?.mam_therapeutic_foods_hiv_and_tb_female_6_59_months || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_tb_female_6_59_months')}>
+                  {moh733Data?.mam_therapeutic_foods_tb_female_6_59_months || 0}
+                </td>
               </tr>
               <tr>
                 <td>5 - 9 Years</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td onClick={() => openLinelist('gen_population_male_5_9_years')}>
+                  {moh733Data?.gen_population_male_5_9_years || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_hiv_male_5_9_years')}>
+                  {moh733Data?.mam_therapeutic_foods_hiv_male_5_9_years || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_hiv_and_tb_male_5_9_years')}>
+                  {moh733Data?.mam_therapeutic_foods_hiv_and_tb_male_5_9_years || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_tb_male_5_9_years')}>
+                  {moh733Data?.mam_therapeutic_foods_tb_male_5_9_years || 0}
+                </td>
+                <td onClick={() => openLinelist('gen_population_female_5_9_years')}>
+                  {moh733Data?.gen_population_female_5_9_years || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_hiv_female_5_9_years')}>
+                  {moh733Data?.mam_therapeutic_foods_hiv_female_5_9_years || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_hiv_and_tb_female_5_9_years')}>
+                  {moh733Data?.mam_therapeutic_foods_hiv_and_tb_female_5_9_years || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_tb_female_5_9_years')}>
+                  {moh733Data?.mam_therapeutic_foods_tb_female_5_9_years || 0}
+                </td>
               </tr>
               <tr>
                 <td>10 - 17 Years</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td onClick={() => openLinelist('gen_population_male_10_17_years')}>
+                  {moh733Data?.gen_population_male_10_17_years || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_hiv_male_10_17_years')}>
+                  {moh733Data?.mam_therapeutic_foods_hiv_male_10_17_years || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_hiv_and_tb_male_10_17_years')}>
+                  {moh733Data?.mam_therapeutic_foods_hiv_and_tb_male_10_17_years || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_tb_male_10_17_years')}>
+                  {moh733Data?.mam_therapeutic_foods_tb_male_10_17_years || 0}
+                </td>
+                <td onClick={() => openLinelist('gen_population_female_10_17_years')}>
+                  {moh733Data?.gen_population_female_10_17_years || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_hiv_female_10_17_years')}>
+                  {moh733Data?.mam_therapeutic_foods_hiv_female_10_17_years || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_hiv_and_tb_female_10_17_years')}>
+                  {moh733Data?.mam_therapeutic_foods_hiv_and_tb_female_10_17_years || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_tb_female_10_17_years')}>
+                  {moh733Data?.mam_therapeutic_foods_tb_female_10_17_years || 0}
+                </td>
               </tr>
               <tr>
                 <td>18+ Years</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td onClick={() => openLinelist('gen_population_male_18_above_years')}>
+                  {moh733Data?.gen_population_male_18_above_years || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_hiv_male_18_above_years')}>
+                  {moh733Data?.mam_therapeutic_foods_hiv_male_18_above_years || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_hiv_and_tb_male_18_above_years')}>
+                  {moh733Data?.mam_therapeutic_foods_hiv_and_tb_male_18_above_years || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_tb_male_18_above_years')}>
+                  {moh733Data?.mam_therapeutic_foods_tb_male_18_above_years || 0}
+                </td>
+                <td onClick={() => openLinelist('gen_population_female_18_above_years')}>
+                  {moh733Data?.gen_population_female_18_above_years || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_hiv_female_18_above_years')}>
+                  {moh733Data?.mam_therapeutic_foods_hiv_female_18_above_years || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_hiv_and_tb_female_18_above_years')}>
+                  {moh733Data?.mam_therapeutic_foods_hiv_and_tb_female_18_above_years || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_tb_female_18_above_years')}>
+                  {moh733Data?.mam_therapeutic_foods_tb_female_18_above_years || 0}
+                </td>
               </tr>
               <tr>
                 <td>18 - 19 Years</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td onClick={() => openLinelist('gen_population_male_18_19_years')}>
+                  {moh733Data?.gen_population_male_18_19_years || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_hiv_male_18_19_years')}>
+                  {moh733Data?.mam_therapeutic_foods_hiv_male_18_19_years || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_hiv_and_tb_male_18_19_years')}>
+                  {moh733Data?.mam_therapeutic_foods_hiv_and_tb_male_18_19_years || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_tb_male_18_19_years')}>
+                  {moh733Data?.mam_therapeutic_foods_tb_male_18_19_years || 0}
+                </td>
+                <td onClick={() => openLinelist('gen_population_female_18_19_years')}>
+                  {moh733Data?.gen_population_female_18_19_years || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_hiv_female_18_19_years')}>
+                  {moh733Data?.mam_therapeutic_foods_hiv_female_18_19_years || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_hiv_and_tb_female_18_19_years')}>
+                  {moh733Data?.mam_therapeutic_foods_hiv_and_tb_female_18_19_years || 0}
+                </td>
+                <td onClick={() => openLinelist('mam_therapeutic_foods_tb_female_18_19_years')}>
+                  {moh733Data?.mam_therapeutic_foods_tb_female_18_19_years || 0}
+                </td>
               </tr>
             </tbody>
           </table>
