@@ -54,6 +54,7 @@ import TbRegisterComponent from './reports/moh-711/registers/tb-register.compone
 import Moh413Component from './reports/moh-710/registers/moh-413/moh-413.component';
 import Moh407RegisterComponent from './reports/moh-711/registers/moh-407-register.component';
 import Moh733Component from './reports/moh-733/moh-733.component';
+import Moh733Linelist from './reports/moh-733/linelist/moh-733-linelist.component';
 
 const RootComponent: React.FC = () => {
   const baseName = window.getOpenmrsSpaBase() + 'home/reports';
@@ -110,6 +111,7 @@ const RootComponent: React.FC = () => {
           <Route path="/presumptive-tb" element={<PresumptiveTbRegister />} />
           <Route path="/tb4" element={<Tb4Register />} />
           <Route path="/moh-733" element={<Moh733Component />} />
+          <Route path="/moh-733-linelist" element={<Moh733Linelist />} />
           <Route path="/moh-711-anc-linelist" element={<Moh711AncLinelist />} />
           <Route path="/moh-711-maternity-linelist" element={<Moh711MaternityLinelist />} />
           <Route path="/moh-711-pnc-linelist" element={<Moh711PncLinelist />} />
