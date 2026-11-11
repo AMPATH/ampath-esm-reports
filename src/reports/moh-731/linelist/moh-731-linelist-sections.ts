@@ -57,6 +57,8 @@ export const MOH_731_LINELIST_SECTIONS = {
       { header: 'Age', field: 'age_at_test' },
       { header: 'Service', field: 'service' },
       { header: 'Test Type', field: 'test_type' },
+      /* ANC tests only; shown by default on the ANC figures (showColumns in moh-731-indicators.ts) */
+      { header: 'ANC Visit No.', field: 'anc_visit_number', hidden: true },
       { header: 'Setting', field: 'hts_setting' },
       { header: 'Population Type', field: 'population_type' },
       { header: 'Final Result', field: 'final_result' },
