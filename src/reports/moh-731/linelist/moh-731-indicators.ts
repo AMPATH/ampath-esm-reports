@@ -367,6 +367,7 @@ export const MOH_731_INDICATORS: Record<string, Moh731Indicator> = {
     label: 'Tested at ANC',
     block: '2.1 Maternal HIV Testing',
     section: 'hivTests',
+    showColumns: ['ANC Visit No.'],
   },
   'HV02-03': {
     indicator: 'retest_anc',
@@ -374,6 +375,7 @@ export const MOH_731_INDICATORS: Record<string, Moh731Indicator> = {
     label: 'Tested at ANC',
     block: '2.1 Maternal HIV Testing',
     section: 'hivTests',
+    showColumns: ['ANC Visit No.'],
   },
   'HV02-04': {
     indicator: 'initial_test_LD',
@@ -447,6 +449,7 @@ export const MOH_731_INDICATORS: Record<string, Moh731Indicator> = {
     label: 'Tested at ANC',
     block: '2.2 HIV Positive Results',
     section: 'hivTests',
+    showColumns: ['ANC Visit No.'],
   },
   'HV02-11': {
     indicator: 'positive_LD',
@@ -486,6 +489,7 @@ export const MOH_731_INDICATORS: Record<string, Moh731Indicator> = {
     label: 'Start HAART_ANC',
     block: '2.3 Maternal HAART',
     section: 'hivTests',
+    showColumns: ['ANC Visit No.'],
   },
   'HV02-16': {
     indicator: 'start_maternal_haart_LD',

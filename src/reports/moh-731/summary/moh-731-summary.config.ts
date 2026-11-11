@@ -68,7 +68,15 @@ const NOT_REPORTED = 'Not yet reported by the system; these boxes show – on th
 const TB_CLINIC_NOT_REPORTED =
   "Not reported until this section's queries are corrected: the earlier figures were misleading, so these boxes show – on the form too.";
 
-const prepPopulations = (codes: Record<string, [SummaryCell, SummaryCell]>): SummaryRow[] => [
+/**
+ * PrEP's population rows. Pregnant & breastfeeding women are "of which" General
+ * population unless `pbfwSeparate`: 1.3 leaves them out of General popn Female
+ * (HV01-20), so there they are a row of their own, counted in the total.
+ */
+const prepPopulations = (
+  codes: Record<string, [SummaryCell, SummaryCell]>,
+  { pbfwSeparate = false } = {},
+): SummaryRow[] => [
   { label: 'General population', cells: codes.general },
   { label: 'MSM / MSW', cells: codes.msm },
   { label: 'FSW', cells: codes.fsw },
@@ -76,7 +84,7 @@ const prepPopulations = (codes: Record<string, [SummaryCell, SummaryCell]>): Sum
   { label: 'Discordant couple', cells: codes.discordant },
   { label: 'Vulnerable population', cells: codes.vulnerable },
   { label: 'AYP (10–24 yrs)', cells: codes.ayp },
-  { label: 'Pregnant & breastfeeding women', cells: codes.pbfw, ofWhich: true },
+  { label: 'Pregnant & breastfeeding women', cells: codes.pbfw, ofWhich: !pbfwSeparate },
 ];
 
 export const MOH_731_SUMMARY: SummarySection[] = [
@@ -133,16 +141,19 @@ export const MOH_731_SUMMARY: SummarySection[] = [
           {
             columns: SEX,
             totalLabel: 'Total initiated (new)',
-            rows: prepPopulations({
-              general: ['HV01-19', 'HV01-20'],
-              msm: ['HV01-21', null],
-              fsw: [null, 'HV01-22'],
-              pwid: ['HV01-23', 'HV01-24'],
-              discordant: ['HV01-25', 'HV01-26'],
-              vulnerable: ['HV01-27', 'HV01-28'],
-              ayp: ['HV01-29', 'HV01-30'],
-              pbfw: [null, 'HV01-31'],
-            }),
+            rows: prepPopulations(
+              {
+                general: ['HV01-19', 'HV01-20'],
+                msm: ['HV01-21', null],
+                fsw: [null, 'HV01-22'],
+                pwid: ['HV01-23', 'HV01-24'],
+                discordant: ['HV01-25', 'HV01-26'],
+                vulnerable: ['HV01-27', 'HV01-28'],
+                ayp: ['HV01-29', 'HV01-30'],
+                pbfw: [null, 'HV01-31'],
+              },
+              { pbfwSeparate: true },
+            ),
           },
         ],
       },
