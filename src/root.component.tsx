@@ -25,8 +25,7 @@ import Moh711FamilyPlanningLinelist from './reports/moh-711/linelist/moh-711-fam
 import Moh711ChanisLinelist from './reports/moh-711/linelist/moh-711-chanis-linelist.component';
 import Moh406Register from './reports/moh-711/registers/moh-406-register.component';
 import Moh333Register from './reports/moh-711/registers/moh-333-register.component';
-import Moh511Register from './reports/moh-711/registers/moh-511-register.component';
-import Moh511710Register from './reports/moh-710/registers/moh-511-710-register.component';
+import Moh511Register from './reports/moh-710/registers/moh-511/moh-511-register.component';
 import Moh731Report from './reports/moh-731/moh-731.component';
 import Moh729bReport from './reports/moh-729b/moh-729b.component';
 import AcfSummaryReport from './reports/acf-summary/acf-summary.component';
@@ -84,7 +83,6 @@ const RootComponent: React.FC = () => {
           <Route path="/moh-406-register" element={<Moh406Register />} />
           <Route path="/moh-333-register" element={<Moh333Register />} />
           <Route path="/moh-511-register" element={<Moh511Register />} />
-          <Route path="/moh-511-710-register" element={<Moh511710Register />} />
           <Route path="/moh-731" element={<Moh731Report />} />
           <Route path="/moh-729b" element={<Moh729bReport />} />
           <Route path="/moh-729b-linelist" element={<Moh729bLinelist />} />

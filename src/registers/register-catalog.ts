@@ -244,6 +244,14 @@ export const registerCategories: ReportCategory[] = [
         icon: Activity,
         keywords: ['hpv'],
       },
+      {
+        code: 'MOH 511',
+        name: 'MOH 511 Register',
+        description: 'MOH 511 Register',
+        path: '/moh-511-register',
+        icon: Activity,
+        keywords: ['cwc', 'child welfare clinic', 'growth monitoring', 'nutrition'],
+      },
     ],
   },
 ];

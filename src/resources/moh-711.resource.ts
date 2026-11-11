@@ -37,7 +37,9 @@ export async function getMoh711(params: Moh711Params): Promise<any> {
   }
 }
 
-export async function getMoh406PatientList(params: PatientListParams & { from?: string | null }): Promise<PatientListPage> {
+export async function getMoh406PatientList(
+  params: PatientListParams & { from?: string | null },
+): Promise<PatientListPage> {
   const endPoint = (() => {
     if (params.from && params.from?.toLowerCase() === 'moh-717') {
       return 'moh-717-patient-list';
@@ -68,7 +70,9 @@ export async function getMoh406PatientList(params: PatientListParams & { from?: 
   }
 }
 
-export async function getMoh405PatientList(params: PatientListParams & { from?: string | null }): Promise<PatientListPage> {
+export async function getMoh405PatientList(
+  params: PatientListParams & { from?: string | null },
+): Promise<PatientListPage> {
   const endPoint = (() => {
     if (params.from && params.from?.toLowerCase() === 'moh-717') {
       return 'moh-717-patient-list';
@@ -99,7 +103,9 @@ export async function getMoh405PatientList(params: PatientListParams & { from?: 
   }
 }
 
-export async function getMoh333PatientList(params: PatientListParams & { from?: string | null }): Promise<PatientListPage> {
+export async function getMoh333PatientList(
+  params: PatientListParams & { from?: string | null },
+): Promise<PatientListPage> {
   const endPoint = (() => {
     if (params.from && params.from?.toLowerCase() === 'moh-717') {
       return 'moh-717-patient-list';
@@ -131,7 +137,7 @@ export async function getMoh333PatientList(params: PatientListParams & { from?: 
 }
 
 export async function getMoh511PatientList(params: PatientListParams): Promise<PatientListPage> {
-  const url = await buildEtlUrl('moh-511-patient-list', {
+  const url = await buildEtlUrl('moh-511-register', {
     locationUuids: params.locationUuids || '',
     startDate: params.startDate || '',
     endDate: params.endDate || '',
