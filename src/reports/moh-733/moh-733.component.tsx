@@ -98,10 +98,7 @@ const Moh733Component: React.FC = () => {
         <ReportPage>
           <div className={styles.headerContainer}>
             <div className={styles.mainTitleBox}>
-              <h5>
-                INTEGRATED PROGRAM SUMMARY REPORT FORM: REPRODUCTIVE AND CHILD HEALTH, MEDICAL AND REHABILITATION
-                SERVICES
-              </h5>
+              <h5>MONTHLY SUMMARY FOR NUTRITION SERVICES</h5>
               <div className={styles.locationContainer}>
                 <span>
                   Facility Name: <span className={styles.line}>{facility}</span>
