@@ -83,3 +83,29 @@ export async function getMoh413PatientList(params: PatientListParams): Promise<a
     throw new Error(`An error occurred while fetching the MOH-413 Register: ${error.message}`);
   }
 }
+
+export async function getMoh511Register(params: PatientListParams): Promise<any> {
+  const url = await buildEtlUrl('moh-511-register', {
+    locationUuids: params.locationUuids || '',
+    startDate: params.startDate || '',
+    endDate: params.endDate || '',
+    indicator: Array.isArray(params.indicator) ? params.indicator.join(',') : params.indicator || '',
+    reportName: params.reportName || 'moh710Report',
+    ...pageParams(params),
+  });
+
+  try {
+    const response = await openmrsFetch(url);
+
+    if (!response.ok) {
+      const errorText = await response.text();
+
+      throw new Error(`Failed to fetch  moh-511: ${response.status} - ${errorText}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error: any) {
+    throw new Error(`An error occurred while fetching the MOH-511 Register: ${error.message}`);
+  }
+}

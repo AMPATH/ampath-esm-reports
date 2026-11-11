@@ -1,4 +1,4 @@
-import { type RegisterColumn } from '../../../common/report-register';
+import { type RegisterColumn } from '../../../../common/report-register';
 
 /**
  * MOH 511 as the register prints it: one column per cell, in the order they appear.

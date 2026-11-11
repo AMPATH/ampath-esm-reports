@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { RegisterLayout, usePatientList } from '../../../common/report-register';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@carbon/react';
+import { Table, TableBody, TableCell, TableHead, TableRow } from '@carbon/react';
 import classNames from 'classnames';
 import dayjs from 'dayjs';
 import { useSession } from '@openmrs/esm-framework';
@@ -78,23 +78,26 @@ const Moh512RegisterComponent: React.FC<Moh512RegisterComponentProps> = () => {
     { key: 'date', label: 'Date' },
     { key: 'cr_id', label: 'Client Number' },
     { key: 'name_of_client', label: 'Name of Client' },
-    { key: 'client_type', label: 'Client Type' },
-    { key: 'first_ever_use_of_contraceptive', label: '1st Ever User of Contraceptive' },
-    { key: 'age', label: 'Age' },
-    { key: 'sex', label: 'Sex' },
+    { key: 'client_type', label: 'Client Type (1=New, 2=Revisit)' },
+    { key: 'first_ever_use_of_contraceptive', label: '1st Ever User (Y/N)' },
+    { key: 'age', label: 'Age (Years)' },
+    { key: 'sex', label: 'Sex (M/F/I)' },
     { key: 'disability_status', label: 'Disability Status' },
     { key: 'phone_number', label: 'Telephone Number' },
     { key: 'village_estate_landmark', label: 'Village/Estate/Landmark' },
-    { key: 'counselled_on_fp', label: 'Counselled on FP' },
+    { key: 'counselled_on_fp', label: 'Counselled on FP (Y/N)' },
     { key: 'type_of_visit_for_method_combined_oral_contraceptive', label: 'COC Visit Type' },
-    { key: 'quantity_dispensed_combined_oral_contraceptive', label: 'COC Quantity' },
+    { key: 'quantity_dispensed_combined_oral_contraceptive', label: 'COC Qty (Cycles)' },
     { key: 'type_of_visit_for_method_progestine', label: 'POP Visit Type' },
-    { key: 'quantity_dispensed_progestine', label: 'POP Quantity' },
+    { key: 'quantity_dispensed_progestine', label: 'POP Qty (Cycles)' },
     { key: 'quantity_dispensed_emergency_contraceptive_pills', label: 'Emergency Contraceptive Doses' },
-    { key: 'type_of_visit_for_method_1_rod', label: '1 Rod Visit Type' },
+    { key: 'type_of_visit_for_method_injectables', label: 'Injectables Visit Type' },
+    { key: 'quantity_dispensed_dmpa_im', label: 'DMPA IM Qty (Vials)' },
+    { key: 'quantity_dispensed_dmpa_sc', label: 'DMPA SC Qty (Vials)' },
+    { key: 'type_of_visit_for_method_1_rod', label: 'Implant Visit Type' },
     { key: 'quantity_dispensed_1_rod', label: '1 Rod (Sets)' },
-    { key: 'type_of_visit_for_method_2_rod', label: '2 Rods Visit Type' },
-    { key: 'quantity_dispensed_2_rod', label: '2 Rods (Sets)' },
+    { key: 'quantity_dispensed_2_rod', label: '2 Rods 3 Years (Sets)' },
+    { key: 'quantity_dispensed_2_rod_5_years', label: '2 Rods 5 Years (Sets)' },
     { key: 'type_of_visit_for_method_iud', label: 'IUD Visit Type' },
     { key: 'quantity_dispensed_non_hormonal', label: 'Non-Hormonal IUD (Sets)' },
     { key: 'quantity_dispensed_hormonal', label: 'Hormonal IUD (Sets)' },
@@ -151,8 +154,95 @@ const Moh512RegisterComponent: React.FC<Moh512RegisterComponentProps> = () => {
             <Table className={classNames(styles.table, styles.tableBordered, styles.tableStriped)}>
               <TableHead>
                 <TableRow>
-                  {columns.map((column) => (
-                    <TableHeader key={column.key}>{column.label}</TableHeader>
+                  {columns.slice(0, 11).map((column) => (
+                    <th key={column.key} rowSpan={3} scope="col">
+                      {column.label}
+                    </th>
+                  ))}
+                  <th colSpan={19} scope="colgroup">
+                    Contraceptives dispensed at this visit
+                  </th>
+                  {columns.slice(30, 35).map((column) => (
+                    <th key={column.key} rowSpan={3} scope="col">
+                      {column.label}
+                    </th>
+                  ))}
+                  <th colSpan={3} scope="colgroup">
+                    HIV Status
+                  </th>
+                  <th rowSpan={3} scope="col">
+                    IPV / Reproductive Coercion
+                  </th>
+                  <th colSpan={2} scope="colgroup">
+                    Cervical Cancer Screening
+                  </th>
+                  <th colSpan={3} scope="colgroup">
+                    Referrals
+                  </th>
+                  <th rowSpan={3} scope="col">
+                    Remarks
+                  </th>
+                </TableRow>
+                <TableRow>
+                  <th colSpan={4} scope="colgroup">
+                    Oral Contraceptives (Cycles)
+                  </th>
+                  <th rowSpan={2} scope="col">
+                    Emergency Contraceptive Pills (Doses)
+                  </th>
+                  <th colSpan={3} scope="colgroup">
+                    Injectables — DMPA
+                  </th>
+                  <th colSpan={4} scope="colgroup">
+                    Implants (Sets)
+                  </th>
+                  <th colSpan={3} scope="colgroup">
+                    IUDs (Sets)
+                  </th>
+                  <th rowSpan={2} scope="col">
+                    Reasons for LARC Removal
+                  </th>
+                  <th colSpan={3} scope="colgroup">
+                    Condoms for FP
+                  </th>
+                  {columns.slice(35, 38).map((column) => (
+                    <th key={column.key} rowSpan={2} scope="col">
+                      {column.label}
+                    </th>
+                  ))}
+                  {columns.slice(39, 41).map((column) => (
+                    <th key={column.key} rowSpan={2} scope="col">
+                      {column.label}
+                    </th>
+                  ))}
+                  {columns.slice(41, 44).map((column) => (
+                    <th key={column.key} rowSpan={2} scope="col">
+                      {column.label}
+                    </th>
+                  ))}
+                </TableRow>
+                <TableRow>
+                  {columns.slice(11, 15).map((column) => (
+                    <th key={column.key} scope="col">
+                      {column.label}
+                    </th>
+                  ))}
+                  {columns.slice(16, 26).map((column) => (
+                    <th key={column.key} scope="col">
+                      {column.label}
+                    </th>
+                  ))}
+                  {columns.slice(27, 30).map((column) => (
+                    <th key={column.key} scope="col">
+                      {column.label}
+                    </th>
+                  ))}
+                </TableRow>
+                <TableRow>
+                  {columns.map((column, index) => (
+                    <th key={column.key} scope="col" title={column.label}>
+                      {index < 26 ? String.fromCharCode(65 + index) : `A${String.fromCharCode(65 + index - 26)}`}
+                    </th>
                   ))}
                 </TableRow>
               </TableHead>
