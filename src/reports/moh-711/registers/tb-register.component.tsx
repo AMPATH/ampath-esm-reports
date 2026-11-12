@@ -46,7 +46,7 @@ const TbRegisterComponent: React.FC<TbRegisterComponentProps> = () => {
       parentPath="/moh-711"
       title="TB Register"
       isLoading={isLoading}
-      isEmpty={patientlist.length === 0}
+      isEmpty={patientlist?.length === 0}
       page={page}
       pageSize={pageSize}
       total={total}
