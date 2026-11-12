@@ -44,7 +44,7 @@ const Moh718Report: React.FC = () => {
   return (
     <>
      <ReportFiltersComponent
-        reportName="MOH-745 Report"
+        reportName="MOH-718"
         mode="both"
         onGenerate={fetchMoh718ReportData}
         isLoading={isLoading}
