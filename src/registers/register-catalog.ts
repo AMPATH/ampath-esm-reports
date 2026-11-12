@@ -253,7 +253,7 @@ export const registerCategories: ReportCategory[] = [
         keywords: ['cwc', 'child welfare clinic', 'growth monitoring', 'nutrition'],
       },
     ],
-  },
+  }
 ];
 
 export const totalRegisterCount = registerCategories.reduce((count, category) => count + category.reports.length, 0);

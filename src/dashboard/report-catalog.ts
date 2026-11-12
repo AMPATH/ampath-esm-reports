@@ -190,6 +190,22 @@ export const reportCategories: ReportCategory[] = [
       },
     ],
   },
+  {
+    id: 'inpatient-mobidity-mortality',
+    title: 'Inpatient Morbidity and Mortality',
+    description: 'Inpatient Morbidity and Mortality',
+    tone: 'violet',
+    reports: [
+      {
+        code: 'MOH 718',
+        name: 'Inpatient Morbidity and Mortality',
+        description: 'Inpatient Morbidity and Mortality',
+        path: '/moh-718',
+        icon: HealthCross,
+        keywords: ['inpatient', 'morbidity', 'mortality'],
+      }
+    ],
+  },
 ];
 
 export const totalReportCount = reportCategories.reduce((count, category) => count + category.reports.length, 0);
