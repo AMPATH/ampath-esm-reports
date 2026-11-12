@@ -1,5 +1,14 @@
 import React from 'react';
-import { Breadcrumb, BreadcrumbItem, Button, Layer, Pagination } from '@carbon/react';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  Button,
+  Layer,
+  Pagination,
+  Toggletip,
+  ToggletipButton,
+  ToggletipContent,
+} from '@carbon/react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { ArrowLeft, Calendar, Document, Download, Location } from '@carbon/react/icons';
 import { formatDate } from '@openmrs/esm-framework';
@@ -36,6 +45,11 @@ interface RegisterLayoutProps {
   heading?: string;
   /** The location the register was generated for, shown beside the period */
   location?: string;
+  /**
+   * The clinics `location` takes in, when it is a whole facility (e.g. MTRH's
+   * modules, MCH, HTS…): listed under a "N clinics" button beside its name
+   */
+  locationClinics?: string[];
   isLoading: boolean;
   /** `true` once loaded with nothing to show */
   isEmpty: boolean;
@@ -78,6 +92,7 @@ const RegisterLayout: React.FC<RegisterLayoutProps> = ({
   title,
   heading: headingProp,
   location,
+  locationClinics = [],
   isLoading,
   isEmpty,
   page,
@@ -211,10 +226,27 @@ const RegisterLayout: React.FC<RegisterLayoutProps> = ({
                 <span className={styles.location}>
                   <Location size={14} />
                   {location}
+                  {locationClinics.length > 0 && (
+                    <Toggletip align="bottom-left" autoAlign className={styles.clinics}>
+                      <ToggletipButton label={`Clinics in ${location}`} className={styles.clinicsButton}>
+                        {locationClinics.length === 1 ? '1 clinic' : `${locationClinics.length} clinics`}
+                      </ToggletipButton>
+                      <ToggletipContent>
+                        <p className={styles.clinicsTitle}>Includes every clinic in {location}</p>
+                        <ul className={styles.clinicsList}>
+                          {locationClinics.map((clinic) => (
+                            <li key={clinic}>{clinic}</li>
+                          ))}
+                        </ul>
+                      </ToggletipContent>
+                    </Toggletip>
+                  )}
                 </span>
               )}
               {typeof total === 'number' && total > 0 && (
-                <span>{isTotalExact ? `${total.toLocaleString()} patients` : `${total.toLocaleString()}+ patients`}</span>
+                <span>
+                  {isTotalExact ? `${total.toLocaleString()} patients` : `${total.toLocaleString()}+ patients`}
+                </span>
               )}
             </span>
           </span>

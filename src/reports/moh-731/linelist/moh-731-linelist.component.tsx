@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import { LinelistTable, useAllRows } from '../../../common/linelist-table';
 import { RegisterLayout, useLocationName } from '../../../common/report-register';
+import { useFacility } from '../../../common/report-header';
 import { MOH_731_INDICATORS } from './moh-731-indicators';
 import { MOH_731_LINELIST_SECTIONS } from './moh-731-linelist-sections';
 
@@ -29,7 +30,10 @@ const Moh731Linelist: React.FC = () => {
   const endDate = searchParams.get('endDate');
   const locationUuids = searchParams.get('locationUuids');
 
-  const locationName = useLocationName(locationUuids);
+  /* the rows cover the whole facility (as the figures do), so it is named by
+     its parent location, e.g. MTRH, with the clinics it includes; the
+     location's own name until that loads */
+  const facility = useFacility(locationUuids, useLocationName(locationUuids));
 
   const isTotal = totalCodes.length > 0;
   const parts = (isTotal ? totalCodes : [code]).map((partCode) => MOH_731_INDICATORS[partCode]);
@@ -83,7 +87,8 @@ const Moh731Linelist: React.FC = () => {
       parentPath="/moh-731"
       title={figure ? `${section.title} · ${block}` : 'MOH 731 Linelist'}
       heading={heading}
-      location={locationName}
+      location={facility.name}
+      locationClinics={facility.clinics}
       isLoading={isLoading}
       isEmpty={rows.length === 0}
     >

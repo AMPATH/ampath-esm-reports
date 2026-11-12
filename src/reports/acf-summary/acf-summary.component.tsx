@@ -7,6 +7,7 @@ import { downloadSheetsPdf } from '../../common/report-page';
 import { ReportPlaceholder, useGeneratedLocation } from '../../common/report-placeholder';
 import { showReportError } from '../../common/report-error';
 import { ReportSkeleton } from '../../common/report-skeleton';
+import { useFacilityName } from '../../common/report-header';
 import { registerFileName } from '../../registers/register-file-name';
 import { getPresumptiveTb } from '../../resources/presumptive-tb.resource';
 import { acfCounts, type AcfCase } from './acf-summary.counts';
@@ -29,7 +30,10 @@ const AcfSummaryReport: React.FC = () => {
   const navigate = useNavigate();
   const session = useSession();
   const locationUuids = session?.sessionLocation?.uuid ?? '';
-  const facility = session?.sessionLocation?.display ?? '';
+  /* the cases come from the session location's whole facility (the ETL
+     widens to its parent location and every clinic under it), so the sheet
+     and the PDF name the facility, e.g. MTRH rather than MTRH Module 1 */
+  const facility = useFacilityName(locationUuids, session?.sessionLocation?.display ?? '');
   /* Only a report for the current location counts */
   const { isForCurrentLocation, hasLocationChanged, markGenerated } = useGeneratedLocation('acfSummaryLocation');
   const isReportGenerated = isGenerated && isForCurrentLocation;

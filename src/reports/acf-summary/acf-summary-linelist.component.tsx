@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import { type LinelistColumn, LinelistTable, useAllRows } from '../../common/linelist-table';
 import { RegisterLayout, useLocationName } from '../../common/report-register';
+import { useFacility } from '../../common/report-header';
 import { getPresumptiveTb } from '../../resources/presumptive-tb.resource';
 import { ACF_INDICATORS, type AcfCase } from './acf-summary.counts';
 
@@ -43,7 +44,10 @@ const AcfSummaryLinelist: React.FC = () => {
   const indicator = ACF_INDICATORS[number];
   const heading = indicator ? `${number}. ${indicator.label} linelist` : 'ACF linelist';
 
-  const locationName = useLocationName(locationUuids);
+  /* the cases come from the whole facility (as the sheet's counts do), so it
+     is named by its parent location, e.g. MTRH, with the clinics it includes;
+     the location's own name until that loads */
+  const facility = useFacility(locationUuids, useLocationName(locationUuids));
   /* the period's cases come back in one response; they are fetched once and
      handed to the table in the batches it reads */
   let cases: Promise<AcfCase[]> | undefined;
@@ -67,7 +71,8 @@ const AcfSummaryLinelist: React.FC = () => {
       parentPath="/acf-summary"
       title="ACF Facility Summary · TB / Chest Clinic"
       heading={heading}
-      location={locationName}
+      location={facility.name}
+      locationClinics={facility.clinics}
       isLoading={isLoading}
       isEmpty={rows.length === 0}
     >
