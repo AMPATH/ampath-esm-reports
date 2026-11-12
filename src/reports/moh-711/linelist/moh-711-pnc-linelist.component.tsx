@@ -31,6 +31,8 @@ const PNC_LINELIST_COLUMNS: LinelistColumn[] = [
   { header: 'Postpartum Visit – Mother', field: 'timing_mother' },
   { header: 'Postpartum Visit – Baby', field: 'timing_baby' },
   { header: 'Fistula Type', field: 'fistula' },
+  { header: 'HIV Results', field: 'hiv_test_results_pnc' },
+  { header: 'Date HIV tested', field: 'date_of_hiv_test' },
   { header: 'Referred From', field: 'referral_from' },
 ];
 
