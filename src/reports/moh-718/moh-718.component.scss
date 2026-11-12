@@ -1,0 +1,107 @@
+$ink: #000;
+$rule: 1px solid $ink;
+
+$text: 7pt;
+$title: 7.5pt;
+$meta: 6.5pt;
+
+.moh718Layout {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px 10px;
+    margin: 0;
+    font-size: 7.5pt;
+    font-weight: 700;
+
+}
+
+.tableContainer {
+    width: 100%;
+    overflow-x: auto;
+    background: #fff;
+    border: 1px solid #dcdcdc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.tableTitle {
+    text-align: center;
+    font-size: 9.5pt;
+    font-weight: 700;
+    padding: 15px;
+    background-color: #fff;
+    color: #444;
+    border-bottom: 1px solid #dcdcdc;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+th,
+td {
+    border: 1px solid #dcdcdc;
+    padding: 8px 6px;
+    font-size: 7.5pt;
+    font-weight: 700;
+}
+
+th {
+    background-color: #f8f9fa;
+    color: #333;
+    font-size: 7.5pt;
+    font-weight: 700;
+}
+
+.filterCcell {
+    background-color: #f8f9fa;
+    padding: 8px;
+    min-width: 180px;
+}
+
+.filterinput {
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 12px;
+    outline: none;
+}
+
+.filter-input:focus {
+    border-color: #0066cc;
+}
+
+.rowHeader {
+    text-align: left;
+    padding-left: 12px;
+    font-weight: normal;
+    background-color: #f8f9fa;
+    min-width: 220px;
+    white-space: normal;
+}
+
+.dataInput {
+    width: 60px;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 12px;
+    outline: none;
+}
+
+.data-input:focus {
+    border-color: #0066cc;
+}
+.reportTitle{
+  padding: 3mm;
+  font-size: $title;
+  font-weight: 700;
+  text-align: center;
+  border: $rule;
+}
