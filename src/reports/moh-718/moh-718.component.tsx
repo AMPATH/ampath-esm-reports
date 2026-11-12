@@ -63,2602 +63,2602 @@ const Moh718Report: React.FC = () => {
         </div>
         <div className={styles.tableContainer}>
           <div className={styles.tableTitle}>Certain conditions originating in the perinatal period</div>
-          <table>
+          <table className={styles.reportTable}>
             <thead>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={10}>Male</th>
-                <th colSpan={10}>Female</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={10}>Male</th>
+                <th className={styles.reportTableHeader}colSpan={10}>Female</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td colSpan={2}>Certain conditions orig in the perinatal period</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Certain conditions orig in the perinatal period</td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
             </tbody>
           </table>
         </div>
         <div className={styles.tableContainer}>
           <div className={styles.tableTitle}>Certain infectius and parasitic diseases</div>
-          <table>
+          <table className={styles.reportTable}>
             <thead>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={10}>Male</th>
-                <th colSpan={10}>Female</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={10}>Male</th>
+                <th className={styles.reportTableHeader}colSpan={10}>Female</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td colSpan={2}>Diarrhoea and GE</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Diarrhoea and GE</td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Other intestinal infectious </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Other intestinal infectious </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Cholera Inpatient </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Cholera Inpatient </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Diphtheria</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Diphtheria</td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Respiratory Tuberculosis</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Respiratory Tuberculosis</td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Malaria Inpatient </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Malaria Inpatient </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Plague Inpatient</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Plague Inpatient</td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Septicaemia </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Septicaemia </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Trypanosomiasis </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Trypanosomiasis </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Whooping Cough </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Whooping Cough </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Viral Hepatitis </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Viral Hepatitis </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Yellow Fever </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Yellow Fever </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Schistosomiasis </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Schistosomiasis </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Tetanus Inpatient </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Tetanus Inpatient </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Other Tuberculosis </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Other Tuberculosis </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Leishmaniasis </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Leishmaniasis </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
             </tbody>
           </table>
         </div>
         <div className={styles.tableContainer}>
           <div className={styles.tableTitle}>Congenital malformations, deformations and chromosomal abnormalities </div>
-          <table>
+          <table className={styles.reportTable}>
             <thead>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={10}>Male</th>
-                <th colSpan={10}>Female</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={10}>Male</th>
+                <th className={styles.reportTableHeader}colSpan={10}>Female</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td colSpan={2}>Congenital malformations, deformations and chromosomal abnormalities</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Congenital malformations, deformations and chromosomal abnormalities</td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
             </tbody>
           </table>
         </div>
         <div className={styles.tableContainer}>
           <div className={styles.tableTitle}>Diseases of blood and blood forming organs</div>
-          <table>
+          <table className={styles.reportTable}>
             <thead>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={10}>Male</th>
-                <th colSpan={10}>Female</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={10}>Male</th>
+                <th className={styles.reportTableHeader}colSpan={10}>Female</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td colSpan={2}>Anaemias </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Anaemias </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Remainder of diseases of the blood </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Remainder of diseases of the blood </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
             </tbody>
           </table>
         </div>
         <div className={styles.tableContainer}>
           <div className={styles.tableTitle}>Diseases of the circulatory system </div>
-          <table>
+          <table className={styles.reportTable}>
             <thead>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={10}>Male</th>
-                <th colSpan={10}>Female</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={10}>Male</th>
+                <th className={styles.reportTableHeader}colSpan={10}>Female</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td colSpan={2}>Acute rheumatic fever and chronic rheumatic heart diseases </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Acute rheumatic fever and chronic rheumatic heart diseases </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Hypertensive diseases </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Hypertensive diseases </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Ischaemic heart diseases </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Ischaemic heart diseases </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Other heart diseases </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Other heart diseases </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Atherosclerosis </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Atherosclerosis </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Remainder of diseases of the circulatory system </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Remainder of diseases of the circulatory system </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
             </tbody>
           </table>
         </div>
         <div className={styles.tableContainer}>
           <div className={styles.tableTitle}>Diseases of the digestive system</div>
-          <table>
+          <table className={styles.reportTable}>
             <thead>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={10}>Male</th>
-                <th colSpan={10}>Female</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={10}>Male</th>
+                <th className={styles.reportTableHeader}colSpan={10}>Female</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td colSpan={2}>Gastric and duodenal ulcer </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Gastric and duodenal ulcer </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Diseases of the liver </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Diseases of the liver </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Remainder of diseases of the digestive system</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Remainder of diseases of the digestive system</td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
             </tbody>
           </table>
         </div>
         <div className={styles.tableContainer}>
           <div className={styles.tableTitle}>Diseases of the ear and mastoid process</div>
-          <table>
+          <table className={styles.reportTable}>
             <thead>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={10}>Male</th>
-                <th colSpan={10}>Female</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={10}>Male</th>
+                <th className={styles.reportTableHeader}colSpan={10}>Female</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td colSpan={2}>Diseases of the ear and mastoid process </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Diseases of the ear and mastoid process </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
             </tbody>
           </table>
         </div>
         <div className={styles.tableContainer}>
           <div className={styles.tableTitle}>Diseases of the eye and adnexa</div>
-          <table>
+          <table className={styles.reportTable}>
             <thead>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={10}>Male</th>
-                <th colSpan={10}>Female</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={10}>Male</th>
+                <th className={styles.reportTableHeader}colSpan={10}>Female</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td colSpan={2}>Diseases of the eye and adnexa </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Diseases of the eye and adnexa </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
             </tbody>
           </table>
         </div>
         <div className={styles.tableContainer}>
           <div className={styles.tableTitle}>Diseases of the genitourinary system </div>
-          <table>
+          <table className={styles.reportTable}>
             <thead>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={10}>Male</th>
-                <th colSpan={10}>Female</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={10}>Male</th>
+                <th className={styles.reportTableHeader}colSpan={10}>Female</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td colSpan={2}>Glomerular and renal tubulointerstitial diseases </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Glomerular and renal tubulointerstitial diseases </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Remainder of diseases of the genitourinary system </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Remainder of diseases of the genitourinary system </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
             </tbody>
           </table>
         </div>
         <div className={styles.tableContainer}>
           <div className={styles.tableTitle}>Diseases of the musculoskeletal system and connective tissue </div>
-          <table>
+          <table className={styles.reportTable}>
             <thead>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={10}>Male</th>
-                <th colSpan={10}>Female</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={10}>Male</th>
+                <th className={styles.reportTableHeader}colSpan={10}>Female</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td colSpan={2}> Diseases of the musculoskeletal system and connective tissue</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}> Diseases of the musculoskeletal system and connective tissue</td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
             </tbody>
           </table>
         </div>
         <div className={styles.tableContainer}>
           <div className={styles.tableTitle}>Diseases of the respiratory system </div>
-          <table>
+          <table className={styles.reportTable}>
             <thead>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={10}>Male</th>
-                <th colSpan={10}>Female</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={10}>Male</th>
+                <th className={styles.reportTableHeader}colSpan={10}>Female</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td colSpan={2}> Influenza </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}> Influenza </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}> Pneumonia Inpatient  </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}> Pneumonia Inpatient  </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Other acute lower respiratory infections </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Other acute lower respiratory infections </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
                <tr>
-                <td colSpan={2}>Chronic lower respiratory diseases  </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Chronic lower respiratory diseases  </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}> Remainder of diseases of the respiratory system  </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}> Remainder of diseases of the respiratory system  </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
             </tbody>
           </table>
         </div>
         <div className={styles.tableContainer}>
           <div className={styles.tableTitle}>Diseases of the skin and subcutaneous tissue  </div>
-          <table>
+          <table className={styles.reportTable}>
             <thead>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={10}>Male</th>
-                <th colSpan={10}>Female</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={10}>Male</th>
+                <th className={styles.reportTableHeader}colSpan={10}>Female</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td colSpan={2}> Diseases of the skin and subcutaneous tissue</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}> Diseases of the skin and subcutaneous tissue</td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
             </tbody>
           </table>
         </div>
         <div className={styles.tableContainer}>
           <div className={styles.tableTitle}>Endocrine, nutritional and metabolic diseases   </div>
-          <table>
+          <table className={styles.reportTable}>
             <thead>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={10}>Male</th>
-                <th colSpan={10}>Female</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={10}>Male</th>
+                <th className={styles.reportTableHeader}colSpan={10}>Female</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td colSpan={2}> Diabetes mellitus </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}> Diabetes mellitus </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}> Malnutrition Inpatient  </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}> Malnutrition Inpatient  </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}> Remainder of endocrine, nutritional and metabolic diseases  </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}> Remainder of endocrine, nutritional and metabolic diseases  </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
             </tbody>
           </table>
         </div>
         <div className={styles.tableContainer}>
           <div className={styles.tableTitle}>External causes of morbidity and Mortality</div>
-          <table>
+          <table className={styles.reportTable}>
             <thead>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={10}>Male</th>
-                <th colSpan={10}>Female</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={10}>Male</th>
+                <th className={styles.reportTableHeader}colSpan={10}>Female</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td colSpan={2}>Transport accidents</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Transport accidents</td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Falls</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Falls</td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Accidental drowning and submersion</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Accidental drowning and submersion</td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
                <tr>
-                <td colSpan={2}>Exposure to smoke, fire and flames </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Exposure to smoke, fire and flames </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
              <tr>
-                <td colSpan={2}>Accidental poisoning by and exposure to noxious substances </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Accidental poisoning by and exposure to noxious substances </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Intentional self-harm  </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Intentional self-harm  </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Assault   </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Assault   </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Assault   </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Assault   </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>All other external causes    </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>All other external causes    </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
             </tbody>
           </table>
         </div>
         <div className={styles.tableContainer}>
           <div className={styles.tableTitle}>Mental and behavioural disorders   </div>
-          <table>
+          <table className={styles.reportTable}>
             <thead>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={10}>Male</th>
-                <th colSpan={10}>Female</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={10}>Male</th>
+                <th className={styles.reportTableHeader}colSpan={10}>Female</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td colSpan={2}>Mental and behavioural disorders due to psychoactive substance use</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Mental and behavioural disorders due to psychoactive substance use</td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Remainder of mental and behavioural disorders </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Remainder of mental and behavioural disorders </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
             </tbody>
           </table>
         </div>
         <div className={styles.tableContainer}>
           <div className={styles.tableTitle}>Neoplasm </div>
-          <table>
+          <table className={styles.reportTable}>
             <thead>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={10}>Male</th>
-                <th colSpan={10}>Female</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={10}>Male</th>
+                <th className={styles.reportTableHeader}colSpan={10}>Female</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td colSpan={2}>Ca of colon, rectum and anus </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Ca of colon, rectum and anus </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Ca of lip, oral cavity and pharynx </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Ca of lip, oral cavity and pharynx </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
             <tr>
-                <td colSpan={2}>Ca of oesophagus </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Ca of oesophagus </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
                <tr>
-                <td colSpan={2}>Ca of stomach </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Ca of stomach </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Ca of bladder  </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Ca of bladder  </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
                <tr>
-                <td colSpan={2}>Ca of breast  </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Ca of breast  </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Ca of cervix uteri   </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Ca of cervix uteri   </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Ca of larynx   </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Ca of larynx   </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
                <tr>
-                <td colSpan={2}>Ca of liver and intrahepatic bile ducts    </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Ca of liver and intrahepatic bile ducts    </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
                 <tr>
-                <td colSpan={2}>Ca of meninges, brain, central nervous system    </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Ca of meninges, brain, central nervous system    </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
                <tr>
-                <td colSpan={2}>Ca of other and unspecified parts of uterus     </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Ca of other and unspecified parts of uterus     </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
                <tr>
-                <td colSpan={2}>Ca of ovary     </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Ca of ovary     </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Ca of pancreas </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Ca of pancreas </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
                <tr>
-                <td colSpan={2}>Ca of prostate  </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Ca of prostate  </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Ca of trachea, bronchus and lung   </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Ca of trachea, bronchus and lung   </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
             </tbody>
           </table>
         </div>
         <div className={styles.tableContainer}>
           <div className={styles.tableTitle}>Pregnancy, childbirth and the puerperium </div>
-          <table>
+          <table className={styles.reportTable}>
             <thead>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={10}>Male</th>
-                <th colSpan={10}>Female</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={10}>Male</th>
+                <th className={styles.reportTableHeader}colSpan={10}>Female</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td colSpan={2}>Pregnancy with abortive outcome </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Pregnancy with abortive outcome </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
               <tr>
-                <td colSpan={2}>Other direct obstetric deaths  </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Other direct obstetric deaths  </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
                <tr>
-                <td colSpan={2}>Indirect obstetric deaths  </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Indirect obstetric deaths  </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
                <tr>
-                <td colSpan={2}>Remainder of pregnancy, childbirth and the puerperium  </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Remainder of pregnancy, childbirth and the puerperium  </td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
             </tbody>
           </table>
         </div>
          <div className={styles.tableContainer}>
           <div className={styles.tableTitle}>Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified </div>
-          <table>
+          <table className={styles.reportTable}>
             <thead>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={10}>Male</th>
-                <th colSpan={10}>Female</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={10}>Male</th>
+                <th className={styles.reportTableHeader}colSpan={10}>Female</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
-                <th colSpan={2}>1 yrs</th>
-                <th colSpan={2}>1-4 yrs</th>
-                <th colSpan={2}>5-14 yrs</th>
-                <th colSpan={2}>15-44 yrs</th>
-                <th colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>1-4 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>5-14 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>15-44 yrs</th>
+                <th className={styles.reportTableHeader}colSpan={2}>45+ yrs</th>
               </tr>
               <tr>
-                <th colSpan={2}></th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
-                <th>A</th>
-                <th>D</th>
+                <th className={styles.reportTableHeader}colSpan={2}></th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
+                <th className={styles.reportTableHeader}>A</th>
+                <th className={styles.reportTableHeader}>D</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td colSpan={2}>Symptoms, signs and abnormal clinical and laboratory findings</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td className={styles.reportCell} colSpan={2}>Symptoms, signs and abnormal clinical and laboratory findings</td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
+                <td className={styles.reportCell}></td>
               </tr>
             
               
