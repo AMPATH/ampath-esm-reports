@@ -1,28 +1,7 @@
-@use 'sass:list';
-@use '@carbon/colors';
 @use '@carbon/layout';
 @use '@carbon/motion';
 @use '@carbon/type';
 @use '@openmrs/esm-styleguide/src/vars' as *;
-
-$tones: (
-  'violet': (
-    colors.$purple-60,
-    colors.$purple-10,
-  ),
-  'magenta': (
-    colors.$magenta-60,
-    colors.$magenta-10,
-  ),
-  'teal': (
-    colors.$teal-60,
-    colors.$teal-10,
-  ),
-  'blue': (
-    colors.$blue-60,
-    colors.$blue-10,
-  ),
-);
 
 .dashboard {
   /* `.page` in root.scss gives every route this side gutter. The dashboard
@@ -76,157 +55,265 @@ $tones: (
   white-space: nowrap;
 }
 
-/* Toolbar */
+/* The row over each tab's sheet: the report groups as a plain text
+   sub-navigation (or the registers' count) at the left, the search at the
+   right, over a hairline; the open group is underlined in the brand colour */
 
-.toolbar {
-  /* the tiles' columns, so the search box is exactly one tile wide and the
-     count ends at the grid's right edge */
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.groupBar {
+  display: flex;
   align-items: center;
-  gap: layout.$spacing-04;
+  justify-content: space-between;
+  gap: layout.$spacing-05;
   margin-bottom: layout.$spacing-05;
+  border-bottom: 1px solid $ui-03;
 }
 
-.searchLayer {
-  /* two tiles wide, edges lined up with the first two tiles */
-  grid-column: 1 / span 2;
+/* without group links (Registers) there is nothing to underline, so no hairline */
+.plainBar {
+  border-bottom: none;
 
-  /* a white field with a thin outline, and the brand colour on focus */
+  /* the count and search level with each other */
+  .barCount {
+    padding: 0;
+  }
+
+  .groupSearch {
+    margin-bottom: 0;
+  }
+}
+
+.groupNav {
+  display: flex;
+  gap: layout.$spacing-07;
+  /* the links' underline sits on the bar's hairline */
+  margin-bottom: -1px;
+}
+
+.groupLink {
+  @include type.type-style('body-compact-01');
+  display: inline-flex;
+  align-items: center;
+  gap: layout.$spacing-03;
+  padding: layout.$spacing-05 0 layout.$spacing-04;
+  font-family: inherit;
+  color: $text-02;
+  white-space: nowrap;
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  transition: all motion.$duration-fast-02 motion.motion(standard, productive);
+
+  &:hover {
+    color: $color-gray-100;
+    border-bottom-color: $ui-04;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--brand-01);
+    outline-offset: -2px;
+  }
+
+  &[aria-pressed='true'] {
+    font-weight: 600;
+    color: $color-gray-100;
+    border-bottom-color: var(--brand-01);
+
+    .countBadge {
+      color: $ui-02;
+      background-color: var(--brand-01);
+    }
+  }
+}
+
+/* the count in place of the group links, e.g. on the Registers tab */
+.barCount {
+  @include type.type-style('body-compact-01');
+  padding: layout.$spacing-05 0 layout.$spacing-04;
+  color: $text-02;
+  white-space: nowrap;
+}
+
+/* the short title only on a phone */
+.groupLinkShort {
+  display: none;
+}
+
+/* a count as a small rounded badge: grey, the brand colour on the open
+   group or tab */
+.countBadge {
+  @include type.type-style('label-01');
+  min-width: 1.5rem;
+  padding: 0 layout.$spacing-02;
+  font-weight: 600;
+  line-height: 1.25rem;
+  text-align: center;
+  color: $color-gray-100;
+  background-color: $ui-03;
+  border-radius: 0.625rem;
+  transition: all motion.$duration-fast-02 motion.motion(standard, productive);
+
+  /* outlined: nothing in the group (or nothing matching the search) */
+  &[data-empty='true'] {
+    font-weight: 400;
+    color: $text-02;
+    background-color: transparent;
+    box-shadow: inset 0 0 0 1px $ui-03;
+  }
+}
+
+.groupSearch {
+  flex: 0 1 20rem;
+  min-width: 12rem;
+  /* level with the links' text, clear of the hairline */
+  margin-bottom: layout.$spacing-03;
+
+  /* a small, quiet field: white with a hairline, grey icon and placeholder,
+     both darkening on hover and focus */
   :global(.cds--search-input) {
+    @include type.type-style('body-compact-01');
     background-color: $ui-02;
     border: 1px solid $ui-03;
+    border-bottom-color: $ui-03;
+    transition: border-color motion.$duration-fast-02 motion.motion(standard, productive);
+
+    &::placeholder {
+      color: $text-02;
+    }
 
     &:hover {
       border-color: $ui-04;
     }
 
     &:focus {
-      outline: 2px solid var(--brand-01);
+      border-color: var(--brand-01);
+      outline: 1px solid var(--brand-01);
       outline-offset: -2px;
     }
   }
+
+  :global(.cds--search-magnifier-icon) {
+    fill: $text-02;
+  }
+
+  :global(.cds--search:focus-within .cds--search-magnifier-icon) {
+    fill: $color-gray-100;
+  }
 }
 
-.resultCount {
-  @include type.type-style('label-01');
-  grid-column: -2 / -1;
-  justify-self: end;
-  color: $text-02;
-  white-space: nowrap;
-}
-
-/* Categories */
-
-.category {
-  margin-bottom: layout.$spacing-06;
-}
-
-.categoryHeader {
-  display: flex;
-  align-items: center;
-  gap: layout.$spacing-03;
-  padding-left: layout.$spacing-03;
-  margin-bottom: layout.$spacing-04;
-  border-left: layout.$spacing-02 solid $ui-04;
-}
-
-.categoryTitle {
-  @include type.type-style('productive-heading-01');
-  color: $color-gray-100;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: layout.$spacing-04;
-}
-
-/* Report tiles. Selectors are nested under `.grid` so they win over the
-   Carbon tile styles the app shell loads globally. */
-
-.grid .tile {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: layout.$spacing-04;
-  min-height: 0;
-  padding: layout.$spacing-04;
+/* Each tab's list: one white sheet holding a table of two sides, each
+   category's name in one merged cell at the left, its items as rows at the
+   right */
+.sheet {
   background-color: $ui-02;
   border: 1px solid $ui-03;
-  border-left: layout.$spacing-02 solid $ui-04;
-  text-decoration: none;
+}
+
+.categoryTable {
+  width: 100%;
+  border-collapse: collapse;
+
+  /* a firmer rule between categories */
+  tbody + tbody {
+    border-top: 1px solid $ui-03;
+  }
+
+  /* a faint one between the items of a category */
+  tbody tr + tr .itemCell {
+    border-top: 1px solid $ui-01;
+  }
+}
+
+/* the merged cell: the category's name, centred on its rows, on a faint grey
+   so the two sides read as label and list */
+.categoryCell {
+  @include type.type-style('productive-heading-01');
+  width: 14rem;
+  padding: layout.$spacing-04 layout.$spacing-05;
+  text-align: left;
+  vertical-align: middle;
+  color: $color-gray-100;
+  background-color: color-mix(in srgb, #{$ui-01} 60%, #{$ui-02});
+  border-right: 1px solid $ui-03;
+}
+
+.itemCell {
+  padding: 0;
+
+  .sheetRow {
+    padding-right: layout.$spacing-05;
+    padding-left: layout.$spacing-05;
+  }
+}
+
+.sheetRow {
+  display: grid;
+  /* the codes in one column, wide enough for the longest, MOH/REG/DNTLDP/02 */
+  grid-template-columns: 9rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: layout.$spacing-04;
+  width: 100%;
+  padding: layout.$spacing-04 layout.$spacing-03;
+  font: inherit;
+  text-align: left;
+  color: inherit;
+  cursor: pointer;
+  background: none;
+  border: none;
   transition: all motion.$duration-fast-02 motion.motion(standard, productive);
 
   &:hover {
-    background-color: $ui-02;
-    border-color: $ui-04;
-    box-shadow: 0 layout.$spacing-02 layout.$spacing-05 rgba(0, 0, 0, 0.1);
+    background-color: $ui-01;
+    /* a thin brand bar at the row's left edge */
+    box-shadow: inset 2px 0 0 var(--brand-01);
 
-    .tileArrow {
-      transform: translateX(layout.$spacing-02);
+    .sheetName {
+      color: var(--brand-01);
+    }
+
+    .sheetArrow {
+      opacity: 1;
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--brand-01);
+    outline-offset: -2px;
+
+    .sheetArrow {
+      opacity: 1;
     }
   }
 }
 
-.tileIcon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: layout.$spacing-07;
-  height: layout.$spacing-07;
-  background-color: $ui-01;
-}
-
-.tileCopy {
-  min-width: 0;
-}
-
-.tileCode {
-  @include type.type-style('label-01');
+/* the form number as a small grey chip, in mono so the numbers line up */
+.sheetCode {
+  @include type.type-style('code-01');
+  justify-self: start;
+  padding: 0 layout.$spacing-02;
   color: $text-02;
-  letter-spacing: 0.04em;
+  white-space: nowrap;
+  background-color: $ui-01;
+  border-radius: 2px;
+  transition: all motion.$duration-fast-02 motion.motion(standard, productive);
 }
 
-.tileName {
-  @include type.type-style('productive-heading-01');
+.sheetRow:hover .sheetCode {
   color: $color-gray-100;
+  background-color: $ui-03;
 }
 
-.tileArrow {
-  flex-shrink: 0;
-  margin-left: auto;
-  fill: $text-02;
-  transition: transform motion.$duration-fast-02 motion.motion(standard, productive);
+.sheetName {
+  @include type.type-style('body-compact-01');
+  color: $color-gray-100;
+  transition: color motion.$duration-fast-02 motion.motion(standard, productive);
 }
 
-/* Tone accents, applied per category */
-
-@each $name, $tone in $tones {
-  $accent: list.nth($tone, 1);
-  $tint: list.nth($tone, 2);
-
-  .categoryHeader[data-tone='#{$name}'] {
-    border-left-color: $accent;
-  }
-
-  .grid .tile[data-tone='#{$name}'] {
-    border-left-color: $accent;
-
-    .tileIcon {
-      color: $accent;
-      background-color: $tint;
-    }
-
-    &:hover {
-      border-color: $accent;
-
-      .tileArrow {
-        fill: $accent;
-      }
-    }
-  }
+/* shown on hover and focus only */
+.sheetArrow {
+  fill: var(--brand-01);
+  opacity: 0;
+  transition: opacity motion.$duration-fast-02 motion.motion(standard, productive);
 }
 
 /* Empty state */
@@ -270,8 +357,10 @@ $tones: (
   }
 }
 
-.tabCount {
-  margin: 0;
+/* the open tab's count, as the open group's */
+.tabList :global(.cds--tabs__nav-item--selected) .countBadge {
+  color: $ui-02;
+  background-color: var(--brand-01);
 }
 
 /* Each panel keeps the spacing its content already brings */
@@ -311,17 +400,6 @@ $tones: (
 
     padding-bottom: layout.$spacing-05;
   }
-
-  .toolbar,
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  /* two columns: one and a half tiles, leaving the count room beside it */
-  .searchLayer {
-    grid-column: 1;
-    width: 150%;
-  }
 }
 
 @media (max-width: $breakpoint-phone-max) {
@@ -340,18 +418,96 @@ $tones: (
     height: calc(#{layout.$spacing-05} + 1.125rem + #{layout.$spacing-03} + #{layout.$spacing-08});
   }
 
-  .toolbar,
-  .grid {
-    grid-template-columns: 1fr;
+  /* the group links (or count) over the search box, both full width; the
+     links scroll sideways if they do not fit */
+  .groupBar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    border-bottom: none;
   }
 
-  /* one column: full width, with the count under the search box */
-  .searchLayer {
+  .plainBar {
+    gap: layout.$spacing-03;
+  }
+
+  .groupNav {
+    gap: layout.$spacing-05;
+    margin-bottom: layout.$spacing-04;
+    overflow-x: auto;
+    border-bottom: 1px solid $ui-03;
+  }
+
+  .groupSearch {
+    flex-basis: auto;
+    min-width: 0;
+  }
+
+  .barCount {
+    padding: 0 0 layout.$spacing-03;
+  }
+
+  .groupLinkTitle {
+    display: none;
+  }
+
+  .groupLinkShort {
+    display: inline;
+  }
+
+  /* the code chip over the name, so names have the full width */
+  .sheetRow {
+    grid-template-columns: minmax(0, 1fr) auto;
+    row-gap: layout.$spacing-02;
+  }
+
+  .sheetCode,
+  .sheetName {
     grid-column: 1;
-    width: 100%;
   }
 
-  .resultCount {
-    justify-self: start;
+  .sheetArrow {
+    grid-row: 1 / span 2;
+    grid-column: 2;
+  }
+
+  /* the table: each category a grey band over its items, full width */
+  .categoryTable {
+    tbody,
+    tr,
+    th,
+    td {
+      display: block;
+    }
+  }
+
+  .categoryTable .categoryCell {
+    width: auto;
+    padding: layout.$spacing-03 layout.$spacing-04;
+    background-color: $ui-01;
+    border-right: none;
+    border-bottom: 1px solid $ui-03;
+  }
+
+  .itemCell .sheetRow {
+    padding-right: layout.$spacing-04;
+    padding-left: layout.$spacing-04;
+  }
+}
+
+/* the smallest phones (360px and narrower): the three group links fit on one
+   line with slightly smaller text and tighter spacing */
+@media (max-width: 360px) {
+  .groupNav {
+    gap: layout.$spacing-04;
+  }
+
+  .groupLink {
+    gap: layout.$spacing-02;
+    font-size: 0.8125rem;
+  }
+
+  .groupLink .countBadge {
+    min-width: 1.25rem;
   }
 }

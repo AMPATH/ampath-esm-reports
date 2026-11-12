@@ -32,6 +32,8 @@ export interface ReportDefinition {
 export interface ReportCategory {
   id: string;
   title: string;
+  /** A short name, shown in the landing page's table in place of the title */
+  label?: string;
   description: string;
   tone: ReportTone;
   reports: ReportDefinition[];
@@ -192,7 +194,50 @@ export const reportCategories: ReportCategory[] = [
   },
 ];
 
-export const totalReportCount = reportCategories.reduce((count, category) => count + category.reports.length, 0);
+/**
+ * The Reports tab's groups, each with its own categories. The Ministry of
+ * Health summary forms above make up the first; program and action summary
+ * reports go in theirs as they are built.
+ */
+export interface ReportGroup {
+  /** Kept in the URL as `?group=`; the first group is the default */
+  id: string;
+  title: string;
+  /** The title on a phone, where the three do not fit in full */
+  shortTitle: string;
+  /** Shown as the group link's tooltip */
+  description: string;
+  categories: ReportCategory[];
+}
+
+export const reportGroups: ReportGroup[] = [
+  {
+    id: 'moh',
+    title: 'MOH reports',
+    shortTitle: 'MOH',
+    description: 'Ministry of Health summary forms',
+    categories: reportCategories,
+  },
+  {
+    id: 'program',
+    title: 'Program reports',
+    shortTitle: 'Program',
+    description: 'Monitoring of care programs',
+    categories: [],
+  },
+  {
+    id: 'action-summary',
+    title: 'Action summary reports',
+    shortTitle: 'Action summary',
+    description: 'Clients due for follow-up or action',
+    categories: [],
+  },
+];
+
+export const countReports = (categories: ReportCategory[]) =>
+  categories.reduce((count, category) => count + category.reports.length, 0);
+
+export const totalReportCount = reportGroups.reduce((count, group) => count + countReports(group.categories), 0);
 
 export function filterCategories(categories: ReportCategory[], searchTerm: string): ReportCategory[] {
   const term = searchTerm.trim().toLowerCase();

@@ -21,6 +21,7 @@ export const registerCategories: ReportCategory[] = [
   {
     id: 'hiv-testing',
     title: 'HIV Testing Services & Pre-Exposure Prophylaxis',
+    label: 'HIV & PrEP',
     description: 'HTS and PrEP daily registers',
     tone: 'violet',
     reports: [
@@ -45,6 +46,7 @@ export const registerCategories: ReportCategory[] = [
   {
     id: 'tb',
     title: 'Tuberculosis',
+    label: 'TB',
     description: 'TB case finding registers',
     tone: 'teal',
     reports: [
@@ -71,6 +73,7 @@ export const registerCategories: ReportCategory[] = [
   {
     id: 'outpatient-and-workload',
     title: 'Outpatient & workload',
+    label: 'Outpatient',
     description: 'Outpatient morbidity registers',
     tone: 'teal',
     reports: [
@@ -95,6 +98,7 @@ export const registerCategories: ReportCategory[] = [
   {
     id: 'diabetes-and-hypertension',
     title: 'Diabetes and Hypertension services',
+    label: 'Diabetes & hypertension',
     description: 'Diabetes and Hypertension comprehensive care',
     tone: 'violet',
     reports: [
@@ -119,6 +123,7 @@ export const registerCategories: ReportCategory[] = [
   {
     id: 'laboratory',
     title: 'Laboratory',
+    label: 'Laboratory',
     description: 'Laboratory specimen and testing registers',
     tone: 'blue',
     reports: [
@@ -145,6 +150,7 @@ export const registerCategories: ReportCategory[] = [
   {
     id: 'radiology',
     title: 'Radiology',
+    label: 'Radiology',
     description: 'Radiology examination register',
     tone: 'blue',
     reports: [
@@ -161,6 +167,7 @@ export const registerCategories: ReportCategory[] = [
   {
     id: 'cancer-screening',
     title: 'Cancer Screening services',
+    label: 'Cancer screening',
     description: 'Cancer Screening Summary',
     tone: 'violet',
     reports: [
@@ -177,6 +184,7 @@ export const registerCategories: ReportCategory[] = [
   {
     id: 'MOH 711',
     title: 'MOH 711',
+    label: 'Maternal & child health',
     description: 'MOH 711 Summary',
     tone: 'violet',
     reports: [
@@ -225,6 +233,7 @@ export const registerCategories: ReportCategory[] = [
   {
     id: 'MOH 710',
     title: 'MOH 710',
+    label: 'Immunization',
     description: 'MOH 710',
     tone: 'violet',
     reports: [
