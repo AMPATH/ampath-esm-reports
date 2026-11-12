@@ -75,7 +75,7 @@ export const registerCategories: ReportCategory[] = [
     title: 'Outpatient & workload',
     label: 'Outpatient',
     description: 'Outpatient morbidity registers',
-    tone: 'teal',
+    tone: 'blue',
     reports: [
       {
         code: 'MOH 204A',
@@ -99,7 +99,7 @@ export const registerCategories: ReportCategory[] = [
     id: 'diabetes-and-hypertension',
     title: 'Diabetes and Hypertension services',
     label: 'Diabetes & hypertension',
-    description: 'Diabetes and Hypertension comprehensive care',
+    description: 'Diabetes and hypertension care registers',
     tone: 'violet',
     reports: [
       {
@@ -125,7 +125,7 @@ export const registerCategories: ReportCategory[] = [
     title: 'Laboratory',
     label: 'Laboratory',
     description: 'Laboratory specimen and testing registers',
-    tone: 'blue',
+    tone: 'teal',
     reports: [
       {
         code: 'MOH 240',
@@ -152,7 +152,7 @@ export const registerCategories: ReportCategory[] = [
     title: 'Radiology',
     label: 'Radiology',
     description: 'Radiology examination register',
-    tone: 'blue',
+    tone: 'violet',
     reports: [
       {
         code: 'MOH 209',
@@ -168,8 +168,8 @@ export const registerCategories: ReportCategory[] = [
     id: 'cancer-screening',
     title: 'Cancer Screening services',
     label: 'Cancer screening',
-    description: 'Cancer Screening Summary',
-    tone: 'violet',
+    description: 'Cancer screening registers',
+    tone: 'blue',
     reports: [
       {
         code: 'MOH 412',
@@ -185,8 +185,8 @@ export const registerCategories: ReportCategory[] = [
     id: 'MOH 711',
     title: 'MOH 711',
     label: 'Maternal & child health',
-    description: 'MOH 711 Summary',
-    tone: 'violet',
+    description: 'Maternal and child health registers',
+    tone: 'magenta',
     reports: [
       {
         code: 'MOH 405',
@@ -242,8 +242,8 @@ export const registerCategories: ReportCategory[] = [
     id: 'MOH 710',
     title: 'MOH 710',
     label: 'Immunization',
-    description: 'MOH 710',
-    tone: 'violet',
+    description: 'Child immunization registers',
+    tone: 'teal',
     reports: [
       {
         code: 'MOH 510',

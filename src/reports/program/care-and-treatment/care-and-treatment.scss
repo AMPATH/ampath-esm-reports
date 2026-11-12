@@ -1,0 +1,460 @@
+@use '@carbon/layout';
+@use '@carbon/type';
+@use '@openmrs/esm-styleguide/src/vars' as *;
+
+$rule: 1px solid $ui-03;
+$strong-rule: 2px solid $ui-04;
+
+/* the merged columns down the side, which stay in view as the bands scroll */
+$section-width: 8rem;
+$group-width: 7rem;
+$label-width: 15rem;
+/* the app's header above the page, and the section bar below it */
+$app-header-height: 3rem;
+$toolbar-height: 3.25rem;
+/* the pinned header: the title line, then the section bar */
+$head-height: 7rem;
+/* what the page has under the table: the sheet's padding and the page's margin */
+$below-table: 2.5rem;
+/* the height of each of the heading's two rows */
+$head-row: 2rem;
+
+.report {
+  margin: layout.$spacing-05 0;
+}
+
+/* the section links and the CSV download, kept in view while the report scrolls */
+/* The title line and the section bar, pinned together at the top of the
+   sheet as the report scrolls, so the table never passes behind them */
+.stickyHead {
+  position: sticky;
+  top: 0;
+  z-index: 4;
+  box-sizing: border-box;
+  min-height: $head-height;
+  padding-top: layout.$spacing-03;
+  margin-top: -(layout.$spacing-03);
+  background-color: $ui-02;
+}
+
+.toolbar {
+  box-sizing: border-box;
+  height: $toolbar-height;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: layout.$spacing-03 layout.$spacing-05;
+}
+
+.sectionNav {
+  display: flex;
+  gap: layout.$spacing-02;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.sectionLink {
+  @include type.type-style('body-compact-01');
+  display: inline-flex;
+  align-items: center;
+  gap: layout.$spacing-03;
+  flex: none;
+  padding: layout.$spacing-02 layout.$spacing-04;
+  color: $text-02;
+  white-space: nowrap;
+  cursor: pointer;
+  background-color: $ui-02;
+  border: $rule;
+  border-radius: 1rem;
+
+  &:hover {
+    color: var(--brand-01);
+    border-color: var(--brand-01);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--brand-01);
+    outline-offset: 1px;
+  }
+}
+
+.sectionNumber {
+  @include type.type-style('code-01');
+  display: inline-block;
+  padding: 0 layout.$spacing-02;
+  color: $text-02;
+  background-color: $ui-01;
+  border-radius: 2px;
+}
+
+/* the report, one page of the PDF */
+.sheet {
+  padding: layout.$spacing-05 layout.$spacing-06;
+  background-color: $ui-02;
+  border: $rule;
+}
+
+.masthead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: layout.$spacing-03 layout.$spacing-07;
+  padding-bottom: layout.$spacing-03;
+  border-bottom: $rule;
+}
+
+.kicker {
+  @include type.type-style('label-01');
+  color: $text-02;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.reportTitle {
+  @include type.type-style('productive-heading-02');
+  color: $color-gray-100;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: layout.$spacing-03 layout.$spacing-07;
+
+  dt {
+    @include type.type-style('label-01');
+    color: $text-02;
+  }
+
+  dd {
+    @include type.type-style('body-compact-01');
+    font-weight: 600;
+    color: $color-gray-100;
+  }
+}
+
+/* The table scrolls inside the sheet, never the page: sideways through the
+   age bands and down through the sections, in a box that fits the screen
+   below the section bar, so its heading stays in view above the rows. The
+   notes follow it. */
+.tableScroll {
+  /* the screen below the pinned header, less the sheet's and page's own
+     margins under it, so the page cannot scroll the table behind the header */
+  max-height: calc(100vh - #{$app-header-height} - #{$head-height} - #{$below-table});
+  overflow: auto;
+  border: $rule;
+}
+
+.grid {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  /* closes the table, merged cells too, with a firm rule above the notes */
+  border-bottom: $strong-rule;
+  font-variant-numeric: tabular-nums;
+
+  th,
+  td {
+    border-bottom: $rule;
+  }
+
+  thead th {
+    @include type.type-style('label-01');
+    position: sticky;
+    z-index: 2;
+    box-sizing: border-box;
+    padding: layout.$spacing-02;
+    font-weight: 600;
+    color: $text-02;
+    text-align: center;
+    white-space: nowrap;
+    background-color: $ui-01;
+  }
+
+  /* the age bands' row, then F and M under it */
+  thead tr:first-child th {
+    top: 0;
+    height: $head-row;
+  }
+
+  thead tr:nth-child(2) th {
+    top: $head-row;
+  }
+
+  /* a section link brings its first row in below the heading */
+  .section tr:first-child {
+    scroll-margin-top: 2 * $head-row + 0.5rem;
+  }
+
+  /* each section starts below a firmer rule */
+  .section + .section tr:first-child {
+    th,
+    td {
+      border-top: $strong-rule;
+    }
+  }
+}
+
+.indicatorHead,
+.sectionCell,
+.groupCell,
+.rowLabel {
+  position: sticky;
+  z-index: 1;
+  background-color: $ui-02;
+}
+
+.grid thead .indicatorHead {
+  left: 0;
+  z-index: 3;
+  width: $section-width + $group-width + $label-width;
+  min-width: $section-width + $group-width + $label-width;
+  padding-left: layout.$spacing-04;
+  text-align: left;
+  vertical-align: bottom;
+  background-color: $ui-01;
+  border-right: $strong-rule;
+}
+
+.grid thead .bandHead {
+  color: $color-gray-100;
+  border-left: $rule;
+}
+
+.grid thead .sexHead {
+  min-width: 2.375rem;
+  font-weight: 400;
+}
+
+.grid thead .totalHead {
+  right: 0;
+  z-index: 3;
+  min-width: 4.5rem;
+  vertical-align: bottom;
+  color: $color-gray-100;
+  border-left: $strong-rule;
+}
+
+/* the section's name, merged down beside its rows */
+.sectionCell {
+  left: 0;
+  width: $section-width;
+  min-width: $section-width;
+  max-width: $section-width;
+  padding: layout.$spacing-03;
+  text-align: left;
+  vertical-align: top;
+  border-right: $rule;
+}
+
+.sectionName {
+  @include type.type-style('label-01');
+  display: block;
+  margin-top: layout.$spacing-02;
+  font-weight: 600;
+  color: $color-gray-100;
+}
+
+/* a group's name, merged down beside its own rows */
+.groupCell {
+  @include type.type-style('label-01');
+  left: $section-width;
+  width: $group-width;
+  min-width: $group-width;
+  max-width: $group-width;
+  padding: layout.$spacing-03;
+  font-weight: 400;
+  color: $text-02;
+  text-align: left;
+  vertical-align: middle;
+  border-right: $rule;
+}
+
+.rowLabel {
+  @include type.type-style('body-compact-01');
+  left: $section-width + $group-width;
+  width: $label-width;
+  min-width: $label-width;
+  max-width: $label-width;
+  padding: layout.$spacing-02 layout.$spacing-03;
+  font-weight: 400;
+  color: $color-gray-100;
+  text-align: left;
+  border-right: $strong-rule;
+}
+
+/* a row with no group runs across the group's column */
+.rowLabelWide {
+  left: $section-width;
+  width: $group-width + $label-width;
+  min-width: $group-width + $label-width;
+  max-width: $group-width + $label-width;
+}
+
+.cell,
+.totalCell {
+  @include type.type-style('body-compact-01');
+  padding: 0;
+  text-align: center;
+}
+
+/* F starts each band */
+.bandStart {
+  border-left: $rule;
+}
+
+/* the Total stays in view at the right as the bands scroll */
+.totalCell {
+  position: sticky;
+  right: 0;
+  z-index: 1;
+  font-weight: 600;
+  background-color: color-mix(in srgb, $ui-01 50%, $ui-02);
+  border-left: $strong-rule;
+}
+
+/* an MCH/PMTCT cell that cannot apply: a man, or a child under 10 */
+.notApplicable {
+  background-color: $ui-01;
+}
+
+.grid tbody tr:hover {
+  .rowLabel,
+  .cell:not(.notApplicable) {
+    background-color: $ui-01;
+  }
+}
+
+.value {
+  display: block;
+  width: 100%;
+  padding: layout.$spacing-02;
+  font: inherit;
+  color: var(--brand-01);
+  cursor: pointer;
+  background: none;
+  border: 0;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--brand-01);
+    outline-offset: -2px;
+  }
+}
+
+.zero {
+  display: block;
+  padding: layout.$spacing-02;
+  color: $ui-04;
+
+  &::after {
+    content: '·';
+  }
+}
+
+.strongRow {
+  .rowLabel,
+  .value {
+    font-weight: 600;
+  }
+}
+
+.referenceRow {
+  .rowLabel,
+  .value {
+    color: $text-02;
+  }
+}
+
+.notRecordedRow .rowLabel,
+.notRecordedSample {
+  font-style: italic;
+  color: $text-02;
+}
+
+
+/* under the last row, held at the left as the bands scroll sideways */
+.notes {
+  @include type.type-style('helper-text-01');
+  position: sticky;
+  left: 0;
+  box-sizing: border-box;
+  max-width: 100%;
+  display: grid;
+  gap: layout.$spacing-02;
+  padding-top: layout.$spacing-04;
+  padding-bottom: layout.$spacing-04;
+  padding-right: layout.$spacing-05;
+  padding-left: layout.$spacing-05;
+  color: $text-02;
+  list-style: disc;
+}
+
+/* While the PDF is made: the table at its full width, nothing sticky, 0 printed */
+.sheet[data-capturing] {
+  width: max-content;
+  min-width: 100%;
+
+  /* the PDF has the title line, not the section bar */
+  .stickyHead {
+    position: static;
+    min-height: 0;
+    margin-bottom: layout.$spacing-05;
+  }
+
+  .toolbar {
+    display: none;
+  }
+
+  .tableScroll {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .indicatorHead,
+  .sectionCell,
+  .groupCell,
+  .rowLabel,
+  .totalCell,
+  .grid thead th {
+    position: static;
+  }
+
+  .zero::after {
+    content: '0';
+  }
+}
+
+/* On a narrow screen only the indicator stays in view */
+@media (max-width: 1055px) {
+  .sectionCell,
+  .groupCell {
+    position: static;
+  }
+
+  /* the heading still stays at the top */
+  .grid thead .indicatorHead {
+    left: auto;
+  }
+
+  .rowLabel,
+  .rowLabelWide {
+    left: 0;
+  }
+}
+
+@media (max-width: 671px) {
+  .sheet {
+    padding: layout.$spacing-04 layout.$spacing-03;
+  }
+
+  .rowLabel {
+    width: 11rem;
+    min-width: 11rem;
+    max-width: 11rem;
+  }
+}
