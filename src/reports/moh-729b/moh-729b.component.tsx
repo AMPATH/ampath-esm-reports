@@ -8,6 +8,7 @@ import { downloadSheetsPdf } from '../../common/report-page';
 import { showReportError } from '../../common/report-error';
 import { ReportPlaceholder, useGeneratedLocation } from '../../common/report-placeholder';
 import { ReportSkeleton } from '../../common/report-skeleton';
+import { useFacilityName } from '../../common/report-header';
 import { registerFileName } from '../../registers/register-file-name';
 import { getMoh729b } from '../../resources/moh-729b.resource';
 import Moh729bForm, { type Moh729bCounts } from './moh-729b-form.component';
@@ -48,7 +49,10 @@ const Moh729bReport: React.FC = () => {
   };
   const session = useSession();
   const locationUuids = session?.sessionLocation?.uuid ?? '';
-  const facility = session?.sessionLocation?.display ?? '';
+  /* the figures cover the session location's whole facility (the ETL widens
+     to its parent location and every clinic under it), so the form and the
+     PDF name the facility, e.g. MTRH rather than MTRH Module 1 */
+  const facility = useFacilityName(locationUuids, session?.sessionLocation?.display ?? '');
   const preparedBy = session?.user?.person?.display ?? session?.user?.display ?? '';
   /* Only a report for the current location counts */
   const { isForCurrentLocation, hasLocationChanged, markGenerated } = useGeneratedLocation('moh729bLocation');

@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import { type LinelistColumn, LinelistTable, useAllRows } from '../../common/linelist-table';
 import { RegisterLayout, useLocationName } from '../../common/report-register';
+import { useFacility } from '../../common/report-header';
 import { getMoh729b } from '../../resources/moh-729b.resource';
 import { decodeCell, describeCell, inCells, PEP_CODES, type Moh729bCell, type Moh729bRow } from './moh-729b.types';
 
@@ -237,7 +238,10 @@ const Moh729bLinelist: React.FC = () => {
                 ? GROUPS.pep
                 : GROUPS.art;
 
-  const locationName = useLocationName(locationUuids);
+  /* the clients come from the whole facility (as the form's counts do), so it
+     is named by its parent location, e.g. MTRH, with the clinics it includes;
+     the location's own name until that loads */
+  const facility = useFacility(locationUuids, useLocationName(locationUuids));
   /* the month's clients come back in one response; they are fetched once and
      handed to the table in the batches it reads */
   let clients: Promise<Moh729bRow[]> | undefined;
@@ -261,7 +265,8 @@ const Moh729bLinelist: React.FC = () => {
       parentPath="/moh-729b"
       title={`MOH 729B F-MAPS · ${group.title}`}
       heading={heading}
-      location={locationName}
+      location={facility.name}
+      locationClinics={facility.clinics}
       isLoading={isLoading}
       isEmpty={rows.length === 0}
     >

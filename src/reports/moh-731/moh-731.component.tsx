@@ -16,6 +16,7 @@ import { ReportSkeleton } from '../../common/report-skeleton';
 import { downloadSheetPdf, usePageScale } from '../../common/report-page';
 import Moh731Summary from './summary/moh-731-summary.component';
 import { useOpenMoh731Linelist } from './linelist/use-open-moh-731-linelist';
+import { useFacilityName } from '../../common/report-header';
 
 interface Moh731Props {}
 
@@ -80,12 +81,14 @@ const Moh731Report: React.FC<Moh731Props> = () => {
 
   /* The sign-off records who produced the return and when. Designation and
      signature stay blank -- those are filled in by hand on the printed sheet. */
-  /* The masthead names the location the report was generated from, so the
-     session location leads and the ETL's own facility field is the fallback.
+  /* The masthead names the facility the figures cover. The ETL counts the
+     session location's whole facility (its parent location and every clinic
+     under it), so the parent's name leads, e.g. MTRH rather than MTRH Module 1;
+     until it loads, the session location, then the ETL's own facility field.
      County, sub-county and MFL come from the response where the ETL supplies
      them (the same keys MOH-740 returns). Month and year come from the period
      the report was actually generated for, not from today. */
-  const facility = session?.sessionLocation?.display ?? moh731Data?.facility ?? '';
+  const facility = useFacilityName(locationUuids, session?.sessionLocation?.display ?? moh731Data?.facility ?? '');
   const county = moh731Data?.county ?? '';
   const subCounty = moh731Data?.sub_county ?? '';
   const mflCode = moh731Data?.mfl_code ?? '';
