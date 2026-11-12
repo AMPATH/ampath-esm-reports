@@ -1,6 +1,12 @@
 import { openmrsFetch } from '@openmrs/esm-framework';
 import { buildEtlUrl } from '../utils/get-base-url';
-import { PAGE_SIZE, toPatientListPage, pageParams, type PatientListParams } from './patient-list-page';
+import {
+  PAGE_SIZE,
+  toPatientListPage,
+  pageParams,
+  type PatientListPage,
+  type PatientListParams,
+} from './patient-list-page';
 
 interface Moh710Params {
   locationUuids: string;
@@ -84,7 +90,7 @@ export async function getMoh413PatientList(params: PatientListParams): Promise<a
   }
 }
 
-export async function getMoh511Register(params: PatientListParams): Promise<any> {
+export async function getMoh511Register(params: PatientListParams): Promise<PatientListPage> {
   const url = await buildEtlUrl('moh-511-register', {
     locationUuids: params.locationUuids || '',
     startDate: params.startDate || '',
@@ -104,7 +110,7 @@ export async function getMoh511Register(params: PatientListParams): Promise<any>
     }
 
     const data = await response.json();
-    return data;
+    return toPatientListPage(data?.data, params.startIndex ?? 0, params.limit ?? PAGE_SIZE);
   } catch (error: any) {
     throw new Error(`An error occurred while fetching the MOH-511 Register: ${error.message}`);
   }

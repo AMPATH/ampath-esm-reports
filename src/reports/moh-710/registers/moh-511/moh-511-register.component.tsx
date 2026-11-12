@@ -86,7 +86,7 @@ const Moh511Register: React.FC = () => {
         parentPath={isDrilldown ? '/moh-710' : '/?tab=registers'}
         title="MOH-511 Register"
         isLoading={isLoading}
-        isEmpty={isGenerated && patientlist.length === 0}
+        isEmpty={isGenerated && patientlist?.length === 0}
         page={page}
         pageSize={pageSize}
         total={total}
@@ -279,7 +279,7 @@ const Moh511Register: React.FC = () => {
               </TableHead>
               <TableBody>
                 {patientlist?.length > 0 ? (
-                  patientlist.map((patient, index) => (
+                  patientlist?.map((patient, index) => (
                     <TableRow key={index}>
                       {moh511Columns.map((col) => (
                         <td key={col}>{col === 'serial_no' ? index + 1 : (patient?.[col] ?? '')}</td>

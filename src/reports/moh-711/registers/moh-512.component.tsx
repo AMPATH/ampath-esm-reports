@@ -140,7 +140,7 @@ const Moh512RegisterComponent: React.FC<Moh512RegisterComponentProps> = () => {
         parentPath={isDrilldown ? '/moh-711' : '/?tab=registers'}
         title="MOH 512 Register"
         isLoading={isLoading}
-        isEmpty={isGenerated && patientlist.length === 0}
+        isEmpty={isGenerated && patientlist?.length === 0}
         page={page}
         pageSize={pageSize}
         total={total}

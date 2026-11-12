@@ -90,7 +90,7 @@ const Moh405Register: React.FC = () => {
         parentPath={isDrilldown ? '/moh-711' : '/?tab=registers'}
         title="MOH 405 ANC Register"
         isLoading={isLoading}
-        isEmpty={(isDrilldown || Boolean(generatedPeriod)) && patientlist.length === 0}
+        isEmpty={(isDrilldown || Boolean(generatedPeriod)) && patientlist?.length === 0}
         page={page}
         pageSize={pageSize}
         total={total}
