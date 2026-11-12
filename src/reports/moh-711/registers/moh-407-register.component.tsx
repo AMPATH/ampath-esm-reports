@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { RegisterLayout, usePatientList } from '../../../common/report-register';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import classNames from 'classnames';
 import { useSession } from '@openmrs/esm-framework';
 
@@ -14,23 +14,20 @@ interface Moh407RegisterComponentProps {}
 
 const Moh407RegisterComponent: React.FC<Moh407RegisterComponentProps> = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const location = useLocation();
   const session = useSession();
 
-  const from = searchParams.get('from');
-  const isDrilldown = Boolean(from);
   const [generatedPeriod, setGeneratedPeriod] = useState<{ startDate: string; endDate: string } | null>(() => {
     const startDate = searchParams.get('startDate');
     const endDate = searchParams.get('endDate');
-    return !isDrilldown && startDate && endDate ? { startDate, endDate } : null;
+    return startDate && endDate ? { startDate, endDate } : null;
   });
-  const isGenerated = isDrilldown || Boolean(generatedPeriod);
 
   const startDate = generatedPeriod?.startDate ?? searchParams.get('startDate');
   const endDate = generatedPeriod?.endDate ?? searchParams.get('endDate');
   const locationUuids = searchParams.get('locationUuids') ?? session?.sessionLocation?.uuid ?? '';
   const indicator = searchParams.get('indicator');
-  const reportName = location.state?.reportName || 'moh711Report';
+  const reportName = 'moh711Report';
+  const isGenerated = Boolean(generatedPeriod);
 
   const {
     rows: patientlist,
@@ -43,7 +40,7 @@ const Moh407RegisterComponent: React.FC<Moh407RegisterComponentProps> = () => {
     fetchAll,
   } = usePatientList(
     ({ startIndex, limit }) => {
-      if (!isDrilldown && !generatedPeriod) {
+      if (!isGenerated) {
         return Promise.resolve({ results: [], total: 0, isTotalExact: true });
       }
 
@@ -55,10 +52,9 @@ const Moh407RegisterComponent: React.FC<Moh407RegisterComponentProps> = () => {
         reportName,
         startIndex,
         limit,
-        from,
       });
     },
-    [startDate, endDate, locationUuids, indicator, reportName, from, isDrilldown, generatedPeriod],
+    [startDate, endDate, locationUuids, indicator, reportName, isGenerated],
   );
 
   const generate = ({ startDate, endDate }: ReportPeriod) => {
@@ -76,20 +72,20 @@ const Moh407RegisterComponent: React.FC<Moh407RegisterComponentProps> = () => {
 
   return (
     <>
-      {!isDrilldown && (
-        <ReportFiltersComponent
-          reportName="MOH 407 Register"
-          mode="range"
-          onGenerate={generate}
-          isLoading={isLoading}
-          isReportGenerated={Boolean(generatedPeriod)}
-          generatedPeriod={generatedPeriod ?? undefined}
-          backLink={{ label: 'All registers', to: '/?tab=registers' }}
-        />
-      )}
+      <ReportFiltersComponent
+        reportName="MOH 407 Register"
+        mode="both"
+        defaultTab="custom"
+        onGenerate={generate}
+        isLoading={isLoading}
+        isReportGenerated={Boolean(generatedPeriod)}
+        generatedPeriod={generatedPeriod ?? undefined}
+        backLink={{ label: 'All registers', to: '/?tab=registers' }}
+      />
       <RegisterLayout
-        parentLabel={isDrilldown ? 'MOH-711 Report' : 'All registers'}
-        parentPath={isDrilldown ? '/moh-711' : '/?tab=registers'}
+        parentLabel="All registers"
+        parentPath="/?tab=registers"
+        hideBreadcrumb
         title="MOH 407 Register"
         isLoading={isLoading}
         isEmpty={isGenerated && patientlist?.length === 0}

@@ -110,6 +110,14 @@ export const reportCategories: ReportCategory[] = [
         icon: Growth,
         keywords: ['nutrition'],
       },
+      {
+        code: 'MOH 713',
+        name: 'IMAM',
+        description: 'Acute Malnutrition Summary.',
+        path: '/moh-713',
+        icon: Growth,
+        keywords: ['nutrition'],
+      },
     ],
   },
   {
@@ -205,7 +213,7 @@ export const reportCategories: ReportCategory[] = [
         path: '/moh-718',
         icon: HealthCross,
         keywords: ['inpatient', 'morbidity', 'mortality'],
-      }
+      },
     ],
   },
 ];

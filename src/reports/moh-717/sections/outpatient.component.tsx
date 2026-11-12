@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from '../moh717.scss';
 import classNames from 'classnames';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 interface OutpatientComponentProps {
   moh717ReportData: any;
@@ -18,7 +18,6 @@ const OutpatientComponent: React.FC<OutpatientComponentProps> = ({
   locationUuids,
 }) => {
   const navigate = useNavigate();
-  const location = useLocation();
 
   const navigateTo204ALinelist = (indicator: string | string[]) => {
     navigate(
@@ -49,17 +48,6 @@ const OutpatientComponent: React.FC<OutpatientComponentProps> = ({
       from: 'moh-717',
     });
     navigate(`/moh-711-pnc-linelist?${params}`);
-  };
-  const navigateTo511Register = (indicator: string | string[]) => {
-    navigate(
-      `/moh-511-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}&from=moh-717`,
-      {
-        state: {
-          from: location.pathname,
-          reportName: 'moh717Report',
-        },
-      },
-    );
   };
   return (
     <>
@@ -439,13 +427,9 @@ const OutpatientComponent: React.FC<OutpatientComponentProps> = ({
           <tr>
             <td>A.4.1</td>
             <td>CWC Attendances</td>
-            <td onClick={() => navigateTo511Register('cwc_attendance_new')}>{moh717ReportData.cwc_attendance_new}</td>
-            <td onClick={() => navigateTo511Register('cwc_attendance_revisit')}>
-              {moh717ReportData.cwc_attendance_revisit}
-            </td>
-            <td onClick={() => navigateTo511Register(['cwc_attendance_new', 'cwc_attendance_revisit'])}>
-              {(moh717ReportData.cwc_attendance_new || 0) + (moh717ReportData.cwc_attendance_revisit || 0)}
-            </td>
+            <td>{moh717ReportData.cwc_attendance_new}</td>
+            <td>{moh717ReportData.cwc_attendance_revisit}</td>
+            <td>{(moh717ReportData.cwc_attendance_new || 0) + (moh717ReportData.cwc_attendance_revisit || 0)}</td>
           </tr>
           <tr>
             <td>A.4.2</td>

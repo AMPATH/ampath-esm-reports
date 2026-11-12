@@ -27,6 +27,8 @@ interface RegisterLayoutProps {
   parentLabel: string;
   /** Route back to that report, e.g. `/moh-731` */
   parentPath?: string;
+  /** Hides this breadcrumb when the surrounding page already renders one */
+  hideBreadcrumb?: boolean;
   /**
    * Returns to the report in place, for a register that is a view on the
    * report's own route rather than a route of its own.
@@ -88,6 +90,7 @@ const GENDERS: Record<string, string> = { M: 'Male', F: 'Female' };
 const RegisterLayout: React.FC<RegisterLayoutProps> = ({
   parentLabel,
   parentPath,
+  hideBreadcrumb = false,
   onBack,
   title,
   heading: headingProp,
@@ -186,26 +189,27 @@ const RegisterLayout: React.FC<RegisterLayoutProps> = ({
 
   return (
     <div className={styles.register}>
-      {onBack ? (
-        <div className={styles.breadcrumb}>
-          <Button kind="ghost" size="sm" renderIcon={ArrowLeft} onClick={onBack} className={styles.back}>
-            {parent.label}
-          </Button>
-          <h3 className={styles.title}>{heading || title}</h3>
-        </div>
-      ) : (
-        <Breadcrumb noTrailingSlash className={styles.breadcrumb}>
-          <BreadcrumbItem>
-            <Link to="/">All reports</Link>
-          </BreadcrumbItem>
-          <BreadcrumbItem>
-            <Link to={parentLink}>{parent.label}</Link>
-          </BreadcrumbItem>
-          <BreadcrumbItem isCurrentPage>
+      {!hideBreadcrumb &&
+        (onBack ? (
+          <div className={styles.breadcrumb}>
+            <Button kind="ghost" size="sm" renderIcon={ArrowLeft} onClick={onBack} className={styles.back}>
+              {parent.label}
+            </Button>
             <h3 className={styles.title}>{heading || title}</h3>
-          </BreadcrumbItem>
-        </Breadcrumb>
-      )}
+          </div>
+        ) : (
+          <Breadcrumb noTrailingSlash className={styles.breadcrumb}>
+            <BreadcrumbItem>
+              <Link to="/">All reports</Link>
+            </BreadcrumbItem>
+            <BreadcrumbItem>
+              <Link to={parentLink}>{parent.label}</Link>
+            </BreadcrumbItem>
+            <BreadcrumbItem isCurrentPage>
+              <h3 className={styles.title}>{heading || title}</h3>
+            </BreadcrumbItem>
+          </Breadcrumb>
+        ))}
 
       {/* Register, period and the export sit on one line: they all describe the
           table below, and splitting them stacked two sparse rows above it. */}
