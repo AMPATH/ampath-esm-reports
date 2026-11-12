@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { useSession } from '@openmrs/esm-framework';
 
 import styles from '../../../common/report-register/register-table.scss';
@@ -12,23 +12,19 @@ import { ReportFiltersComponent, type ReportPeriod } from '../../../common/repor
 
 const Moh333Register: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const location = useLocation();
   const session = useSession();
 
-  const from = searchParams.get('from');
-  const isDrilldown = Boolean(from);
   const [generatedPeriod, setGeneratedPeriod] = useState<{ startDate: string; endDate: string } | null>(() => {
     const startDate = searchParams.get('startDate');
     const endDate = searchParams.get('endDate');
-    return !isDrilldown && startDate && endDate ? { startDate, endDate } : null;
+    return startDate && endDate ? { startDate, endDate } : null;
   });
-  const isGenerated = isDrilldown || Boolean(generatedPeriod);
 
   const startDate = generatedPeriod?.startDate ?? searchParams.get('startDate');
   const endDate = generatedPeriod?.endDate ?? searchParams.get('endDate');
   const locationUuids = searchParams.get('locationUuids') ?? session?.sessionLocation?.uuid ?? '';
   const indicator = searchParams.get('indicator');
-  const reportName = location.state?.reportName || 'moh711Report';
+  const reportName = 'moh711Report';
 
   const {
     rows: patientlist,
@@ -41,7 +37,7 @@ const Moh333Register: React.FC = () => {
     fetchAll,
   } = usePatientList(
     ({ startIndex, limit }) => {
-      if (!isDrilldown && !generatedPeriod) {
+      if (!generatedPeriod) {
         return Promise.resolve({ results: [], total: 0, isTotalExact: true });
       }
 
@@ -53,10 +49,9 @@ const Moh333Register: React.FC = () => {
         reportName,
         startIndex,
         limit,
-        from,
       });
     },
-    [startDate, endDate, locationUuids, indicator, reportName, from, isDrilldown, generatedPeriod],
+    [startDate, endDate, locationUuids, indicator, reportName, generatedPeriod],
   );
 
   const generate = ({ startDate, endDate }: ReportPeriod) => {
@@ -74,29 +69,29 @@ const Moh333Register: React.FC = () => {
 
   return (
     <>
-      {!isDrilldown && (
-        <ReportFiltersComponent
-          reportName="MOH 333 Register"
-          mode="range"
-          onGenerate={generate}
-          isLoading={isLoading}
-          isReportGenerated={Boolean(generatedPeriod)}
-          generatedPeriod={generatedPeriod ?? undefined}
-          backLink={{ label: 'All registers', to: '/?tab=registers' }}
-        />
-      )}
+      <ReportFiltersComponent
+        reportName="MOH 333 Register"
+        mode="both"
+        defaultTab="custom"
+        onGenerate={generate}
+        isLoading={isLoading}
+        isReportGenerated={Boolean(generatedPeriod)}
+        generatedPeriod={generatedPeriod ?? undefined}
+        backLink={{ label: 'All registers', to: '/?tab=registers' }}
+      />
       <RegisterLayout
-        parentLabel={isDrilldown ? 'MOH-711 Report' : 'All registers'}
-        parentPath={isDrilldown ? '/moh-711' : '/?tab=registers'}
+        parentLabel="All registers"
+        parentPath="/?tab=registers"
+        hideBreadcrumb
         title="MOH 333 Register"
         isLoading={isLoading}
-        isEmpty={isGenerated && patientlist?.length === 0}
+        isEmpty={Boolean(generatedPeriod) && patientlist?.length === 0}
         page={page}
         pageSize={pageSize}
         total={total}
         isTotalExact={isTotalExact}
         onPageChange={onPageChange}
-        fetchAll={isGenerated ? fetchAll : undefined}
+        fetchAll={generatedPeriod ? fetchAll : undefined}
         columns={moh333ExportColumns}
       >
         <div className={styles.tableContainer}>
@@ -664,11 +659,11 @@ const Moh333Register: React.FC = () => {
                     </tr>
                   </React.Fragment>
                 ))
-              ) : isGenerated ? (
+              ) : (
                 <tr>
                   <td colSpan={moh333Columns.length}>No data available</td>
                 </tr>
-              ) : null}
+              )}
             </tbody>
           </table>
         </div>

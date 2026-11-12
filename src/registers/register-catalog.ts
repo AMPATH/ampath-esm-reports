@@ -228,6 +228,14 @@ export const registerCategories: ReportCategory[] = [
         icon: Activity,
         keywords: ['family', 'planning'],
       },
+      {
+        code: 'MOH 368',
+        name: 'MOH 368 Register',
+        description: 'MOH 368 Register',
+        path: '/moh-368-register',
+        icon: Activity,
+        keywords: ['inpatient', 'nutrition'],
+      },
     ],
   },
   {
@@ -262,7 +270,7 @@ export const registerCategories: ReportCategory[] = [
         keywords: ['cwc', 'child welfare clinic', 'growth monitoring', 'nutrition'],
       },
     ],
-  }
+  },
 ];
 
 export const totalRegisterCount = registerCategories.reduce((count, category) => count + category.reports.length, 0);

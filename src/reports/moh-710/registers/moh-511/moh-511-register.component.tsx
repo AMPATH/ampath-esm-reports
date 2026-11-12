@@ -14,14 +14,12 @@ import { getMoh511Register } from '../../../../resources/moh-710.resource';
 const Moh511Register: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const session = useSession();
-  const from = searchParams.get('from');
-  const isDrilldown = Boolean(from);
   const [generatedPeriod, setGeneratedPeriod] = useState<{ startDate: string; endDate: string } | null>(() => {
     const startDate = searchParams.get('startDate');
     const endDate = searchParams.get('endDate');
-    return !isDrilldown && startDate && endDate ? { startDate, endDate } : null;
+    return startDate && endDate ? { startDate, endDate } : null;
   });
-  const isGenerated = isDrilldown || Boolean(generatedPeriod);
+  const isGenerated = Boolean(generatedPeriod);
 
   const startDate = generatedPeriod?.startDate ?? searchParams.get('startDate');
   const endDate = generatedPeriod?.endDate ?? searchParams.get('endDate');
@@ -39,7 +37,7 @@ const Moh511Register: React.FC = () => {
     fetchAll,
   } = usePatientList(
     ({ startIndex, limit }) => {
-      if (!isDrilldown && !generatedPeriod) {
+      if (!generatedPeriod) {
         return Promise.resolve({ results: [], total: 0, isTotalExact: true });
       }
 
@@ -52,7 +50,7 @@ const Moh511Register: React.FC = () => {
         limit,
       });
     },
-    [startDate, endDate, locationUuids, indicator, isDrilldown, generatedPeriod],
+    [startDate, endDate, locationUuids, indicator, generatedPeriod],
   );
 
   const generate = ({ startDate, endDate }: ReportPeriod) => {
@@ -70,20 +68,20 @@ const Moh511Register: React.FC = () => {
 
   return (
     <>
-      {!isDrilldown && (
-        <ReportFiltersComponent
-          reportName="MOH-511 Register"
-          mode="range"
-          onGenerate={generate}
-          isLoading={isLoading}
-          isReportGenerated={Boolean(generatedPeriod)}
-          generatedPeriod={generatedPeriod ?? undefined}
-          backLink={{ label: 'All registers', to: '/?tab=registers' }}
-        />
-      )}
+      <ReportFiltersComponent
+        reportName="MOH-511 Register"
+        mode="both"
+        defaultTab="custom"
+        onGenerate={generate}
+        isLoading={isLoading}
+        isReportGenerated={Boolean(generatedPeriod)}
+        generatedPeriod={generatedPeriod ?? undefined}
+        backLink={{ label: 'All registers', to: '/?tab=registers' }}
+      />
       <RegisterLayout
-        parentLabel={isDrilldown ? 'MOH-710 Report' : 'All registers'}
-        parentPath={isDrilldown ? '/moh-710' : '/?tab=registers'}
+        parentLabel="All registers"
+        parentPath="/?tab=registers"
+        hideBreadcrumb
         title="MOH-511 Register"
         isLoading={isLoading}
         isEmpty={isGenerated && patientlist?.length === 0}

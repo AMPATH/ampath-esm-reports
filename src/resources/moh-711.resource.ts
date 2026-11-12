@@ -37,16 +37,8 @@ export async function getMoh711(params: Moh711Params): Promise<any> {
   }
 }
 
-export async function getMoh406PatientList(
-  params: PatientListParams & { from?: string | null },
-): Promise<PatientListPage> {
-  const endPoint = (() => {
-    if (params.from && params.from?.toLowerCase() === 'moh-717') {
-      return 'moh-717-patient-list';
-    }
-    return 'moh-406-patient-list';
-  })();
-  const url = await buildEtlUrl(endPoint, {
+export async function getMoh406PatientList(params: PatientListParams): Promise<PatientListPage> {
+  const url = await buildEtlUrl('moh-406-patient-list', {
     locationUuids: params.locationUuids || '',
     startDate: params.startDate || '',
     endDate: params.endDate || '',
@@ -70,16 +62,8 @@ export async function getMoh406PatientList(
   }
 }
 
-export async function getMoh405PatientList(
-  params: PatientListParams & { from?: string | null },
-): Promise<PatientListPage> {
-  const endPoint = (() => {
-    if (params.from && params.from?.toLowerCase() === 'moh-717') {
-      return 'moh-717-patient-list';
-    }
-    return 'moh-405-patient-list';
-  })();
-  const url = await buildEtlUrl(endPoint, {
+export async function getMoh405PatientList(params: PatientListParams): Promise<PatientListPage> {
+  const url = await buildEtlUrl('moh-405-patient-list', {
     locationUuids: params.locationUuids || '',
     startDate: params.startDate || '',
     endDate: params.endDate || '',
@@ -103,16 +87,8 @@ export async function getMoh405PatientList(
   }
 }
 
-export async function getMoh333PatientList(
-  params: PatientListParams & { from?: string | null },
-): Promise<PatientListPage> {
-  const endPoint = (() => {
-    if (params.from && params.from?.toLowerCase() === 'moh-717') {
-      return 'moh-717-patient-list';
-    }
-    return 'moh-333-patient-list';
-  })();
-  const url = await buildEtlUrl(endPoint, {
+export async function getMoh333PatientList(params: PatientListParams): Promise<PatientListPage> {
+  const url = await buildEtlUrl('moh-333-patient-list', {
     locationUuids: params.locationUuids || '',
     startDate: params.startDate || '',
     endDate: params.endDate || '',

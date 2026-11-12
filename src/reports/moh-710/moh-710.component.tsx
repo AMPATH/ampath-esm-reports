@@ -100,18 +100,6 @@ const Moh710Report: React.FC = () => {
     );
   };
 
-  const navigateToAncRegister = (indicator: string) => {
-    navigate(
-      `/moh-405-register?startDate=${startDate}&endDate=${endDate}&locationUuids=${locationUuids}&indicator=${indicator}&from=moh-710`,
-      {
-        state: {
-          from: location.pathname,
-          reportName: 'moh710Report',
-        },
-      },
-    );
-  };
-
   return (
     <>
       <ReportFiltersComponent
@@ -335,10 +323,10 @@ const Moh710Report: React.FC = () => {
                   </tr>
                   <tr>
                     <td>Typhoid Conjugate Vaccine (TCV) doses Administered</td>
-                    <td onClick={() => navigateToAncRegister('typhoid_conjugate_vaccine_age_greater_than_1yr')}>
+                    <td>
                       {moh710Data.typhoid_conjugate_vaccine_age_greater_than_1yr}
                     </td>
-                    <td onClick={() => navigateToAncRegister('typhoid_conjugate_vaccine_age_less_than_1yr')}>
+                    <td>
                       {moh710Data.typhoid_conjugate_vaccine_age_less_than_1yr}
                     </td>
                   </tr>
@@ -419,11 +407,11 @@ const Moh710Report: React.FC = () => {
                 <tbody>
                   <tr>
                     <td>Tetanus Toxoid for Pregnant women</td>
-                    <td onClick={() => navigateToAncRegister('tetanus_toxoid1')}>{moh710Data.tetanus_toxoid1}</td>
-                    <td onClick={() => navigateToAncRegister('tetanus_toxoid2')}>{moh710Data.tetanus_toxoid2}</td>
-                    <td onClick={() => navigateToAncRegister('tetanus_toxoid3')}>{moh710Data.tetanus_toxoid3}</td>
-                    <td onClick={() => navigateToAncRegister('tetanus_toxoid4')}>{moh710Data.tetanus_toxoid4}</td>
-                    <td onClick={() => navigateToAncRegister('tetanus_toxoid5')}>{moh710Data.tetanus_toxoid5}</td>
+                    <td>{moh710Data.tetanus_toxoid1}</td>
+                    <td>{moh710Data.tetanus_toxoid2}</td>
+                    <td>{moh710Data.tetanus_toxoid3}</td>
+                    <td>{moh710Data.tetanus_toxoid4}</td>
+                    <td>{moh710Data.tetanus_toxoid5}</td>
                   </tr>
                 </tbody>
               </table>
