@@ -271,6 +271,23 @@ export const registerCategories: ReportCategory[] = [
       },
     ],
   },
+  {
+    id: 'inpatient-register',
+    title: 'Inpatient',
+    label: 'Inpatient',
+    description: 'Inpatient register',
+    tone: 'blue',
+    reports: [
+      {
+        code: 'MOH 301',
+        name: 'Inpatient(IP) Register',
+        description: 'Inpatient Register',
+        path: '/moh-301-register',
+        icon: Activity,
+        keywords: ['inpatient', 'register'],
+      },
+    ],
+  },
 ];
 
 export const totalRegisterCount = registerCategories.reduce((count, category) => count + category.reports.length, 0);
