@@ -54,6 +54,12 @@ import Moh413Component from './reports/moh-710/registers/moh-413/moh-413.compone
 import Moh407RegisterComponent from './reports/moh-711/registers/moh-407-register.component';
 import Moh733Component from './reports/moh-733/moh-733.component';
 import Moh733Linelist from './reports/moh-733/linelist/moh-733-linelist.component';
+import ProgramReport from './reports/program/program-report.component';
+import CareAndTreatmentReport, {
+  CARE_AND_TREATMENT_LINELIST_PATH,
+} from './reports/program/care-and-treatment/care-and-treatment.component';
+import CareAndTreatmentLinelist from './reports/program/care-and-treatment/care-and-treatment-linelist.component';
+import { actionSummaryReports, programReports } from './dashboard/report-catalog';
 import Moh718Report from './reports/moh-718/moh-718.component';
 import MOH713Component from './reports/moh-713/moh-713.component';
 import MOH368Component from './registers/moh-368/moh-368.component';
@@ -66,6 +72,38 @@ const RootComponent: React.FC = () => {
       <div className={styles.page}>
         <Routes>
           <Route path="/" element={<ReportsDashboard />} />
+          {/* Program reports with their own page */}
+          <Route
+            path="/program/care-and-treatment"
+            element={
+              <CareAndTreatmentReport report={programReports.find((r) => r.path === '/program/care-and-treatment')} />
+            }
+          />
+          <Route path={CARE_AND_TREATMENT_LINELIST_PATH} element={<CareAndTreatmentLinelist />} />
+          {/* Program and action summary reports: each on the shared report template page until its own template is built */}
+          {programReports
+            .filter((report) => report.path !== '/program/care-and-treatment')
+            .map((report) => (
+              <Route
+                key={report.path}
+                path={report.path}
+                element={
+                  <ProgramReport report={report} backLink={{ label: 'Program reports', to: '/?group=program' }} />
+                }
+              />
+            ))}
+          {actionSummaryReports.map((report) => (
+            <Route
+              key={report.path}
+              path={report.path}
+              element={
+                <ProgramReport
+                  report={report}
+                  backLink={{ label: 'Action summary reports', to: '/?group=action-summary' }}
+                />
+              }
+            />
+          ))}
           <Route path="/moh-710" element={<Moh710Report />} />
           <Route path="/moh-711" element={<Moh711Report />} />
           <Route path="/moh-717" element={<Moh717Report />} />

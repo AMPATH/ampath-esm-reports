@@ -247,14 +247,222 @@ export const reportGroups: ReportGroup[] = [
     title: 'Program reports',
     shortTitle: 'Program',
     description: 'Monitoring of care programs',
-    categories: [],
+    /* the program reports' sections; each opens on the shared program report
+       page (src/reports/program) until its own template is built */
+    categories: [
+      {
+        id: 'prevention',
+        title: 'Prevention',
+        description: 'HIV prevention programs',
+        tone: 'teal',
+        reports: [
+          {
+            code: 'PrEP',
+            name: 'PrEP',
+            description: 'Clients on pre-exposure prophylaxis.',
+            path: '/program/prep',
+            icon: HealthCross,
+            keywords: ['prep', 'prevention', 'pre-exposure', 'prophylaxis'],
+          },
+        ],
+      },
+      {
+        id: 'hiv',
+        title: 'HIV',
+        description: 'HIV care and treatment programs',
+        tone: 'violet',
+        reports: [
+          {
+            code: 'C&T',
+            name: 'Care & Treatment and ARV Management',
+            description:
+              'Monthly summary of starting ART (TX_NEW), current on ART (TX_CURR), months of ARVs dispensed, viral load (TX_PVLS), TX-ML (TIs, RTT, TOs, deaths, declined, IITs) and AHD.',
+            path: '/program/care-and-treatment',
+            icon: Medication,
+            keywords: [
+              'art',
+              'arv',
+              'tx_new',
+              'tx-new',
+              'new on art',
+              'tx_curr',
+              'tx-curr',
+              'current on art',
+              'mmd',
+              'tx_pvls',
+              'viral load',
+              'tx_ml',
+              'tx-ml',
+              'iit',
+              'rtt',
+              'transfer',
+              'death',
+              'declined',
+              'ahd',
+              'advanced hiv disease',
+              'cd4',
+            ],
+          },
+        ],
+      },
+    ],
   },
   {
     id: 'action-summary',
     title: 'Action summary reports',
     shortTitle: 'Action summary',
     description: 'Clients due for follow-up or action',
-    categories: [],
+    /* each opens on the shared report template page (src/reports/program)
+       until its own template is built */
+    categories: [
+      {
+        id: 'testing-and-linkage',
+        title: 'Testing & linkage',
+        description: 'Clients to link to care or prevention',
+        tone: 'teal',
+        reports: [
+          {
+            code: 'LINKAGE',
+            name: 'HIV positive not linked',
+            description:
+              'Individuals diagnosed with HIV who have not been successfully enrolled or linked to care and treatment services.',
+            path: '/action-summary/hiv-positive-not-linked',
+            icon: UserMultiple,
+            keywords: ['linkage', 'linked', 'positive', 'enrolment', 'hts'],
+          },
+          {
+            code: 'PBF PrEP',
+            name: 'High risk -ve PBFs not on PrEP',
+            description:
+              'High-risk HIV-negative individuals (such as partners in serodiscordant relationships or key populations) identified through Partner/Client Index Testing (PBF) who are not on Pre-Exposure Prophylaxis (PrEP).',
+            path: '/action-summary/high-risk-pbf-not-on-prep',
+            icon: HealthCross,
+            keywords: ['prep', 'pbf', 'pbfw', 'negative', 'high risk', 'serodiscordant', 'index'],
+          },
+          {
+            code: 'PNS',
+            name: 'PNS contacts with undocumented HIV status',
+            description:
+              'Partner Notification Services (PNS) contacts whose HIV test status has not yet been documented.',
+            path: '/action-summary/pns-undocumented-status',
+            icon: UserMultiple,
+            keywords: ['pns', 'contacts', 'partner', 'notification', 'index', 'undocumented', 'status'],
+          },
+          {
+            code: 'SNS',
+            name: 'SNS contacts with undocumented HIV status',
+            description: 'Social Network Strategy (SNS) contacts whose HIV test status has not yet been documented.',
+            path: '/action-summary/sns-undocumented-status',
+            icon: UserMultiple,
+            keywords: ['sns', 'contacts', 'social network', 'strategy', 'undocumented', 'status'],
+          },
+        ],
+      },
+      {
+        id: 'viral-load',
+        title: 'Viral load',
+        description: 'Clients to test or support to suppression',
+        tone: 'violet',
+        reports: [
+          {
+            code: 'VL TEST',
+            name: 'Missed opportunity in VL testing',
+            description:
+              'Clients who are due for a routine or targeted viral load test but did not have the sample collected.',
+            path: '/action-summary/missed-vl-testing',
+            icon: Microscope,
+            keywords: ['vl', 'viral load', 'missed', 'due', 'sample'],
+          },
+          {
+            code: 'VL ≥200',
+            name: 'Current on ART with VL ≥ 200',
+            description:
+              'Patients actively on antiretroviral therapy whose viral load result is 200 copies/mL or more (unsuppressed, needing EAC). Includes those of 1000 or more.',
+            path: '/action-summary/viral-load-200-plus',
+            icon: Microscope,
+            keywords: ['vl', 'viral load', 'unsuppressed', '200', 'eac', 'art', 'high vl'],
+          },
+          {
+            code: 'VL ≥1000',
+            name: 'Current on ART with VL ≥ 1000',
+            description:
+              'Patients actively on antiretroviral therapy whose viral load result is 1000 copies/mL or more (indicating virological failure).',
+            path: '/action-summary/viral-load-1000-plus',
+            icon: Microscope,
+            keywords: ['vl', 'viral load', 'unsuppressed', '1000', 'failure', 'art', 'high vl'],
+          },
+          {
+            code: 'EAC',
+            name: 'Delayed enhanced adherence counselling (EAC)',
+            description:
+              'Patients with elevated viral loads who experience delays in receiving intensive adherence support sessions.',
+            path: '/action-summary/delayed-eac',
+            icon: Warning,
+            keywords: ['eac', 'adherence', 'counselling', 'delayed', 'viral load'],
+          },
+        ],
+      },
+      {
+        id: 'retention',
+        title: 'Retention',
+        description: 'Clients to trace or enrol in support',
+        tone: 'blue',
+        reports: [
+          {
+            code: 'DEFAULTERS',
+            name: 'Recent defaulters (missed app < 30 days)',
+            description:
+              'Patients who missed their scheduled clinic appointment by less than 30 days and require tracing.',
+            path: '/action-summary/recent-defaulters',
+            icon: Warning,
+            keywords: ['defaulters', 'missed', 'appointment', 'tracing', 'iit'],
+          },
+          {
+            code: 'OTZ',
+            name: 'Adolescent not enrolled in OTZ',
+            description:
+              'Adolescents living with HIV who are not enrolled in the Operation-to-Zero (OTZ) or Adolescent Package of Care program.',
+            path: '/action-summary/adolescent-not-in-otz',
+            icon: UserMultiple,
+            keywords: ['otz', 'adolescent', 'youth', 'enrol', 'package of care'],
+          },
+        ],
+      },
+      {
+        id: 'hei',
+        title: 'HIV-exposed infants',
+        description: 'Infants due for a test, linkage or outcome',
+        tone: 'magenta',
+        reports: [
+          {
+            code: 'HEI PCR',
+            name: 'HEI (6–8 wk) without DNA PCR',
+            description: 'HIV-Exposed Infants at 6 to 8 weeks of age missing their virological DNA PCR test.',
+            path: '/action-summary/hei-without-dna-pcr',
+            icon: Growth,
+            keywords: ['hei', 'infant', 'pcr', 'dna', '6 weeks', 'eid'],
+          },
+          {
+            code: 'HEI LINK',
+            name: 'HEI not linked to the mother',
+            description:
+              "Infant-mother pairs where the child's file is not cross-referenced or linked with the mother's ART file.",
+            path: '/action-summary/hei-not-linked-to-mother',
+            icon: Growth,
+            keywords: ['hei', 'infant', 'mother', 'linked', 'pair'],
+          },
+          {
+            code: 'HEI OUTCOME',
+            name: 'HEI above 2 years without documented outcome',
+            description:
+              'HIV-Exposed Infants above 2 years of age whose final outcome (e.g. discharged negative, transferred out, lost to follow-up or dead) has not been documented.',
+            path: '/action-summary/hei-without-outcome',
+            icon: Growth,
+            keywords: ['hei', 'infant', 'outcome', 'final', '2 years', 'undocumented', 'discharge'],
+          },
+        ],
+      },
+    ],
   },
 ];
 
@@ -282,3 +490,12 @@ export function filterCategories(categories: ReportCategory[], searchTerm: strin
     }))
     .filter((category) => category.reports.length > 0);
 }
+
+const reportsOf = (groupId: string): ReportDefinition[] =>
+  (reportGroups.find((group) => group.id === groupId)?.categories ?? []).flatMap((category) => category.reports);
+
+/** Every program report, each routed to the shared report template page */
+export const programReports = reportsOf('program');
+
+/** Every action summary report, each routed to the shared report template page */
+export const actionSummaryReports = reportsOf('action-summary');

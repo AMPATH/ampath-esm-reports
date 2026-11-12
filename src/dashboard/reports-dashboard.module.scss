@@ -1,3 +1,4 @@
+@use 'sass:list';
 @use '@carbon/layout';
 @use '@carbon/motion';
 @use '@carbon/type';
@@ -51,8 +52,24 @@
   align-items: center;
   /* the height of the tab row, so the line sits level with the tab labels */
   height: layout.$spacing-08;
+  gap: layout.$spacing-05;
   color: $text-02;
   white-space: nowrap;
+}
+
+/* the facility and the date, each after a small grey icon */
+.metaItem {
+  display: inline-flex;
+  align-items: center;
+  gap: layout.$spacing-02;
+
+  svg {
+    fill: $text-02;
+  }
+
+  &:first-child {
+    color: $color-gray-100;
+  }
 }
 
 /* The row over each tab's sheet: the report groups as a plain text
@@ -61,7 +78,8 @@
 
 .groupBar {
   display: flex;
-  align-items: center;
+  /* the search sits on the links' line, level with their labels */
+  align-items: flex-end;
   justify-content: space-between;
   gap: layout.$spacing-05;
   margin-bottom: layout.$spacing-05;
@@ -70,6 +88,7 @@
 
 /* without group links (Registers) there is nothing to underline, so no hairline */
 .plainBar {
+  align-items: center;
   border-bottom: none;
 
   /* the count and search level with each other */
@@ -84,8 +103,9 @@
 
 .groupNav {
   display: flex;
-  gap: layout.$spacing-07;
-  /* the links' underline sits on the bar's hairline */
+  /* the links touch, their 2px rules running on as one track */
+  gap: 0;
+  /* the track sits on the bar's hairline */
   margin-bottom: -1px;
 }
 
@@ -94,14 +114,15 @@
   display: inline-flex;
   align-items: center;
   gap: layout.$spacing-03;
-  padding: layout.$spacing-05 0 layout.$spacing-04;
+  padding: layout.$spacing-05 layout.$spacing-05 layout.$spacing-04;
   font-family: inherit;
   color: $text-02;
   white-space: nowrap;
   cursor: pointer;
   background: none;
   border: none;
-  border-bottom: 2px solid transparent;
+  /* a grey track under every link, green under the open one */
+  border-bottom: 2px solid $ui-03;
   transition: all motion.$duration-fast-02 motion.motion(standard, productive);
 
   &:hover {
@@ -165,7 +186,7 @@
 .groupSearch {
   flex: 0 1 20rem;
   min-width: 12rem;
-  /* level with the links' text, clear of the hairline */
+  /* centred on the links' labels, clear of the hairline */
   margin-bottom: layout.$spacing-03;
 
   /* a small, quiet field: white with a hairline, grey icon and placeholder,
@@ -173,6 +194,7 @@
   :global(.cds--search-input) {
     @include type.type-style('body-compact-01');
     background-color: $ui-02;
+    border-radius: 0.25rem;
     border: 1px solid $ui-03;
     border-bottom-color: $ui-03;
     transition: border-color motion.$duration-fast-02 motion.motion(standard, productive);
@@ -204,9 +226,20 @@
 /* Each tab's list: one white sheet holding a table of two sides, each
    category's name in one merged cell at the left, its items as rows at the
    right */
+/* each category's colour: an accent for its bar, and an ink dark enough for text */
+$tones: (
+  'violet': (#8a3ffc, #6929c4),
+  'magenta': (#d02670, #9f1853),
+  'teal': (#009d9a, #005d5d),
+  'blue': (#0f62fe, #0043ce),
+);
+
 .sheet {
+  overflow: hidden;
   background-color: $ui-02;
   border: 1px solid $ui-03;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
 .categoryTable {
@@ -222,19 +255,43 @@
   tbody tr + tr .itemCell {
     border-top: 1px solid $ui-01;
   }
+
+  tbody {
+    --tone: var(--brand-01);
+    --tone-ink: var(--brand-01);
+  }
+
+  @each $name, $pair in $tones {
+    tbody[data-tone='#{$name}'] {
+      --tone: #{list.nth($pair, 1)};
+      --tone-ink: #{list.nth($pair, 2)};
+    }
+  }
 }
 
-/* the merged cell: the category's name, centred on its rows, on a faint grey
-   so the two sides read as label and list */
+/* the merged cell: the category's name and what it holds, centred on its
+   rows, on a faint tint of its colour with a bar of it at the left */
 .categoryCell {
-  @include type.type-style('productive-heading-01');
-  width: 14rem;
+  width: 15rem;
   padding: layout.$spacing-04 layout.$spacing-05;
   text-align: left;
   vertical-align: middle;
-  color: $color-gray-100;
-  background-color: color-mix(in srgb, #{$ui-01} 60%, #{$ui-02});
+  background-color: color-mix(in srgb, var(--tone) 5%, #{$ui-02});
   border-right: 1px solid $ui-03;
+  box-shadow: inset 3px 0 0 var(--tone);
+}
+
+.categoryName {
+  @include type.type-style('productive-heading-01');
+  display: block;
+  color: $color-gray-100;
+}
+
+.categoryDescription {
+  @include type.type-style('helper-text-01');
+  display: block;
+  margin-top: layout.$spacing-02;
+  color: $text-02;
 }
 
 .itemCell {
@@ -263,16 +320,15 @@
   transition: all motion.$duration-fast-02 motion.motion(standard, productive);
 
   &:hover {
-    background-color: $ui-01;
-    /* a thin brand bar at the row's left edge */
-    box-shadow: inset 2px 0 0 var(--brand-01);
+    background-color: color-mix(in srgb, var(--tone) 6%, #{$ui-02});
 
     .sheetName {
-      color: var(--brand-01);
+      color: var(--tone-ink);
     }
 
     .sheetArrow {
       opacity: 1;
+      transform: translateX(0);
     }
   }
 
@@ -282,25 +338,26 @@
 
     .sheetArrow {
       opacity: 1;
+      transform: translateX(0);
     }
   }
 }
 
-/* the form number as a small grey chip, in mono so the numbers line up */
+/* the form number as a small chip in its category's colour, in mono so the
+   numbers line up */
 .sheetCode {
   @include type.type-style('code-01');
   justify-self: start;
-  padding: 0 layout.$spacing-02;
-  color: $text-02;
+  padding: 0.0625rem layout.$spacing-03;
+  color: var(--tone-ink);
   white-space: nowrap;
-  background-color: $ui-01;
-  border-radius: 2px;
+  background-color: color-mix(in srgb, var(--tone) 9%, #{$ui-02});
+  border-radius: 0.25rem;
   transition: all motion.$duration-fast-02 motion.motion(standard, productive);
 }
 
 .sheetRow:hover .sheetCode {
-  color: $color-gray-100;
-  background-color: $ui-03;
+  background-color: color-mix(in srgb, var(--tone) 16%, #{$ui-02});
 }
 
 .sheetName {
@@ -309,11 +366,12 @@
   transition: color motion.$duration-fast-02 motion.motion(standard, productive);
 }
 
-/* shown on hover and focus only */
+/* slides in on hover and focus only */
 .sheetArrow {
-  fill: var(--brand-01);
+  fill: var(--tone-ink);
   opacity: 0;
-  transition: opacity motion.$duration-fast-02 motion.motion(standard, productive);
+  transform: translateX(-0.25rem);
+  transition: all motion.$duration-fast-02 motion.motion(standard, productive);
 }
 
 /* Empty state */
@@ -326,18 +384,46 @@
   z-index: 1;
   margin-bottom: layout.$spacing-05;
 
-  /* the first tab's label lines up with the content's left edge */
-  :global(.cds--tabs__nav-item:first-child) {
-    padding-left: 0;
+
+  /* no (blue) focus ring when a tab is clicked, as the group links; a
+     keyboard user still gets one, in the brand colour */
+  &#{&} :global(.cds--tabs__nav-item:focus),
+  &#{&} :global(.cds--tabs__nav-item:active) {
+    outline: none;
+    box-shadow: none;
   }
 
-  /* keyboard / click focus in the brand colour too */
-  :global(.cds--tabs__nav-item:focus) {
-    outline-color: var(--brand-01);
+  &#{&} :global(.cds--tabs__nav-item:focus-visible) {
+    outline: 2px solid var(--brand-01);
+    outline-offset: -2px;
+  }
+
+  /* Reports / Registers drawn as the report group links below: side by side,
+     touching, on one grey 2px track, the open one green over it */
+  :global(.cds--tabs__nav-item) {
+    width: auto;
+    min-width: 0;
+    flex: none;
+    padding-right: layout.$spacing-05;
+    padding-left: layout.$spacing-05;
+    margin-right: 0;
+    color: $text-02;
+    background: none;
+    border-bottom: 2px solid $ui-03;
+    transition: all motion.$duration-fast-02 motion.motion(standard, productive);
+  }
+
+  :global(.cds--tabs__nav-item:hover) {
+    color: $color-gray-100;
+    background: none;
+    border-bottom-color: $ui-04;
   }
 
   /* the open tab in the AMPATH brand colour rather than Carbon blue */
-  :global(.cds--tabs__nav-item--selected) {
+  :global(.cds--tabs__nav-item--selected),
+  :global(.cds--tabs__nav-item--selected:hover) {
+    font-weight: 600;
+    color: $color-gray-100;
     border-bottom-color: var(--brand-01);
 
     .tabLabel svg {
@@ -432,10 +518,15 @@
   }
 
   .groupNav {
-    gap: layout.$spacing-05;
     margin-bottom: layout.$spacing-04;
     overflow-x: auto;
-    border-bottom: 1px solid $ui-03;
+  }
+
+  .groupLink {
+    flex: 1 0 auto;
+    justify-content: center;
+    padding-right: layout.$spacing-04;
+    padding-left: layout.$spacing-04;
   }
 
   .groupSearch {
@@ -484,7 +575,6 @@
   .categoryTable .categoryCell {
     width: auto;
     padding: layout.$spacing-03 layout.$spacing-04;
-    background-color: $ui-01;
     border-right: none;
     border-bottom: 1px solid $ui-03;
   }
@@ -498,12 +588,10 @@
 /* the smallest phones (360px and narrower): the three group links fit on one
    line with slightly smaller text and tighter spacing */
 @media (max-width: 360px) {
-  .groupNav {
-    gap: layout.$spacing-04;
-  }
-
   .groupLink {
     gap: layout.$spacing-02;
+    padding-right: layout.$spacing-03;
+    padding-left: layout.$spacing-03;
     font-size: 0.8125rem;
   }
 

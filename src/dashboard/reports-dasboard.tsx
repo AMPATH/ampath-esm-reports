@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Button, Layer, Search, Tab, TabList, TabPanel, TabPanels, Tabs } from '@carbon/react';
-import { ArrowRight, DocumentMultiple_01, Report, type CarbonIconType } from '@carbon/react/icons';
+import { ArrowRight, Calendar, DocumentMultiple_01, Location, Report, type CarbonIconType } from '@carbon/react/icons';
 import { formatDate, useSession } from '@openmrs/esm-framework';
 
 import { registerCategories, totalRegisterCount } from '../registers/register-catalog';
@@ -13,6 +13,7 @@ import {
   type ReportCategory,
   type ReportDefinition,
 } from './report-catalog';
+import { useFacilityName } from '../common/report-header';
 import styles from './reports-dashboard.module.scss';
 
 interface ReportsDashboardProps {}
@@ -62,7 +63,9 @@ const ReportsDashboard: React.FC<ReportsDashboardProps> = () => {
     </Button>
   );
 
-  const facilityName = session?.sessionLocation?.display;
+  /* the facility the reports cover (the session location's parent, e.g. MTRH
+     for MTRH Module 1), as the reports themselves name it */
+  const facilityName = useFacilityName(session?.sessionLocation?.uuid, session?.sessionLocation?.display ?? '');
   const today = formatDate(new Date(), { mode: 'standard', time: false, noToday: true });
 
   /* One report or register: its code and name, opening its page */
@@ -80,12 +83,14 @@ const ReportsDashboard: React.FC<ReportsDashboardProps> = () => {
     <div className={styles.sheet}>
       <table className={styles.categoryTable} aria-label={noun}>
         {categories.map((category) => (
-          <tbody key={category.id}>
+          /* each category in its own colour: a bar at its left, its code chips and hover */
+          <tbody key={category.id} data-tone={category.tone}>
             {category.reports.map((report, index) => (
               <tr key={report.path}>
                 {index === 0 && (
                   <th scope="rowgroup" rowSpan={category.reports.length} className={styles.categoryCell}>
-                    {category.label ?? category.title}
+                    <span className={styles.categoryName}>{category.label ?? category.title}</span>
+                    <span className={styles.categoryDescription}>{category.description}</span>
                   </th>
                 )}
                 <td className={styles.itemCell}>{renderItem(report)}</td>
@@ -154,7 +159,7 @@ const ReportsDashboard: React.FC<ReportsDashboardProps> = () => {
           </Layer>
         </div>
 
-        {total === 0 && whenEmpty ? (
+        {categories.length === 0 && whenEmpty ? (
           whenEmpty
         ) : visible.length > 0 ? (
           renderSheet(visible, noun)
@@ -179,7 +184,18 @@ const ReportsDashboard: React.FC<ReportsDashboardProps> = () => {
     <div className={styles.dashboard}>
       {/* The facility and date sit at the right end of the tab row */}
       <div className={styles.tabsArea}>
-        <p className={styles.headerMeta}>{[facilityName, today].filter(Boolean).join(' · ')}</p>
+        <p className={styles.headerMeta}>
+          {facilityName && (
+            <span className={styles.metaItem}>
+              <Location size={16} />
+              {facilityName}
+            </span>
+          )}
+          <span className={styles.metaItem}>
+            <Calendar size={16} />
+            {today}
+          </span>
+        </p>
         <Tabs selectedIndex={selectedTab} onChange={selectTab}>
           <TabList aria-label="Reports and registers" className={styles.tabList}>
             <Tab>
