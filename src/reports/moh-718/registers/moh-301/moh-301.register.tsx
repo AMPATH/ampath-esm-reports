@@ -18,8 +18,6 @@ const session = useSession();
 const generate = async ({ startDate, endDate }: ReportPeriod) => {
           setIsLoading(true);
           setPeriod({ startDate, endDate });
-          let indicators = '';
-          let locationUuid = '';
           const selectedDate =  dayjs(startDate).endOf('month')
           const registerStartDate = selectedDate.format('YYYY-MM-DD');
          
