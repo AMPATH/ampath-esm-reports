@@ -8,10 +8,10 @@ import { useSession } from '@openmrs/esm-framework';
 import { ReportFiltersComponent, type ReportPeriod, useRestorePeriod } from '../../../common/report-filters';
 import { downloadSheetsPdf } from '../../../common/report-page';
 import { showReportError } from '../../../common/report-error';
-import { columnsToCsv, downloadCsv, type RegisterColumn } from '../../../common/report-register';
+import { buildXlsx, downloadBlob, rangeOf, type XlsxCell } from '../../../common/report-register';
 import { ReportPlaceholder, useGeneratedLocation } from '../../../common/report-placeholder';
 import { ReportSkeleton } from '../../../common/report-skeleton';
-import { useFacilityName } from '../../../common/report-header';
+import { FacilityClinics, useFacility } from '../../../common/report-header';
 import { type ReportDefinition } from '../../../dashboard/report-catalog';
 import { getCareAndTreatment, type CareAndTreatmentGroup } from '../../../resources/care-and-treatment.resource';
 import { AGE_BANDS, CARE_AND_TREATMENT_SECTIONS, isMchRow, rowTitle, SEXES } from './care-and-treatment.config';
@@ -36,8 +36,9 @@ export function cellParams({ section, row, band, sex }: CellQuery) {
 
 /**
  * Care & Treatment and ARV Management (Program reports → HIV), sections 1.1
- * to 1.4: Starting on ART, Current on ART, months of ARVs dispensed and
- * TX_PVLS, by age band and sex, for the session location's whole facility in
+ * to 1.7: Starting on ART, Current on ART, months of ARVs dispensed, TX_PVLS,
+ * the inflows (transfers in, TX_RTT), TX_ML and the causes of death, by age
+ * band and sex, for the session location's whole facility in
  * the month chosen -- one table, laid out as the reporting form.
  *
  * The ETL adds the figures up by age band, sex and MCH/PMTCT (a few dozen rows
@@ -55,7 +56,8 @@ const CareAndTreatmentReport: React.FC<CareAndTreatmentReportProps> = ({ report 
   const session = useSession();
   const locationUuids = session?.sessionLocation?.uuid ?? '';
   /* the figures cover the session location's whole facility, so it is named by its parent location (MTRH) */
-  const facility = useFacilityName(locationUuids, session?.sessionLocation?.display ?? '');
+  const facilityDetails = useFacility(locationUuids, session?.sessionLocation?.display ?? '');
+  const facility = facilityDetails.name;
   const { isForCurrentLocation, hasLocationChanged, markGenerated } = useGeneratedLocation('careAndTreatmentLocation');
   const isReportGenerated = groups !== null && isForCurrentLocation;
 
@@ -144,58 +146,116 @@ const CareAndTreatmentReport: React.FC<CareAndTreatmentReportProps> = ({ report 
     .join('_')
     .replace(/[^a-z0-9_-]+/gi, '-');
 
-  /* Download CSV: the table as it is laid out -- the age bands across the top
-     with F and M under each, then the Total; each section's and group's name
-     once, at its first row, as the merged cells read -- under the report's
-     title, facility and period, with its notes after. Cells that do not apply
-     are left empty. */
-  const exportCsv = () => {
-    const lines = CARE_AND_TREATMENT_SECTIONS.flatMap((section) =>
-      section.groups.flatMap((group, groupIndex) =>
-        group.rows.map((row, rowIndex) => ({
-          section,
-          group,
-          row,
-          firstInSection: groupIndex === 0 && rowIndex === 0,
-          firstInGroup: rowIndex === 0,
-        })),
-      ),
-    );
-    const columns: RegisterColumn[] = [
-      {
-        header: 'Section',
-        value: (line) => (line.firstInSection ? `${line.section.number} ${line.section.title}` : ''),
-      },
-      { header: 'Group', value: (line) => (line.firstInGroup ? (line.group.title ?? '') : '') },
-      { header: 'Indicator', value: (line) => line.row.label },
+  /* Download Excel: the table as it is laid out, merged cells and all -- the
+     report's title, facility and period; the age bands across the top over
+     their F and M, then the Total; each section's and group's name merged down
+     beside its rows -- with its notes under it. Cells that do not apply are
+     shaded and left empty. */
+  const exportExcel = () => {
+    const bandColumns = AGE_BANDS.length * SEXES.length;
+    const totalColumn = 3 + bandColumns;
+    const width = totalColumn + 1;
+    const blank = (count: number): XlsxCell[] => Array.from({ length: count }, () => ({}));
+    const rows: XlsxCell[][] = [];
+    const merges: string[] = [];
+    const wholeRow = (value: string, style: XlsxCell['style']) => {
+      merges.push(rangeOf(rows.length, 0, rows.length, width - 1));
+      rows.push([{ value, style }, ...blank(width - 1)]);
+    };
+
+    wholeRow('Monthly Reporting Summary - 1.0 Care & Treatment and ARV Management', 'title');
+    wholeRow(`Facility: ${facility}`, 'meta');
+    wholeRow(`Period: ${periodLabel}`, 'meta');
+    rows.push(blank(width));
+
+    /* the heading: Indicator and Total down both rows, each band over its F and M */
+    const head = rows.length;
+    merges.push(rangeOf(head, 0, head + 1, 2), rangeOf(head, totalColumn, head + 1, totalColumn));
+    AGE_BANDS.forEach((_, index) => {
+      const column = 3 + index * SEXES.length;
+      merges.push(rangeOf(head, column, head, column + SEXES.length - 1));
+    });
+    rows.push([
+      { value: 'Indicator', style: 'header' },
+      { style: 'header' },
+      { style: 'header' },
       ...AGE_BANDS.flatMap((band) =>
-        SEXES.map(
-          (sex, index): RegisterColumn => ({
-            /* the band over its F and M, as the table's heading */
-            header: index === 0 ? band.label : '',
-            value: (line) =>
-              isMchRow(line.section, line.row) && (sex === 'M' || band.child)
-                ? ''
-                : count({ ...(line as CellQuery), band, sex }),
-          }),
-        ),
+        SEXES.map((_, index) => ({ value: index === 0 ? band.label : '', style: 'header' as const })),
       ),
-      { header: 'Total', value: (line) => count(line as CellQuery) },
-    ];
-    const subHeaderRow = ['', '', '', ...AGE_BANDS.flatMap(() => SEXES), ''];
-    const quoted = (text: string) => `"${text.replace(/"/g, '""')}"`;
-    const title = [
-      'Monthly Reporting Summary - 1.0 Care & Treatment and ARV Management',
-      `Facility: ${facility}`,
-      `Period: ${periodLabel}`,
-    ].map(quoted);
-    const notes = [
+      { value: 'Total', style: 'header' },
+    ]);
+    rows.push([
+      { style: 'header' },
+      { style: 'header' },
+      { style: 'header' },
+      ...AGE_BANDS.flatMap(() => SEXES.map((sex) => ({ value: sex, style: 'header' as const }))),
+      { style: 'header' },
+    ]);
+
+    CARE_AND_TREATMENT_SECTIONS.forEach((section) => {
+      const sectionStart = rows.length;
+      section.groups.forEach((group) => {
+        const groupStart = rows.length;
+        group.rows.forEach((row) => {
+          const cell = { section, group, row };
+          const mchOnly = isMchRow(section, row);
+          const labelStyle = row.strong
+            ? 'labelStrong'
+            : row.reference
+              ? 'labelMuted'
+              : row.notRecorded
+                ? 'labelItalic'
+                : 'label';
+          const numberStyle = row.strong ? 'numberStrong' : row.reference ? 'numberMuted' : 'number';
+          if (!group.title) {
+            /* a row without a group spans the group's column too */
+            merges.push(rangeOf(rows.length, 1, rows.length, 2));
+          }
+          rows.push([
+            {
+              value: rows.length === sectionStart ? `${section.number} ${section.title}`.trim() : '',
+              style: 'section',
+            },
+            group.title
+              ? { value: rows.length === groupStart ? group.title : '', style: 'group' }
+              : { value: row.label, style: labelStyle },
+            group.title ? { value: row.label, style: labelStyle } : { style: labelStyle },
+            ...AGE_BANDS.flatMap((band) =>
+              SEXES.map(
+                (sex): XlsxCell =>
+                  mchOnly && (sex === 'M' || band.child)
+                    ? { style: 'notApplicable' }
+                    : { value: count({ ...cell, band, sex }), style: numberStyle },
+              ),
+            ),
+            { value: count(cell), style: numberStyle },
+          ]);
+        });
+        if (group.title && group.rows.length > 1) {
+          merges.push(rangeOf(groupStart, 1, rows.length - 1, 1));
+        }
+      });
+      if (rows.length - sectionStart > 1) {
+        merges.push(rangeOf(sectionStart, 0, rows.length - 1, 0));
+      }
+    });
+
+    rows.push(blank(width));
+    wholeRow('Notes', 'meta');
+    [
       ...CARE_AND_TREATMENT_SECTIONS.filter((section) => section.note).map((section) => section.note ?? ''),
-      'Not categorized rows are clients whose detail is not recorded, shown so each part adds up to its total (for data cleanup); empty cells do not apply.',
-    ].map(quoted);
-    downloadCsv(
-      [...title, '', columnsToCsv(lines, columns, { subHeaderRow }), '', 'Notes', ...notes].join('\n'),
-      `${fileName}.csv`,
+      'Not categorized rows (in italics) are clients whose detail is not recorded, shown so each part adds up to its total (for data cleanup); shaded cells do not apply.',
+    ].forEach((note) => wholeRow(note, 'note'));
+
+    downloadBlob(
+      buildXlsx({
+        sheetName: 'Care & Treatment',
+        rows,
+        merges,
+        columnWidths: [22, 20, 42, ...Array.from({ length: bandColumns }, () => 6), 8],
+        freeze: { rows: head + 2, columns: 3 },
+      }),
+      `${fileName}.xlsx`,
     );
   };
 
@@ -203,6 +263,7 @@ const CareAndTreatmentReport: React.FC<CareAndTreatmentReportProps> = ({ report 
     <>
       <ReportFiltersComponent
         reportName={`${report.name} (${report.code})`}
+        /* monthly only: its figures are each client's status at the month's end (the HIV monthly dataset) */
         mode="monthly"
         onGenerate={generate}
         isLoading={isLoading}
@@ -218,7 +279,7 @@ const CareAndTreatmentReport: React.FC<CareAndTreatmentReportProps> = ({ report 
       {!isLoading && isReportGenerated && (
         <div className={styles.report}>
           <Layer as="section" className={styles.sheet} ref={sheetRef}>
-            {/* the title, facility and period, with the section links and the CSV
+            {/* the title, facility and period, with the section links and the Excel
                 download under them, stay in view as the report scrolls */}
             <div className={styles.stickyHead} ref={headRef}>
               <header className={styles.masthead}>
@@ -229,7 +290,9 @@ const CareAndTreatmentReport: React.FC<CareAndTreatmentReportProps> = ({ report 
                 <dl className={styles.meta}>
                   <div>
                     <dt>Facility</dt>
-                    <dd>{facility}</dd>
+                    <dd>
+                      <FacilityClinics name={facility} clinics={facilityDetails.clinics} />
+                    </dd>
                   </div>
                   <div>
                     <dt>Period</dt>
@@ -246,13 +309,13 @@ const CareAndTreatmentReport: React.FC<CareAndTreatmentReportProps> = ({ report 
                       className={styles.sectionLink}
                       onClick={() => scrollTo(section.id)}
                     >
-                      <span className={styles.sectionNumber}>{section.number}</span>
+                      {section.number && <span className={styles.sectionNumber}>{section.number}</span>}
                       {section.shortTitle}
                     </button>
                   ))}
                 </nav>
-                <Button kind="tertiary" size="sm" renderIcon={Download} onClick={exportCsv}>
-                  Download CSV
+                <Button kind="tertiary" size="sm" renderIcon={Download} onClick={exportExcel}>
+                  Download Excel
                 </Button>
               </div>
             </div>

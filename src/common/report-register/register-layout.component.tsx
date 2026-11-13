@@ -1,14 +1,5 @@
 import React from 'react';
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  Button,
-  Layer,
-  Pagination,
-  Toggletip,
-  ToggletipButton,
-  ToggletipContent,
-} from '@carbon/react';
+import { Breadcrumb, BreadcrumbItem, Button, Layer, Pagination } from '@carbon/react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { ArrowLeft, Calendar, Document, Download, Location } from '@carbon/react/icons';
 import { formatDate } from '@openmrs/esm-framework';
@@ -20,6 +11,7 @@ import { type RegisterColumn } from './register-columns';
 import { REPORT_PARENTS } from './report-parents';
 
 import { RegisterSkeleton } from '../report-skeleton';
+import { FacilityClinics } from '../report-header';
 import styles from './register-layout.scss';
 
 interface RegisterLayoutProps {
@@ -229,22 +221,7 @@ const RegisterLayout: React.FC<RegisterLayoutProps> = ({
               {location && (
                 <span className={styles.location}>
                   <Location size={14} />
-                  {location}
-                  {locationClinics.length > 0 && (
-                    <Toggletip align="bottom-left" autoAlign className={styles.clinics}>
-                      <ToggletipButton label={`Clinics in ${location}`} className={styles.clinicsButton}>
-                        {locationClinics.length === 1 ? '1 clinic' : `${locationClinics.length} clinics`}
-                      </ToggletipButton>
-                      <ToggletipContent>
-                        <p className={styles.clinicsTitle}>Includes every clinic in {location}</p>
-                        <ul className={styles.clinicsList}>
-                          {locationClinics.map((clinic) => (
-                            <li key={clinic}>{clinic}</li>
-                          ))}
-                        </ul>
-                      </ToggletipContent>
-                    </Toggletip>
-                  )}
+                  <FacilityClinics name={location} clinics={locationClinics} />
                 </span>
               )}
               {typeof total === 'number' && total > 0 && (

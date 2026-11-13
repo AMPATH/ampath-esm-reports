@@ -1,0 +1,305 @@
+@use '@carbon/layout';
+@use '@carbon/type';
+@use '@openmrs/esm-styleguide/src/vars' as *;
+
+/* a card's status colour, and an ink dark enough for text on its tint */
+$good: #24a148;
+$good-ink: #0e6027;
+$alert: #da1e28;
+$alert-ink: #a2191f;
+$figure: #0f62fe;
+
+.sheet {
+  margin: layout.$spacing-05 0;
+  padding: layout.$spacing-06;
+  background-color: $ui-02;
+  border: 1px solid $ui-03;
+}
+
+/* the title, facility and period, as on the Quality Improvement Report */
+.masthead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: layout.$spacing-03 layout.$spacing-07;
+  padding-bottom: layout.$spacing-04;
+  margin-bottom: layout.$spacing-04;
+  border-bottom: 1px solid $ui-03;
+}
+
+.title {
+  @include type.type-style('productive-heading-02');
+  color: $color-gray-100;
+}
+
+.subtitle {
+  @include type.type-style('label-01');
+  margin-top: layout.$spacing-01;
+  color: $text-02;
+}
+
+.meta {
+  @include type.type-style('label-01');
+  display: flex;
+  flex-wrap: wrap;
+  gap: layout.$spacing-03;
+}
+
+.metaItem {
+  display: inline-flex;
+  align-items: center;
+  gap: layout.$spacing-02;
+  padding: layout.$spacing-01 layout.$spacing-03;
+  font-weight: 600;
+  color: $color-gray-100;
+  background-color: $ui-01;
+  border-radius: 1rem;
+
+  svg {
+    fill: $text-02;
+  }
+}
+
+/* Realtime gap review / Progress tracker: the selected one underlined in the brand colour */
+.tabs {
+  :global(.cds--tabs__nav-item) {
+    padding: 0 layout.$spacing-05;
+    border-bottom: 2px solid $ui-03;
+  }
+
+  :global(.cds--tabs__nav-item--selected) {
+    font-weight: 600;
+    border-bottom-color: var(--brand-01);
+  }
+
+  :global(.cds--tabs__nav-item:focus) {
+    outline: none;
+  }
+
+  :global(.cds--tabs__nav-item:focus-visible) {
+    outline: 2px solid var(--brand-01);
+    outline-offset: -2px;
+  }
+}
+
+.panel {
+  padding: layout.$spacing-05 0 0;
+}
+
+/* each card and progress row takes its status colour */
+.good {
+  --status: #{$good};
+  --status-ink: #{$good-ink};
+}
+
+.alert {
+  --status: #{$alert};
+  --status-ink: #{$alert-ink};
+}
+
+/* the gap review: three cards to a row, fewer on narrower screens */
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: layout.$spacing-04;
+}
+
+/* a card: its status as a pill, and the gap's share */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: layout.$spacing-03;
+  padding: layout.$spacing-04 layout.$spacing-05;
+  background-color: $ui-02;
+  border: 1px solid $ui-03;
+  border-radius: 0.375rem;
+  transition: box-shadow 110ms;
+
+  &:hover {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  }
+}
+
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: layout.$spacing-03;
+}
+
+.cardTitle {
+  @include type.type-style('body-compact-01');
+  font-weight: 600;
+  color: $color-gray-100;
+}
+
+.status {
+  @include type.type-style('label-01');
+  flex: none;
+  padding: 0 layout.$spacing-03;
+  font-weight: 600;
+  line-height: 1.25rem;
+  white-space: nowrap;
+  color: var(--status-ink);
+  background-color: color-mix(in srgb, var(--status) 12%, #{$ui-02});
+  border-radius: 1rem;
+}
+
+.cardValue {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: layout.$spacing-03;
+}
+
+.figures {
+  display: inline-flex;
+  align-items: baseline;
+  gap: layout.$spacing-02;
+}
+
+.figure {
+  @include type.type-style('heading-compact-02');
+  padding: 0;
+  font-variant-numeric: tabular-nums;
+  background: none;
+  border: 0;
+}
+
+.numerator {
+  color: $figure;
+}
+
+.denominator {
+  color: $text-02;
+}
+
+button.figure {
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.slash {
+  @include type.type-style('body-compact-01');
+  color: $ui-04;
+}
+
+.percent {
+  @include type.type-style('heading-compact-01');
+  font-variant-numeric: tabular-nums;
+  color: var(--status-ink);
+}
+
+.gapTrack {
+  height: 0.25rem;
+  overflow: hidden;
+  background-color: $ui-01;
+  border-radius: 0.125rem;
+}
+
+.gapBar {
+  height: 100%;
+  background-color: var(--status);
+  border-radius: 0.125rem;
+}
+
+.cardDescription {
+  @include type.type-style('helper-text-01');
+  color: $text-02;
+}
+
+/* the progress tracker: what has been done, out of the clients each card applies to */
+.progressList {
+  border: 1px solid $ui-03;
+  border-radius: 0.375rem;
+}
+
+.progressRow {
+  display: grid;
+  grid-template-columns: minmax(12rem, 20rem) 1fr 3.5rem;
+  align-items: center;
+  gap: layout.$spacing-05;
+  padding: layout.$spacing-04 layout.$spacing-05;
+
+  & + & {
+    border-top: 1px solid $ui-03;
+  }
+}
+
+.progressLabel {
+  display: flex;
+  flex-direction: column;
+  gap: layout.$spacing-01;
+}
+
+.progressTitle {
+  @include type.type-style('body-compact-01');
+  font-weight: 600;
+  color: $color-gray-100;
+}
+
+.progressCount {
+  @include type.type-style('helper-text-01');
+  color: $text-02;
+
+  strong {
+    font-weight: 600;
+    color: $color-gray-100;
+  }
+}
+
+.track {
+  height: 0.25rem;
+  overflow: hidden;
+  background-color: $ui-01;
+  border-radius: 0.125rem;
+}
+
+.bar {
+  height: 100%;
+  background-color: var(--status);
+  border-radius: 0.125rem;
+}
+
+.progressPercent {
+  @include type.type-style('heading-compact-01');
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--status-ink);
+}
+
+.note {
+  @include type.type-style('label-01');
+  padding-top: layout.$spacing-04;
+  margin-top: layout.$spacing-05;
+  color: $text-02;
+  border-top: 1px solid $ui-03;
+}
+
+@media (max-width: 66rem) {
+  .cardGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 42rem) {
+  .sheet {
+    padding: layout.$spacing-05 layout.$spacing-04;
+  }
+
+  .cardGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .progressRow {
+    grid-template-columns: 1fr 3.5rem;
+  }
+
+  .progressLabel {
+    grid-column: 1 / -1;
+  }
+}

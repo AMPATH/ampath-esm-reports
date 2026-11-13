@@ -11,7 +11,7 @@ export interface CareAndTreatmentGroup {
 }
 
 /**
- * Care & Treatment and ARV Management, sections 1.1-1.4, for the month ending
+ * Care & Treatment and ARV Management, sections 1.1-1.7, for the month ending
  * on `endDate`, for the whole facility of the location: each figure added up
  * by age band, sex and MCH/PMTCT -- a few dozen rows, which the report adds
  * up into its tables.

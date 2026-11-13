@@ -59,7 +59,15 @@ import CareAndTreatmentReport, {
   CARE_AND_TREATMENT_LINELIST_PATH,
 } from './reports/program/care-and-treatment/care-and-treatment.component';
 import CareAndTreatmentLinelist from './reports/program/care-and-treatment/care-and-treatment-linelist.component';
-import { actionSummaryReports, programReports } from './dashboard/report-catalog';
+import { qualityImprovementReports, programReports } from './dashboard/report-catalog';
+import QualityImprovementReport from './reports/quality-improvement/quality-improvement.component';
+import QualityImprovementLinelist from './reports/quality-improvement/quality-improvement-linelist.component';
+import CaseSurveillanceReport from './reports/quality-improvement/case-surveillance.component';
+import { CASE_SURVEILLANCE_PATH } from './reports/quality-improvement/case-surveillance.config';
+import {
+  QUALITY_IMPROVEMENT_LINELIST_PATH,
+  QUALITY_IMPROVEMENT_PATH,
+} from './reports/quality-improvement/quality-improvement.config';
 import Moh718Report from './reports/moh-718/moh-718.component';
 import MOH713Component from './reports/moh-713/moh-713.component';
 import MOH368Component from './registers/moh-368/moh-368.component';
@@ -81,7 +89,7 @@ const RootComponent: React.FC = () => {
             }
           />
           <Route path={CARE_AND_TREATMENT_LINELIST_PATH} element={<CareAndTreatmentLinelist />} />
-          {/* Program and action summary reports: each on the shared report template page until its own template is built */}
+          {/* Program reports: each on the shared report template page until its own template is built */}
           {programReports
             .filter((report) => report.path !== '/program/care-and-treatment')
             .map((report) => (
@@ -93,18 +101,23 @@ const RootComponent: React.FC = () => {
                 }
               />
             ))}
-          {actionSummaryReports.map((report) => (
-            <Route
-              key={report.path}
-              path={report.path}
-              element={
-                <ProgramReport
-                  report={report}
-                  backLink={{ label: 'Action summary reports', to: '/?group=action-summary' }}
-                />
-              }
-            />
-          ))}
+          <Route
+            path={QUALITY_IMPROVEMENT_PATH}
+            element={
+              <QualityImprovementReport
+                report={qualityImprovementReports.find((r) => r.path === QUALITY_IMPROVEMENT_PATH)}
+              />
+            }
+          />
+          <Route path={QUALITY_IMPROVEMENT_LINELIST_PATH} element={<QualityImprovementLinelist />} />
+          <Route
+            path={CASE_SURVEILLANCE_PATH}
+            element={
+              <CaseSurveillanceReport
+                report={qualityImprovementReports.find((r) => r.path === CASE_SURVEILLANCE_PATH)}
+              />
+            }
+          />
           <Route path="/moh-710" element={<Moh710Report />} />
           <Route path="/moh-711" element={<Moh711Report />} />
           <Route path="/moh-717" element={<Moh717Report />} />

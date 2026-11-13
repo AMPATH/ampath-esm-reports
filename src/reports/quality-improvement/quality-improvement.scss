@@ -1,0 +1,227 @@
+@use 'sass:list';
+@use '@carbon/layout';
+@use '@carbon/type';
+@use '@openmrs/esm-styleguide/src/vars' as *;
+
+/* each area's colour, as on the landing page: an accent for its bar, and an ink dark enough for text */
+$tones: (
+  'violet': (#8a3ffc, #6929c4),
+  'magenta': (#d02670, #9f1853),
+  'teal': (#009d9a, #005d5d),
+  'blue': (#0f62fe, #0043ce),
+);
+
+.sheet {
+  margin: layout.$spacing-05 0;
+  padding: layout.$spacing-06;
+  background-color: $ui-02;
+  border: 1px solid $ui-03;
+}
+
+.masthead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: layout.$spacing-03 layout.$spacing-07;
+  padding-bottom: layout.$spacing-04;
+  margin-bottom: layout.$spacing-04;
+  border-bottom: 1px solid $ui-03;
+}
+
+.title {
+  @include type.type-style('productive-heading-02');
+  color: $color-gray-100;
+}
+
+.subtitle {
+  @include type.type-style('label-01');
+  margin-top: layout.$spacing-01;
+  color: $text-02;
+}
+
+/* the facility and month, as the landing page's header shows them */
+.meta {
+  @include type.type-style('label-01');
+  display: flex;
+  flex-wrap: wrap;
+  gap: layout.$spacing-03;
+}
+
+.metaItem {
+  display: inline-flex;
+  align-items: center;
+  gap: layout.$spacing-02;
+  padding: layout.$spacing-01 layout.$spacing-03;
+  font-weight: 600;
+  color: $color-gray-100;
+  background-color: $ui-01;
+  border-radius: 1rem;
+
+  svg {
+    fill: $text-02;
+  }
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-bottom: 1px solid $ui-03;
+
+  thead th {
+    @include type.type-style('label-01');
+    padding: layout.$spacing-03 layout.$spacing-04;
+    text-align: left;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: $text-02;
+    background-color: $ui-01;
+    border-bottom: 1px solid $ui-03;
+  }
+
+  thead th:first-child {
+    padding-left: layout.$spacing-05;
+  }
+
+  tbody {
+    --tone: var(--brand-01);
+    --tone-ink: var(--brand-01);
+  }
+
+  @each $name, $pair in $tones {
+    tbody[data-tone='#{$name}'] {
+      --tone: #{list.nth($pair, 1)};
+      --tone-ink: #{list.nth($pair, 2)};
+    }
+  }
+
+  tbody + tbody {
+    border-top: 1px solid $ui-03;
+  }
+
+  tbody tr + tr td,
+  tbody tr + tr .indicatorCell {
+    border-top: 1px solid $ui-01;
+  }
+
+  tbody tr:hover {
+    .codeCell,
+    .indicatorCell,
+    .countCell {
+      background-color: color-mix(in srgb, var(--tone) 5%, #{$ui-02});
+    }
+  }
+}
+
+.areaCell {
+  width: 13rem;
+  padding: layout.$spacing-04 layout.$spacing-05;
+  vertical-align: top;
+  text-align: left;
+  background-color: color-mix(in srgb, var(--tone) 5%, #{$ui-02});
+  box-shadow: inset 3px 0 0 var(--tone);
+}
+
+.areaName {
+  @include type.type-style('heading-compact-01');
+  display: block;
+  color: var(--tone-ink);
+}
+
+.areaDescription {
+  @include type.type-style('label-01');
+  display: block;
+  margin-top: layout.$spacing-02;
+  color: $text-02;
+}
+
+.codeCell {
+  width: 7.5rem;
+  padding: layout.$spacing-04;
+  vertical-align: top;
+}
+
+.code {
+  @include type.type-style('code-01');
+  display: inline-block;
+  padding: 0 layout.$spacing-02;
+  white-space: nowrap;
+  color: var(--tone-ink);
+  background-color: color-mix(in srgb, var(--tone) 10%, #{$ui-02});
+  border-radius: 2px;
+}
+
+.indicatorCell {
+  padding: layout.$spacing-04;
+  text-align: left;
+  font-weight: normal;
+}
+
+.indicatorName {
+  @include type.type-style('body-compact-01');
+  display: block;
+  font-weight: 600;
+  color: $color-gray-100;
+}
+
+.indicatorDescription {
+  @include type.type-style('label-01');
+  display: block;
+  margin-top: layout.$spacing-01;
+  color: $text-02;
+}
+
+.countHead {
+  text-align: right !important;
+}
+
+.countCell {
+  width: 8rem;
+  padding: layout.$spacing-04 layout.$spacing-05;
+  vertical-align: top;
+  text-align: right;
+}
+
+.count {
+  @include type.type-style('productive-heading-03');
+  padding: 0;
+  font-variant-numeric: tabular-nums;
+  color: var(--brand-01);
+  background: none;
+  border: 0;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.none {
+  @include type.type-style('productive-heading-03');
+  color: $ui-04;
+}
+
+.pending {
+  @include type.type-style('label-01');
+  font-style: italic;
+  color: $text-02;
+}
+
+.note {
+  @include type.type-style('label-01');
+  margin-top: layout.$spacing-05;
+  color: $text-02;
+}
+
+@media (max-width: 42rem) {
+  .sheet {
+    padding: layout.$spacing-05 layout.$spacing-04;
+  }
+
+  .areaCell,
+  .codeCell,
+  .table thead th:nth-child(-n + 2) {
+    display: none;
+  }
+}

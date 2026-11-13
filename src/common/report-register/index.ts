@@ -4,3 +4,4 @@ export * from './report-parents';
 export * from './rows-to-csv';
 export * from './use-patient-list';
 export * from './use-location-name';
+export * from './xlsx';

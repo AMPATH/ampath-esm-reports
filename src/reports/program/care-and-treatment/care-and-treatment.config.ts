@@ -1,5 +1,6 @@
 /**
- * The Care & Treatment and ARV Management report, sections 1.1-1.4, as one
+ * The Care & Treatment and ARV Management report, sections 1.1-1.7 and the
+ * PMTCT VL tracking, as one
  * table: the age bands across the top once, female and male under each, and
  * every section's indicators down the side. Each row reads one or more of the
  * ETL's figures (the flags of careTreatmentBase), which come back added up by
@@ -58,6 +59,7 @@ export interface RowGroup {
 
 export interface ReportSection {
   id: string;
+  /** Empty for a part of the form without one, e.g. `Inflows (Net gain)` */
   number: string;
   /** Merged down beside the section's rows */
   title: string;
@@ -80,6 +82,28 @@ const MONTHS_DISPENSED: ReportRow[] = [
 ];
 
 const DISPENSING_NOT_RECORDED: ReportRow = { label: 'Not categorized', indicators: ['mmd_unknown'], notRecorded: true };
+
+/** A client's CD4 when back on ART after an interruption */
+const rttCd4 = (prefix: string): ReportRow[] => [
+  { label: 'CD4: <200', indicators: [`${prefix}_cd4_lt_200`] },
+  { label: 'CD4: ≥200', indicators: [`${prefix}_cd4_ge_200`] },
+  { label: 'CD4 % (subject to full haemogram result availability)', indicators: [`${prefix}_cd4_percent`] },
+  { label: 'Unknown CD4 (CD4 not done)', indicators: [`${prefix}_cd4_unknown`] },
+];
+
+/** A PMTCT group's latest viral loads in the past 12 months, known and new positives */
+const pmtctViralLoads = (group: string): ReportRow[] => [
+  { label: 'Viral load collected and results available', indicators: [`pmtct_${group}_vl`], strong: true },
+  ...[
+    ['known', 'Known positive'],
+    ['new', 'New positive'],
+  ].flatMap(([status, name]) => [
+    { label: `${name}: <50 copies/LDL`, indicators: [`pmtct_${group}_${status}_lt_50`] },
+    { label: `${name}: 50-199 copies/ml`, indicators: [`pmtct_${group}_${status}_50_199`] },
+    { label: `${name}: 200-999 copies/ml`, indicators: [`pmtct_${group}_${status}_200_999`] },
+    { label: `${name}: ≥1000 copies/ml`, indicators: [`pmtct_${group}_${status}_ge_1000`] },
+  ]),
+];
 
 const CURRENT_ON_ART: ReportRow = { label: 'Currently on ART (TX_CURR)', indicators: ['tx_curr'], reference: true };
 
@@ -171,7 +195,7 @@ export const CARE_AND_TREATMENT_SECTIONS: ReportSection[] = [
     number: '1.3b',
     title: 'Actual number of months ARV drug dispensed - MCH (PMTCT)',
     shortTitle: 'Months dispensed - MCH',
-    note: 'MCH (PMTCT): women of 10 years and over on ART who are pregnant or breastfeeding, or in care at an MCH clinic.',
+    note: 'MCH (PMTCT): women of 10 years and over on ART who are pregnant, breastfeeding or with a child under 2 (one recorded as theirs, or an EDD in the past 24 months), or in care at an MCH clinic.',
     mch: true,
     groups: [
       { rows: [{ label: 'Currently on ART (TX_CURR)', indicators: ['tx_curr'], strong: true }] },
@@ -198,6 +222,100 @@ export const CARE_AND_TREATMENT_SECTIONS: ReportSection[] = [
           { label: 'No viral load in the past 12 months', indicators: ['vl_none'] },
         ],
       },
+    ],
+  },
+  {
+    id: 'ti',
+    number: '',
+    title: 'Inflows (Net gain)',
+    shortTitle: 'Transfer in',
+    note: 'Transfer In: on ART here this month but not last month, neither starting ART nor back after an interruption -- transferred in, or last on ART at another facility.',
+    groups: [{ rows: [{ label: 'Transfer In (TI)', indicators: ['ti'], strong: true }] }],
+  },
+  {
+    id: 'tx-rtt',
+    number: '1.5',
+    title: 'TX_RTT (returned to treatment) - Monthly',
+    shortTitle: 'TX_RTT',
+    note: 'TX_RTT: back on ART this month after being a defaulter or lost to follow-up last month. The interruption runs from the missed appointment to the return, and the CD4 is one done since the missed appointment.',
+    groups: [
+      {
+        rows: [
+          { label: 'TX_RTT (returned to treatment)', indicators: ['rtt'], strong: true },
+          { label: 'TX_RTT: Experienced a treatment interruption of <3 months', indicators: ['rtt_lt3'] },
+        ],
+      },
+      {
+        title: 'TX_RTT: Experienced a treatment interruption of 3-5 months',
+        rows: [{ label: 'Total', indicators: ['rtt_3_5'], strong: true }, ...rttCd4('rtt_3_5')],
+      },
+      {
+        title: 'TX_RTT: Experienced a treatment interruption of 6+ months',
+        rows: [{ label: 'Total', indicators: ['rtt_6_plus'], strong: true }, ...rttCd4('rtt_6_plus')],
+      },
+    ],
+  },
+  {
+    id: 'tx-ml',
+    number: '1.6',
+    title: 'TX_ML (Mortality & Loss) - Monthly',
+    shortTitle: 'TX_ML',
+    note: 'TX_ML: on ART here at the end of last month (last month’s TX_CURR) but not at the end of this month, by their status now. An interruption is a defaulter or lost to follow-up, by how long they had been on ART at the missed appointment.',
+    groups: [
+      {
+        title: 'Outflows (Net Loss)',
+        rows: [
+          { label: 'Total', indicators: ['ml_total'], strong: true },
+          { label: 'Interruption of Treatment for clients on ART for <3 months', indicators: ['ml_iit_lt3'] },
+          { label: 'Interruption of Treatment for clients on ART for 3-5 months', indicators: ['ml_iit_3_5'] },
+          { label: 'Interruption of Treatment for clients on ART for 6+ months', indicators: ['ml_iit_6_plus'] },
+          { label: 'Transfer Out (TO)', indicators: ['ml_to'] },
+          { label: 'Refused (Stopped) Treatment', indicators: ['ml_stopped'] },
+          { label: 'Deceased', indicators: ['ml_died'] },
+          { label: 'Not categorized', indicators: ['ml_unknown'], notRecorded: true },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'cod',
+    number: '1.7',
+    title: 'Cause of Death - Monthly',
+    shortTitle: 'Cause of death',
+    note: 'Cause of death of the clients who died (TX_ML Deceased): the latest recorded on a death report or outreach form, else on the person; none recorded counts as unknown.',
+    groups: [
+      { rows: [{ label: 'Deceased (TX_ML)', indicators: ['ml_died'], reference: true }] },
+      {
+        title: 'Disaggregations of Cause of Death (Monthly Net Gain Analysis)',
+        rows: [
+          { label: 'COD- TB', indicators: ['cod_tb'] },
+          { label: 'COD- Cancer', indicators: ['cod_cancer'] },
+          { label: 'COD- HIV Disease', indicators: ['cod_hiv'] },
+          { label: 'COD- Other HIV Disease', indicators: ['cod_other_hiv'] },
+          { label: 'COD- Other Natural Causes', indicators: ['cod_other_natural'] },
+          { label: 'COD- Non Natural Causes', indicators: ['cod_non_natural'] },
+          { label: 'COD- Unknown Causes', indicators: ['cod_unknown'] },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'pmtct-vl',
+    number: '',
+    title: 'Monthly PMTCT VL Tracking (Females only)',
+    shortTitle: 'PMTCT VL',
+    note: 'PMTCT VL tracking: each woman’s latest viral load in the past 12 months; pregnant first, then breastfeeding, then with a child under 2. A known positive was diagnosed before this pregnancy (280 days before the EDD or the child’s birth), a new positive since.',
+    mch: true,
+    groups: [
+      {
+        rows: [
+          { label: 'TX_Curr MCH', indicators: ['tx_curr'], strong: true },
+          { label: 'Eligible for Viral Load in the last 12 months', indicators: ['vl_eligible'] },
+        ],
+      },
+      { title: 'Pregnant', rows: pmtctViralLoads('pregnant') },
+      { title: 'Breastfeeding', rows: pmtctViralLoads('bf') },
+      { title: 'Other (non-breastfeeding with child below 24 months)', rows: pmtctViralLoads('other') },
     ],
   },
 ];

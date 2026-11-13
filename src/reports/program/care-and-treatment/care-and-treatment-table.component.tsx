@@ -111,7 +111,7 @@ const CareAndTreatmentTable: React.FC<CareAndTreatmentTableProps> = ({ count, op
                   >
                     {groupIndex === 0 && rowIndex === 0 && (
                       <th scope="rowgroup" rowSpan={sectionRows(section)} className={styles.sectionCell}>
-                        <span className={styles.sectionNumber}>{section.number}</span>
+                        {section.number && <span className={styles.sectionNumber}>{section.number}</span>}
                         <span className={styles.sectionName}>{section.title}</span>
                       </th>
                     )}
