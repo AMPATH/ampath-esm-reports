@@ -13,7 +13,7 @@ import {
   type ReportCategory,
   type ReportDefinition,
 } from './report-catalog';
-import { useFacilityName } from '../common/report-header';
+import { FacilityClinics, useFacility } from '../common/report-header';
 import styles from './reports-dashboard.module.scss';
 
 interface ReportsDashboardProps {}
@@ -38,7 +38,7 @@ const ReportsDashboard: React.FC<ReportsDashboardProps> = () => {
     setSearchParams(next, { replace: true });
   };
 
-  /* The Reports tab's group (MOH, Program, Action summary), also kept in the URL */
+  /* The Reports tab's group (MOH, Program, Quality improvement), also kept in the URL */
   const selectedGroup = reportGroups.find((group) => group.id === searchParams.get('group')) ?? reportGroups[0];
   const selectGroup = (groupId: string) => {
     const next = new URLSearchParams(searchParams);
@@ -65,7 +65,8 @@ const ReportsDashboard: React.FC<ReportsDashboardProps> = () => {
 
   /* the facility the reports cover (the session location's parent, e.g. MTRH
      for MTRH Module 1), as the reports themselves name it */
-  const facilityName = useFacilityName(session?.sessionLocation?.uuid, session?.sessionLocation?.display ?? '');
+  const facility = useFacility(session?.sessionLocation?.uuid, session?.sessionLocation?.display ?? '');
+  const facilityName = facility.name;
   const today = formatDate(new Date(), { mode: 'standard', time: false, noToday: true });
 
   /* One report or register: its code and name, opening its page */
@@ -188,7 +189,7 @@ const ReportsDashboard: React.FC<ReportsDashboardProps> = () => {
           {facilityName && (
             <span className={styles.metaItem}>
               <Location size={16} />
-              {facilityName}
+              <FacilityClinics name={facilityName} clinics={facility.clinics} />
             </span>
           )}
           <span className={styles.metaItem}>

@@ -129,64 +129,6 @@
   margin-left: layout.$spacing-03;
 }
 
-/* "18 clinics": opens the list of the facility's clinics */
-.clinics {
-  margin-left: layout.$spacing-02;
-
-  /* wide enough for the list's two columns (Carbon caps the toggletip at 18rem) */
-  :global(.cds--popover-content),
-  :global(.cds--toggletip-content) {
-    max-inline-size: min(36rem, calc(100vw - 2rem));
-  }
-}
-
-.clinicsButton {
-  padding: 0 layout.$spacing-02;
-  font: inherit;
-  color: var(--brand-01);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  cursor: pointer;
-  background: none;
-  border: none;
-
-  &:hover {
-    text-decoration-thickness: 2px;
-  }
-}
-
-.clinicsTitle {
-  margin-bottom: layout.$spacing-03;
-  font-weight: 600;
-}
-
-/* two columns when the list is long, so it stays short */
-.clinicsList {
-  columns: 2;
-  column-gap: layout.$spacing-06;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-
-  li {
-    padding: layout.$spacing-01 0;
-    white-space: nowrap;
-    break-inside: avoid;
-  }
-}
-
-/* on a phone: one column, scrolling if long, names allowed to wrap */
-@media (max-width: $breakpoint-phone-max) {
-  .clinicsList {
-    columns: 1;
-    max-height: 50vh;
-    overflow-y: auto;
-
-    li {
-      white-space: normal;
-    }
-  }
-}
 
 .export {
   flex-shrink: 0;

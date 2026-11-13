@@ -35,6 +35,8 @@ const stageCopy = (sheet: HTMLElement) => {
   stage.setAttribute('aria-hidden', 'true');
   Object.assign(stage.style, { position: 'fixed', top: '0', left: '-100000px', pointerEvents: 'none' });
   const copy = sheet.cloneNode(true) as HTMLElement;
+  /* on-screen controls kept off the page, e.g. a facility's "18 clinics" button */
+  copy.querySelectorAll('[data-pdf-hidden]').forEach((element) => element.remove());
   copy.style.setProperty('--page-zoom', '1');
   copy.style.margin = '0';
   stage.appendChild(copy);

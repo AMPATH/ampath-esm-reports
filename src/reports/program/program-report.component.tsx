@@ -6,7 +6,7 @@ import { useSession } from '@openmrs/esm-framework';
 
 import { ReportFiltersComponent, type ReportPeriod, useRestorePeriod } from '../../common/report-filters';
 import { ReportPlaceholder, useGeneratedLocation } from '../../common/report-placeholder';
-import { useFacilityName } from '../../common/report-header';
+import { FacilityClinics, useFacility } from '../../common/report-header';
 import { type ReportDefinition } from '../../dashboard/report-catalog';
 import styles from './program-report.scss';
 
@@ -17,7 +17,7 @@ interface ProgramReportProps {
 }
 
 /**
- * The page every program and action summary report opens on (Reports tab),
+ * The page every program and quality improvement report opens on (Reports tab),
  * set up as the MOH reports are: the filter bar, generation for the session
  * location's facility, and the space below where the report's template goes.
  *
@@ -33,7 +33,8 @@ const ProgramReport: React.FC<ProgramReportProps> = ({ report, backLink }) => {
   const session = useSession();
   const locationUuids = session?.sessionLocation?.uuid ?? '';
   /* program reports cover the session location's whole facility, as the MOH ones do */
-  const facility = useFacilityName(locationUuids, session?.sessionLocation?.display ?? '');
+  const facilityDetails = useFacility(locationUuids, session?.sessionLocation?.display ?? '');
+  const facility = facilityDetails.name;
   const storageKey = `programReportLocation:${report.path}`;
   const { isForCurrentLocation, hasLocationChanged, markGenerated } = useGeneratedLocation(storageKey);
   const isReportGenerated = isGenerated && isForCurrentLocation;
@@ -57,7 +58,9 @@ const ProgramReport: React.FC<ProgramReportProps> = ({ report, backLink }) => {
     <>
       <ReportFiltersComponent
         reportName={reportName}
-        mode="monthly"
+        /* a month, or any dates */
+        mode="both"
+        defaultTab="monthly"
         onGenerate={generate}
         isLoading={false}
         isReportGenerated={isReportGenerated}
@@ -74,7 +77,10 @@ const ProgramReport: React.FC<ProgramReportProps> = ({ report, backLink }) => {
             <h4 className={styles.title}>{report.name}</h4>
             <p className={styles.meta}>
               <span>
-                Facility: <strong>{facility}</strong>
+                Facility:{' '}
+                <strong>
+                  <FacilityClinics name={facility} clinics={facilityDetails.clinics} />
+                </strong>
               </span>
               <span>
                 Period: <strong>{periodLabel}</strong>
