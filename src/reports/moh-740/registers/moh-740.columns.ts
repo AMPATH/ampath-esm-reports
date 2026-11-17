@@ -30,6 +30,7 @@ export const MOH_222_COLUMNS: RegisterColumn[] = [
   { header: 'Screened for TB', value: (r) => r.screened_for_tb ?? '' },
   { header: 'TB Status after Screening', value: (r) => r.tbs_status ?? '' },
   { header: 'Active SHA(Y/N)', value: (r) => (r.covered_by_shif ? 'Y' : 'N') },
+  { header: 'HIV Status', value: (r) => r.hiv_status ?? '' },
 ];
 
 /** MOH 270, in the order the register prints its columns */

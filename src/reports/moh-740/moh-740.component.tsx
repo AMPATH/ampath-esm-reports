@@ -80,7 +80,7 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
    const navigateToRegister = (indicator: string, register: string) => {
      let baseUrl = '';
       if(register === Moh740Rgisters.DailyRegister){
-         baseUrl = 'moh-222'
+         baseUrl = 'moh-740-line-list'
       }
       if(register === Moh740Rgisters.PermanentRegister){
           baseUrl = 'moh-270'

@@ -135,7 +135,7 @@ const Moh718Report: React.FC = () => {
           </table>
         </div>
         <div className={styles.tableContainer}>
-          <div className={styles.tableTitle}>Certain infectius and parasitic diseases</div>
+          <div className={styles.tableTitle}>Certain infectious and parasitic diseases</div>
           <table className={styles.reportTable}>
             <thead>
               <tr>
