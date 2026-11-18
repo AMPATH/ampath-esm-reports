@@ -14,11 +14,11 @@ import { ReportPage } from '../../common/report-page';
 
 const MOH713Component: React.FC = () => {
   const [moh713Data, setMoh713Data] = useState<any>(() => {
-    const saved = sessionStorage.getItem('moh711Data');
+    const saved = sessionStorage.getItem('moh713Data');
     return saved ? JSON.parse(saved) : [];
   });
 
-  const { isForCurrentLocation, hasLocationChanged, markGenerated } = useGeneratedLocation('moh711Location');
+  const { isForCurrentLocation, hasLocationChanged, markGenerated } = useGeneratedLocation('moh713Location');
   const isReportGenerated = hasReportData(moh713Data) && isForCurrentLocation;
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [startDate, setStartDate] = useState<string>(() => {
@@ -26,7 +26,7 @@ const MOH713Component: React.FC = () => {
   });
 
   const [endDate, setEndDate] = useState<string>(() => {
-    return sessionStorage.getItem('moh711EndDate') || '';
+    return sessionStorage.getItem('moh713EndDate') || '';
   });
   useEffect(() => {
     sessionStorage.setItem('moh711Data', JSON.stringify(moh713Data));
@@ -49,7 +49,7 @@ const MOH713Component: React.FC = () => {
   const reportMonth = startDate ? dayjs(startDate).format('MMMM') : '';
   const reportYear = startDate ? dayjs(startDate).format('YYYY') : '';
 
-  const fetchMoh711ReportData = async ({ startDate, endDate }: ReportPeriod) => {
+  const fetchMoh713ReportData = async ({ startDate, endDate }: ReportPeriod) => {
     setIsLoading(true);
     setStartDate(startDate);
     setEndDate(endDate);
@@ -68,15 +68,15 @@ const MOH713Component: React.FC = () => {
     } catch (error) {
       setIsLoading(false);
       setIsLoading(false);
-      showReportError('the MOH-711 report', error);
+      showReportError('the MOH-713 report', error);
     }
   };
   return (
     <>
       <ReportFiltersComponent
-        reportName="MOH-711 Report"
+        reportName="MOH-713 Report"
         mode="both"
-        onGenerate={fetchMoh711ReportData}
+        onGenerate={fetchMoh713ReportData}
         isLoading={isLoading}
         isReportGenerated={isReportGenerated}
         generatedPeriod={{ startDate, endDate }}

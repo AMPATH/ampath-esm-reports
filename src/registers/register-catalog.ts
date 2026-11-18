@@ -236,6 +236,14 @@ export const registerCategories: ReportCategory[] = [
         icon: Activity,
         keywords: ['inpatient', 'nutrition'],
       },
+      {
+        code: 'MOH 409',
+        name: 'MOH 409 Register',
+        description: 'MOH 409 Register',
+        path: '/moh-409-register',
+        icon: Activity,
+        keywords: ['nutrition'],
+      },
     ],
   },
   {
