@@ -62,3 +62,29 @@ export async function getMoh368Register(params: PatientListParams): Promise<Pati
     throw new Error(`An error occurred while fetching the MOH-368 Register: ${error.message}`);
   }
 }
+
+export async function getMoh409Register(params: PatientListParams): Promise<PatientListPage> {
+  const url = await buildEtlUrl('moh-409-register', {
+    locationUuids: params.locationUuids || '',
+    startDate: params.startDate || '',
+    endDate: params.endDate || '',
+    indicator: Array.isArray(params.indicator) ? params.indicator.join(',') : params.indicator || '',
+    reportName: params.reportName || '',
+    ...pageParams(params),
+  });
+
+  try {
+    const response = await openmrsFetch(url);
+
+    if (!response.ok) {
+      const errorText = await response.text();
+
+      throw new Error(`Failed to fetch  moh-409: ${response.status} - ${errorText}`);
+    }
+
+    const data = await response.json();
+    return toPatientListPage(data?.data, params.startIndex ?? 0, params.limit ?? PAGE_SIZE);
+  } catch (error: any) {
+    throw new Error(`An error occurred while fetching the MOH-409 Register: ${error.message}`);
+  }
+}

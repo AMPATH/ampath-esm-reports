@@ -1,5 +1,14 @@
 import { type RegisterColumn } from '../../common/report-register';
 
+const valueFrom = (row: Record<string, any>, keys: string[]) => {
+  for (const key of keys) {
+    if (row[key] !== undefined && row[key] !== null && row[key] !== '') {
+      return row[key];
+    }
+  }
+  return '';
+};
+
 /**
  * MOH 368 columns in the order they appear on the register.
  */
@@ -29,8 +38,38 @@ export const moh368ExportColumns: RegisterColumn[] = [
   { header: 'Weight (Kg)', value: (row) => row.weight ?? '' },
   { header: 'WHZ score', value: (row) => row.whz_score ?? '' },
   { header: 'MUAC (cm)', value: (row) => row.muac ?? '' },
-  { header: 'Day 1 Weight', value: (row) => row.weight_in_kgs ?? row.weight ?? '' },
-  { header: 'Day 1 MUAC', value: (row) => row.muac ?? '' },
-  { header: 'Day 2 Weight', value: (row) => row.weight_in_kgs ?? row.weight ?? '' },
-  { header: 'Day 2 MUAC', value: (row) => row.muac ?? '' },
+  ...Array.from({ length: 12 }, (_, index) => {
+    const day = index + 1;
+    return [
+      { header: `Day ${day} Weight`, value: (row) => row.weight ?? '' },
+      { header: `Day ${day} MUAC`, value: (row) => row.muac ?? '' },
+    ] satisfies RegisterColumn[];
+  }).flat(),
+  {
+    header: 'Discharge Weight (Kg)',
+    value: (row) => valueFrom(row, ['discharge_weight', 'discharge_weight_kg', 'weight_at_discharge']),
+  },
+  {
+    header: 'Discharge length/height',
+    value: (row) => valueFrom(row, ['discharge_height', 'discharge_length', 'length_or_height_at_discharge']),
+  },
+  {
+    header: 'Discharge WHZ',
+    value: (row) => valueFrom(row, ['discharge_whz', 'discharge_whz_score', 'whz_at_discharge']),
+  },
+  {
+    header: 'Discharge MUAC (cm)',
+    value: (row) => valueFrom(row, ['discharge_muac', 'muac_at_discharge']),
+  },
+  { header: 'Exit date', value: (row) => valueFrom(row, ['exit_date', 'discharge_date']) },
+  {
+    header: 'Length of stay in days',
+    value: (row) => valueFrom(row, ['length_of_stay', 'length_of_stay_in_days', 'days_in_care']),
+  },
+  { header: 'Exit Outcome[7]', value: (row) => valueFrom(row, ['exit_outcome', 'exit_status', 'nutrition_outcome']) },
+  {
+    header: 'Observations/comments',
+    value: (row) => valueFrom(row, ['observations', 'observation', 'comments', 'remarks']),
+    wrap: true,
+  },
 ];

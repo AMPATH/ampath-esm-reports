@@ -323,11 +323,11 @@ const Moh710Report: React.FC = () => {
                   </tr>
                   <tr>
                     <td>Typhoid Conjugate Vaccine (TCV) doses Administered</td>
-                    <td>
-                      {moh710Data.typhoid_conjugate_vaccine_age_greater_than_1yr}
-                    </td>
-                    <td>
+                    <td onClick={() => navigateTo510Register('typhoid_conjugate_vaccine_age_less_than_1yr')}>
                       {moh710Data.typhoid_conjugate_vaccine_age_less_than_1yr}
+                    </td>
+                    <td onClick={() => navigateTo510Register('typhoid_conjugate_vaccine_age_greater_than_1yr')}>
+                      {moh710Data.typhoid_conjugate_vaccine_age_greater_than_1yr}
                     </td>
                   </tr>
                   <tr>

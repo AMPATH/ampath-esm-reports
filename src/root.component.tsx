@@ -73,6 +73,7 @@ import MOH713Component from './reports/moh-713/moh-713.component';
 import MOH368Component from './registers/moh-368/moh-368.component';
 import Moh301Register from './reports/moh-718/registers/moh-301/moh-301.register';
 import Moh740Linelist from './reports/moh-740/line-list/moh-740-line-list.component';
+import Moh409Component from './registers/moh-409/moh-409.component';
 
 const RootComponent: React.FC = () => {
   const baseName = window.getOpenmrsSpaBase() + 'home/reports';
@@ -176,6 +177,7 @@ const RootComponent: React.FC = () => {
           <Route path="/moh-713" element={<MOH713Component />} />
           <Route path="/moh-368-register" element={<MOH368Component />} />
           <Route path="/moh-301-register" element={<Moh301Register />} />
+          <Route path="/moh-409-register" element={<Moh409Component />} />
         </Routes>
       </div>
     </BrowserRouter>
