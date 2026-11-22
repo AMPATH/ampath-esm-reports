@@ -98,11 +98,18 @@ const MOH368Component: React.FC<MOH368ComponentProps> = () => {
               <tr>
                 <th colSpan={13}>ADMISSION DETAILS</th>
                 <th colSpan={4}>ADMISSION MEASUREMTS(admission day)</th>
-                <th colSpan={4}>
+                <th colSpan={24}>
                   WEIGHT(kg)MUAC
                   <br />
                   (cm)MONITORING
                 </th>
+                <th colSpan={4}>
+                  DISCHARGE <br />
+                  /TRANSFER <br />
+                  MEASUREMENTS
+                </th>
+                <th colSpan={3}>EXIT DETAILS</th>
+                <th></th>
               </tr>
               <tr>
                 <th rowSpan={2}>No</th>
@@ -145,8 +152,50 @@ const MOH368Component: React.FC<MOH368ComponentProps> = () => {
                 <th rowSpan={2}>MUAC (cm)</th>
                 <th colSpan={2}>Day 1</th>
                 <th colSpan={2}>Day 2</th>
+                <th colSpan={2}>Day 3</th>
+                <th colSpan={2}>Day 4</th>
+                <th colSpan={2}>Day 5</th>
+                <th colSpan={2}>Day 6</th>
+                <th colSpan={2}>Day 7</th>
+                <th colSpan={2}>Day 8</th>
+                <th colSpan={2}>Day 9</th>
+                <th colSpan={2}>Day 10</th>
+                <th colSpan={2}>Day 11</th>
+                <th colSpan={2}>Day 12</th>
+                <th rowSpan={2}>Weight(Kg)</th>
+                <th rowSpan={2}>length/height</th>
+                <th rowSpan={2}>WHZ</th>
+                <th rowSpan={2}>MUAC (cm)</th>
+                <th rowSpan={2}>Exit date</th>
+                <th rowSpan={2}>
+                  Length of stay
+                  <br />
+                  in days{6}
+                </th>
+                <th rowSpan={2}>Exit Outcome[7]</th>
+                <th rowSpan={2}>Observations/comments</th>
               </tr>
               <tr>
+                <th>Weight</th>
+                <th>MUAC</th>
+                <th>Weight</th>
+                <th>MUAC</th>
+                <th>Weight</th>
+                <th>MUAC</th>
+                <th>Weight</th>
+                <th>MUAC</th>
+                <th>Weight</th>
+                <th>MUAC</th>
+                <th>Weight</th>
+                <th>MUAC</th>
+                <th>Weight</th>
+                <th>MUAC</th>
+                <th>Weight</th>
+                <th>MUAC</th>
+                <th>Weight</th>
+                <th>MUAC</th>
+                <th>Weight</th>
+                <th>MUAC</th>
                 <th>Weight</th>
                 <th>MUAC</th>
                 <th>Weight</th>

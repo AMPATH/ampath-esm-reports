@@ -5,12 +5,12 @@ export function useOpenMoh711ChanisLinelist(startDate: string, endDate: string, 
   const navigate = useNavigate();
 
   return useCallback(
-    (indicator: string) => {
+    (indicator: string | string[]) => {
       const params = new URLSearchParams({
         startDate,
         endDate,
         locationUuids,
-        indicator,
+        indicator: Array.isArray(indicator) ? indicator.join(',') : indicator,
         from: 'moh-711',
       });
       navigate(`/moh-711-chanis-linelist?${params}`);
