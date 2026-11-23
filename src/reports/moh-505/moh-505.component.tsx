@@ -224,6 +224,7 @@ const Moh505Report: React.FC = () => {
 
             <TableWrapper>
               <TableRowMapper
+                {...drillDownProps}
                 tableRows={[
                   {
                     tableCells: [
@@ -253,6 +254,7 @@ const Moh505Report: React.FC = () => {
 
             <TableWrapper>
               <TableRowMapper
+                {...drillDownProps}
                 tableRows={[
                   {
                     tableCells: [
@@ -284,6 +286,7 @@ const Moh505Report: React.FC = () => {
 
             <TableWrapper>
               <TableRowMapper
+                {...drillDownProps}
                 tableRows={[
                   {
                     tableCells: [
@@ -317,6 +320,7 @@ const Moh505Report: React.FC = () => {
 
             <TableWrapper>
               <TableRowMapper
+                {...drillDownProps}
                 tableRows={[
                   {
                     tableCells: [
@@ -351,6 +355,7 @@ const Moh505Report: React.FC = () => {
 
             <TableWrapper>
               <TableRowMapper
+                {...drillDownProps}
                 tableRows={[
                   {
                     tableCells: [
