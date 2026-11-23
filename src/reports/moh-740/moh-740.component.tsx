@@ -634,7 +634,7 @@ const Moh740Report: React.FC<Moh740ReportProps> = () => {
                               <DataCell
                                 value={moh740Data?.dc__age_range__20_to_35__has_htn}
                                 indicatorSelected={handleIndicatorSelected}
-                                indicator="dc__range__20_to_35__has_htn"
+                                indicator="dc__age_range__20_to_35__has_htn"
                               />
                             </td>
                           </tr>
